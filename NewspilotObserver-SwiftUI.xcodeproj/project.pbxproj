@@ -1,0 +1,493 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		EB7B9DAF22C7EDC7009EB2BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7B9DAE22C7EDC7009EB2BE /* AppDelegate.swift */; };
+		EB7B9DB122C7EDC7009EB2BE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7B9DB022C7EDC7009EB2BE /* SceneDelegate.swift */; };
+		EB7B9DB422C7EDC7009EB2BE /* NewspilotObserver_SwiftUI.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EB7B9DB222C7EDC7009EB2BE /* NewspilotObserver_SwiftUI.xcdatamodeld */; };
+		EB7B9DB622C7EDC7009EB2BE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7B9DB522C7EDC7009EB2BE /* ContentView.swift */; };
+		EB7B9DB822C7EDC9009EB2BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB7B9DB722C7EDC9009EB2BE /* Assets.xcassets */; };
+		EB7B9DBB22C7EDC9009EB2BE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB7B9DBA22C7EDC9009EB2BE /* Preview Assets.xcassets */; };
+		EB7B9DBE22C7EDC9009EB2BE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB7B9DBC22C7EDC9009EB2BE /* LaunchScreen.storyboard */; };
+		EB7B9DC922C7EDC9009EB2BE /* NewspilotObserver_SwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7B9DC822C7EDC9009EB2BE /* NewspilotObserver_SwiftUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		EB7B9DC522C7EDC9009EB2BE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EB7B9DA322C7EDC7009EB2BE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EB7B9DAA22C7EDC7009EB2BE;
+			remoteInfo = "NewspilotObserver-SwiftUI";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		EB7B9DAB22C7EDC7009EB2BE /* NewspilotObserver-SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NewspilotObserver-SwiftUI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB7B9DAE22C7EDC7009EB2BE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		EB7B9DB022C7EDC7009EB2BE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		EB7B9DB322C7EDC7009EB2BE /* NewspilotObserver_SwiftUI.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NewspilotObserver_SwiftUI.xcdatamodel; sourceTree = "<group>"; };
+		EB7B9DB522C7EDC7009EB2BE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		EB7B9DB722C7EDC9009EB2BE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EB7B9DBA22C7EDC9009EB2BE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		EB7B9DBD22C7EDC9009EB2BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		EB7B9DBF22C7EDC9009EB2BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EB7B9DC422C7EDC9009EB2BE /* NewspilotObserver-SwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "NewspilotObserver-SwiftUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB7B9DC822C7EDC9009EB2BE /* NewspilotObserver_SwiftUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewspilotObserver_SwiftUITests.swift; sourceTree = "<group>"; };
+		EB7B9DCA22C7EDC9009EB2BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EB7B9DA822C7EDC7009EB2BE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EB7B9DC122C7EDC9009EB2BE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EB7B9DA222C7EDC7009EB2BE = {
+			isa = PBXGroup;
+			children = (
+				EB7B9DAD22C7EDC7009EB2BE /* NewspilotObserver-SwiftUI */,
+				EB7B9DC722C7EDC9009EB2BE /* NewspilotObserver-SwiftUITests */,
+				EB7B9DAC22C7EDC7009EB2BE /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		EB7B9DAC22C7EDC7009EB2BE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EB7B9DAB22C7EDC7009EB2BE /* NewspilotObserver-SwiftUI.app */,
+				EB7B9DC422C7EDC9009EB2BE /* NewspilotObserver-SwiftUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EB7B9DAD22C7EDC7009EB2BE /* NewspilotObserver-SwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+				EB7B9DAE22C7EDC7009EB2BE /* AppDelegate.swift */,
+				EB7B9DB022C7EDC7009EB2BE /* SceneDelegate.swift */,
+				EB7B9DB522C7EDC7009EB2BE /* ContentView.swift */,
+				EB7B9DB722C7EDC9009EB2BE /* Assets.xcassets */,
+				EB7B9DBC22C7EDC9009EB2BE /* LaunchScreen.storyboard */,
+				EB7B9DBF22C7EDC9009EB2BE /* Info.plist */,
+				EB7B9DB222C7EDC7009EB2BE /* NewspilotObserver_SwiftUI.xcdatamodeld */,
+				EB7B9DB922C7EDC9009EB2BE /* Preview Content */,
+			);
+			path = "NewspilotObserver-SwiftUI";
+			sourceTree = "<group>";
+		};
+		EB7B9DB922C7EDC9009EB2BE /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				EB7B9DBA22C7EDC9009EB2BE /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		EB7B9DC722C7EDC9009EB2BE /* NewspilotObserver-SwiftUITests */ = {
+			isa = PBXGroup;
+			children = (
+				EB7B9DC822C7EDC9009EB2BE /* NewspilotObserver_SwiftUITests.swift */,
+				EB7B9DCA22C7EDC9009EB2BE /* Info.plist */,
+			);
+			path = "NewspilotObserver-SwiftUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EB7B9DAA22C7EDC7009EB2BE /* NewspilotObserver-SwiftUI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EB7B9DCD22C7EDC9009EB2BE /* Build configuration list for PBXNativeTarget "NewspilotObserver-SwiftUI" */;
+			buildPhases = (
+				EB7B9DA722C7EDC7009EB2BE /* Sources */,
+				EB7B9DA822C7EDC7009EB2BE /* Frameworks */,
+				EB7B9DA922C7EDC7009EB2BE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "NewspilotObserver-SwiftUI";
+			productName = "NewspilotObserver-SwiftUI";
+			productReference = EB7B9DAB22C7EDC7009EB2BE /* NewspilotObserver-SwiftUI.app */;
+			productType = "com.apple.product-type.application";
+		};
+		EB7B9DC322C7EDC9009EB2BE /* NewspilotObserver-SwiftUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EB7B9DD022C7EDC9009EB2BE /* Build configuration list for PBXNativeTarget "NewspilotObserver-SwiftUITests" */;
+			buildPhases = (
+				EB7B9DC022C7EDC9009EB2BE /* Sources */,
+				EB7B9DC122C7EDC9009EB2BE /* Frameworks */,
+				EB7B9DC222C7EDC9009EB2BE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EB7B9DC622C7EDC9009EB2BE /* PBXTargetDependency */,
+			);
+			name = "NewspilotObserver-SwiftUITests";
+			productName = "NewspilotObserver-SwiftUITests";
+			productReference = EB7B9DC422C7EDC9009EB2BE /* NewspilotObserver-SwiftUITests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EB7B9DA322C7EDC7009EB2BE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1100;
+				LastUpgradeCheck = 1100;
+				ORGANIZATIONNAME = "Infomaker Scandinavia AB";
+				TargetAttributes = {
+					EB7B9DAA22C7EDC7009EB2BE = {
+						CreatedOnToolsVersion = 11.0;
+					};
+					EB7B9DC322C7EDC9009EB2BE = {
+						CreatedOnToolsVersion = 11.0;
+						TestTargetID = EB7B9DAA22C7EDC7009EB2BE;
+					};
+				};
+			};
+			buildConfigurationList = EB7B9DA622C7EDC7009EB2BE /* Build configuration list for PBXProject "NewspilotObserver-SwiftUI" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = EB7B9DA222C7EDC7009EB2BE;
+			productRefGroup = EB7B9DAC22C7EDC7009EB2BE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EB7B9DAA22C7EDC7009EB2BE /* NewspilotObserver-SwiftUI */,
+				EB7B9DC322C7EDC9009EB2BE /* NewspilotObserver-SwiftUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EB7B9DA922C7EDC7009EB2BE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EB7B9DBE22C7EDC9009EB2BE /* LaunchScreen.storyboard in Resources */,
+				EB7B9DBB22C7EDC9009EB2BE /* Preview Assets.xcassets in Resources */,
+				EB7B9DB822C7EDC9009EB2BE /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EB7B9DC222C7EDC9009EB2BE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EB7B9DA722C7EDC7009EB2BE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EB7B9DAF22C7EDC7009EB2BE /* AppDelegate.swift in Sources */,
+				EB7B9DB422C7EDC7009EB2BE /* NewspilotObserver_SwiftUI.xcdatamodeld in Sources */,
+				EB7B9DB622C7EDC7009EB2BE /* ContentView.swift in Sources */,
+				EB7B9DB122C7EDC7009EB2BE /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EB7B9DC022C7EDC9009EB2BE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EB7B9DC922C7EDC9009EB2BE /* NewspilotObserver_SwiftUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EB7B9DC622C7EDC9009EB2BE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EB7B9DAA22C7EDC7009EB2BE /* NewspilotObserver-SwiftUI */;
+			targetProxy = EB7B9DC522C7EDC9009EB2BE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		EB7B9DBC22C7EDC9009EB2BE /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EB7B9DBD22C7EDC9009EB2BE /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		EB7B9DCB22C7EDC9009EB2BE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		EB7B9DCC22C7EDC9009EB2BE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		EB7B9DCE22C7EDC9009EB2BE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "NewspilotObserver-SwiftUI/Preview\\ Content";
+				DEVELOPMENT_TEAM = JJK5286KRP;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "NewspilotObserver-SwiftUI/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "se.infomaker.NewspilotObserver-SwiftUI";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		EB7B9DCF22C7EDC9009EB2BE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "NewspilotObserver-SwiftUI/Preview\\ Content";
+				DEVELOPMENT_TEAM = JJK5286KRP;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "NewspilotObserver-SwiftUI/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "se.infomaker.NewspilotObserver-SwiftUI";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		EB7B9DD122C7EDC9009EB2BE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = JJK5286KRP;
+				INFOPLIST_FILE = "NewspilotObserver-SwiftUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "se.infomaker.NewspilotObserver-SwiftUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NewspilotObserver-SwiftUI.app/NewspilotObserver-SwiftUI";
+			};
+			name = Debug;
+		};
+		EB7B9DD222C7EDC9009EB2BE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = JJK5286KRP;
+				INFOPLIST_FILE = "NewspilotObserver-SwiftUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "se.infomaker.NewspilotObserver-SwiftUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NewspilotObserver-SwiftUI.app/NewspilotObserver-SwiftUI";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EB7B9DA622C7EDC7009EB2BE /* Build configuration list for PBXProject "NewspilotObserver-SwiftUI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EB7B9DCB22C7EDC9009EB2BE /* Debug */,
+				EB7B9DCC22C7EDC9009EB2BE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EB7B9DCD22C7EDC9009EB2BE /* Build configuration list for PBXNativeTarget "NewspilotObserver-SwiftUI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EB7B9DCE22C7EDC9009EB2BE /* Debug */,
+				EB7B9DCF22C7EDC9009EB2BE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EB7B9DD022C7EDC9009EB2BE /* Build configuration list for PBXNativeTarget "NewspilotObserver-SwiftUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EB7B9DD122C7EDC9009EB2BE /* Debug */,
+				EB7B9DD222C7EDC9009EB2BE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		EB7B9DB222C7EDC7009EB2BE /* NewspilotObserver_SwiftUI.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				EB7B9DB322C7EDC7009EB2BE /* NewspilotObserver_SwiftUI.xcdatamodel */,
+			);
+			currentVersion = EB7B9DB322C7EDC7009EB2BE /* NewspilotObserver_SwiftUI.xcdatamodel */;
+			path = NewspilotObserver_SwiftUI.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = EB7B9DA322C7EDC7009EB2BE /* Project object */;
+}
