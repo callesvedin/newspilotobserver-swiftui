@@ -29,7 +29,6 @@
 		EB7B9E4A22C80088009EB2BE /* String+UppercaseCharacters.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7B9E4322C80088009EB2BE /* String+UppercaseCharacters.swift */; };
 		EB7B9E4B22C80088009EB2BE /* UIImage+Rezise.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7B9E4422C80088009EB2BE /* UIImage+Rezise.swift */; };
 		EB7B9E4C22C80088009EB2BE /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7B9E4522C80088009EB2BE /* ColorExtensions.swift */; };
-		EB7B9E4D22C8092A009EB2BE /* NewspilotManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7B9E2F22C7F86E009EB2BE /* NewspilotManager.swift */; };
 		EB7B9E5022C80B2D009EB2BE /* ProductListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7B9E4F22C80B2D009EB2BE /* ProductListView.swift */; };
 		EB7B9E5222C80C66009EB2BE /* ProductStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7B9E5122C80C66009EB2BE /* ProductStore.swift */; };
 		EB7B9E5522CBEBAB009EB2BE /* OrganizationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7B9E5422CBEBAB009EB2BE /* OrganizationStore.swift */; };
@@ -47,6 +46,7 @@
 		EBD22A4A22CBFBCD000DFD41 /* Product_ot.png in Resources */ = {isa = PBXBuildFile; fileRef = EBD22A3022CBFBCD000DFD41 /* Product_ot.png */; };
 		EBD22A5422CBFBCD000DFD41 /* EmptyPagePreview.png in Resources */ = {isa = PBXBuildFile; fileRef = EBD22A3A22CBFBCD000DFD41 /* EmptyPagePreview.png */; };
 		EBD22A5622CBFBCD000DFD41 /* EmptyPageThumb.png in Resources */ = {isa = PBXBuildFile; fileRef = EBD22A3C22CBFBCD000DFD41 /* EmptyPageThumb.png */; };
+		EBD22A5922CC059F000DFD41 /* NewspilotManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD22A5822CC059F000DFD41 /* NewspilotManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,7 +76,6 @@
 		EB7B9E2C22C7F86E009EB2BE /* NotConnectedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotConnectedView.swift; sourceTree = "<group>"; };
 		EB7B9E2D22C7F86E009EB2BE /* Calendar+StartStop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Calendar+StartStop.swift"; sourceTree = "<group>"; };
 		EB7B9E2E22C7F86E009EB2BE /* Notification.Name+ConnectionStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Notification.Name+ConnectionStatus.swift"; sourceTree = "<group>"; };
-		EB7B9E2F22C7F86E009EB2BE /* NewspilotManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewspilotManager.swift; path = ../../../../NPProjekt/newspilotobserver/Sources/Newspilot/NewspilotManager.swift; sourceTree = "<group>"; };
 		EB7B9E3722C7F9A8009EB2BE /* NPEntityExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NPEntityExtension.swift; sourceTree = "<group>"; };
 		EB7B9E3922C7FC2F009EB2BE /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		EB7B9E3F22C80087009EB2BE /* OSLog+NewspilotObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OSLog+NewspilotObserver.swift"; sourceTree = "<group>"; };
@@ -115,6 +114,7 @@
 		EBD22A3B22CBFBCD000DFD41 /* sklt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sklt.png; sourceTree = "<group>"; };
 		EBD22A3C22CBFBCD000DFD41 /* EmptyPageThumb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EmptyPageThumb.png; sourceTree = "<group>"; };
 		EBD22A3D22CBFBCD000DFD41 /* vb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vb.png; sourceTree = "<group>"; };
+		EBD22A5822CC059F000DFD41 /* NewspilotManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewspilotManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,9 +213,9 @@
 		EB7B9E2822C7F7AE009EB2BE /* Newspilot */ = {
 			isa = PBXGroup;
 			children = (
+				EBD22A5822CC059F000DFD41 /* NewspilotManager.swift */,
 				EB7B9E2D22C7F86E009EB2BE /* Calendar+StartStop.swift */,
 				EB7B9E2B22C7F86E009EB2BE /* EntityQuery.swift */,
-				EB7B9E2F22C7F86E009EB2BE /* NewspilotManager.swift */,
 				EB7B9E2C22C7F86E009EB2BE /* NotConnectedView.swift */,
 				EB7B9E2E22C7F86E009EB2BE /* Notification.Name+ConnectionStatus.swift */,
 			);
@@ -422,13 +422,13 @@
 				EB7B9E5022C80B2D009EB2BE /* ProductListView.swift in Sources */,
 				EB7B9E3322C7F86E009EB2BE /* Notification.Name+ConnectionStatus.swift in Sources */,
 				EB7B9DDC22C7F0AC009EB2BE /* NewspilotEntities.xcdatamodeld in Sources */,
-				EB7B9E4D22C8092A009EB2BE /* NewspilotManager.swift in Sources */,
 				EB7B9E4B22C80088009EB2BE /* UIImage+Rezise.swift in Sources */,
 				EB7B9E3A22C7FC2F009EB2BE /* CoreDataStack.swift in Sources */,
 				EB7B9DAF22C7EDC7009EB2BE /* AppDelegate.swift in Sources */,
 				EB7B9E4822C80088009EB2BE /* PageValueController.swift in Sources */,
 				EB7B9E3822C7F9A8009EB2BE /* NPEntityExtension.swift in Sources */,
 				EB7B9E2722C7F308009EB2BE /* PersistanceManager.swift in Sources */,
+				EBD22A5922CC059F000DFD41 /* NewspilotManager.swift in Sources */,
 				EB7B9E3022C7F86E009EB2BE /* EntityQuery.swift in Sources */,
 				EB7B9E5222C80C66009EB2BE /* ProductStore.swift in Sources */,
 				EB7B9E4722C80088009EB2BE /* ProductImageFactory.swift in Sources */,
