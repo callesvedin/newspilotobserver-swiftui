@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "EntityQuery.fixStructure(entity:values:managedObjectContext:):EntityQuery.swift">
+      </ContextState>
+      <ContextState
+         contextName = "ProductListView.getImage(_:):ProductListView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "product.entityId">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

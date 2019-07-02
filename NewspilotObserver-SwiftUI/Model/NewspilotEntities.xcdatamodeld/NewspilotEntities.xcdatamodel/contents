@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14838.19" systemVersion="19A487m" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="NO" userDefinedModelVersionIdentifier="">
+    <entity name="EntityFlagEntity" representedClassName="EntityFlagEntity" parentEntity="NPEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="fillSpace" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="offSymbol" optional="YES" attributeType="Binary"/>
+        <attribute name="onSymbol" optional="YES" attributeType="Binary"/>
+        <attribute name="sortKey" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="pages" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PageEntity" inverseName="flags" inverseEntity="PageEntity"/>
+    </entity>
+    <entity name="NPEntity" representedClassName="NPEntity" isAbstract="YES" syncable="YES" codeGenerationType="class">
+        <attribute name="data" optional="YES" attributeType="Binary"/>
+        <attribute name="entityId" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="entityType" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="OrganizationEntity" representedClassName="OrganizationEntity" parentEntity="NPEntity" syncable="YES" codeGenerationType="class">
+        <relationship name="products" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProductEntity" inverseName="organization" inverseEntity="ProductEntity"/>
+    </entity>
+    <entity name="PageEntity" representedClassName="PageEntity" parentEntity="NPEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="back" optional="YES" attributeType="String"/>
+        <attribute name="createdDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="documentName" optional="YES" attributeType="String"/>
+        <attribute name="edition" optional="YES" attributeType="String"/>
+        <attribute name="firstPagin" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="part" optional="YES" attributeType="String"/>
+        <attribute name="version" optional="YES" attributeType="String"/>
+        <relationship name="flags" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="EntityFlagEntity" inverseName="pages" inverseEntity="EntityFlagEntity"/>
+        <relationship name="publicationDate" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PublicationDateEntity" inverseName="pages" inverseEntity="PublicationDateEntity"/>
+        <relationship name="section" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SectionEntity" inverseName="pages" inverseEntity="SectionEntity"/>
+        <relationship name="status" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="StatusEntity" inverseName="pages" inverseEntity="StatusEntity"/>
+    </entity>
+    <entity name="ProductEntity" representedClassName="ProductEntity" parentEntity="NPEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="shortName" optional="YES" attributeType="String"/>
+        <relationship name="organization" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="OrganizationEntity" inverseName="products" inverseEntity="OrganizationEntity"/>
+        <relationship name="publicationDates" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PublicationDateEntity" inverseName="product" inverseEntity="PublicationDateEntity"/>
+        <relationship name="subProducts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SubProductEntity" inverseName="product" inverseEntity="SubProductEntity"/>
+    </entity>
+    <entity name="PublicationDateEntity" representedClassName="PublicationDateEntity" parentEntity="NPEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="issuenumber" optional="YES" attributeType="String"/>
+        <attribute name="pubDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="pages" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PageEntity" inverseName="publicationDate" inverseEntity="PageEntity"/>
+        <relationship name="product" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProductEntity" inverseName="publicationDates" inverseEntity="ProductEntity"/>
+    </entity>
+    <entity name="SectionEntity" representedClassName="SectionEntity" parentEntity="NPEntity" syncable="YES" codeGenerationType="class">
+        <relationship name="pages" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PageEntity" inverseName="section" inverseEntity="PageEntity"/>
+    </entity>
+    <entity name="StatusEntity" representedClassName="StatusEntity" parentEntity="NPEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="color" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="pages" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PageEntity" inverseName="status" inverseEntity="PageEntity"/>
+    </entity>
+    <entity name="SubProductEntity" representedClassName="SubProductEntity" parentEntity="NPEntity" syncable="YES" codeGenerationType="class">
+        <relationship name="product" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProductEntity" inverseName="subProducts" inverseEntity="ProductEntity"/>
+    </entity>
+    <elements>
+        <element name="EntityFlagEntity" positionX="-54" positionY="36" width="128" height="120"/>
+        <element name="NPEntity" positionX="-288" positionY="-258" width="128" height="103"/>
+        <element name="OrganizationEntity" positionX="225" positionY="-261" width="128" height="60"/>
+        <element name="PageEntity" positionX="-99" positionY="189" width="128" height="210"/>
+        <element name="ProductEntity" positionX="-2" positionY="-120" width="128" height="105"/>
+        <element name="PublicationDateEntity" positionX="-234" positionY="-117" width="128" height="105"/>
+        <element name="SectionEntity" positionX="189" positionY="120" width="128" height="60"/>
+        <element name="StatusEntity" positionX="-432" positionY="36" width="128" height="75"/>
+        <element name="SubProductEntity" positionX="268" positionY="-150" width="128" height="60"/>
+    </elements>
+</model>
