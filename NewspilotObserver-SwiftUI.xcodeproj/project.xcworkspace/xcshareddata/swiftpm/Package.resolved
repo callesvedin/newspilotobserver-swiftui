@@ -3,10 +3,10 @@
     "pins": [
       {
         "package": "Newspilot",
-        "repositoryURL": "/Users/calle/NPProjekt/newspilotswiftclient",
+        "repositoryURL": "git@bitbucket.org:infomaker/newspilotswiftclient.git",
         "state": {
-          "branch": "feature_package_manager",
-          "revision": "942af24f57d3856635d62735a93eabb397550054",
+          "branch": "feature/combine",
+          "revision": "812cf0d674f11af686c663f1871569ba625a7770",
           "version": null
         }
       },

@@ -2,7 +2,7 @@ import SwiftUI
 import Combine
 import CoreData
 
-class ProductStore: NSObject, BindableObject {
+class ProductStore: NSObject, ObservableObject {
     
     
     // MARK: Private Properties
@@ -27,10 +27,8 @@ class ProductStore: NSObject, BindableObject {
         return fetchedResultsController.fetchedObjects ?? []
     }
     
-    // MARK: Public Properties
-    
-
-    let didChange = PassthroughSubject<ProductStore, Never>()
+    // MARK: Public Properties    
+    let willChange = PassthroughSubject<ProductStore, Never>()
     
     // MARK: Object Lifecycle
     
@@ -61,6 +59,6 @@ class ProductStore: NSObject, BindableObject {
 // MARK: ProductStore + NSFetchedResultsControllerDelegate
 extension ProductStore: NSFetchedResultsControllerDelegate {
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        didChange.send(self)
+        willChange.send(self)
     }
 }

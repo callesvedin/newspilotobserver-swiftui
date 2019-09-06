@@ -2,7 +2,8 @@ import SwiftUI
 import Combine
 import CoreData
 
-class OrganizationStore: NSObject, BindableObject {        
+class OrganizationStore: NSObject, ObservableObject {
+       
     private lazy var fetchedResultsController: NSFetchedResultsController<OrganizationEntity> = {
         let fetchRequest: NSFetchRequest<OrganizationEntity> = OrganizationEntity.fetchRequest()
         
@@ -21,8 +22,10 @@ class OrganizationStore: NSObject, BindableObject {
         return fetchedResultsController.fetchedObjects ?? []
     }
     
+    let willChange = PassthroughSubject<OrganizationStore, Never>()
+    
     // MARK: Public Properties
-    let didChange = PassthroughSubject<OrganizationStore, Never>()
+//    let didChange = PassthroughSubject<OrganizationStore, Never>()
     
     // MARK: Object Lifecycle
     
@@ -55,6 +58,6 @@ class OrganizationStore: NSObject, BindableObject {
 // MARK: OrganizationStore + NSFetchedResultsControllerDelegate
 extension OrganizationStore: NSFetchedResultsControllerDelegate {
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        didChange.send(self)
+        willChange.send(self)
     }
 }

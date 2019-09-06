@@ -10,8 +10,8 @@ class NewspilotManager {
 //    static let newspilotURLPath = "gmesnv48.gotamedia.int"
 //    static let newspilotURLPath = "testnpdev3.infomaker.lan"
 //    static let newspilotURLPath = "newspilot.dev.np.infomaker.io"
-    static let newspilotURLPath = "demonp.infomaker.lan"
-//    static let newspilotURLPath = "localhost"
+//    static let newspilotURLPath = "demonp.infomaker.lan"
+    static let newspilotURLPath = "localhost"
 //    static let newspilotURLPath = "np.tryout.infomaker.io"
 
     static let shared = NewspilotManager()
@@ -48,32 +48,35 @@ class NewspilotManager {
                     name: Notification.Name.DidConnect,
                     object: nil)
 
-            case .Disconnected(let _reason):
+            case .Disconnected(let reason):
                 strongSelf.dispatchQueue.suspend()
-                if let reason = _reason {
-                    switch reason {
-                        case .error(let errorCode, let errorMessage):
-                            NotificationCenter.default.post(
-                                name: Notification.Name.ConnectionFailed,
-                                object: nil, userInfo:["errorMessage": errorMessage as Any, "errorCode": errorCode as Any])
-                        case .ok: break
-                    }
-                }
+                NotificationCenter.default.post(
+                    name: Notification.Name.ConnectionFailed,
+                    object: nil, userInfo:["errorMessage": reason as Any])
             }
         }
     }
 
+    func connect() {
+        self.newspilot.connect()
+    }
     
     func applicationWillTerminate() {
-        queries.forEach { (query) in
-            query.remove()
-        }
+        queries.removeAll()       //Not sure this will work :-P
+//        queries.forEach { (query) in
+//            query.remove()
+//        }
     }
 
     
-    func addQuery(withQuid quid:String, queryString:String,  queryCallback: @escaping QueryCallback) {
+    func addQuery(queryString:String,  queryAddedCallback: @escaping QueryAddedCallback) {
         dispatchQueue.async {
-            self.newspilot.addQuery(quid: quid, queryString: queryString, queryCallback: queryCallback)
+            do {
+                try self.newspilot.addQuery(queryString: queryString, queryAddedCallback: queryAddedCallback)
+            }catch(let error as NSError) {
+                os_log("Could not add query. Error: %@", log: .newspilot, type: .error, error)
+                queryAddedCallback(nil)
+            }
         }
     }
     
@@ -100,8 +103,9 @@ class NewspilotManager {
             let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest as! NSFetchRequest<NSFetchRequestResult>)
             batchDeleteRequest.resultType = .resultTypeCount
             let batchDeleteResult = try? managedObjectContext.execute(batchDeleteRequest) as? NSBatchDeleteResult
-            let deletedPages = batchDeleteResult?.result ?? 0
-            os_log("Batch delete removed %ld pages", log: .coreData, type: .debug, deletedPages as! CVarArg)
+
+            let deletedPages = batchDeleteResult?.result
+            os_log("Batch delete removed %@ pages", log: .coreData, type: .debug, deletedPages as! CVarArg)
             
             managedObjectContext.reset()
         }
@@ -119,7 +123,7 @@ class NewspilotManager {
                     <entity type="Organization">
                         <entity parent="organization.id" type="Product">
                             <entity parent="product.id" type="SubProduct"/>
-                            <entity parent="product.id" type="Section"/>                            
+                            <entity parent="product.id" type="Section"/>
                         </entity>
                     </entity>
                 </structure>
@@ -211,7 +215,7 @@ class NewspilotManager {
         let nextYear = calendar.date(byAdding: .year, value: 1, to: today, wrappingComponents: true)
         
         guard let fromDate = aMonthAgo, let toDate = nextYear else {
-            os_log("Could not create beginning and end of date for publication dates", log: .newspilot, type: .error)            
+            os_log("Could not create beginning and end of date for publication dates", log: .newspilot, type: .error)
             return nil
         }
         

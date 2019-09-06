@@ -1,34 +1,44 @@
 import CoreData
 import Newspilot
 import os
+import Combine
 
 class EntityQuery {
-    
     let quid: String
+    var query: Query!
+    var cancellableSubscriber:Cancellable?
     
     static var publicationDateFormatter:DateFormatter {
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mmZ" //2018-12-01T00:00+01:00
-            return dateFormatter
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mmZ" //2018-12-01T00:00+01:00
+        return dateFormatter
     }
     
     init(quid: String, queryString: String) {
         self.quid = quid
-
-        NewspilotManager.shared.addQuery(withQuid: quid, queryString: queryString) { (query, events) in
-            // TODO check queryId
-            self.process(events: events)
+        NewspilotManager.shared.addQuery(queryString: queryString) { (query) in
+            if query != nil {
+                self.query = query!
+                self.cancellableSubscriber = self.query.events.sink(receiveCompletion: { completion in
+                    print("hello")
+                }, receiveValue: {events in
+                    self.process(events)
+                })
+            }
         }
     }
-
     
-    func remove() {
-        NewspilotManager.shared.removeQuery(withQuid: quid)        
+    deinit {
+        remove()
+    }
+    
+    private func remove() {
+        cancellableSubscriber?.cancel()
+        NewspilotManager.shared.removeQuery(withQuid: quid)
     }
     
     
-    private func process(events: [Event]) {
-        
+    private func process(_ events:[Event]) {
         CoreDataStack.shared.performBackgroundTask { (managedObjectContext) in
             events.forEach({ (event) in
                 
@@ -55,12 +65,12 @@ class EntityQuery {
                     }
                     entity?.entityId = Int32(event.entityId)
                     entity?.entityType = event.entityType.rawValue
-                    entity?.data = try? JSONSerialization.data(withJSONObject: event.values, options: []) as Data
+                    entity?.data = try? JSONSerialization.data(withJSONObject: event.values, options: [])
                     self.fixStructure(entity: entity, values: event.values, managedObjectContext: managedObjectContext)
                     
                 case .CHANGE:
                     if let _entity = entity {
-                        _entity.data = try? JSONSerialization.data(withJSONObject: event.values, options: []) as Data
+                        _entity.data = try? JSONSerialization.data(withJSONObject: event.values, options: [])
                         self.fixStructure(entity: _entity, values: event.values, managedObjectContext: managedObjectContext)
                     }
                     
@@ -69,7 +79,7 @@ class EntityQuery {
                         managedObjectContext.delete(_entity)
                     }
                     return
-                }                
+                }
             })
             
             try? managedObjectContext.save()
@@ -78,7 +88,7 @@ class EntityQuery {
     
     
     private func fixStructure(entity: NPEntity?, values: [String : AnyObject], managedObjectContext: NSManagedObjectContext) {
-
+        
         if let organization = entity as? OrganizationEntity {
             organization.name = values["name"] as? String
         }
@@ -90,7 +100,7 @@ class EntityQuery {
                 let organizationRequest = NPEntity.fetchRequest(withEntityIdentifier: EntityIdentifier(id: organizationId, type: .Organization))
                 let organizations = try? managedObjectContext.fetch(organizationRequest)
                 let organization = organizations?.first as? OrganizationEntity
-            
+                
                 product.organization = organization
             }
         }
@@ -98,7 +108,7 @@ class EntityQuery {
             publicationDate.name = values["name"] as? String
             let pubDateString = values["pub_date"] as? String
             
-            publicationDate.pubDate = pubDateString != nil ? EntityQuery.publicationDateFormatter.date(from: pubDateString!) as Date? : nil
+            publicationDate.pubDate = pubDateString != nil ? EntityQuery.publicationDateFormatter.date(from: pubDateString!)  : nil
             publicationDate.issuenumber = values["issuenumber"] as? String
             
             if let productId = values["product_id"] as? Int {
@@ -113,17 +123,17 @@ class EntityQuery {
             subProduct.name = values["name"] as? String
             if let productId = values["product_id"] as? Int {
                 let productRequest = NPEntity.fetchRequest(withEntityIdentifier: EntityIdentifier(id:productId, type: .Product))
-                if let products = try? managedObjectContext.fetch(productRequest), !products.isEmpty {
-                    let product = products.first as! ProductEntity
+                if let products = try? managedObjectContext.fetch(productRequest),
+                    let product = products.first as? ProductEntity {
                     subProduct.product = product
                 }
             }
         }
-
+            
         else if let section = entity as? SectionEntity {
             section.name = values["name"] as? String
         }
-
+            
         else if let status = entity as? StatusEntity {
             status.name = values["name"] as? String
             status.color = values["color"] as? Double ?? 0
@@ -143,7 +153,7 @@ class EntityQuery {
             if let sortKey = values["sort_key"] as? Int32 {
                 flag.sortKey = sortKey
             }
-
+            
         }
         else if let page = entity as? PageEntity {
             page.name = values["name"] as? String
@@ -158,7 +168,7 @@ class EntityQuery {
                 let formatter = DateFormatter()
                 formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ" //2018-07-13T08:28:02.908+02:00
                 let date = formatter.date(from: dateString)
-                page.createdDate = date as Date?
+                page.createdDate = date
             }
             if let sectionId = values["section_id"] as? Int {
                 let sectionRequest = NPEntity.fetchRequest(withEntityIdentifier: EntityIdentifier(id: sectionId, type: .Section))
@@ -173,17 +183,17 @@ class EntityQuery {
                     page.status = status
                 }
             }
-
+            
             if let flagIds = values["flags"] as? [Int] {
                 if page.flags != nil {
-                    page.removeFromFlags(page.flags!)                    
+                    page.removeFromFlags(page.flags!)
                 }
                 flagIds.forEach({flagId in
                     let flagRequest = NPEntity.fetchRequest(withEntityIdentifier: EntityIdentifier(id: flagId, type: .EntityFlag))
                     if let entities = try? managedObjectContext.fetch(flagRequest), let flag = entities.first as? EntityFlagEntity {
                         page.addToFlags(flag)
                     }
-
+                    
                 })
             }
             if let publicationDateId = values["publication_date_id"] as? Int {
@@ -194,7 +204,7 @@ class EntityQuery {
                 }
             }
         }
-
+        
     }
     
     func createImageData(fromBase64 _base64:String?) -> Data? {
@@ -203,7 +213,7 @@ class EntityQuery {
         }
         
         let dataDecoded : Data = Data(base64Encoded: base64, options: .ignoreUnknownCharacters)!
-        return dataDecoded as Data
+        return dataDecoded
     }
 }
 

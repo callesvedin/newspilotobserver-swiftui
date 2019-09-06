@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EB3CC52A22F34E520070139F /* Newspilot in Frameworks */ = {isa = PBXBuildFile; productRef = EB3CC52922F34E520070139F /* Newspilot */; };
 		EB7B9DAF22C7EDC7009EB2BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7B9DAE22C7EDC7009EB2BE /* AppDelegate.swift */; };
 		EB7B9DB122C7EDC7009EB2BE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7B9DB022C7EDC7009EB2BE /* SceneDelegate.swift */; };
 		EB7B9DB822C7EDC9009EB2BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB7B9DB722C7EDC9009EB2BE /* Assets.xcassets */; };
@@ -21,7 +22,6 @@
 		EB7B9E3322C7F86E009EB2BE /* Notification.Name+ConnectionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7B9E2E22C7F86E009EB2BE /* Notification.Name+ConnectionStatus.swift */; };
 		EB7B9E3822C7F9A8009EB2BE /* NPEntityExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7B9E3722C7F9A8009EB2BE /* NPEntityExtension.swift */; };
 		EB7B9E3A22C7FC2F009EB2BE /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7B9E3922C7FC2F009EB2BE /* CoreDataStack.swift */; };
-		EB7B9E3D22C7FEE7009EB2BE /* Newspilot in Frameworks */ = {isa = PBXBuildFile; productRef = EB7B9E3C22C7FEE7009EB2BE /* Newspilot */; };
 		EB7B9E4622C80088009EB2BE /* OSLog+NewspilotObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7B9E3F22C80087009EB2BE /* OSLog+NewspilotObserver.swift */; };
 		EB7B9E4722C80088009EB2BE /* ProductImageFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7B9E4022C80088009EB2BE /* ProductImageFactory.swift */; };
 		EB7B9E4822C80088009EB2BE /* PageValueController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7B9E4122C80088009EB2BE /* PageValueController.swift */; };
@@ -122,7 +122,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EB7B9E3D22C7FEE7009EB2BE /* Newspilot in Frameworks */,
+				EB3CC52A22F34E520070139F /* Newspilot in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,7 +310,7 @@
 			);
 			name = "NewspilotObserver-SwiftUI";
 			packageProductDependencies = (
-				EB7B9E3C22C7FEE7009EB2BE /* Newspilot */,
+				EB3CC52922F34E520070139F /* Newspilot */,
 			);
 			productName = "NewspilotObserver-SwiftUI";
 			productReference = EB7B9DAB22C7EDC7009EB2BE /* NewspilotObserver-SwiftUI.app */;
@@ -354,7 +354,7 @@
 				};
 			};
 			buildConfigurationList = EB7B9DA622C7EDC7009EB2BE /* Build configuration list for PBXProject "NewspilotObserver-SwiftUI" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 11.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -363,7 +363,7 @@
 			);
 			mainGroup = EB7B9DA222C7EDC7009EB2BE;
 			packageReferences = (
-				EB7B9E3B22C7FEE7009EB2BE /* XCRemoteSwiftPackageReference "newspilotswiftclient" */,
+				EB3CC52822F34E520070139F /* XCRemoteSwiftPackageReference "newspilotswiftclient" */,
 			);
 			productRefGroup = EB7B9DAC22C7EDC7009EB2BE /* Products */;
 			projectDirPath = "";
@@ -697,20 +697,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		EB7B9E3B22C7FEE7009EB2BE /* XCRemoteSwiftPackageReference "newspilotswiftclient" */ = {
+		EB3CC52822F34E520070139F /* XCRemoteSwiftPackageReference "newspilotswiftclient" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "file:///Users/calle/NPProjekt/newspilotswiftclient";
+			repositoryURL = "git@bitbucket.org:infomaker/newspilotswiftclient.git";
 			requirement = {
-				branch = feature_package_manager;
+				branch = feature/combine;
 				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		EB7B9E3C22C7FEE7009EB2BE /* Newspilot */ = {
+		EB3CC52922F34E520070139F /* Newspilot */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = EB7B9E3B22C7FEE7009EB2BE /* XCRemoteSwiftPackageReference "newspilotswiftclient" */;
+			package = EB3CC52822F34E520070139F /* XCRemoteSwiftPackageReference "newspilotswiftclient" */;
 			productName = Newspilot;
 		};
 /* End XCSwiftPackageProductDependency section */
