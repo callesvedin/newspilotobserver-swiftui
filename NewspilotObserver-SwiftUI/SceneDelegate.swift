@@ -22,8 +22,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use a UIHostingController as window root view controller
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
-            let productListView = ProductListView().environmentObject(ProductStore()).environmentObject(OrganizationStore())
-            window.rootViewController = UIHostingController(rootView: productListView)
+            let newspilotManager = NewspilotManager(host:"localhost", login:"infomaker", password:"newspilot")
+            newspilotManager.connect()
+            
+            let organizationQuery = OrganizationsQuery(withNewspilotManager:newspilotManager)
+            let organizationsViewModel = OrganizationsViewModel(query: organizationQuery)
+            let organizationsView = OrganizationsView(viewModel:organizationsViewModel)
+            
+            window.rootViewController = UIHostingController(rootView: organizationsView)
             self.window = window
             window.makeKeyAndVisible()
         }
@@ -58,7 +64,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         // Save changes in the application's managed object context when the application transitions to the background.
         //(UIApplication.shared.delegate as? AppDelegate)?.saveContext()
-        NewspilotManager.shared.applicationWillTerminate()
+
+        //        NewspilotManager.shared.applicationWillTerminate()
     }
 
 

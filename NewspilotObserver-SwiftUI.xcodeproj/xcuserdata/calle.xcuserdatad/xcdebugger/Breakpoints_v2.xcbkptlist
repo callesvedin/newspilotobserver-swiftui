@@ -7,118 +7,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "D8A1D0D8-B75D-493D-B8A2-3E5428C0468B"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../../NPProjekt/newspilotswiftclient/Sources/Newspilot/Newspilot.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "208"
-            endingLineNumber = "208"
-            landmarkName = "makeRequest(method:path:queryParameters:body:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "56DDB1A7-A6B8-4EFC-B1DA-2E961E8BCE7B"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../../NPProjekt/newspilotswiftclient/Sources/Newspilot/Newspilot.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "143"
-            endingLineNumber = "143"
-            landmarkName = "createSession()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "DFBDF371-EE22-48A3-AA01-8BB0BEAFE72E"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../../NPProjekt/newspilotswiftclient/Sources/Newspilot/Newspilot.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "240"
-            endingLineNumber = "240"
-            landmarkName = "buildClientInfo()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "1D291309-C9D3-42C0-9EB8-4B41EF8B4BFA"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../../NPProjekt/newspilotswiftclient/Sources/Newspilot/Newspilot.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "102"
-            endingLineNumber = "102"
-            landmarkName = "connect()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "25DC26FC-3942-458F-9C72-209704EA5190"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../../NPProjekt/newspilotswiftclient/Sources/Newspilot/Newspilot.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "109"
-            endingLineNumber = "109"
-            landmarkName = "disconnect()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "508A8C70-D265-4BB6-A6D8-9F0761C7E5D2"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../../NPProjekt/newspilotswiftclient/Sources/Newspilot/Newspilot.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "163"
-            endingLineNumber = "163"
-            landmarkName = "createSession()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "A3D26525-A005-4809-8213-7542A8646DA6"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../../NPProjekt/newspilotswiftclient/Sources/Newspilot/Newspilot.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "186"
-            endingLineNumber = "186"
-            landmarkName = "makeRequest(method:path:queryParameters:body:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "FBFEA570-FADD-4E23-9865-151B38A2679F"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -135,97 +23,63 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "90F48630-AE9B-4C88-95CD-5A48E9AE786F"
+            uuid = "7528216E-CCD5-4597-A862-D80DE9A865C5"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "NewspilotObserver-SwiftUI/Views/ProductListView.swift"
+            filePath = "NewspilotObserver-SwiftUI/Persistance/ProductStore.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "19"
-            endingLineNumber = "19"
-            landmarkName = "body"
-            landmarkType = "24">
+            startingLineNumber = "62"
+            endingLineNumber = "62">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9A84A7EF-95E3-47E6-9605-A357B8824205"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../NPProjekt/newspilotswiftclient/Sources/Newspilot/Newspilot.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "285"
+            endingLineNumber = "285"
+            landmarkName = "activateWaitingQueries()"
+            landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "90F48630-AE9B-4C88-95CD-5A48E9AE786F - 2e67b64d2457900b"
+                  uuid = "9A84A7EF-95E3-47E6-9605-A357B8824205 - 7af8ccae653ab26"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; SwiftUI.ForEach&lt;Swift.Array&lt;NewspilotObserver_SwiftUI.OrganizationEntity&gt;, __C.NSManagedObjectID, SwiftUI.Section&lt;SwiftUI.Text, SwiftUI.ForEach&lt;Swift.Array&lt;NewspilotObserver_SwiftUI.ProductEntity&gt;, __C.NSManagedObjectID, NewspilotObserver_SwiftUI.ProductCell&gt;, SwiftUI.EmptyView&gt;&gt; in closure #1 () -&gt; &lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.View.navigationBarTitle(SwiftUI.Text) -&gt; some&gt;&gt;.0 in NewspilotObserver_SwiftUI.ProductListView.body.getter : some"
+                  symbolName = "Newspilot.Newspilot.activateWaitingQueries() -&gt; ()"
                   moduleName = "NewspilotObserver-SwiftUI"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/calle/Desktop/NewspilotObserver-SwiftUI/NewspilotObserver-SwiftUI/Views/ProductListView.swift"
+                  urlString = "file:///Users/calle/NPProjekt/newspilotswiftclient/Sources/Newspilot/Newspilot.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "19"
-                  endingLineNumber = "19"
-                  offsetFromSymbolStart = "60">
+                  startingLineNumber = "285"
+                  endingLineNumber = "285"
+                  offsetFromSymbolStart = "31">
                </Location>
                <Location
-                  uuid = "90F48630-AE9B-4C88-95CD-5A48E9AE786F - 6aaad8f48a5b2654"
+                  uuid = "9A84A7EF-95E3-47E6-9605-A357B8824205 - 39fad707181ee36f"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (NewspilotObserver_SwiftUI.OrganizationEntity) -&gt; SwiftUI.Section&lt;SwiftUI.Text, SwiftUI.ForEach&lt;Swift.Array&lt;NewspilotObserver_SwiftUI.ProductEntity&gt;, __C.NSManagedObjectID, NewspilotObserver_SwiftUI.ProductCell&gt;, SwiftUI.EmptyView&gt; in closure #1 () -&gt; SwiftUI.ForEach&lt;Swift.Array&lt;NewspilotObserver_SwiftUI.OrganizationEntity&gt;, __C.NSManagedObjectID, SwiftUI.Section&lt;SwiftUI.Text, SwiftUI.ForEach&lt;Swift.Array&lt;NewspilotObserver_SwiftUI.ProductEntity&gt;, __C.NSManagedObjectID, NewspilotObserver_SwiftUI.ProductCell&gt;, SwiftUI.EmptyView&gt;&gt; in closure #1 () -&gt; &lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.View.navigationBarTitle(SwiftUI.Text) -&gt; some&gt;&gt;.0 in NewspilotObserver_SwiftUI.ProductListView.body.getter : some"
+                  symbolName = "closure #1 (Swift.String, (Swift.Result&lt;Newspilot.Query, Newspilot.NewspilotError&gt;) -&gt; ()) -&gt; () in Newspilot.Newspilot.activateWaitingQueries() -&gt; ()"
                   moduleName = "NewspilotObserver-SwiftUI"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/calle/Desktop/NewspilotObserver-SwiftUI/NewspilotObserver-SwiftUI/Views/ProductListView.swift"
+                  urlString = "file:///Users/calle/NPProjekt/newspilotswiftclient/Sources/Newspilot/Newspilot.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "20"
-                  endingLineNumber = "20"
-                  offsetFromSymbolStart = "231">
+                  startingLineNumber = "286"
+                  endingLineNumber = "286"
+                  offsetFromSymbolStart = "49">
                </Location>
             </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "78927529-BC68-4FB7-A36C-5606FBD1E182"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "NewspilotObserver-SwiftUI/Persistance/OrganizationStore.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "12"
-            endingLineNumber = "12"
-            landmarkName = "fetchedResultsController"
-            landmarkType = "24">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "08C7DAA9-9FEE-4A88-9DD3-BCBD2E2CAD87"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "NewspilotObserver-SwiftUI/Persistance/OrganizationStore.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
-            landmarkName = "fetchOrganizations()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "342B50CF-FB4F-41DA-BD0B-D1CCEA700306"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "NewspilotObserver-SwiftUI/Views/ProductListView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "21"
-            endingLineNumber = "21"
-            landmarkName = "body"
-            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
