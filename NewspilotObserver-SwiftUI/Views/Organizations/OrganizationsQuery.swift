@@ -16,7 +16,8 @@ class OrganizationsQuery {
     private var newspilotManager:NewspilotManager    
     var organizations:[Organization] = []
     var cancellableSubscriber:Cancellable?
-
+    var publisher:CurrentValueSubject<[Organization], Never>
+    
     private var query:Query? {
         didSet {
             if query == nil {
@@ -56,7 +57,7 @@ class OrganizationsQuery {
     
     init(withNewspilotManager newspilotManager:NewspilotManager) {
         self.newspilotManager = newspilotManager
-        
+        self.publisher = CurrentValueSubject<[Organization],Never>([])
         newspilotManager.newspilot.addQuery(queryString: organizationsQueryString, completionHandler: {result in
             switch (result) {
             case .failure(let error):
@@ -68,17 +69,18 @@ class OrganizationsQuery {
         })
     }
     
-    func process(_ events:[Event]) {
+    private func process(_ events:[Event]) {
         events.forEach({ (event) in
-            
                 os_log("Processing organization event from newspilot. EntityType: %@ , EntityId: %ld", log: .newspilot, type: .debug, event.entityType.rawValue, event.entityId)
                 switch event.eventType {
 
                 case .CREATE:
                     let decoder = JSONDecoder()
                     if event.entityType == .Organization {
-                        let organization = try? decoder.decode(Organization.self, from: JSONSerialization.data(withJSONObject: event.values, options: []))
-                        print("We got an organization with the name \(organization?.name)")
+                        if let organization = try? decoder.decode(Organization.self, from: JSONSerialization.data(withJSONObject: event.values, options: [])) {
+                            print("We got an organization with the name \(organization.name)")
+                            self.organizations.append(organization)
+                        }
                     }
 //                    self.fixStructure(entity: entity, values: event.values, managedObjectContext: managedObjectContext)
 
@@ -99,6 +101,7 @@ class OrganizationsQuery {
 
             }
         })
+        publisher.send(self.organizations)
     }
     
 }

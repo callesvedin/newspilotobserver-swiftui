@@ -13,9 +13,20 @@ import CoreData
 class OrganizationsViewModel: ObservableObject, Identifiable {
     
     @Published var dataSource: [OrganizationRowViewModel] = []
-        
+    private var query:OrganizationsQuery
+    
+    private var disposables = Set<AnyCancellable>()
+    
     init(query:OrganizationsQuery) {
-        
+        self.query = query
+        _ = query.publisher
+            .receive(on: DispatchQueue.main)
+            .sink(receiveValue: {organizations in
+                self.dataSource = self.query.organizations.map({
+                    organization in OrganizationRowViewModel(name:organization.name)}
+                )
+            })
+            .store(in: &disposables)        
     }
     
 }

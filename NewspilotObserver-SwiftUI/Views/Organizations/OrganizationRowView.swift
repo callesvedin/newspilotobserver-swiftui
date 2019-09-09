@@ -10,14 +10,14 @@ import SwiftUI
 
 struct OrganizationRowView: View {
     
-    var viewModel:OrganizationRowViewModel?
+    let viewModel:OrganizationRowViewModel
     
     init(viewModel:OrganizationRowViewModel) {
         self.viewModel = viewModel
     }
     
     var body: some View {
-        Text("Hello Organization")
+        Text(viewModel.name)
     }
 }
 

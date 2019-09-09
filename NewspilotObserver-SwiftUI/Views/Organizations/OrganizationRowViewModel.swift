@@ -9,5 +9,9 @@
 import Foundation
 
 class OrganizationRowViewModel:Identifiable {
+    let name:String
     
+    init(name:String) {
+        self.name = name
+    }
 }

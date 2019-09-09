@@ -34,53 +34,5 @@
             endingLineNumber = "62">
          </BreakpointContent>
       </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "9A84A7EF-95E3-47E6-9605-A357B8824205"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../../NPProjekt/newspilotswiftclient/Sources/Newspilot/Newspilot.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "285"
-            endingLineNumber = "285"
-            landmarkName = "activateWaitingQueries()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "9A84A7EF-95E3-47E6-9605-A357B8824205 - 7af8ccae653ab26"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Newspilot.Newspilot.activateWaitingQueries() -&gt; ()"
-                  moduleName = "NewspilotObserver-SwiftUI"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/calle/NPProjekt/newspilotswiftclient/Sources/Newspilot/Newspilot.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "285"
-                  endingLineNumber = "285"
-                  offsetFromSymbolStart = "31">
-               </Location>
-               <Location
-                  uuid = "9A84A7EF-95E3-47E6-9605-A357B8824205 - 39fad707181ee36f"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.String, (Swift.Result&lt;Newspilot.Query, Newspilot.NewspilotError&gt;) -&gt; ()) -&gt; () in Newspilot.Newspilot.activateWaitingQueries() -&gt; ()"
-                  moduleName = "NewspilotObserver-SwiftUI"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/calle/NPProjekt/newspilotswiftclient/Sources/Newspilot/Newspilot.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "286"
-                  endingLineNumber = "286"
-                  offsetFromSymbolStart = "49">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

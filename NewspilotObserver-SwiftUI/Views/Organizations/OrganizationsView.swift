@@ -16,23 +16,25 @@ struct OrganizationsView: View {
     }
     
     var body: some View {
-        List {
-          if viewModel.dataSource.isEmpty {
-            emptySection
-          } else {
-            organizationsList
-          }
+        NavigationView {
+            List {
+            if viewModel.dataSource.isEmpty {
+                emptySection
+            } else {
+                organizationsList
+            }
         }
         .listStyle(GroupedListStyle())
-        .navigationBarTitle("Weather ⛅️")
+        .navigationBarTitle("Organizations")
+        }
     }
 }
 
 private extension OrganizationsView {
-  var emptySection: some View {
-      Text("No results (yet)")
-        .foregroundColor(.gray)
-  }
+    var emptySection: some View {
+        Text("No results (yet)")
+            .foregroundColor(.gray)
+    }
     
     var organizationsList: some View {
         ForEach(viewModel.dataSource, content: OrganizationRowView.init(viewModel:))
