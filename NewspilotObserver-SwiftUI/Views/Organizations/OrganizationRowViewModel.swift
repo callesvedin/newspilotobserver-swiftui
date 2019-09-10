@@ -10,8 +10,10 @@ import Foundation
 
 class OrganizationRowViewModel:Identifiable {
     let name:String
+    let products:[ProductRowViewModel]
     
-    init(name:String) {
+    init(name:String, products:[ProductRowViewModel]) {
         self.name = name
+        self.products = products
     }
 }

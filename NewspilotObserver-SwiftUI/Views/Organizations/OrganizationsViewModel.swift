@@ -22,8 +22,10 @@ class OrganizationsViewModel: ObservableObject, Identifiable {
         _ = query.publisher
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: {organizations in
-                self.dataSource = self.query.organizations.map({
-                    organization in OrganizationRowViewModel(name:organization.name)}
+                self.dataSource = self.query.organizations.map({organization in
+                    let products = organization.products.map({product in ProductRowViewModel(name:product.name)})
+                    return OrganizationRowViewModel(name:organization.name, products: products)
+                    }
                 )
             })
             .store(in: &disposables)        

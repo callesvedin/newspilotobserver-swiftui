@@ -46,6 +46,9 @@
 		EBD22A5422CBFBCD000DFD41 /* EmptyPagePreview.png in Resources */ = {isa = PBXBuildFile; fileRef = EBD22A3A22CBFBCD000DFD41 /* EmptyPagePreview.png */; };
 		EBD22A5622CBFBCD000DFD41 /* EmptyPageThumb.png in Resources */ = {isa = PBXBuildFile; fileRef = EBD22A3C22CBFBCD000DFD41 /* EmptyPageThumb.png */; };
 		EBD22A5922CC059F000DFD41 /* NewspilotManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD22A5822CC059F000DFD41 /* NewspilotManager.swift */; };
+		EBEED2372327CBE400746C69 /* ProductRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEED2362327CBE400746C69 /* ProductRowViewModel.swift */; };
+		EBEED2392327D46E00746C69 /* ProductRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEED2382327D46E00746C69 /* ProductRowView.swift */; };
+		EBF8055B23277C3D00C5590A /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF8055A23277C3D00C5590A /* Product.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,7 +62,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		EB54350D2322C1DB004EE63F /* newspilotswiftclient */ = {isa = PBXFileReference; lastKnownFileType = folder; name = newspilotswiftclient; path = ../../NPProjekt/newspilotswiftclient; sourceTree = "<group>"; };
 		EB54350F2322EC61004EE63F /* OrganizationsQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationsQuery.swift; sourceTree = "<group>"; };
 		EB5435112322EC72004EE63F /* OrganizationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationsViewModel.swift; sourceTree = "<group>"; };
 		EB5435152322F324004EE63F /* ColorExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
@@ -114,6 +116,9 @@
 		EBD22A3C22CBFBCD000DFD41 /* EmptyPageThumb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EmptyPageThumb.png; sourceTree = "<group>"; };
 		EBD22A3D22CBFBCD000DFD41 /* vb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vb.png; sourceTree = "<group>"; };
 		EBD22A5822CC059F000DFD41 /* NewspilotManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewspilotManager.swift; sourceTree = "<group>"; };
+		EBEED2362327CBE400746C69 /* ProductRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRowViewModel.swift; sourceTree = "<group>"; };
+		EBEED2382327D46E00746C69 /* ProductRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRowView.swift; sourceTree = "<group>"; };
+		EBF8055A23277C3D00C5590A /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +148,8 @@
 				EB5435172322F567004EE63F /* OrganizationsView.swift */,
 				EB5435192322F824004EE63F /* OrganizationRowViewModel.swift */,
 				EB54351B2322F9F2004EE63F /* OrganizationRowView.swift */,
+				EBEED2362327CBE400746C69 /* ProductRowViewModel.swift */,
+				EBEED2382327D46E00746C69 /* ProductRowView.swift */,
 			);
 			path = Organizations;
 			sourceTree = "<group>";
@@ -150,7 +157,6 @@
 		EB7B9DA222C7EDC7009EB2BE = {
 			isa = PBXGroup;
 			children = (
-				EB54350D2322C1DB004EE63F /* newspilotswiftclient */,
 				EB7B9DAD22C7EDC7009EB2BE /* NewspilotObserver-SwiftUI */,
 				EB7B9DC722C7EDC9009EB2BE /* NewspilotObserver-SwiftUITests */,
 				EB7B9DAC22C7EDC7009EB2BE /* Products */,
@@ -208,6 +214,7 @@
 				EB54351D2322FE1D004EE63F /* Organization.swift */,
 				EB54351F2322FE2D004EE63F /* Entity.swift */,
 				EB5435212322FFF3004EE63F /* EntityType.swift */,
+				EBF8055A23277C3D00C5590A /* Product.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -428,6 +435,7 @@
 				EB7B9E3222C7F86E009EB2BE /* Calendar+StartStop.swift in Sources */,
 				EB7B9E3322C7F86E009EB2BE /* Notification.Name+ConnectionStatus.swift in Sources */,
 				EB7B9E4B22C80088009EB2BE /* UIImage+Rezise.swift in Sources */,
+				EBEED2372327CBE400746C69 /* ProductRowViewModel.swift in Sources */,
 				EB54351C2322F9F2004EE63F /* OrganizationRowView.swift in Sources */,
 				EB7B9DAF22C7EDC7009EB2BE /* AppDelegate.swift in Sources */,
 				EBD22A5922CC059F000DFD41 /* NewspilotManager.swift in Sources */,
@@ -441,6 +449,8 @@
 				EB5435202322FE2D004EE63F /* Entity.swift in Sources */,
 				EB54351E2322FE1D004EE63F /* Organization.swift in Sources */,
 				EB7B9DB122C7EDC7009EB2BE /* SceneDelegate.swift in Sources */,
+				EBF8055B23277C3D00C5590A /* Product.swift in Sources */,
+				EBEED2392327D46E00746C69 /* ProductRowView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -17,9 +17,13 @@ struct OrganizationRowView: View {
     }
     
     var body: some View {
-        Text(viewModel.name)
+        Group {
+            Text(viewModel.name).bold()
+            ForEach(viewModel.products, content: ProductRowView.init(product:))
+        }
     }
 }
+
 
 //struct OrganizationRowView_Previews: PreviewProvider {
 //    static var previews: some View {

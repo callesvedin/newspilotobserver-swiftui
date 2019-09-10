@@ -6,7 +6,7 @@
 import Foundation
 
 // MARK: - Organization
-struct Organization: Codable {
+class Organization: Codable {
     let entityType: String
     let defaultPrivilegeGroupID: Int
     let organizationDescription: String
@@ -15,6 +15,8 @@ struct Organization: Codable {
     let organizationalGroupID: Int
     let pcBylinePath, shortName: String
 
+    var products:[Product] = [] // Custom property
+    
     enum CodingKeys: String, CodingKey {
         case entityType
         case defaultPrivilegeGroupID = "default_privilege_group_id"
