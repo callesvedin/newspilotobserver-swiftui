@@ -13,7 +13,6 @@
 		EB5435162322F324004EE63F /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5435152322F324004EE63F /* ColorExtensions.swift */; };
 		EB5435182322F567004EE63F /* OrganizationList.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5435172322F567004EE63F /* OrganizationList.swift */; };
 		EB54351A2322F824004EE63F /* OrganizationRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5435192322F824004EE63F /* OrganizationRowViewModel.swift */; };
-		EB54351C2322F9F2004EE63F /* OrganizationRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB54351B2322F9F2004EE63F /* OrganizationRow.swift */; };
 		EB54351E2322FE1D004EE63F /* Organization.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB54351D2322FE1D004EE63F /* Organization.swift */; };
 		EB5435202322FE2D004EE63F /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB54351F2322FE2D004EE63F /* Entity.swift */; };
 		EB5435222322FFF3004EE63F /* EntityType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5435212322FFF3004EE63F /* EntityType.swift */; };
@@ -67,11 +66,10 @@
 		EB5435152322F324004EE63F /* ColorExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
 		EB5435172322F567004EE63F /* OrganizationList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationList.swift; sourceTree = "<group>"; };
 		EB5435192322F824004EE63F /* OrganizationRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationRowViewModel.swift; sourceTree = "<group>"; };
-		EB54351B2322F9F2004EE63F /* OrganizationRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationRow.swift; sourceTree = "<group>"; };
 		EB54351D2322FE1D004EE63F /* Organization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Organization.swift; sourceTree = "<group>"; };
 		EB54351F2322FE2D004EE63F /* Entity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
 		EB5435212322FFF3004EE63F /* EntityType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityType.swift; sourceTree = "<group>"; };
-		EB5F17D52328B81C00B38D27 /* newspilotswiftclient */ = {isa = PBXFileReference; lastKnownFileType = folder; name = newspilotswiftclient; path = ../../../NPProjekt/newspilotswiftclient; sourceTree = "<group>"; };
+		EB6B3F0B232990C10079FCFD /* newspilotswiftclient */ = {isa = PBXFileReference; lastKnownFileType = folder; name = newspilotswiftclient; path = ../../NPProjekt/newspilotswiftclient; sourceTree = "<group>"; };
 		EB7B9DAB22C7EDC7009EB2BE /* NewspilotObserver-SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NewspilotObserver-SwiftUI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB7B9DAE22C7EDC7009EB2BE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EB7B9DB022C7EDC7009EB2BE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -148,7 +146,6 @@
 				EB5435112322EC72004EE63F /* OrganizationsViewModel.swift */,
 				EB5435172322F567004EE63F /* OrganizationList.swift */,
 				EB5435192322F824004EE63F /* OrganizationRowViewModel.swift */,
-				EB54351B2322F9F2004EE63F /* OrganizationRow.swift */,
 				EBEED2362327CBE400746C69 /* ProductRowViewModel.swift */,
 				EBEED2382327D46E00746C69 /* ProductRow.swift */,
 			);
@@ -158,7 +155,7 @@
 		EB7B9DA222C7EDC7009EB2BE = {
 			isa = PBXGroup;
 			children = (
-				EB5F17D52328B81C00B38D27 /* newspilotswiftclient */,
+				EB6B3F0B232990C10079FCFD /* newspilotswiftclient */,
 				EB7B9DAD22C7EDC7009EB2BE /* NewspilotObserver-SwiftUI */,
 				EB7B9DC722C7EDC9009EB2BE /* NewspilotObserver-SwiftUITests */,
 				EB7B9DAC22C7EDC7009EB2BE /* Products */,
@@ -438,7 +435,6 @@
 				EB7B9E3322C7F86E009EB2BE /* Notification.Name+ConnectionStatus.swift in Sources */,
 				EB7B9E4B22C80088009EB2BE /* UIImage+Rezise.swift in Sources */,
 				EBEED2372327CBE400746C69 /* ProductRowViewModel.swift in Sources */,
-				EB54351C2322F9F2004EE63F /* OrganizationRow.swift in Sources */,
 				EB7B9DAF22C7EDC7009EB2BE /* AppDelegate.swift in Sources */,
 				EBD22A5922CC059F000DFD41 /* NewspilotManager.swift in Sources */,
 				EB5435222322FFF3004EE63F /* EntityType.swift in Sources */,

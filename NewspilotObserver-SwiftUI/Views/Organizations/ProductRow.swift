@@ -21,6 +21,6 @@ struct ProductRow: View {
 
 struct ProductRowView_Previews: PreviewProvider {
     static var previews: some View {
-        ProductRow(product: ProductRowViewModel(id:1,name: "Product"))
+        ProductRow(product: ProductRowViewModel(id:1,name: "Product")).previewLayout(.fixed(width: 300, height: 40))
     }
 }

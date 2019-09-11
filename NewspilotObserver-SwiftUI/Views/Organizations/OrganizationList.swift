@@ -37,7 +37,15 @@ private extension OrganizationList {
     }
     
     var organizationsList: some View {
-        ForEach(viewModel.dataSource, content: OrganizationRow.init(viewModel:))
+        ForEach(viewModel.dataSource) {organization in
+            Section(header: Text(organization.name).bold()) {
+                ForEach(organization.products){product in
+                    NavigationLink(destination: OrganizationList(viewModel: self.viewModel)) {
+                        ProductRow(product:product)
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -45,7 +53,17 @@ struct OrganizationsView_Previews: PreviewProvider {
     static var previews: some View {
         OrganizationList(viewModel:
             OrganizationsViewModel(organizationRows: [
-                OrganizationRowViewModel(id: 1, name: "West Coast News", products: [ProductRowViewModel(id: 1, name: "Product 1")])
-            ]))
+                OrganizationRowViewModel(id: 1, name: "West Coast News", products: [
+                        ProductRowViewModel(id: 1, name: "Product 1"),
+                        ProductRowViewModel(id: 2, name: "Product 2")
+                ]),
+                OrganizationRowViewModel(id: 2, name: "East Coast News", products: [
+                        ProductRowViewModel(id: 3, name: "Product 3"),
+                        ProductRowViewModel(id: 4, name: "Product 4")
+                ])
+
+            ])
+            
+            )
     }
 }
