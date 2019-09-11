@@ -8,10 +8,7 @@
 
 import Foundation
 
-class ProductRowViewModel:Identifiable {
-    var name:String
-    
-    init(name:String) {
-        self.name = name
-    }
+struct ProductRowViewModel:Identifiable {
+    var id:Int
+    var name:String    
 }

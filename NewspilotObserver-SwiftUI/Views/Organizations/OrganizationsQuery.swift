@@ -27,6 +27,7 @@ class OrganizationsQuery {
                 cancellableSubscriber = self.query!.events.sink(receiveCompletion: { completion in
                     os_log("OrganizationQuery got completed", log:.newspilot, type:.debug)
                 }, receiveValue: {events in
+                    os_log("OrganizationQuery events received", log:.newspilot, type:.debug)
                     self.process(events)
                 })
             }
@@ -39,8 +40,8 @@ class OrganizationsQuery {
             <structure>
                 <entity type="Organization">
                     <entity parent="organization.id" type="Product">
-                        <entity parent="product.id" type="SubProduct"/>
-                        <entity parent="product.id" type="Section"/>
+                        <!--entity parent="product.id" type="SubProduct"/>
+                        <entity parent="product.id" type="Section"/-->
                     </entity>
                 </entity>
             </structure>
@@ -82,7 +83,7 @@ class OrganizationsQuery {
                 switch event.entityType {
                 case .Organization:
                     do {
-                        var organization = try decoder.decode(Organization.self, from: JSONSerialization.data(withJSONObject: event.values, options: []))
+                        let organization = try decoder.decode(Organization.self, from: JSONSerialization.data(withJSONObject: event.values, options: []))
                         print("We got an organization with the name \(organization.name)")
                         self.organizations.append(organization)
                         let organizationProducts = waitingProducts.filter({product in product.organizationID == organization.id})
@@ -98,7 +99,7 @@ class OrganizationsQuery {
                         print("Values:\(event.values)")
                         let product = try decoder.decode(Product.self, from: data)
                         print("We got an product with the name \(product.name)")
-                        if var organization = self.organizations.first(where: {organization in product.id == organization.id}) {
+                        if let organization = self.organizations.first(where: {organization in product.id == organization.id}) {
                             organization.products.append(product)
                             sendEvents = true
                         }else{
@@ -134,7 +135,7 @@ class OrganizationsQuery {
                 //                    return
             //                }
             default:
-                os_log("Unhandled entitytype in OrganizationQuery", log: .newspilot, type:.error)
+                os_log("Unhandled event in OrganizationQuery", log: .newspilot, type:.error)
                 
             }
         })

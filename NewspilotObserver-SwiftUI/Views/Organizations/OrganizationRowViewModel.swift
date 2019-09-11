@@ -8,12 +8,8 @@
 
 import Foundation
 
-class OrganizationRowViewModel:Identifiable {
+struct OrganizationRowViewModel:Identifiable {
+    let id:Int
     let name:String
     let products:[ProductRowViewModel]
-    
-    init(name:String, products:[ProductRowViewModel]) {
-        self.name = name
-        self.products = products
-    }
 }

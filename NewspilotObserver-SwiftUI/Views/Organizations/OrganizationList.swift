@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct OrganizationsView: View {
+struct OrganizationList: View {
     @ObservedObject var viewModel:OrganizationsViewModel
     
     init(viewModel:OrganizationsViewModel) {
@@ -30,19 +30,22 @@ struct OrganizationsView: View {
     }
 }
 
-private extension OrganizationsView {
+private extension OrganizationList {
     var emptySection: some View {
         Text("No results (yet)")
             .foregroundColor(.gray)
     }
     
     var organizationsList: some View {
-        ForEach(viewModel.dataSource, content: OrganizationRowView.init(viewModel:))
+        ForEach(viewModel.dataSource, content: OrganizationRow.init(viewModel:))
     }
 }
 
-//struct OrganizationsView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        OrganizationsView(viewModel: OrganizationsViewModel(query: OrganizationsQuery(withNewspilotManager: NewspilotManager())))
-//    }
-//}
+struct OrganizationsView_Previews: PreviewProvider {
+    static var previews: some View {
+        OrganizationList(viewModel:
+            OrganizationsViewModel(organizationRows: [
+                OrganizationRowViewModel(id: 1, name: "West Coast News", products: [ProductRowViewModel(id: 1, name: "Product 1")])
+            ]))
+    }
+}

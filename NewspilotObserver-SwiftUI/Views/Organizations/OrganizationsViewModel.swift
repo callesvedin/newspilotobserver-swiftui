@@ -13,9 +13,13 @@ import CoreData
 class OrganizationsViewModel: ObservableObject, Identifiable {
     
     @Published var dataSource: [OrganizationRowViewModel] = []
-    private var query:OrganizationsQuery
+    private var query:OrganizationsQuery!
     
     private var disposables = Set<AnyCancellable>()
+    
+    init(organizationRows:[OrganizationRowViewModel]) {
+        self.dataSource = organizationRows
+    }
     
     init(query:OrganizationsQuery) {
         self.query = query
@@ -23,8 +27,8 @@ class OrganizationsViewModel: ObservableObject, Identifiable {
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: {organizations in
                 self.dataSource = self.query.organizations.map({organization in
-                    let products = organization.products.map({product in ProductRowViewModel(name:product.name)})
-                    return OrganizationRowViewModel(name:organization.name, products: products)
+                        let products = organization.products.map({product in ProductRowViewModel(id:product.id,name:product.name)})
+                    return OrganizationRowViewModel(id:organization.id, name:organization.name, products: products)
                     }
                 )
             })
