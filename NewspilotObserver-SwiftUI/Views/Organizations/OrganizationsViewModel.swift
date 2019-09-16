@@ -22,17 +22,17 @@ class OrganizationsViewModel: ObservableObject, Identifiable {
     }
     
     init(query:OrganizationsQuery) {
-        self.query = query
-        _ = query.publisher
-            .receive(on: DispatchQueue.main)
-            .sink(receiveValue: {organizations in
-                self.dataSource = self.query.organizations.map({organization in
-                        let products = organization.products.map({product in ProductRowViewModel(id:product.id,name:product.name)})
-                    return OrganizationRowViewModel(id:organization.id, name:organization.name, products: products)
-                    }
-                )
-            })
-            .store(in: &disposables)        
+//        self.query = query
+//        _ = query.publisher
+//            .receive(on: DispatchQueue.main)
+//            .sink(receiveValue: {organizations in
+//                self.dataSource = self.query.organizations.map({organization in
+//                        let products = organization.products.map({product in ProductRowViewModel(id:product.id,name:product.name)})
+//                    return OrganizationRowViewModel(id:organization.id, name:organization.name, products: products)
+//                    }
+//                )
+//            })
+//            .store(in: &disposables)        
     }
     
 }

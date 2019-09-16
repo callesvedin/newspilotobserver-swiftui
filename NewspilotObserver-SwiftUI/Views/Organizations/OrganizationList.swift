@@ -9,23 +9,19 @@
 import SwiftUI
 
 struct OrganizationList: View {
-    @ObservedObject var viewModel:OrganizationsViewModel
-    
-    init(viewModel:OrganizationsViewModel) {
-        self.viewModel = viewModel
-    }
-    
+    @EnvironmentObject var query:OrganizationsQuery
+        
     var body: some View {
         NavigationView {
             List {
-            if viewModel.dataSource.isEmpty {
-                emptySection
-            } else {
-                organizationsList
+                if query.organizations.isEmpty {
+                    emptySection
+                } else {
+                    organizationsList
+                }
             }
-        }
-        .listStyle(GroupedListStyle())
-        .navigationBarTitle("Organizations")
+            .listStyle(GroupedListStyle())
+            .navigationBarTitle("Organizations")
         }
     }
 }
@@ -37,10 +33,10 @@ private extension OrganizationList {
     }
     
     var organizationsList: some View {
-        ForEach(viewModel.dataSource) {organization in
+        ForEach(query.getOrganizations()) {organization in
             Section(header: Text(organization.name).bold()) {
-                ForEach(organization.products){product in
-                    NavigationLink(destination: OrganizationList(viewModel: self.viewModel)) {
+                ForEach(self.query.getProducts(for: organization)){product in
+                    NavigationLink(destination: SubProductList(productId:product.id)) {
                         ProductRow(product:product)
                     }
                 }
@@ -51,19 +47,6 @@ private extension OrganizationList {
 
 struct OrganizationsView_Previews: PreviewProvider {
     static var previews: some View {
-        OrganizationList(viewModel:
-            OrganizationsViewModel(organizationRows: [
-                OrganizationRowViewModel(id: 1, name: "West Coast News", products: [
-                        ProductRowViewModel(id: 1, name: "Product 1"),
-                        ProductRowViewModel(id: 2, name: "Product 2")
-                ]),
-                OrganizationRowViewModel(id: 2, name: "East Coast News", products: [
-                        ProductRowViewModel(id: 3, name: "Product 3"),
-                        ProductRowViewModel(id: 4, name: "Product 4")
-                ])
-
-            ])
-            
-            )
+        OrganizationList()
     }
 }

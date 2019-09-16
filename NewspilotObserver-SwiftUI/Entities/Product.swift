@@ -6,17 +6,28 @@
 import Foundation
 
 // MARK: - Product
-class Product: Codable {
+class Product: Codable, Identifiable {
     let mediaID: Int
     let locale: String
     let organizationID: Int
     let name: String
-    let externalSystemID: Int
-    let entityType, productDescription: String
-    let externalWriterSystemID, id: Int
-    let shortName: String
-    let iconSmall: JSONNull?
-
+    var externalWriterSystemID, externalSystemID: Int?
+    let entityType:String
+    var productDescription: String?
+    let id: Int
+    var shortName: String?
+    var iconSmall: Data?
+    var useCaptionProposed: Int?
+    
+    init(id:Int, name:String, organizationID:Int) {
+        self.id = id
+        self.name = name
+        self.organizationID = organizationID
+        self.mediaID = 1
+        self.locale = "SV_se"
+        self.entityType = "Product"
+    }
+    
     enum CodingKeys: String, CodingKey {
         case mediaID = "media_id"
         case locale
@@ -28,37 +39,37 @@ class Product: Codable {
         case externalWriterSystemID = "external_writer_system_id"
         case id
         case shortName = "short_name"
-        case iconSmall = "icon_small"
+        case iconSmall = "icon_small"        
     }
 }
-
-// MARK: - Encode/decode helpers
-
-class JSONNull: Codable, Hashable {
-
-    public static func == (lhs: JSONNull, rhs: JSONNull) -> Bool {
-        return true
-    }
-
-    public var hashValue: Int {
-        return 0
-    }
-
-    public func hash(into hasher: inout Hasher) {
-        // No-op
-    }
-
-    public init() {}
-
-    public required init(from decoder: Decoder) throws {
-        let container = try decoder.singleValueContainer()
-        if !container.decodeNil() {
-            throw DecodingError.typeMismatch(JSONNull.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Wrong type for JSONNull"))
-        }
-    }
-
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.singleValueContainer()
-        try container.encodeNil()
-    }
-}
+//
+//// MARK: - Encode/decode helpers
+//
+//class JSONNull: Codable, Hashable {
+//
+//    public static func == (lhs: JSONNull, rhs: JSONNull) -> Bool {
+//        return true
+//    }
+//
+//    public var hashValue: Int {
+//        return 0
+//    }
+//
+//    public func hash(into hasher: inout Hasher) {
+//        // No-op
+//    }
+//
+//    public init() {}
+//
+//    public required init(from decoder: Decoder) throws {
+//        let container = try decoder.singleValueContainer()
+//        if !container.decodeNil() {
+//            throw DecodingError.typeMismatch(JSONNull.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Wrong type for JSONNull"))
+//        }
+//    }
+//
+//    public func encode(to encoder: Encoder) throws {
+//        var container = encoder.singleValueContainer()
+//        try container.encodeNil()
+//    }
+//}

@@ -26,8 +26,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             newspilotManager.connect()
             
             let organizationQuery = OrganizationsQuery(withNewspilotManager:newspilotManager)
-            let organizationsViewModel = OrganizationsViewModel(query: organizationQuery)
-            let organizationsView = OrganizationList(viewModel:organizationsViewModel)
+            let organizationsView = OrganizationList().environmentObject(organizationQuery)
             
             window.rootViewController = UIHostingController(rootView: organizationsView)
             self.window = window

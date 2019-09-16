@@ -6,7 +6,7 @@
 import Foundation
 
 // MARK: - Organization
-class Organization: Codable {
+class Organization: Codable, Identifiable {
     let entityType: String
     let defaultPrivilegeGroupID: Int
     let organizationDescription: String

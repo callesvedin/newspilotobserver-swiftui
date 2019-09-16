@@ -9,9 +9,9 @@
 import SwiftUI
 
 struct ProductRow: View {
-    var product:ProductRowViewModel
+    var product:Product
     
-    init(product:ProductRowViewModel) {
+    init(product:Product) {
         self.product = product
     }
     var body: some View {
@@ -21,6 +21,6 @@ struct ProductRow: View {
 
 struct ProductRowView_Previews: PreviewProvider {
     static var previews: some View {
-        ProductRow(product: ProductRowViewModel(id:1,name: "Product")).previewLayout(.fixed(width: 300, height: 40))
+        ProductRow(product: Product(id:1,name: "Product",organizationID: 1)).previewLayout(.fixed(width: 300, height: 40))
     }
 }
