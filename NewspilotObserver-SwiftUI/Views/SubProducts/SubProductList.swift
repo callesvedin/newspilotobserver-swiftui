@@ -11,20 +11,20 @@ import SwiftUI
 struct SubProductList: View {
     @EnvironmentObject var query:OrganizationsQuery
     
-    var productId:Int
-    var product:Product? = nil
+    var product:Product
     
-    init(productId:Int) {
-        self.productId = productId        
-
+    init(product:Product) {
+        self.product = product
     }
+    
     var body: some View {
-        Text("Hello \(product != nil ? product!.name: "")")
+        Text("Hello \(product.name)").navigationBarTitle(product.name)
+           
     }
 }
 
 struct SubProductList_Previews: PreviewProvider {
     static var previews: some View {
-        SubProductList(productId:1)
+        SubProductList(product:Product(id: 1, name: "Test Product", organizationID: 1))
     }
 }

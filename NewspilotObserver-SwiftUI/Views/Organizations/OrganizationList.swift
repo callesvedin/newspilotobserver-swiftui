@@ -36,7 +36,7 @@ private extension OrganizationList {
         ForEach(query.getOrganizations()) {organization in
             Section(header: Text(organization.name).bold()) {
                 ForEach(self.query.getProducts(for: organization)){product in
-                    NavigationLink(destination: SubProductList(productId:product.id)) {
+                    NavigationLink(destination: SubProductList(product:product)) {
                         ProductRow(product:product)
                     }
                 }
