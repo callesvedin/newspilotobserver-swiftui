@@ -111,28 +111,38 @@ class OrganizationsQuery :  ObservableObject {
                     switch (event.entityType) {
                     case .Organization:
                         let organization = try decoder.decode(Organization.self, from: data)
-
+                        
                         if let i = organizations.firstIndex(where:{$0.id == event.entityId}) {
                             organizations[i] = organization
                         }
                     case .Product:
                         let product = try decoder.decode(Product.self, from: data)
-
+                        
                         if let i = products.firstIndex(where:{$0.id == event.entityId}) {
                             products[i] = product
                         }
                     case .SubProduct:
                         let subproduct = try decoder.decode(SubProduct.self, from: data)
-
+                        
                         if let i = subProducts.firstIndex(where:{$0.id == event.entityId}) {
                             subProducts[i] = subproduct
                         }
-
+                        
                     default:
-                        print("Changing something")
-
+                        print("Can not change \(event.entityType)")                        
                     }
-                
+                case .REMOVE:
+                    switch (event.entityType) {
+                    case .Organization:
+                        organizations.removeAll(where:{$0.id == event.entityId})
+                    case .Product:
+                        products.removeAll(where:{$0.id == event.entityId})
+                    case .SubProduct:
+                        subProducts.removeAll(where:{$0.id == event.entityId})
+                    default:
+                        print("Can not remove \(event.entityType)")
+                        
+                    }
                 default:
                     os_log("Unhandled event in OrganizationQuery", log: .newspilot, type:.error)
                     
