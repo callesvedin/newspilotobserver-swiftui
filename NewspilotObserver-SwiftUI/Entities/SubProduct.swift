@@ -6,7 +6,7 @@
 import Foundation
 
 // MARK: - SubProduct
-class SubProduct: Codable {
+class SubProduct: Codable, Identifiable {
     let useCaptionProposed:Int?
     let productID: Int
     let name: String

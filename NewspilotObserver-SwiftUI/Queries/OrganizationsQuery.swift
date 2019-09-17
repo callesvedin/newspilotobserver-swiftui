@@ -166,5 +166,10 @@ class OrganizationsQuery :  ObservableObject {
     func getProducts(for organization:Organization) -> [Product] {
         return products.filter{product in product.organizationID == organization.id}
     }
+    
+    func getSubProducts(for product:Product) -> [SubProduct] {
+        return subProducts.filter{subProduct in subProduct.productID == product.id}
+    }
+
 }
 
