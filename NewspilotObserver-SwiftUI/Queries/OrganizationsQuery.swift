@@ -13,7 +13,6 @@ import Combine
 
 class OrganizationsQuery :  ObservableObject {
     
-    private var newspilotManager:NewspilotManager    
     @Published var organizations:[Organization] = []
     @Published var products:[Product] = []
     @Published var subProducts:[SubProduct] = []
@@ -59,9 +58,8 @@ class OrganizationsQuery :  ObservableObject {
         """
     
     
-    init(withNewspilotManager newspilotManager:NewspilotManager) {
-        self.newspilotManager = newspilotManager
-        newspilotManager.newspilot.addQuery(queryString: organizationsQueryString, completionHandler: {result in
+    init(withNewspilot newspilot:Newspilot) {
+        newspilot.addQuery(queryString: organizationsQueryString, completionHandler: {result in
             switch (result) {
             case .failure(let error):
                 os_log("Could not add query. Error:%@", log: .newspilot, type:.error, error.localizedDescription)
@@ -86,7 +84,11 @@ class OrganizationsQuery :  ObservableObject {
                         
                         let organization = try decoder.decode(Organization.self, from: data)
                         print("We got an organization with the name \(organization.name)")
-                        self.organizations.append(organization)
+                        if let i = organizations.firstIndex(where:{$0.id == event.entityId}) {
+                            organizations[i] = organization
+                        }else{
+                            self.organizations.append(organization)
+                        }
                         let organizationProducts = products.filter({product in product.organizationID == organization.id})
                         organization.products.append(contentsOf: organizationProducts)
                     case .Product:
@@ -96,13 +98,19 @@ class OrganizationsQuery :  ObservableObject {
                         if let organization = self.organizations.first(where: {organization in product.id == organization.id}) {
                             organization.products.append(product)
                         }
-                        products.append(product)
+                        if let i = products.firstIndex(where:{$0.id == event.entityId}) {
+                            products[i] = product
+                        }else{
+                            self.products.append(product)
+                        }
                     case .SubProduct:
                         let subProduct = try decoder.decode(SubProduct.self, from: data)
                         print("We got an product with the name \(subProduct.name)")
-                        
-                        subProducts.append(subProduct)
-                        
+                        if let i = subProducts.firstIndex(where:{$0.id == event.entityId}) {
+                            subProducts[i] = subProduct
+                        }else{
+                            subProducts.append(subProduct)
+                        }                        
                     default:
                         print("Got event entity type not handled:\(event.entityType)")
                     }

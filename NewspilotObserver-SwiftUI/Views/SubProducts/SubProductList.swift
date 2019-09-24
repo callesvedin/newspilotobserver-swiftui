@@ -9,12 +9,13 @@
 import SwiftUI
 
 struct SubProductList: View {
-    @EnvironmentObject var query:OrganizationsQuery
+    @ObservedObject var query:OrganizationsQuery
     
     var product:Product
     
-    init(product:Product) {
+    init(product:Product, query:OrganizationsQuery) {
         self.product = product
+        self.query = query
     }
     
     var body: some View {
@@ -26,8 +27,8 @@ struct SubProductList: View {
     }
 }
 
-struct SubProductList_Previews: PreviewProvider {
-    static var previews: some View {
-        SubProductList(product:Product(id: 1, name: "Test Product", organizationID: 1))
-    }
-}
+//struct SubProductList_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SubProductList(product:Product(id: 1, name: "Test Product", organizationID: 1))
+//    }
+//}

@@ -7,10 +7,23 @@
 //
 
 import SwiftUI
+import Newspilot
+import Combine
 
 struct OrganizationList: View {
-    @EnvironmentObject var query:OrganizationsQuery
-        
+//    @EnvironmentObject var loginHandler:LoginHandler
+    @ObservedObject var query:OrganizationsQuery
+    
+//    var newspilot:Newspilot {
+//        didSet {
+//          query = OrganizationsQuery(withNewspilot: newspilot)
+//        }
+//    }
+    
+    init(newspilot:Newspilot) {
+        query = OrganizationsQuery(withNewspilot: newspilot)
+    }
+    
     var body: some View {
         NavigationView {
             List {
@@ -22,7 +35,7 @@ struct OrganizationList: View {
             }
             .listStyle(GroupedListStyle())
             .navigationBarTitle("Organizations")
-        }
+        }.navigationBarBackButtonHidden(true)
     }
 }
 
@@ -36,7 +49,7 @@ private extension OrganizationList {
         ForEach(query.getOrganizations()) {organization in
             Section(header: Text(organization.name).bold()) {
                 ForEach(self.query.getProducts(for: organization)){product in
-                    NavigationLink(destination: SubProductList(product:product)) {
+                    NavigationLink(destination: SubProductList(product:product, query:self.query)) {
                         ProductRow(product:product)
                     }
                 }
@@ -44,9 +57,9 @@ private extension OrganizationList {
         }
     }
 }
-
-struct OrganizationsView_Previews: PreviewProvider {
-    static var previews: some View {
-        OrganizationList()
-    }
-}
+//
+//struct OrganizationsView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        OrganizationList()
+//    }
+//}
