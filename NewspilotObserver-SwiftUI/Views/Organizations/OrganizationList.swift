@@ -25,7 +25,6 @@ struct OrganizationList: View {
     }
     
     var body: some View {
-        NavigationView {
             List {
                 if query.organizations.isEmpty {
                     emptySection
@@ -34,8 +33,7 @@ struct OrganizationList: View {
                 }
             }
             .listStyle(GroupedListStyle())
-            .navigationBarTitle("Organizations")
-        }.navigationBarBackButtonHidden(true)
+            .navigationBarTitle("Organizations").navigationBarBackButtonHidden(true)
     }
 }
 

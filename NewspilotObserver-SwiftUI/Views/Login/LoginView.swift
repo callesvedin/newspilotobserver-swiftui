@@ -24,7 +24,6 @@ struct LoginView: View {
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .foregroundColor(Color.white)
-                    .padding(.top, 50)
                     .padding(.bottom, 150)
 
                 TextField("Username", text: $loginSettings.login)
