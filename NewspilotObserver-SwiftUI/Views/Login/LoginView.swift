@@ -46,17 +46,36 @@ struct LoginView: View {
                     .cornerRadius(5.0)
                     .padding()
                 
-                NavigationLink(destination: OrganizationList(newspilot:loginHandler.newspilot)  , tag: ConnectionStatus.connected, selection: $loginHandler.connectionStatus) {
+                if loginHandler.connectionStatus == .connectionFailed {
+                    Text("Connection failed. Please try again").foregroundColor(.red)
+                }else if loginHandler.connectionStatus == .authenticationFailed {
+                    Image(systemName: "lock.slash.fill").font(Font.title.weight(.regular)).foregroundColor(.gray)
+                    Text("Incorrect username or password. Please try again").foregroundColor(.red)
+                }
+                else{
+                    Text(" ")
+                }
+                
+                NavigationLink(destination: OrganizationList().environmentObject(OrganizationsQuery(withNewspilot: loginHandler.newspilot))  , tag: ConnectionStatus.connected, selection: $loginHandler.connectionStatus) {
                     Button(action:{
                         self.loginHandler.login(login: self.loginSettings.login, password: self.password, server: self.loginSettings.server)
                     }){
-                        Text("LOGIN")
-                            .font(.headline)
-                            .foregroundColor(.white)
-                            .padding()
-                            .frame(width: 220, height: 60)
-                            .background(Color.blue)
-                            .cornerRadius(15.0)
+                        HStack {
+                            if loginHandler.connectionStatus == .connecting {
+                                ActivityIndicator(isAnimating: .constant(true), style: .medium)
+                            }else{
+                                Image(systemName: "lock.fill").font(Font.headline.weight(.regular))
+                                    .foregroundColor(.white)
+                            }
+                                
+                            Text("LOGIN")
+                                .padding(.leading, 20)
+                                .font(.headline)
+                                .foregroundColor(.white)
+                        }
+                        .frame(width: 220, height: 50)
+                        .background(Color.blue)
+                        .cornerRadius(15.0)
                     }
                 }
             
@@ -65,8 +84,6 @@ struct LoginView: View {
                     Text("Trying to login, please wait...").foregroundColor(.white)
                 } else if loginHandler.connectionStatus == .connected {
                     Text("Successful login").foregroundColor(.white)
-                }else{
-                    Text("Help").foregroundColor(.white)
                 }
             }.background(SwiftUI.Color.black.edgesIgnoringSafeArea(.all))
             

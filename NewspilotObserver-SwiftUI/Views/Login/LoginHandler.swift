@@ -11,7 +11,7 @@ import Combine
 import Newspilot
 
 enum ConnectionStatus {
-    case notConnected, connecting, connected
+    case notConnected, connecting, connected, authenticationFailed, connectionFailed
 }
 
 class LoginHandler: ObservableObject {
@@ -30,7 +30,12 @@ class LoginHandler: ObservableObject {
             case .failure(let error):
                 print("Could not connect to newspilot. Error:\(error)")
                 DispatchQueue.main.async {
-                    self.connectionStatus = .notConnected
+                    switch error {
+                    case .httpError(let errorCode, _) where errorCode == 401:
+                        self.connectionStatus = .authenticationFailed
+                    default:
+                        self.connectionStatus = .connectionFailed
+                    }
                 }
 
             case .success(let sessionId):

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		EB05395B232FF175007880BB /* OrganizationsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB05395A232FF175007880BB /* OrganizationsDataSource.swift */; };
+		EB10054323434AF500E0973F /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB10054223434AF500E0973F /* ActivityIndicator.swift */; };
 		EB3CC52A22F34E520070139F /* Newspilot in Frameworks */ = {isa = PBXBuildFile; productRef = EB3CC52922F34E520070139F /* Newspilot */; };
 		EB5435102322EC61004EE63F /* OrganizationsQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB54350F2322EC61004EE63F /* OrganizationsQuery.swift */; };
 		EB5435122322EC72004EE63F /* OrganizationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5435112322EC72004EE63F /* OrganizationsViewModel.swift */; };
@@ -69,6 +70,7 @@
 
 /* Begin PBXFileReference section */
 		EB05395A232FF175007880BB /* OrganizationsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationsDataSource.swift; sourceTree = "<group>"; };
+		EB10054223434AF500E0973F /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		EB54350F2322EC61004EE63F /* OrganizationsQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationsQuery.swift; sourceTree = "<group>"; };
 		EB5435112322EC72004EE63F /* OrganizationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationsViewModel.swift; sourceTree = "<group>"; };
 		EB5435152322F324004EE63F /* ColorExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
@@ -298,6 +300,7 @@
 			children = (
 				EB8CE4BD233170C8000A03A2 /* LoginView.swift */,
 				EB6AE6FE233A8A2E0020A501 /* LoginHandler.swift */,
+				EB10054223434AF500E0973F /* ActivityIndicator.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -488,6 +491,7 @@
 				EBD22A5922CC059F000DFD41 /* NewspilotManager.swift in Sources */,
 				EB5435222322FFF3004EE63F /* EntityType.swift in Sources */,
 				EB7B9E3022C7F86E009EB2BE /* EntityQuery.swift in Sources */,
+				EB10054323434AF500E0973F /* ActivityIndicator.swift in Sources */,
 				EB5435182322F567004EE63F /* OrganizationList.swift in Sources */,
 				EB7B9E4722C80088009EB2BE /* ProductImageFactory.swift in Sources */,
 				EB5435162322F324004EE63F /* ColorExtensions.swift in Sources */,

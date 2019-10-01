@@ -11,19 +11,8 @@ import Newspilot
 import Combine
 
 struct OrganizationList: View {
-//    @EnvironmentObject var loginHandler:LoginHandler
-    @ObservedObject var query:OrganizationsQuery
-    
-//    var newspilot:Newspilot {
-//        didSet {
-//          query = OrganizationsQuery(withNewspilot: newspilot)
-//        }
-//    }
-    
-    init(newspilot:Newspilot) {
-        query = OrganizationsQuery(withNewspilot: newspilot)
-    }
-    
+    @EnvironmentObject var query:OrganizationsQuery
+        
     var body: some View {
             List {
                 if query.organizations.isEmpty {
@@ -39,7 +28,7 @@ struct OrganizationList: View {
 
 private extension OrganizationList {
     var emptySection: some View {
-        Text("No results (yet)")
+        Text("")
             .foregroundColor(.gray)
     }
     
@@ -55,9 +44,9 @@ private extension OrganizationList {
         }
     }
 }
-//
-//struct OrganizationsView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        OrganizationList()
-//    }
-//}
+
+struct OrganizationsView_Previews: PreviewProvider {
+    static var previews: some View {
+        OrganizationList()
+    }
+}

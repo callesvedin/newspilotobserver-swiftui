@@ -59,6 +59,9 @@ class OrganizationsQuery :  ObservableObject {
     
     
     init(withNewspilot newspilot:Newspilot) {
+//        guard newspilot.connected else {
+//            return nil
+//        }
         newspilot.addQuery(queryString: organizationsQueryString, completionHandler: {result in
             switch (result) {
             case .failure(let error):
@@ -168,14 +171,17 @@ class OrganizationsQuery :  ObservableObject {
     }
     
     func getProduct(withId id:Int) -> Product? {
+        print("Getting product")
         return products.first{$0.id == id}
     }
     
     func getProducts(for organization:Organization) -> [Product] {
+        print("Filtering products for organization")
         return products.filter{product in product.organizationID == organization.id}
     }
     
     func getSubProducts(for product:Product) -> [SubProduct] {
+        print("Filtering subproducts for products")
         return subProducts.filter{subProduct in subProduct.productID == product.id}
     }
 
