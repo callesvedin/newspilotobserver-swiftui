@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		EB05395B232FF175007880BB /* OrganizationsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB05395A232FF175007880BB /* OrganizationsDataSource.swift */; };
 		EB10054323434AF500E0973F /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB10054223434AF500E0973F /* ActivityIndicator.swift */; };
+		EB1005442346668A00E0973F /* Product_11.png in Resources */ = {isa = PBXBuildFile; fileRef = EBD22A3722CBFBCD000DFD41 /* Product_11.png */; };
+		EB1005452346669900E0973F /* Product_10.png in Resources */ = {isa = PBXBuildFile; fileRef = EBD22A3622CBFBCD000DFD41 /* Product_10.png */; };
 		EB3CC52A22F34E520070139F /* Newspilot in Frameworks */ = {isa = PBXBuildFile; productRef = EB3CC52922F34E520070139F /* Newspilot */; };
 		EB5435102322EC61004EE63F /* OrganizationsQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB54350F2322EC61004EE63F /* OrganizationsQuery.swift */; };
 		EB5435122322EC72004EE63F /* OrganizationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5435112322EC72004EE63F /* OrganizationsViewModel.swift */; };
@@ -441,6 +443,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB1005452346669900E0973F /* Product_10.png in Resources */,
+				EB1005442346668A00E0973F /* Product_11.png in Resources */,
 				EBD22A4722CBFBCD000DFD41 /* Product_21.png in Resources */,
 				EB7B9DBE22C7EDC9009EB2BE /* LaunchScreen.storyboard in Resources */,
 				EB7B9DBB22C7EDC9009EB2BE /* Preview Assets.xcassets in Resources */,

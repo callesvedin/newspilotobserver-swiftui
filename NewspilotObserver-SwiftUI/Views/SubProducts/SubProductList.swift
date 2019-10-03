@@ -21,7 +21,7 @@ struct SubProductList: View {
     var body: some View {
         List {
             ForEach(query.getSubProducts(for:product)) {subProduct in
-                Text(subProduct.name).font(.caption).foregroundColor(.gray)
+                Text(subProduct.name) //.font(.caption).foregroundColor(.gray)
             }
         }.navigationBarTitle(product.name)           
     }

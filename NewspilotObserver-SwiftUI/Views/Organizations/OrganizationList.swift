@@ -22,7 +22,9 @@ struct OrganizationList: View {
                 }
             }
             .listStyle(GroupedListStyle())
-            .navigationBarTitle("Organizations").navigationBarBackButtonHidden(true)
+            .navigationBarTitle("Organizations").navigationBarBackButtonHidden(true).onAppear(){
+                self.query.load()
+        }
     }
 }
 

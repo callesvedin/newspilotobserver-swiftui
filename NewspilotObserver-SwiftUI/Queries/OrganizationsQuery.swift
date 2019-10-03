@@ -18,6 +18,8 @@ class OrganizationsQuery :  ObservableObject {
     @Published var subProducts:[SubProduct] = []
     //    private var sections:[Section] = []
     var cancellableSubscriber:Cancellable?
+    var loaded:Bool = false
+    private let newspilot:Newspilot
     
     
     private var query:Query? {
@@ -59,19 +61,23 @@ class OrganizationsQuery :  ObservableObject {
     
     
     init(withNewspilot newspilot:Newspilot) {
-//        guard newspilot.connected else {
-//            return nil
-//        }
-        newspilot.addQuery(queryString: organizationsQueryString, completionHandler: {result in
-            switch (result) {
-            case .failure(let error):
-                os_log("Could not add query. Error:%@", log: .newspilot, type:.error, error.localizedDescription)
-            case .success(let query):
-                self.query = query                
-            }
-            
-        })
+        self.newspilot = newspilot
     }
+    
+    func load() {
+        if !loaded {
+            newspilot.addQuery(queryString: organizationsQueryString, completionHandler: {result in
+                switch (result) {
+                case .failure(let error):
+                    os_log("Could not add query. Error:%@", log: .newspilot, type:.error, error.localizedDescription)
+                case .success(let query):
+                    self.query = query
+                    self.loaded = true
+                }
+            })
+        }
+    }
+    
     
     private func process(_ events:[Event]) {
         events.forEach({ (event) in
@@ -184,6 +190,6 @@ class OrganizationsQuery :  ObservableObject {
         print("Filtering subproducts for products")
         return subProducts.filter{subProduct in subProduct.productID == product.id}
     }
-
+    
 }
 
