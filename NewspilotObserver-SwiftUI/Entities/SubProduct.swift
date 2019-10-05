@@ -7,18 +7,25 @@ import Foundation
 
 // MARK: - SubProduct
 class SubProduct: Codable, Identifiable {
-    let useCaptionProposed:Int?
+    var useCaptionProposed:Int?
     let productID: Int
     let name: String
-    let externalID: String?
-    let defaultArticleConfigID:Int?
+    var externalID: String?
+    var defaultArticleConfigID:Int?
     let id: Int
     let entityType: String
-    let parentID:Int?
-    let externalSystemID: Int?
-    let shortName: String
-    let invisible: Int?
+    var parentID:Int?
+    var externalSystemID: Int?
+    var shortName: String?
+    var invisible: Int?
 
+    init(id:Int, productId:Int, name:String) {
+        self.id = id
+        self.productID = productId
+        self.name = name        
+        self.entityType = "SubProduct"
+    }
+    
     enum CodingKeys: String, CodingKey {
         case useCaptionProposed = "use_caption_proposed"
         case productID = "product_id"

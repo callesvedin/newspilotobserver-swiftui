@@ -21,10 +21,10 @@ struct OrganizationList: View {
                     organizationsList
                 }
             }
-            .listStyle(GroupedListStyle())
-            .navigationBarTitle("Organizations").navigationBarBackButtonHidden(true).onAppear(){
-                self.query.load()
-        }
+            .listStyle(GroupedListStyle())            .navigationBarTitle("Organizations").navigationBarBackButtonHidden(true)
+                .onAppear(){
+                    self.query.load()
+                }
     }
 }
 

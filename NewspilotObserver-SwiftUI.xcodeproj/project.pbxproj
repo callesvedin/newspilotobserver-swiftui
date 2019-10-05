@@ -12,6 +12,11 @@
 		EB1005442346668A00E0973F /* Product_11.png in Resources */ = {isa = PBXBuildFile; fileRef = EBD22A3722CBFBCD000DFD41 /* Product_11.png */; };
 		EB1005452346669900E0973F /* Product_10.png in Resources */ = {isa = PBXBuildFile; fileRef = EBD22A3622CBFBCD000DFD41 /* Product_10.png */; };
 		EB3CC52A22F34E520070139F /* Newspilot in Frameworks */ = {isa = PBXBuildFile; productRef = EB3CC52922F34E520070139F /* Newspilot */; };
+		EB41EA502347992A00550428 /* PageList.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB41EA4F2347992A00550428 /* PageList.swift */; };
+		EB41EA5223479D2200550428 /* PublicationDateQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB41EA5123479D2200550428 /* PublicationDateQuery.swift */; };
+		EB41EA542347A32D00550428 /* PublicationDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB41EA532347A32D00550428 /* PublicationDate.swift */; };
+		EB41EA562348BF0A00550428 /* PageQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB41EA552348BF0A00550428 /* PageQuery.swift */; };
+		EB41EA582348BF7400550428 /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB41EA572348BF7400550428 /* Page.swift */; };
 		EB5435102322EC61004EE63F /* OrganizationsQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB54350F2322EC61004EE63F /* OrganizationsQuery.swift */; };
 		EB5435122322EC72004EE63F /* OrganizationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5435112322EC72004EE63F /* OrganizationsViewModel.swift */; };
 		EB5435162322F324004EE63F /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5435152322F324004EE63F /* ColorExtensions.swift */; };
@@ -73,6 +78,11 @@
 /* Begin PBXFileReference section */
 		EB05395A232FF175007880BB /* OrganizationsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationsDataSource.swift; sourceTree = "<group>"; };
 		EB10054223434AF500E0973F /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
+		EB41EA4F2347992A00550428 /* PageList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageList.swift; sourceTree = "<group>"; };
+		EB41EA5123479D2200550428 /* PublicationDateQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicationDateQuery.swift; sourceTree = "<group>"; };
+		EB41EA532347A32D00550428 /* PublicationDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicationDate.swift; sourceTree = "<group>"; };
+		EB41EA552348BF0A00550428 /* PageQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageQuery.swift; sourceTree = "<group>"; };
+		EB41EA572348BF7400550428 /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
 		EB54350F2322EC61004EE63F /* OrganizationsQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationsQuery.swift; sourceTree = "<group>"; };
 		EB5435112322EC72004EE63F /* OrganizationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationsViewModel.swift; sourceTree = "<group>"; };
 		EB5435152322F324004EE63F /* ColorExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
@@ -161,8 +171,18 @@
 			isa = PBXGroup;
 			children = (
 				EB54350F2322EC61004EE63F /* OrganizationsQuery.swift */,
+				EB41EA5123479D2200550428 /* PublicationDateQuery.swift */,
+				EB41EA552348BF0A00550428 /* PageQuery.swift */,
 			);
 			path = Queries;
+			sourceTree = "<group>";
+		};
+		EB41EA4E2347991100550428 /* Pages */ = {
+			isa = PBXGroup;
+			children = (
+				EB41EA4F2347992A00550428 /* PageList.swift */,
+			);
+			path = Pages;
 			sourceTree = "<group>";
 		};
 		EB54350E2322EC3C004EE63F /* Organizations */ = {
@@ -242,6 +262,8 @@
 				EB5435212322FFF3004EE63F /* EntityType.swift */,
 				EBF8055A23277C3D00C5590A /* Product.swift */,
 				EB56C5DA232B88AC00BF84A5 /* SubProduct.swift */,
+				EB41EA532347A32D00550428 /* PublicationDate.swift */,
+				EB41EA572348BF7400550428 /* Page.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -282,6 +304,7 @@
 		EB7B9E4E22C80B0B009EB2BE /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				EB41EA4E2347991100550428 /* Pages */,
 				EB8CE4BC233170A9000A03A2 /* Login */,
 				EB953D88232C055100E65A73 /* SubProducts */,
 				EB54350E2322EC3C004EE63F /* Organizations */,
@@ -482,9 +505,12 @@
 				EB8CE4C223317D5B000A03A2 /* LoginSettings.swift in Sources */,
 				EB8CE4BE233170C8000A03A2 /* LoginView.swift in Sources */,
 				EB5435122322EC72004EE63F /* OrganizationsViewModel.swift in Sources */,
+				EB41EA5223479D2200550428 /* PublicationDateQuery.swift in Sources */,
+				EB41EA582348BF7400550428 /* Page.swift in Sources */,
 				EB5435102322EC61004EE63F /* OrganizationsQuery.swift in Sources */,
 				EB54351A2322F824004EE63F /* OrganizationRowViewModel.swift in Sources */,
 				EB7B9E3122C7F86E009EB2BE /* NotConnectedView.swift in Sources */,
+				EB41EA542347A32D00550428 /* PublicationDate.swift in Sources */,
 				EB7B9E3222C7F86E009EB2BE /* Calendar+StartStop.swift in Sources */,
 				EB7B9E3322C7F86E009EB2BE /* Notification.Name+ConnectionStatus.swift in Sources */,
 				EB56C5DB232B88AC00BF84A5 /* SubProduct.swift in Sources */,
@@ -502,6 +528,7 @@
 				EB7B9E4622C80088009EB2BE /* OSLog+NewspilotObserver.swift in Sources */,
 				EB7B9E4A22C80088009EB2BE /* String+UppercaseCharacters.swift in Sources */,
 				EB5435202322FE2D004EE63F /* Entity.swift in Sources */,
+				EB41EA562348BF0A00550428 /* PageQuery.swift in Sources */,
 				EB54351E2322FE1D004EE63F /* Organization.swift in Sources */,
 				EB7B9DB122C7EDC7009EB2BE /* SceneDelegate.swift in Sources */,
 				EB6AE6FF233A8A2E0020A501 /* LoginHandler.swift in Sources */,
@@ -509,6 +536,7 @@
 				EBF8055B23277C3D00C5590A /* Product.swift in Sources */,
 				EB953D8A232C058800E65A73 /* SubProductList.swift in Sources */,
 				EBEED2392327D46E00746C69 /* ProductRow.swift in Sources */,
+				EB41EA502347992A00550428 /* PageList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
