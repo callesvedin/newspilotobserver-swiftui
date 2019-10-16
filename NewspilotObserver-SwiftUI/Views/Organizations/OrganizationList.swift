@@ -11,20 +11,28 @@ import Newspilot
 import Combine
 
 struct OrganizationList: View {
-    @EnvironmentObject var query:OrganizationsQuery
-        
+    @ObservedObject var query:OrganizationsQuery
+    private var newspilot:Newspilot
+    
+    init(newspilot:Newspilot) {
+        self.newspilot = newspilot
+        query = OrganizationsQuery(withNewspilot: newspilot)
+    }
+    
     var body: some View {
-            List {
-                if query.organizations.isEmpty {
-                    emptySection
-                } else {
-                    organizationsList
-                }
+        List {
+            if query.organizations.isEmpty {
+                emptySection
+            } else {
+                organizationsList
             }
-            .listStyle(GroupedListStyle())            .navigationBarTitle("Organizations").navigationBarBackButtonHidden(true)
-                .onAppear(){
-                    self.query.load()
-                }
+        }
+        .listStyle(GroupedListStyle())
+        .navigationBarTitle("Organizations")
+        .navigationBarBackButtonHidden(true)
+        .onAppear(){
+            self.query.load()
+        }
     }
 }
 
@@ -38,8 +46,8 @@ private extension OrganizationList {
         ForEach(query.getOrganizations()) {organization in
             Section(header: Text(organization.name).bold()) {
                 ForEach(self.query.getProducts(for: organization)){product in
-                    NavigationLink(destination: SubProductList(product:product, query:self.query)) {
-                        ProductRow(product:product)
+                    NavigationLink(destination: SubProductList(product:product, newspilot: self.newspilot, organizationQuery:self.query)) {
+                                                                ProductRow(product:product)
                     }
                 }
             }
@@ -49,6 +57,6 @@ private extension OrganizationList {
 
 struct OrganizationsView_Previews: PreviewProvider {
     static var previews: some View {
-        OrganizationList()
+        OrganizationList(newspilot: Newspilot(server: "", login: "", password: ""))
     }
 }

@@ -15,13 +15,19 @@ class PageQuery : ObservableObject {
     
     @Published var pages:[Page] = []
 
+    var externalQueryId:String!
     var cancellableSubscriber:Cancellable?
     var loaded:Bool = false
     
     private let newspilot:Newspilot
     private let productId:Int
     private let subProductId:Int
-    private let publicationDateId:Int
+    var publicationDateId:Int {
+        didSet {
+            loaded = false
+            load()
+        }
+    }
     
     private var query:Query? {
         didSet {
@@ -49,8 +55,14 @@ class PageQuery : ObservableObject {
     func load() {
         if !loaded {
             let queryString = getQueryString()
+            self.pages = []
+            if query != nil && externalQueryId != nil {
+                self.newspilot.removeQuery(withQuid: externalQueryId)
+                query = nil
+            }
+            self.externalQueryId = UUID().uuidString
             if queryString != nil {
-                newspilot.addQuery(queryString: queryString!, completionHandler: {result in
+                newspilot.addQuery(withExternalId: externalQueryId ,queryString: queryString!, completionHandler: {result in
                     switch (result) {
                     case .failure(let error):
                         os_log("Could not add query. Error:%@", log: .newspilot, type:.error, error.localizedDescription)
@@ -98,7 +110,7 @@ class PageQuery : ObservableObject {
                 case .CREATE:
                     switch event.entityType {
                     case .Page:
-                        print("We got an page date with the name \(page.name ?? "")")
+                        print("We got an page date with the name \(page.name)")
                         if let i = pages.firstIndex(where:{$0.id == event.entityId}) {
                             pages[i] = page
                         }else{

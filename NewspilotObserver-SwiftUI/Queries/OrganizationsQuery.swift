@@ -17,9 +17,10 @@ class OrganizationsQuery :  ObservableObject {
     @Published var products:[Product] = []
     @Published var subProducts:[SubProduct] = []
     //    private var sections:[Section] = []
+    var externalQueryId:String!
     var cancellableSubscriber:Cancellable?
     var loaded:Bool = false
-    private let newspilot:Newspilot
+    let newspilot:Newspilot
     
     
     private var query:Query? {
@@ -66,7 +67,12 @@ class OrganizationsQuery :  ObservableObject {
     
     func load() {
         if !loaded {
-            newspilot.addQuery(queryString: organizationsQueryString, completionHandler: {result in
+            if query != nil && externalQueryId != nil {
+                self.newspilot.removeQuery(withQuid: externalQueryId)
+                query = nil
+            }
+            self.externalQueryId = UUID().uuidString
+            newspilot.addQuery(withExternalId:self.externalQueryId, queryString: organizationsQueryString, completionHandler: {result in
                 switch (result) {
                 case .failure(let error):
                     os_log("Could not add query. Error:%@", log: .newspilot, type:.error, error.localizedDescription)
@@ -183,12 +189,12 @@ class OrganizationsQuery :  ObservableObject {
     
     func getProducts(for organization:Organization) -> [Product] {
         print("Filtering products for organization")
-        return products.filter{product in product.organizationID == organization.id}
+        return products.filter{product in product.organizationID == organization.id}.sorted(){$0.name < $1.name}
     }
     
     func getSubProducts(for product:Product) -> [SubProduct] {
         print("Filtering subproducts for products")
-        return subProducts.filter{subProduct in subProduct.productID == product.id}
+        return subProducts.filter{subProduct in subProduct.productID == product.id}.sorted(){$0.name < $1.name}
     }
     
 }

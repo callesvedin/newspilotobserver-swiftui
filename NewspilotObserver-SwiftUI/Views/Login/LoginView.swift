@@ -56,7 +56,7 @@ struct LoginView: View {
                     Text(" ")
                 }
                 
-                NavigationLink(destination: OrganizationList().environmentObject(OrganizationsQuery(withNewspilot: loginHandler.newspilot))  , tag: ConnectionStatus.connected, selection: $loginHandler.connectionStatus) {
+                NavigationLink(destination: OrganizationList(newspilot: loginHandler.newspilot)  , tag: ConnectionStatus.connected, selection: $loginHandler.connectionStatus) {
                     Button(action:{
                         self.loginHandler.login(login: self.loginSettings.login, password: self.password, server: self.loginSettings.server)
                     }){

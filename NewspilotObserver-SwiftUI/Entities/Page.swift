@@ -6,7 +6,7 @@
 import Foundation
 
 // MARK: - Page
-struct Page: Codable {
+struct Page: Codable, Identifiable {
     let entityType: String
     let archiveID: Int?
     let arkitexData: String?

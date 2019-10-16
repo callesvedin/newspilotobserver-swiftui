@@ -7,26 +7,33 @@
 //
 
 import SwiftUI
+import Newspilot
 
 struct SubProductList: View {
-    @ObservedObject var query:OrganizationsQuery
+    @ObservedObject var organizationQuery:OrganizationsQuery
+    @ObservedObject var publicationDateQuery:PublicationDateQuery
+    let product:Product
+    let newspilot:Newspilot
     
-    var product:Product
-    
-    init(product:Product, query:OrganizationsQuery) {
+    init(product:Product, newspilot:Newspilot, organizationQuery:OrganizationsQuery) {
         self.product = product
-        self.query = query
+        self.newspilot = newspilot
+        self.organizationQuery = organizationQuery
+        self.publicationDateQuery=PublicationDateQuery(withNewspilot: newspilot, productId: product.id)
     }
     
     var body: some View {
         List {
-            ForEach(query.getSubProducts(for:product)) {subProduct in
-                NavigationLink(destination: PageList(subProduct:subProduct)) {
+            ForEach(organizationQuery.getSubProducts(for:product)) {subProduct in
+                NavigationLink(destination:
+                PageList(newspilot:self.newspilot, subProduct:subProduct, publicationDates:self.publicationDateQuery.sortedPublicationDates)) {
                     Text(subProduct.name) //.font(.caption).foregroundColor(.gray)
                 }
                 
             }
-        }.navigationBarTitle(product.name)           
+        }.navigationBarTitle(product.name).onAppear(){
+            self.publicationDateQuery.load()
+        }
     }
 }
 

@@ -6,7 +6,16 @@
 import Foundation
 
 // MARK: - PublicationDate
-class PublicationDate: Codable {
+class PublicationDate: Codable, Hashable, Identifiable {
+    
+    static func == (lhs: PublicationDate, rhs: PublicationDate) -> Bool {
+        lhs.id == rhs.id
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+    
     let entityType: String
     let id: Int
     let issuenumber, name: String?
