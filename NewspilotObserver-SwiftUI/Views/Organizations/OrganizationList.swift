@@ -11,17 +11,20 @@ import Newspilot
 import Combine
 
 struct OrganizationList: View {
-    @ObservedObject var query:OrganizationsQuery
+    @ObservedObject var organizationQuery:OrganizationsQuery    
+    private let statusQuery:StatusQuery
     private var newspilot:Newspilot
     
     init(newspilot:Newspilot) {
         self.newspilot = newspilot
-        query = OrganizationsQuery(withNewspilot: newspilot)
+        organizationQuery = OrganizationsQuery(withNewspilot: newspilot)
+        statusQuery = StatusQuery(withNewspilot: newspilot)
+        statusQuery.load()
     }
     
     var body: some View {
         List {
-            if query.organizations.isEmpty {
+            if organizationQuery.organizations.isEmpty {
                 emptySection
             } else {
                 organizationsList
@@ -31,8 +34,11 @@ struct OrganizationList: View {
         .navigationBarTitle("Organizations")
         .navigationBarBackButtonHidden(true)
         .onAppear(){
-            self.query.load()
+            self.organizationQuery.load()
         }
+        .environmentObject(self.statusQuery)
+        .environmentObject(self.organizationQuery)
+
     }
 }
 
@@ -43,10 +49,10 @@ private extension OrganizationList {
     }
     
     var organizationsList: some View {
-        ForEach(query.getOrganizations()) {organization in
+        ForEach(organizationQuery.getOrganizations()) {organization in
             Section(header: Text(organization.name).bold()) {
-                ForEach(self.query.getProducts(for: organization)){product in
-                    NavigationLink(destination: SubProductList(product:product, newspilot: self.newspilot, organizationQuery:self.query)) {
+                ForEach(self.organizationQuery.getProducts(for: organization)){product in
+                    NavigationLink(destination: SubProductList(product:product, newspilot: self.newspilot, organizationQuery:self.organizationQuery)) {
                                                                 ProductRow(product:product)
                     }
                 }

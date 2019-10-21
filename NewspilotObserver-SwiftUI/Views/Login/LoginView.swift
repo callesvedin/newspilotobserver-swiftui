@@ -62,7 +62,7 @@ struct LoginView: View {
                     }){
                         HStack {
                             if loginHandler.connectionStatus == .connecting {
-                                ActivityIndicator(isAnimating: .constant(true), style: .medium)
+                                ActivityIndicator(isAnimating: .constant(true), style: .medium).foregroundColor(.white)
                             }else{
                                 Image(systemName: "lock.fill").font(Font.headline.weight(.regular))
                                     .foregroundColor(.white)

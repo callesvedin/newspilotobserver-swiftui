@@ -16,7 +16,8 @@ class OrganizationsQuery :  ObservableObject {
     @Published var organizations:[Organization] = []
     @Published var products:[Product] = []
     @Published var subProducts:[SubProduct] = []
-    //    private var sections:[Section] = []
+    @Published var sections:[NewspilotSection] = []
+    
     var externalQueryId:String!
     var cancellableSubscriber:Cancellable?
     var loaded:Bool = false
@@ -45,7 +46,7 @@ class OrganizationsQuery :  ObservableObject {
                 <entity type="Organization">
                     <entity parent="organization.id" type="Product">
                         <entity parent="product.id" type="SubProduct"/>
-                        <!--entity parent="product.id" type="Section"/-->
+                        <entity parent="product.id" type="Section"/>
                     </entity>
                 </entity>
             </structure>
@@ -125,7 +126,15 @@ class OrganizationsQuery :  ObservableObject {
                             subProducts[i] = subProduct
                         }else{
                             subProducts.append(subProduct)
-                        }                        
+                        }
+                    case .Section:
+                        let section = try decoder.decode(NewspilotSection.self, from: data)
+                        print("We got an section with the name \(section.name)")
+                        if let i = sections.firstIndex(where:{$0.id == event.entityId}) {
+                            sections[i] = section
+                        }else{
+                            sections.append(section)
+                        }
                     default:
                         print("Got event entity type not handled:\(event.entityType)")
                     }
@@ -150,7 +159,12 @@ class OrganizationsQuery :  ObservableObject {
                         if let i = subProducts.firstIndex(where:{$0.id == event.entityId}) {
                             subProducts[i] = subproduct
                         }
+                    case .Section:
+                        let section = try decoder.decode(NewspilotSection.self, from: data)
                         
+                        if let i = sections.firstIndex(where:{$0.id == event.entityId}) {
+                            sections[i] = section
+                        }
                     default:
                         print("Can not change \(event.entityType)")                        
                     }
@@ -162,6 +176,8 @@ class OrganizationsQuery :  ObservableObject {
                         products.removeAll(where:{$0.id == event.entityId})
                     case .SubProduct:
                         subProducts.removeAll(where:{$0.id == event.entityId})
+                    case .Section:
+                        sections.removeAll(where:{$0.id == event.entityId})
                     default:
                         print("Can not remove \(event.entityType)")
                         

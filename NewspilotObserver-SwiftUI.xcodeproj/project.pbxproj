@@ -27,6 +27,16 @@
 		EB5435222322FFF3004EE63F /* EntityType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5435212322FFF3004EE63F /* EntityType.swift */; };
 		EB56C5DB232B88AC00BF84A5 /* SubProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB56C5DA232B88AC00BF84A5 /* SubProduct.swift */; };
 		EB6AE6FF233A8A2E0020A501 /* LoginHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6AE6FE233A8A2E0020A501 /* LoginHandler.swift */; };
+		EB6C22672358C7D400101147 /* PageListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6C22662358C7D400101147 /* PageListCell.swift */; };
+		EB6C22692358CC0C00101147 /* PageCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6C22682358CC0C00101147 /* PageCellViewModel.swift */; };
+		EB6C226B2358CD1C00101147 /* PageCellAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6C226A2358CD1C00101147 /* PageCellAdapter.swift */; };
+		EB6C226D2359090000101147 /* StatusQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6C226C2359090000101147 /* StatusQuery.swift */; };
+		EB6C226F23590AAD00101147 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6C226E23590AAD00101147 /* Status.swift */; };
+		EB6C22722359D0C400101147 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = EB6C22712359D0C400101147 /* SDWebImageSwiftUI */; };
+		EB6C22752359DC4500101147 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = EB6C22742359DC4500101147 /* SDWebImageSwiftUI */; };
+		EB6C22772359DCDC00101147 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6C22762359DCDC00101147 /* Section.swift */; };
+		EB6C2279235E3D1500101147 /* PageFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6C2278235E3D1500101147 /* PageFilter.swift */; };
+		EB6C227D235E56B600101147 /* PageFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6C227C235E56B600101147 /* PageFilterView.swift */; };
 		EB7B9DAF22C7EDC7009EB2BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7B9DAE22C7EDC7009EB2BE /* AppDelegate.swift */; };
 		EB7B9DB122C7EDC7009EB2BE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7B9DB022C7EDC7009EB2BE /* SceneDelegate.swift */; };
 		EB7B9DB822C7EDC9009EB2BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB7B9DB722C7EDC9009EB2BE /* Assets.xcassets */; };
@@ -93,6 +103,14 @@
 		EB5435212322FFF3004EE63F /* EntityType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityType.swift; sourceTree = "<group>"; };
 		EB56C5DA232B88AC00BF84A5 /* SubProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubProduct.swift; sourceTree = "<group>"; };
 		EB6AE6FE233A8A2E0020A501 /* LoginHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginHandler.swift; sourceTree = "<group>"; };
+		EB6C22662358C7D400101147 /* PageListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageListCell.swift; sourceTree = "<group>"; };
+		EB6C22682358CC0C00101147 /* PageCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageCellViewModel.swift; sourceTree = "<group>"; };
+		EB6C226A2358CD1C00101147 /* PageCellAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageCellAdapter.swift; sourceTree = "<group>"; };
+		EB6C226C2359090000101147 /* StatusQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusQuery.swift; sourceTree = "<group>"; };
+		EB6C226E23590AAD00101147 /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
+		EB6C22762359DCDC00101147 /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
+		EB6C2278235E3D1500101147 /* PageFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageFilter.swift; sourceTree = "<group>"; };
+		EB6C227C235E56B600101147 /* PageFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageFilterView.swift; sourceTree = "<group>"; };
 		EB7B9DAB22C7EDC7009EB2BE /* NewspilotObserver-SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NewspilotObserver-SwiftUI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB7B9DAE22C7EDC7009EB2BE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EB7B9DB022C7EDC7009EB2BE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -153,6 +171,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB6C22722359D0C400101147 /* SDWebImageSwiftUI in Frameworks */,
 				EB3CC52A22F34E520070139F /* Newspilot in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -161,6 +180,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB6C22752359DC4500101147 /* SDWebImageSwiftUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -173,6 +193,7 @@
 				EB54350F2322EC61004EE63F /* OrganizationsQuery.swift */,
 				EB41EA5123479D2200550428 /* PublicationDateQuery.swift */,
 				EB41EA552348BF0A00550428 /* PageQuery.swift */,
+				EB6C226C2359090000101147 /* StatusQuery.swift */,
 			);
 			path = Queries;
 			sourceTree = "<group>";
@@ -181,6 +202,11 @@
 			isa = PBXGroup;
 			children = (
 				EB41EA4F2347992A00550428 /* PageList.swift */,
+				EB6C22662358C7D400101147 /* PageListCell.swift */,
+				EB6C22682358CC0C00101147 /* PageCellViewModel.swift */,
+				EB6C226A2358CD1C00101147 /* PageCellAdapter.swift */,
+				EB6C2278235E3D1500101147 /* PageFilter.swift */,
+				EB6C227C235E56B600101147 /* PageFilterView.swift */,
 			);
 			path = Pages;
 			sourceTree = "<group>";
@@ -198,6 +224,13 @@
 			path = Organizations;
 			sourceTree = "<group>";
 		};
+		EB6C22732359DC4500101147 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		EB7B9DA222C7EDC7009EB2BE = {
 			isa = PBXGroup;
 			children = (
@@ -205,6 +238,7 @@
 				EB7B9DAD22C7EDC7009EB2BE /* NewspilotObserver-SwiftUI */,
 				EB7B9DC722C7EDC9009EB2BE /* NewspilotObserver-SwiftUITests */,
 				EB7B9DAC22C7EDC7009EB2BE /* Products */,
+				EB6C22732359DC4500101147 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -264,6 +298,8 @@
 				EB56C5DA232B88AC00BF84A5 /* SubProduct.swift */,
 				EB41EA532347A32D00550428 /* PublicationDate.swift */,
 				EB41EA572348BF7400550428 /* Page.swift */,
+				EB6C226E23590AAD00101147 /* Status.swift */,
+				EB6C22762359DCDC00101147 /* Section.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -397,6 +433,7 @@
 			name = "NewspilotObserver-SwiftUI";
 			packageProductDependencies = (
 				EB3CC52922F34E520070139F /* Newspilot */,
+				EB6C22712359D0C400101147 /* SDWebImageSwiftUI */,
 			);
 			productName = "NewspilotObserver-SwiftUI";
 			productReference = EB7B9DAB22C7EDC7009EB2BE /* NewspilotObserver-SwiftUI.app */;
@@ -416,6 +453,9 @@
 				EB7B9DC622C7EDC9009EB2BE /* PBXTargetDependency */,
 			);
 			name = "NewspilotObserver-SwiftUITests";
+			packageProductDependencies = (
+				EB6C22742359DC4500101147 /* SDWebImageSwiftUI */,
+			);
 			productName = "NewspilotObserver-SwiftUITests";
 			productReference = EB7B9DC422C7EDC9009EB2BE /* NewspilotObserver-SwiftUITests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -450,6 +490,7 @@
 			mainGroup = EB7B9DA222C7EDC7009EB2BE;
 			packageReferences = (
 				EB3CC52822F34E520070139F /* XCRemoteSwiftPackageReference "newspilotswiftclient" */,
+				EB6C22702359D0C400101147 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 			);
 			productRefGroup = EB7B9DAC22C7EDC7009EB2BE /* Products */;
 			projectDirPath = "";
@@ -504,19 +545,23 @@
 			files = (
 				EB8CE4C223317D5B000A03A2 /* LoginSettings.swift in Sources */,
 				EB8CE4BE233170C8000A03A2 /* LoginView.swift in Sources */,
+				EB6C22672358C7D400101147 /* PageListCell.swift in Sources */,
 				EB5435122322EC72004EE63F /* OrganizationsViewModel.swift in Sources */,
 				EB41EA5223479D2200550428 /* PublicationDateQuery.swift in Sources */,
 				EB41EA582348BF7400550428 /* Page.swift in Sources */,
 				EB5435102322EC61004EE63F /* OrganizationsQuery.swift in Sources */,
 				EB54351A2322F824004EE63F /* OrganizationRowViewModel.swift in Sources */,
 				EB7B9E3122C7F86E009EB2BE /* NotConnectedView.swift in Sources */,
+				EB6C226D2359090000101147 /* StatusQuery.swift in Sources */,
 				EB41EA542347A32D00550428 /* PublicationDate.swift in Sources */,
+				EB6C226F23590AAD00101147 /* Status.swift in Sources */,
 				EB7B9E3222C7F86E009EB2BE /* Calendar+StartStop.swift in Sources */,
 				EB7B9E3322C7F86E009EB2BE /* Notification.Name+ConnectionStatus.swift in Sources */,
 				EB56C5DB232B88AC00BF84A5 /* SubProduct.swift in Sources */,
 				EB7B9E4B22C80088009EB2BE /* UIImage+Rezise.swift in Sources */,
 				EBEED2372327CBE400746C69 /* ProductRowViewModel.swift in Sources */,
 				EB05395B232FF175007880BB /* OrganizationsDataSource.swift in Sources */,
+				EB6C2279235E3D1500101147 /* PageFilter.swift in Sources */,
 				EB7B9DAF22C7EDC7009EB2BE /* AppDelegate.swift in Sources */,
 				EBD22A5922CC059F000DFD41 /* NewspilotManager.swift in Sources */,
 				EB5435222322FFF3004EE63F /* EntityType.swift in Sources */,
@@ -527,6 +572,7 @@
 				EB5435162322F324004EE63F /* ColorExtensions.swift in Sources */,
 				EB7B9E4622C80088009EB2BE /* OSLog+NewspilotObserver.swift in Sources */,
 				EB7B9E4A22C80088009EB2BE /* String+UppercaseCharacters.swift in Sources */,
+				EB6C22692358CC0C00101147 /* PageCellViewModel.swift in Sources */,
 				EB5435202322FE2D004EE63F /* Entity.swift in Sources */,
 				EB41EA562348BF0A00550428 /* PageQuery.swift in Sources */,
 				EB54351E2322FE1D004EE63F /* Organization.swift in Sources */,
@@ -534,7 +580,10 @@
 				EB6AE6FF233A8A2E0020A501 /* LoginHandler.swift in Sources */,
 				EB8CE4C023317D08000A03A2 /* UserDefault.swift in Sources */,
 				EBF8055B23277C3D00C5590A /* Product.swift in Sources */,
+				EB6C227D235E56B600101147 /* PageFilterView.swift in Sources */,
+				EB6C226B2358CD1C00101147 /* PageCellAdapter.swift in Sources */,
 				EB953D8A232C058800E65A73 /* SubProductList.swift in Sources */,
+				EB6C22772359DCDC00101147 /* Section.swift in Sources */,
 				EBEED2392327D46E00746C69 /* ProductRow.swift in Sources */,
 				EB41EA502347992A00550428 /* PageList.swift in Sources */,
 			);
@@ -807,6 +856,14 @@
 				kind = branch;
 			};
 		};
+		EB6C22702359D0C400101147 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.3.2;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -814,6 +871,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = EB3CC52822F34E520070139F /* XCRemoteSwiftPackageReference "newspilotswiftclient" */;
 			productName = Newspilot;
+		};
+		EB6C22712359D0C400101147 /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EB6C22702359D0C400101147 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
+		};
+		EB6C22742359DC4500101147 /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EB6C22702359D0C400101147 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

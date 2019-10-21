@@ -26,7 +26,7 @@ struct Page: Codable, Identifiable {
     let edition: String?
     let entitylockID, externalSystemID: Int?
     let fileExists: Bool?
-    let firstPagin: Int?
+    let firstPagin: Int
     let flags: [Int]?
     let guid: String?
     let gutterWidth, innerMargin: Int?
@@ -53,7 +53,7 @@ struct Page: Codable, Identifiable {
     let sectionID: Int?
     let sectionOverride: Bool?
     let sequence: String?
-    let status, subProductID: Int?
+    let status, subProductID: Int
     let systemLinkIDS: [Int]?
     let tags, template: String?
     let templateOverride: Bool?
@@ -62,7 +62,7 @@ struct Page: Codable, Identifiable {
     let updatedDate: String?
     let updatedUserID: Int?
     let version: String?
-
+    
     enum CodingKeys: String, CodingKey {
         case entityType
         case archiveID = "archive_id"

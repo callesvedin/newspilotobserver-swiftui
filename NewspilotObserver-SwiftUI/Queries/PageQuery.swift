@@ -15,6 +15,11 @@ class PageQuery : ObservableObject {
     
     @Published var pages:[Page] = []
 
+    var sortedPages:[Page] {
+        get{
+            return pages.sorted() {$0.firstPagin < $1.firstPagin}
+        }
+    }
     var externalQueryId:String!
     var cancellableSubscriber:Cancellable?
     var loaded:Bool = false

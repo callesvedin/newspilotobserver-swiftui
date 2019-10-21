@@ -3,15 +3,40 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "EntityQuery.fixStructure(entity:values:managedObjectContext:):EntityQuery.swift">
-      </ContextState>
-      <ContextState
          contextName = "ProductListView.getImage(_:):ProductListView.swift">
          <PersistentStrings>
             <PersistentString
                value = "product.entityId">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #3 in PageList.body.getter:PageList.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.statusQuery.statuses">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "EntityQuery.fixStructure(entity:values:managedObjectContext:):EntityQuery.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in OrganizationsQuery.process(_:):OrganizationsQuery.swift">
+      </ContextState>
+      <ContextState
+         contextName = "PageCellAdapter.getCellViewModel(from:):PageCellAdapter.swift">
+      </ContextState>
+      <ContextState
+         contextName = "PageFilterView.init(subProduct:publicationDates:filter:):PageFilterView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.publicationDates.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in PageFilterView.body.getter:PageFilterView.swift">
       </ContextState>
    </ContextStates>
 </VariablesViewState>
