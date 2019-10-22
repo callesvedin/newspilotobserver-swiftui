@@ -18,7 +18,8 @@ class PublicationDate: Codable, Hashable, Identifiable {
     
     let entityType: String
     let id: Int
-    let issuenumber, name: String?
+    let issuenumber:String?
+    let name: String
     let productID: Int
     let pubDate: String
 
