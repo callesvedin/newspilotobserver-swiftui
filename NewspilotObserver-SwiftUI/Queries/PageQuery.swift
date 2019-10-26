@@ -13,13 +13,17 @@ import Combine
 
 class PageQuery : ObservableObject {
     
-    @Published var pages:[Page] = []
+//    @Published var pages:[Page] = []
+    @Published var backs:[BackKey:[Page]] = [:]
+    
+//    var sortedPages:[Page] {
+//        get{
+//            return pages.sorted() {$0.firstPagin < $1.firstPagin}
+//        }
+//    }
+    
 
-    var sortedPages:[Page] {
-        get{
-            return pages.sorted() {$0.firstPagin < $1.firstPagin}
-        }
-    }
+    
     var externalQueryId:String!
     var cancellableSubscriber:Cancellable?
     var loaded:Bool = false
@@ -57,10 +61,17 @@ class PageQuery : ObservableObject {
         self.publicationDateId = publicationDateId
     }
     
+    func cancel() {
+        cancellableSubscriber?.cancel()
+        loaded = false
+        backs = [:]
+    }
+    
     func load() {
         if !loaded {
             let queryString = getQueryString()
-            self.pages = []
+
+            self.backs = [:]
             if query != nil && externalQueryId != nil {
                 self.newspilot.removeQuery(withQuid: externalQueryId)
                 query = nil
@@ -115,11 +126,15 @@ class PageQuery : ObservableObject {
                 case .CREATE:
                     switch event.entityType {
                     case .Page:
-                        print("We got an page date with the name \(page.name)")
-                        if let i = pages.firstIndex(where:{$0.id == event.entityId}) {
-                            pages[i] = page
+                        print("We got an page with the name \(page.name)")
+                        var backList = backs[page.backKey]
+                        if backList == nil {
+                            backList = [page]
+                            backs[page.backKey] = backList
+                        }else if let i = backList!.firstIndex(where:{$0.id == event.entityId}) {
+                            backs[page.backKey]![i] = page
                         }else{
-                            self.pages.append(page)
+                            backs[page.backKey]!.append(page)
                         }
                     default:
                         print("Got event entity type not handled:\(event.entityType)")
@@ -128,8 +143,9 @@ class PageQuery : ObservableObject {
                 case .CHANGE:
                     switch (event.entityType) {
                     case .Page:
-                        if let i = pages.firstIndex(where:{$0.id == event.entityId}) {
-                            pages[i] = page
+                        var backList = backs[page.backKey, default:[]]
+                        if let i = backList.firstIndex(where:{$0.id == event.entityId}) {
+                            backList[i] = page
                         }
                     default:
                         print("Can not change \(event.entityType)")
@@ -137,7 +153,8 @@ class PageQuery : ObservableObject {
                 case .REMOVE:
                     switch (event.entityType) {
                     case .Page:
-                        pages.removeAll(where:{$0.id == event.entityId})
+                        var backList = backs[page.backKey, default:[]]
+                        backList.removeAll(where:{$0.id == event.entityId})
                     default:
                         print("Can not remove \(event.entityType)")
                     }
@@ -152,6 +169,15 @@ class PageQuery : ObservableObject {
         })
     }
     
+    private func createBacks(pages:[Page]) -> [BackKey:[Page]] {
+        var backs:[BackKey:[Page]] = [:]
+        
+        for page in pages {
+            let pageBackKey = page.backKey
+            backs[pageBackKey, default:[]].append(page)
+        }
+        return backs
+    }
     
 }
 

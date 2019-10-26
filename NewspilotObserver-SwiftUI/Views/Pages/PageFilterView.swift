@@ -15,61 +15,48 @@ enum EditedValue {
 struct PageFilterView: View {
     let subProduct:SubProduct
     let publicationDates:[PublicationDate]
-    @State var editedValue:EditedValue = .none
+    let subProductSettings:SubProductSettings?
+    let editions:[String]
+    @State private var selectedEditionIndex = 0
     
     @ObservedObject var filter:PageFilter
     
     init(subProduct:SubProduct, publicationDates:[PublicationDate], filter:PageFilter) {
         self.subProduct = subProduct
+        self.subProductSettings = subProduct.settings
         self.publicationDates = publicationDates
-        self.filter = filter
+        self.editions = subProduct.settings?.editions ?? []
+        self.filter = filter        
     }
     
     var body: some View {
-        VStack {
-            Text("Filter")
-            .font(.title)
-        Form {
-            
-            HStack {
-                Text("Publication date:")
-                Spacer()
-                Button("\(getPublicationDateName())"){
-                    self.editedValue = .publicationDate
-                    print("Publicationdate")
-                }
-            }.padding()
-            if self.editedValue == .publicationDate {
-                Picker(selection: $filter.publicationDateId, label: Text("Publication")){
+        
+        return Form {
+            Picker(selection: $filter.publicationDateId, label: Text("Publication")){
                     ForEach(self.publicationDates) { publicationDate in
                         Text("\(publicationDate.name)").tag(publicationDate.id)
                     }
-                }.labelsHidden().pickerStyle(WheelPickerStyle())
-            }
+            }//.labelsHidden()
             
-            HStack {
-                Text("Edition")
-                Spacer()
-                Button("TEST") {
-                    self.editedValue = .none
-                    print("None")
-                }
-                
-            }.padding()
-            }}
-    }
-    
-    func getPublicationDateName() -> String {
-        guard let publicationDate = publicationDates.first(where: {publication in publication.id == filter.publicationDateId}) else {
-            return "-"
+//            Picker(selection: $selectedEditionIndex, label: Text("Edition")){
+//                ForEach(0 ..< self.editions.count) { index in
+//                    Text("\(self.editions[index])").tag(self.editions[index])
+//                }
+//            }
+//
+//            Picker(selection: $filter.edition, label: Text("Edition 2")){
+//                ForEach(subProduct.settings!.editions, id: \.self) { edition in
+//                    Text("\(edition)")
+//                }
+//            }
+            
         }
-        return publicationDate.name
     }
 }
 
 struct PageFilterView_Previews: PreviewProvider {
     static var previews: some View {
-        PageFilterView(subProduct: SubProduct(id: 1, productId: 1, name: "Test Sub Product"),
+        PageFilterView(subProduct: SubProduct(id: 1, productId: 1, name: "Test Sub Product", settingsString: ""),
                        publicationDates: [
                         PublicationDate(entityType: "PublicationDate", id: 1, issuenumber: "", name: "Pub 1", productID: 1, pubDate: "2019-10-20"),
                         PublicationDate(entityType: "PublicationDate", id: 1, issuenumber: "", name: "Pub 1", productID: 1, pubDate: "2019-10-20")],

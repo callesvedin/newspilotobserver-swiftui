@@ -144,3 +144,11 @@ struct Page: Codable, Identifiable {
     }
 }
 
+extension Page {
+    var backKey:BackKey {
+        get{
+            return BackKey(part: self.part, version: self.version, edition: self.edition)
+        }
+    }
+}
+

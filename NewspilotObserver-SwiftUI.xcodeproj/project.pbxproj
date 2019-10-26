@@ -37,6 +37,9 @@
 		EB6C22772359DCDC00101147 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6C22762359DCDC00101147 /* Section.swift */; };
 		EB6C2279235E3D1500101147 /* PageFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6C2278235E3D1500101147 /* PageFilter.swift */; };
 		EB6C227D235E56B600101147 /* PageFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6C227C235E56B600101147 /* PageFilterView.swift */; };
+		EB6C22812360AAFD00101147 /* SubProductSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6C22802360AAFD00101147 /* SubProductSettings.swift */; };
+		EB6C22832360AC1300101147 /* SubProductTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6C22822360AC1300101147 /* SubProductTests.swift */; };
+		EB6C2285236233C100101147 /* BackKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6C2284236233C100101147 /* BackKey.swift */; };
 		EB7B9DAF22C7EDC7009EB2BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7B9DAE22C7EDC7009EB2BE /* AppDelegate.swift */; };
 		EB7B9DB122C7EDC7009EB2BE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7B9DB022C7EDC7009EB2BE /* SceneDelegate.swift */; };
 		EB7B9DB822C7EDC9009EB2BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB7B9DB722C7EDC9009EB2BE /* Assets.xcassets */; };
@@ -111,6 +114,9 @@
 		EB6C22762359DCDC00101147 /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
 		EB6C2278235E3D1500101147 /* PageFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageFilter.swift; sourceTree = "<group>"; };
 		EB6C227C235E56B600101147 /* PageFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageFilterView.swift; sourceTree = "<group>"; };
+		EB6C22802360AAFD00101147 /* SubProductSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubProductSettings.swift; sourceTree = "<group>"; };
+		EB6C22822360AC1300101147 /* SubProductTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubProductTests.swift; sourceTree = "<group>"; };
+		EB6C2284236233C100101147 /* BackKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackKey.swift; sourceTree = "<group>"; };
 		EB7B9DAB22C7EDC7009EB2BE /* NewspilotObserver-SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NewspilotObserver-SwiftUI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB7B9DAE22C7EDC7009EB2BE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EB7B9DB022C7EDC7009EB2BE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -283,6 +289,7 @@
 			isa = PBXGroup;
 			children = (
 				EB7B9DC822C7EDC9009EB2BE /* NewspilotObserver_SwiftUITests.swift */,
+				EB6C22822360AC1300101147 /* SubProductTests.swift */,
 				EB7B9DCA22C7EDC9009EB2BE /* Info.plist */,
 			);
 			path = "NewspilotObserver-SwiftUITests";
@@ -300,6 +307,8 @@
 				EB41EA572348BF7400550428 /* Page.swift */,
 				EB6C226E23590AAD00101147 /* Status.swift */,
 				EB6C22762359DCDC00101147 /* Section.swift */,
+				EB6C22802360AAFD00101147 /* SubProductSettings.swift */,
+				EB6C2284236233C100101147 /* BackKey.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -557,6 +566,7 @@
 				EB6C226F23590AAD00101147 /* Status.swift in Sources */,
 				EB7B9E3222C7F86E009EB2BE /* Calendar+StartStop.swift in Sources */,
 				EB7B9E3322C7F86E009EB2BE /* Notification.Name+ConnectionStatus.swift in Sources */,
+				EB6C2285236233C100101147 /* BackKey.swift in Sources */,
 				EB56C5DB232B88AC00BF84A5 /* SubProduct.swift in Sources */,
 				EB7B9E4B22C80088009EB2BE /* UIImage+Rezise.swift in Sources */,
 				EBEED2372327CBE400746C69 /* ProductRowViewModel.swift in Sources */,
@@ -583,6 +593,7 @@
 				EB6C227D235E56B600101147 /* PageFilterView.swift in Sources */,
 				EB6C226B2358CD1C00101147 /* PageCellAdapter.swift in Sources */,
 				EB953D8A232C058800E65A73 /* SubProductList.swift in Sources */,
+				EB6C22812360AAFD00101147 /* SubProductSettings.swift in Sources */,
 				EB6C22772359DCDC00101147 /* Section.swift in Sources */,
 				EBEED2392327D46E00746C69 /* ProductRow.swift in Sources */,
 				EB41EA502347992A00550428 /* PageList.swift in Sources */,
@@ -593,6 +604,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB6C22832360AC1300101147 /* SubProductTests.swift in Sources */,
 				EB7B9DC922C7EDC9009EB2BE /* NewspilotObserver_SwiftUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

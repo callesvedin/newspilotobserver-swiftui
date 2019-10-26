@@ -50,7 +50,7 @@ struct LoginView: View {
                     Text("Connection failed. Please try again").foregroundColor(.red)
                 }else if loginHandler.connectionStatus == .authenticationFailed {
                     Image(systemName: "lock.slash.fill").font(Font.title.weight(.regular)).foregroundColor(.gray)
-                    Text("Incorrect username or password. Please try again").foregroundColor(.red)
+                    Text("Incorrect username or password").foregroundColor(.red)
                 }
                 else{
                     Text(" ")
@@ -63,7 +63,7 @@ struct LoginView: View {
                         HStack {
                             if loginHandler.connectionStatus == .connecting {
                                 ActivityIndicator(isAnimating: .constant(true), style: .medium).foregroundColor(.white)
-                            }else{
+                            }else{                                
                                 Image(systemName: "lock.fill").font(Font.headline.weight(.regular))
                                     .foregroundColor(.white)
                             }
@@ -80,11 +80,6 @@ struct LoginView: View {
                 }
             
                 Spacer()
-                if loginHandler.connectionStatus == .connecting {
-                    Text("Trying to login, please wait...").foregroundColor(.white)
-                } else if loginHandler.connectionStatus == .connected {
-                    Text("Successful login").foregroundColor(.white)
-                }
             }.background(SwiftUI.Color.black.edgesIgnoringSafeArea(.all))
             
         }
