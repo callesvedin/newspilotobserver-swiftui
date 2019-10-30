@@ -13,8 +13,9 @@ struct PageList: View {
     private var publicationDates:[PublicationDate]
     private var subProduct:SubProduct
     @ObservedObject var pageQuery:PageQuery
-    @ObservedObject var filter=PageFilter()    
-    @State private var showFilter = false
+    @State var filter=PageFilter()
+    //    @State private var showFilter = false
+    
     
     @EnvironmentObject var statusQuery:StatusQuery
     @EnvironmentObject var organizationQuery:OrganizationsQuery
@@ -39,42 +40,36 @@ struct PageList: View {
                     ForEach (backKeys, id: \.hashValue) {backKey in
                         Section(header:Text("Part: \(backKey.part ?? "-") Edition: \(backKey.edition ?? "-") Version:\(backKey.version ?? "-")")){
                             ForEach (backs[backKey] ?? []) {page in
-                                PageListCell(page:self.pageCellAdapter.getCellViewModel(from: page))
+                                NavigationLink(destination: PageDetailsView(self.getViewsFrom(backs: backs, backKey: backKey), currentPage: 0)) {
+                                    PageListCell(page:self.pageCellAdapter.getCellViewModel(from: page))
+                                }
                             }
                         }
                     }
                 }
                 
             }
-//            .sheet(isPresented: $showFilter, onDismiss: {
-//                self.reload()
-//            }) {
-//                PageFilterView(subProduct:self.subProduct, publicationDates: self.publicationDates ,filter: self.filter)
-//            }
-//            .navigationBarItems(trailing: Button("Filter"){self.showFilter = true})
-        .navigationBarItems(trailing:
-            NavigationLink(destination: PageFilterView(subProduct:self.subProduct, publicationDates: self.publicationDates ,filter: self.filter))
-            {
-                Text("Filter")
-            }
-        )
+            .navigationBarItems(trailing:
+                    NavigationLink(destination: PageFilterView(subProduct:self.subProduct, publicationDates: self.publicationDates, filter: self.filter))
+                    {
+                        Text("Filter")
+                    }
+            )
             .navigationBarTitle(self.subProduct.name)
             .onAppear(){
                 self.pageCellAdapter.statuses = self.statusQuery.statuses
                 self.pageCellAdapter.sections = self.organizationQuery.sections
-                if (self.filter.publicationDateId > 0) {
-                    self.reload()
-                }
-            }.onDisappear(){
-                self.pageQuery.cancel()
-                
-        }
+            }.onReceive(filter.objectWillChange, perform: {self.reload()})
+    }
+    
+    func getViewsFrom(backs:[BackKey:[Page]], backKey:BackKey) -> [PageDetailView] {
+        let pageList = backs[backKey] ?? []
+        let views = pageList.map {PageDetailView(page:$0)}
+        return views
     }
     
     func reload() {
-        if (self.filter.publicationDateId > 0) {
-            self.pageQuery.publicationDateId = self.filter.publicationDateId
-        }
+        self.pageQuery.publicationDateId = self.filter.publicationDateId
     }
 }
 

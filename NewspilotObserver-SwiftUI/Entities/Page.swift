@@ -142,6 +142,7 @@ struct Page: Codable, Identifiable {
         case updatedUserID = "updated_user_id"
         case version
     }
+    
 }
 
 extension Page {

@@ -13,16 +13,7 @@ import Combine
 
 class PageQuery : ObservableObject {
     
-//    @Published var pages:[Page] = []
-    @Published var backs:[BackKey:[Page]] = [:]
-    
-//    var sortedPages:[Page] {
-//        get{
-//            return pages.sorted() {$0.firstPagin < $1.firstPagin}
-//        }
-//    }
-    
-
+    @Published var backs:[BackKey:[Page]] = [:]    
     
     var externalQueryId:String!
     var cancellableSubscriber:Cancellable?

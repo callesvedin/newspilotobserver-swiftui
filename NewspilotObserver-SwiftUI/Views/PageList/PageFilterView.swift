@@ -17,7 +17,7 @@ struct PageFilterView: View {
     let publicationDates:[PublicationDate]
     let subProductSettings:SubProductSettings?
     let editions:[String]
-    @State private var selectedEditionIndex = 0
+//    @State private var selectedEditionIndex = 0
     
     @ObservedObject var filter:PageFilter
     

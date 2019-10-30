@@ -11,8 +11,7 @@ import SDWebImageSwiftUI
 
 struct PageListCell: View {
     let page:PageCellViewModel
-    
-    
+        
     var body: some View {
         GeometryReader {geometry in
             HStack {
@@ -26,13 +25,11 @@ struct PageListCell: View {
 
                 WebImage(url: self.page.thumbUrl, placeholder: Image(uiImage: UIImage(named: "EmptyPageThumb.png")!), options: [.highPriority, .allowInvalidSSLCertificates,.retryFailed])
                     .onSuccess(perform: { (image, cacheType) in
-                        print("Loaded image with cacheType \(cacheType)")
+                        
                     })
                     .resizable()
                     .scaledToFit()
                     .frame(width: 50, height: geometry.size.height, alignment: Alignment.center)
-//                    .frame(minWidth: 0, idealWidth: 50, maxWidth: 100, minHeight: geometry.size.height-10, idealHeight: geometry.size.height, maxHeight: geometry.size.height, alignment: Alignment.center)
-//                Image(uiImage: self.page.icon).resizable().frame(width: 30, height: 50, alignment: Alignment.center)
                 VStack(alignment: .leading) {
                     Text("\(self.page.name)")
                     HStack {
