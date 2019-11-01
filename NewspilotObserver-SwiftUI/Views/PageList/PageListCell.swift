@@ -10,7 +10,7 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct PageListCell: View {
-    let page:PageCellViewModel
+    let page:PageViewModel
         
     var body: some View {
         GeometryReader {geometry in
@@ -45,6 +45,8 @@ struct PageListCell: View {
 
 struct PageListCell_Previews: PreviewProvider {
     static var previews: some View {
-        PageListCell(page: PageCellViewModel(id: 1, name: "My page name", section: "News", statusColor:UIColor.green)).previewLayout(.fixed(width: 300, height: 50))
+        PageListCell(page: PageViewModel(id: 1, name: "My page name", section: "News",
+                                         statusColor:UIColor.green, thumbUrl: nil,
+                                         previewUrl: nil)).previewLayout(.fixed(width: 300, height: 50))
     }
 }

@@ -9,11 +9,12 @@
 import Foundation
 import UIKit
 
-struct PageCellViewModel {
+struct PageViewModel {
     let id:Int
     let name:String
     let section:String    
     let statusColor:UIColor
-    var thumbUrl:URL?
+    let thumbUrl:URL?
+    let previewUrl:URL? 
     //    let flags:[Flag]
 }

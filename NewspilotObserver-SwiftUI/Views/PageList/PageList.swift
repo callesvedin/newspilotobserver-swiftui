@@ -14,8 +14,6 @@ struct PageList: View {
     private var subProduct:SubProduct
     @ObservedObject var pageQuery:PageQuery
     @State var filter=PageFilter()
-    //    @State private var showFilter = false
-    
     
     @EnvironmentObject var statusQuery:StatusQuery
     @EnvironmentObject var organizationQuery:OrganizationsQuery
@@ -41,7 +39,7 @@ struct PageList: View {
                         Section(header:Text("Part: \(backKey.part ?? "-") Edition: \(backKey.edition ?? "-") Version:\(backKey.version ?? "-")")){
                             ForEach (backs[backKey] ?? []) {page in
                                 NavigationLink(destination: PageDetailsView(self.getViewsFrom(backs: backs, backKey: backKey), currentPage: 0)) {
-                                    PageListCell(page:self.pageCellAdapter.getCellViewModel(from: page))
+                                    PageListCell(page:self.pageCellAdapter.getPageViewModel(from: page))
                                 }
                             }
                         }
@@ -64,7 +62,10 @@ struct PageList: View {
     
     func getViewsFrom(backs:[BackKey:[Page]], backKey:BackKey) -> [PageDetailView] {
         let pageList = backs[backKey] ?? []
-        let views = pageList.map {PageDetailView(page:$0)}
+        let views = pageList.map {page -> PageDetailView in
+            let pageViewModel = self.pageCellAdapter.getPageViewModel(from: page)
+            return PageDetailView(page:pageViewModel)
+        }
         return views
     }
     

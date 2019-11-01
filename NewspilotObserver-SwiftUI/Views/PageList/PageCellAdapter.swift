@@ -21,7 +21,7 @@ class PageCellAdapter {
         self.sections = sections
     }
     
-    func getCellViewModel(from page:Page) -> PageCellViewModel {
+    func getPageViewModel(from page:Page) -> PageViewModel {
         
         var statusColor:UIColor
         if let status = statuses.first(where: {status in status.id == page.status}) {
@@ -37,7 +37,8 @@ class PageCellAdapter {
         }
         
         let thumbUrl = URL(string: "https://\(newspilotServer):8443/newspilot/thumb?id=\(Int(page.id))&type=5")
-        return PageCellViewModel(id:page.id, name: page.name, section:sectionName, statusColor: statusColor,thumbUrl: thumbUrl )
+        let previewUrl = URL(string: "https://\(newspilotServer):8443/newspilot/preview?id=\(Int(page.id))&type=5")
+        return PageViewModel(id:page.id, name: page.name, section:sectionName, statusColor: statusColor, thumbUrl: thumbUrl, previewUrl: previewUrl )
     }
     
     private func intToColor(value: Int) -> UIColor {

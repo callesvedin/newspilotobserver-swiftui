@@ -122,7 +122,7 @@ class PublicationDateQuery :  ObservableObject {
                 case .CREATE:
                     switch event.entityType {
                     case .PublicationDate:
-                        print("We got an publication date with the name \(publicationDate.name ?? "")")
+                        print("We got an publication date with the name \(publicationDate.name)")
                         if let i = publicationDates.firstIndex(where:{$0.id == event.entityId}) {
                             publicationDates[i] = publicationDate
                         }else{

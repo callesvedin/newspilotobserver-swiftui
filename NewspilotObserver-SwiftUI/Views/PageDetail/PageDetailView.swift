@@ -7,17 +7,27 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct PageDetailView: View {
-    let page:Page
-//    let name:String
+    let page:PageViewModel
     
-    init(page:Page) {
+    init(page:PageViewModel) {
         self.page = page
     }
     
     var body: some View {
-        Text("Hello \(page.name)")
+        GeometryReader {geometry in
+            VStack {
+        WebImage(url: self.page.previewUrl, placeholder: Image(uiImage: UIImage(named: "EmptyPagePreview.png")!), options: [.highPriority, .allowInvalidSSLCertificates,.retryFailed])
+            .onSuccess(perform: { (image, cacheType) in
+                print("loaded preview")
+            })
+            .resizable()
+            .scaledToFit()
+            .frame(width: geometry.size.width, height: geometry.size.height-10, alignment: Alignment.center)
+            }
+        }
     }
 }
 
