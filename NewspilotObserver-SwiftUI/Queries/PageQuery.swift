@@ -13,7 +13,8 @@ import Combine
 
 class PageQuery : ObservableObject {
     
-    @Published var backs:[BackKey:[Page]] = [:]    
+    @Published var backs:[BackKey:[Page]] = [:]
+    
     
     var externalQueryId:String!
     var cancellableSubscriber:Cancellable?
@@ -125,7 +126,9 @@ class PageQuery : ObservableObject {
                         }else if let i = backList!.firstIndex(where:{$0.id == event.entityId}) {
                             backs[page.backKey]![i] = page
                         }else{
-                            backs[page.backKey]!.append(page)
+                            let insertionPoint = findInsertionPoint(in:backs[page.backKey]!, for:page)
+                            backs[page.backKey]!.insert(page, at: insertionPoint)
+//                            backs[page.backKey]!.append(page)
                         }
                     default:
                         print("Got event entity type not handled:\(event.entityType)")
@@ -160,15 +163,34 @@ class PageQuery : ObservableObject {
         })
     }
     
-    private func createBacks(pages:[Page]) -> [BackKey:[Page]] {
-        var backs:[BackKey:[Page]] = [:]
-        
-        for page in pages {
-            let pageBackKey = page.backKey
-            backs[pageBackKey, default:[]].append(page)
-        }
-        return backs
+    
+    private func findInsertionPoint(in pages:[Page], for newElement:Page) -> Int {
+           var startIndex = 0
+           var endIndex = pages.count
+           
+           while startIndex < endIndex {
+               let midIndex = startIndex + (endIndex - startIndex) / 2
+               if pages[midIndex] == newElement {
+                   return midIndex
+               } else if pages[midIndex] < newElement {
+                   startIndex = midIndex + 1
+               } else {
+                   endIndex = midIndex
+               }
+           }
+           return startIndex
+       
     }
+    
+//    private func createBacks(pages:[Page]) -> [BackKey:[Page]] {
+//        var backs:[BackKey:[Page]] = [:]
+//        
+//        for page in pages {
+//            let pageBackKey = page.backKey
+//            backs[pageBackKey, default:[]].append(page)
+//        }
+//        return backs
+//    }
     
 }
 

@@ -13,17 +13,15 @@ import SwiftUI
 struct PageDetailsView<Pageable:View>: View {
     
     var viewControllers: [UIHostingController<Pageable>]
-    @State var currentPage = 0
+
+    @State private var currentPage:Int
     
     init(_ views: [Pageable], currentPage:Int) {
         self.viewControllers = views.map { UIHostingController(rootView: $0) }
-        self.currentPage = currentPage
+        _currentPage = State(initialValue: currentPage) // This is swifts weird way of representing the wrapper instead of its value (i think)
     }
 
     var body: some View {
-        ZStack(alignment: .bottom) {
-            PageViewController(controllers: viewControllers, currentPage: $currentPage)
-            PageControl(numberOfPages: viewControllers.count, currentPage: $currentPage)
-        }
+        PageViewController(controllers: viewControllers, currentPage: $currentPage)
     }
 }

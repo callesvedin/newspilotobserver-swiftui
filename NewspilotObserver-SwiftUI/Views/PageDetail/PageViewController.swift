@@ -13,15 +13,19 @@ import SwiftUI
 struct PageViewController: UIViewControllerRepresentable {
     var controllers: [UIViewController]
     @Binding var currentPage: Int
+//    var currentPage:Int
 
     func makeCoordinator() -> Coordinator {
         Coordinator(self)
     }
 
     func makeUIViewController(context: Context) -> UIPageViewController {
+        let options: [UIPageViewController.OptionsKey : Any]? = [UIPageViewController.OptionsKey.interPageSpacing: NSNumber(value: 10)]
+
         let pageViewController = UIPageViewController(
             transitionStyle: .scroll,
-            navigationOrientation: .horizontal)
+            navigationOrientation: .horizontal,
+            options: options)
         pageViewController.dataSource = context.coordinator
         pageViewController.delegate = context.coordinator
 
@@ -47,8 +51,7 @@ struct PageViewController: UIViewControllerRepresentable {
                 return nil
             }
             if index == 0 {
-//                return parent.controllers.last
-                return viewController
+                return nil
             }
             return parent.controllers[index - 1]
         }
@@ -60,8 +63,7 @@ struct PageViewController: UIViewControllerRepresentable {
                 return nil
             }
             if index + 1 == parent.controllers.count {
-//                return parent.controllers.first
-                return viewController
+                return nil
             }
             return parent.controllers[index + 1]
         }
@@ -70,7 +72,7 @@ struct PageViewController: UIViewControllerRepresentable {
             if completed,
                 let visibleViewController = pageViewController.viewControllers?.first,
                 let index = parent.controllers.firstIndex(of: visibleViewController) {
-                parent.currentPage = index
+                parent.currentPage = index                
             }
         }
     }

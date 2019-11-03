@@ -18,13 +18,13 @@ struct PageList: View {
     @EnvironmentObject var statusQuery:StatusQuery
     @EnvironmentObject var organizationQuery:OrganizationsQuery
     
-    private var pageCellAdapter:PageCellAdapter
+    private var pageCellAdapter:PageModelAdapter
     
     init(newspilot:Newspilot, subProduct:SubProduct, publicationDates:[PublicationDate]) {
         self.subProduct = subProduct
         self.publicationDates = publicationDates
         self.pageQuery = PageQuery(withNewspilot: newspilot, productId: subProduct.productID, subProductId: subProduct.id, publicationDateId: -1)
-        self.pageCellAdapter = PageCellAdapter(newspilotServer:newspilot.server, statuses: [],sections: [])
+        self.pageCellAdapter = PageModelAdapter(newspilotServer:newspilot.server, statuses: [],sections: [])
     }
     
     
@@ -37,9 +37,9 @@ struct PageList: View {
                 List {
                     ForEach (backKeys, id: \.hashValue) {backKey in
                         Section(header:Text("Part: \(backKey.part ?? "-") Edition: \(backKey.edition ?? "-") Version:\(backKey.version ?? "-")")){
-                            ForEach (backs[backKey] ?? []) {page in
-                                NavigationLink(destination: PageDetailsView(self.getViewsFrom(backs: backs, backKey: backKey), currentPage: 0)) {
-                                    PageListCell(page:self.pageCellAdapter.getPageViewModel(from: page))
+                            ForEach (0 ..< backs[backKey]!.count) {index in
+                                NavigationLink(destination: PageDetailsView(self.getViewsFrom(backs: backs, backKey: backKey), currentPage: index)) {
+                                    PageListCell(page:self.pageCellAdapter.getPageViewModel(from: backs[backKey]![index]))
                                 }
                             }
                         }

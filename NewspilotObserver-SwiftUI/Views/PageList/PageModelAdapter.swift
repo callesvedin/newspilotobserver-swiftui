@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class PageCellAdapter {
+class PageModelAdapter {
     
     let newspilotServer:String
     var statuses:[Status]    
@@ -29,16 +29,18 @@ class PageCellAdapter {
         }else{
             statusColor = UIColor.white
         }
-        var sectionName:String
-        if let section = sections.first(where: {section in section.id == page.sectionID}) {
-            sectionName = section.name
-        }else{
-            sectionName = "-"
-        }
-        
+        let sectionName:String? = sections.first(where: {section in section.id == page.sectionID})?.name
+        let template = page.template
         let thumbUrl = URL(string: "https://\(newspilotServer):8443/newspilot/thumb?id=\(Int(page.id))&type=5")
         let previewUrl = URL(string: "https://\(newspilotServer):8443/newspilot/preview?id=\(Int(page.id))&type=5")
-        return PageViewModel(id:page.id, name: page.name, section:sectionName, statusColor: statusColor, thumbUrl: thumbUrl, previewUrl: previewUrl )
+
+        let editionType = EditionType(rawValue: page.edType) ?? .original
+        
+        return PageViewModel(id:page.id, name: page.name, section:sectionName,
+                             part: page.part, edition: page.edition,
+                             version: page.version, template:template,
+                             editionType: editionType, statusColor: statusColor,
+                              thumbUrl: thumbUrl, previewUrl: previewUrl)
     }
     
     private func intToColor(value: Int) -> UIColor {

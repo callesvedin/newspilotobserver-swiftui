@@ -6,7 +6,11 @@
 import Foundation
 
 // MARK: - Page
-struct Page: Codable, Identifiable {
+struct Page: Codable, Identifiable, Comparable {
+    static func < (lhs: Page, rhs: Page) -> Bool {
+        return lhs.pageNumber < rhs.pageNumber
+    }
+    
     let entityType: String
     let archiveID: Int?
     let arkitexData: String?
@@ -22,7 +26,8 @@ struct Page: Codable, Identifiable {
     let custom5, deadline, descriptiveName: String?
     let dirty: Int?
     let documentMacro, documentName: String?
-    let documentType, edType, editable: Int?
+    let documentType, editable: Int?
+    let edType:Int
     let edition: String?
     let entitylockID, externalSystemID: Int?
     let fileExists: Bool?
@@ -39,7 +44,8 @@ struct Page: Codable, Identifiable {
     let multiPageCount, multiPagePos: Int?
     let name:String
     let nameMacro, note: String?
-    let outerMargin, pageNumber: Int?
+    let outerMargin:Int?
+    let pageNumber: Int
     let part: String?
     let physicalHeight, physicalWidth: Int?
     let plate: String?

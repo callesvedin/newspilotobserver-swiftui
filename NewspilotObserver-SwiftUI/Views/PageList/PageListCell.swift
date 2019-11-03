@@ -33,7 +33,9 @@ struct PageListCell: View {
                 VStack(alignment: .leading) {
                     Text("\(self.page.name)")
                     HStack {
-                        Text(self.page.section).font(.caption)
+                        if self.page.section != nil {
+                            Text(self.page.section!).font(.caption)
+                        }
                         //FlagView(page.flags)
                     }
                 }
@@ -45,8 +47,7 @@ struct PageListCell: View {
 
 struct PageListCell_Previews: PreviewProvider {
     static var previews: some View {
-        PageListCell(page: PageViewModel(id: 1, name: "My page name", section: "News",
-                                         statusColor:UIColor.green, thumbUrl: nil,
-                                         previewUrl: nil)).previewLayout(.fixed(width: 300, height: 50))
+        let model = PageViewModel(id: 1, name: "Great page", section: "Section A", part: "Part A", edition: "Edition 1", version: "Version 3",template: "A-Section",editionType: .original, statusColor: UIColor.green, thumbUrl: nil, previewUrl: nil)
+        return PageListCell(page: model).previewLayout(.fixed(width: 300, height: 50))
     }
 }
