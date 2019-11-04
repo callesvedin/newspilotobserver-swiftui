@@ -10,7 +10,7 @@ import Foundation
 import SwiftUI
 
 
-struct PageDetailsView<Pageable:View>: View {
+struct PageDetailsView<Pageable:NameableView>: View {
     
     var viewControllers: [UIHostingController<Pageable>]
 
@@ -22,6 +22,8 @@ struct PageDetailsView<Pageable:View>: View {
     }
 
     var body: some View {
-        PageViewController(controllers: viewControllers, currentPage: $currentPage)
+        let dw = self.viewControllers[currentPage].rootView
+        let title = dw.name 
+        return PageViewController(controllers: viewControllers, currentPage: $currentPage).navigationBarTitle("\(title)")
     }
 }

@@ -9,9 +9,16 @@
 import SwiftUI
 import SDWebImageSwiftUI
 
-struct PageDetailView: View {
+protocol NameableView:View {
+    var name:String { get }
+}
+
+struct PageDetailView: NameableView {
     let page:PageViewModel
-    @State private var shownInfo = false
+    
+    var name:String {
+        get {return page.name}
+    }
     
     init(page:PageViewModel) {
         self.page = page
@@ -21,7 +28,6 @@ struct PageDetailView: View {
         GeometryReader {geometry in
             ZStack() {
                 VStack(alignment: .leading) {
-                    Text("\(self.page.name)").font(.title).padding()
                     WebImage(url: self.page.previewUrl, placeholder: Image(uiImage: UIImage(named: "EmptyPagePreview.png")!), options: [.highPriority, .allowInvalidSSLCertificates,.retryFailed])
                         .onSuccess(perform: { (image, cacheType) in
                             print("loaded preview")
@@ -45,19 +51,22 @@ struct PageDetailView: View {
 struct InfoView: View {
     let geometry:GeometryProxy
     let page:PageViewModel
-    @State private var shown=true
+    @State private var shown=false
     
     var body: some View {
-        let y = shown ? geometry.size.height/2 - 200 : geometry.size.height + 10
+        let y = shown ? geometry.size.height/2 - 200 : geometry.size.height - 20
         return List {
-            KeyValueView(key:"Name", value:page.name)
-            KeyValueView(key:"Part", value:page.part)
-            KeyValueView(key:"Edition", value:page.edition)
-            KeyValueView(key:"Version", value:page.version)
-            KeyValueView(key:"Section", value:page.section)
-            KeyValueView(key:"Template", value:page.template)
-            KeyValueView(key:"Edition Type", value: page.editionType.stringValue)
-            KeyColorValueView(key:"Status", value: page.statusColor)
+            if shown {
+                KeyValueView(key:"Name", value:page.name)
+                KeyValueView(key:"Part", value:page.part)
+                KeyValueView(key:"Edition", value:page.edition)
+                KeyValueView(key:"Version", value:page.version)
+                KeyValueView(key:"Section", value:page.section)
+                KeyValueView(key:"Template", value:page.template)
+                KeyValueView(key:"Edition Type", value: page.editionType.stringValue)
+                KeyColorValueView(key:"Status", value: page.statusColor)
+                
+            }
             
         }.background(Color.white)
             .overlay(
@@ -73,7 +82,12 @@ struct InfoView: View {
 
 struct PageDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        let view = PageDetailView(page:PageViewModel(id: 1, name: "Great page", section: "Section A", part: "Part A", edition: "Edition 1", version: "Version 3", template: "A-Section", editionType: .identical, statusColor: UIColor.green, thumbUrl: nil, previewUrl: nil))
+    
+        let view = PageDetailView(page:PageViewModel(id: 1, name: "Great page", section: "Section A",
+                                part: "Part A", edition: "Edition 1", version: "Version 3", template: "A-Section",
+                                editionType: .identical,
+                                statusColor: UIColor.green, thumbUrl: nil, previewUrl: nil)
+                                )
         return Group {
             view.previewDevice(PreviewDevice(rawValue: "iPhone SE")).previewDisplayName("iPhone SE")
             view.previewDevice(PreviewDevice(rawValue: "iPhone XS Max")).previewDisplayName("iPhone XS Max")
