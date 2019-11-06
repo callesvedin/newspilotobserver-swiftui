@@ -28,6 +28,7 @@ struct LoginView: View {
 
                 TextField("Username", text: $loginSettings.login)
                     .textContentType(.none)
+                    .autocapitalization(.none)
                     .padding()
                     .background(lightGreyColor)
                     .cornerRadius(5.0)
@@ -41,6 +42,7 @@ struct LoginView: View {
 
                 TextField("Server", text: $loginSettings.server)
                     .textContentType(.none)
+                    .autocapitalization(.none)
                     .padding()
                     .background(lightGreyColor)
                     .cornerRadius(5.0)
