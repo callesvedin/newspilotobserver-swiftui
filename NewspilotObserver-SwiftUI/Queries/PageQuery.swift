@@ -8,8 +8,8 @@
 
 import Foundation
 import Newspilot
-import OSLog
 import Combine
+import os.log
 
 class PageQuery : ObservableObject {
     

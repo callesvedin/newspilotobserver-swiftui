@@ -28,13 +28,33 @@ struct PageDetailView: NameableView {
         GeometryReader {geometry in
             ZStack() {
                 VStack(alignment: .leading) {
-                    WebImage(url: self.page.previewUrl, placeholder: Image(uiImage: UIImage(named: "EmptyPagePreview.png")!), options: [.highPriority, .allowInvalidSSLCertificates,.retryFailed])
-                        .onSuccess(perform: { (image, cacheType) in
-                            print("loaded preview")
-                        })
-                        .resizable()
-                        .scaledToFit()
+                    
+                    WebImage(url: self.page.previewUrl, options: [.highPriority, .allowInvalidSSLCertificates,.retryFailed])
+                           .onSuccess { image, cacheType in
+                               print("loaded preview")
+                           }
+                           .resizable() // Resizable like SwiftUI.Image
+                           .placeholder(Image(uiImage: UIImage(named: "EmptyPagePreview.png")!)) // Placeholder Image
+                           // Supports ViewBuilder as well
+                           .placeholder {
+                               Rectangle().foregroundColor(.gray)
+                           }
+                           .indicator(.activity) // Activity Indicator
+                           .animation(.easeInOut(duration: 0.5)) // Animation Duration
+                           .transition(.fade) // Fade Transition
+                           .scaledToFit()
                         .frame(width: geometry.size.width, height: geometry.size.height-80, alignment: Alignment.center)
+                    
+                    
+//                    
+//                    WebImage(url: self.page.previewUrl, placeholder: Image(uiImage: UIImage(named: "EmptyPagePreview.png")!),
+//                             options: [.highPriority, .allowInvalidSSLCertificates,.retryFailed])
+//                        .onSuccess(perform: { (image, cacheType) in
+//                            print("loaded preview")
+//                        })
+//                        .resizable()
+//                        .scaledToFit()
+//                        .frame(width: geometry.size.width, height: geometry.size.height-80, alignment: Alignment.center)
                 }
                 
                 ZStack {

@@ -8,7 +8,7 @@
 
 import Foundation
 import Newspilot
-import OSLog
+import os.log
 import Combine
 
 class StatusQuery :  ObservableObject {

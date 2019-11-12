@@ -13,7 +13,7 @@ let lightGreyColor = Color(red: 239.0/255.0, green: 243.0/255.0, blue: 244.0/255
 
 struct LoginView: View {
     @State var password:String = ""
-    
+    @ObservedObject private var keyboard = KeyboardResponder()
     @ObservedObject var loginSettings:LoginSettings = LoginSettings()
     @ObservedObject var loginHandler:LoginHandler = LoginHandler()
     
@@ -82,7 +82,11 @@ struct LoginView: View {
                 }
             
                 Spacer()
-            }.background(SwiftUI.Color.black.edgesIgnoringSafeArea(.all))
+            }
+            .background(SwiftUI.Color.black.edgesIgnoringSafeArea(.all))
+            .padding(.bottom, keyboard.currentHeight)
+            .edgesIgnoringSafeArea(.bottom)
+            .animation(.easeOut(duration: 0.16))
             
         }
     }

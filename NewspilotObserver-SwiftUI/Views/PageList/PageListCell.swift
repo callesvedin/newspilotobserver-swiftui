@@ -23,13 +23,30 @@ struct PageListCell: View {
 
                     //         pageImage?.sd_setImage(with: url, placeholderImage: placeholderImage, options: [.highPriority, .allowInvalidSSLCertificates,.retryFailed], completed: { (image, error, cacheType, url) in
 
-                WebImage(url: self.page.thumbUrl, placeholder: Image(uiImage: UIImage(named: "EmptyPageThumb.png")!), options: [.highPriority, .allowInvalidSSLCertificates,.retryFailed])
-                    .onSuccess(perform: { (image, cacheType) in
-                        
-                    })
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 50, height: geometry.size.height, alignment: Alignment.center)
+                WebImage(url: self.page.thumbUrl, options: [.highPriority, .allowInvalidSSLCertificates,.retryFailed])
+                                          .onSuccess { image, cacheType in
+                                              print("loaded preview")
+                                          }
+                                          .resizable() // Resizable like SwiftUI.Image
+                                          .placeholder(Image(uiImage: UIImage(named: "EmptyPageThumb.png")!))
+                                          // Supports ViewBuilder as well
+                                          .placeholder {
+                                              Rectangle().foregroundColor(.gray)
+                                          }
+                                          .indicator(.activity) // Activity Indicator
+                                          .animation(.easeInOut(duration: 0.5)) // Animation Duration
+                                          .transition(.fade) // Fade Transition
+                                          .scaledToFit()
+                        .frame(width: 50, height: geometry.size.height, alignment: Alignment.center)
+                
+                
+//                WebImage(url: self.page.thumbUrl, placeholder: Image(uiImage: UIImage(named: "EmptyPageThumb.png")!), options: [.highPriority, .allowInvalidSSLCertificates,.retryFailed])
+//                    .onSuccess(perform: { (image, cacheType) in
+//                        
+//                    })
+//                    .resizable()
+//                    .scaledToFit()
+//                    .frame(width: 50, height: geometry.size.height, alignment: Alignment.center)
                 VStack(alignment: .leading) {
                     Text("\(self.page.name)")
                     HStack {
