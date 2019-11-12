@@ -30,31 +30,16 @@ struct PageDetailView: NameableView {
                 VStack(alignment: .leading) {
                     
                     WebImage(url: self.page.previewUrl, options: [.highPriority, .allowInvalidSSLCertificates,.retryFailed])
-                           .onSuccess { image, cacheType in
-                               print("loaded preview")
-                           }
-                           .resizable() // Resizable like SwiftUI.Image
-                           .placeholder(Image(uiImage: UIImage(named: "EmptyPagePreview.png")!)) // Placeholder Image
-                           // Supports ViewBuilder as well
-                           .placeholder {
-                               Rectangle().foregroundColor(.gray)
-                           }
-                           .indicator(.activity) // Activity Indicator
-                           .animation(.easeInOut(duration: 0.5)) // Animation Duration
-                           .transition(.fade) // Fade Transition
-                           .scaledToFit()
+                        .onSuccess { image, cacheType in
+                            print("loaded preview")
+                    }
+                        .resizable() // Resizable like SwiftUI.Image
+                        .placeholder(Image(uiImage: UIImage(named: "EmptyPagePreview.png")!))
+                        .indicator(.activity) // Activity Indicator
+                        .animation(.easeInOut(duration: 0.5)) // Animation Duration
+                        .transition(.fade) // Fade Transition
+                        .scaledToFit()
                         .frame(width: geometry.size.width, height: geometry.size.height-80, alignment: Alignment.center)
-                    
-                    
-//                    
-//                    WebImage(url: self.page.previewUrl, placeholder: Image(uiImage: UIImage(named: "EmptyPagePreview.png")!),
-//                             options: [.highPriority, .allowInvalidSSLCertificates,.retryFailed])
-//                        .onSuccess(perform: { (image, cacheType) in
-//                            print("loaded preview")
-//                        })
-//                        .resizable()
-//                        .scaledToFit()
-//                        .frame(width: geometry.size.width, height: geometry.size.height-80, alignment: Alignment.center)
                 }
                 
                 ZStack {
@@ -67,15 +52,21 @@ struct PageDetailView: NameableView {
 }
 
 
-
 struct InfoView: View {
     let geometry:GeometryProxy
     let page:PageViewModel
     @State private var shown=false
     
     var body: some View {
-        let y = shown ? geometry.size.height/2 - 200 : geometry.size.height - 20
+        UITableView.appearance().backgroundColor = .clear // tableview background
+        UITableViewCell.appearance().backgroundColor = .clear // cell background
+        let y = shown ? geometry.size.height/2 - 200 : geometry.size.height - 30
         return List {
+            HStack {
+                Spacer()
+                Capsule().frame(width: 60, height: 6, alignment: .center).foregroundColor(.gray)
+                Spacer()
+            }
             if shown {
                 KeyValueView(key:"Name", value:page.name)
                 KeyValueView(key:"Part", value:page.part)
@@ -87,27 +78,25 @@ struct InfoView: View {
                 KeyColorValueView(key:"Status", value: page.statusColor)
                 
             }
-            
-        }.background(Color.white)
+        }.background(Color.white.edgesIgnoringSafeArea(.all))
             .overlay(
                 RoundedRectangle(cornerRadius: 16)
                     .stroke(Color.gray, lineWidth: 1)
-        )
-            .onTapGesture {
+        ).onTapGesture {
                 self.shown.toggle()
-        }.offset(y: y)
+        }.animation(.easeInOut(duration: 0.5)).offset(y: y)
     }
     
 }
 
 struct PageDetailView_Previews: PreviewProvider {
     static var previews: some View {
-    
+        
         let view = PageDetailView(page:PageViewModel(id: 1, name: "Great page", section: "Section A",
-                                part: "Part A", edition: "Edition 1", version: "Version 3", template: "A-Section",
-                                editionType: .identical,
-                                statusColor: UIColor.green, thumbUrl: nil, previewUrl: nil)
-                                )
+                                                     part: "Part A", edition: "Edition 1", version: "Version 3", template: "A-Section",
+                                                     editionType: .identical,
+                                                     statusColor: UIColor.green, thumbUrl: nil, previewUrl: nil)
+        )
         return Group {
             view.previewDevice(PreviewDevice(rawValue: "iPhone SE")).previewDisplayName("iPhone SE")
             view.previewDevice(PreviewDevice(rawValue: "iPhone XS Max")).previewDisplayName("iPhone XS Max")
