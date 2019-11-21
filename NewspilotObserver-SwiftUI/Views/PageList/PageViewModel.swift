@@ -19,9 +19,9 @@ struct PageViewModel {
     let template:String?
     let editionType:EditionType
     let statusColor:UIColor
+    let flags:[UIImage?]
     let thumbUrl:URL?
-    let previewUrl:URL? 
-    //    let flags:[Flag]
+    let previewUrl:URL?     
 }
 
 enum EditionType:Int {

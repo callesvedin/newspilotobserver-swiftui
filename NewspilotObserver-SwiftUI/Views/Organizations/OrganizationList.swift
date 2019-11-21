@@ -11,17 +11,11 @@ import Newspilot
 import Combine
 
 struct OrganizationList: View {
-    @ObservedObject var organizationQuery:OrganizationsQuery    
-    private let statusQuery:StatusQuery
-    private var newspilot:Newspilot
-    
-    init(newspilot:Newspilot) {
-        self.newspilot = newspilot
-        organizationQuery = OrganizationsQuery(withNewspilot: newspilot)
-        statusQuery = StatusQuery(withNewspilot: newspilot)
-        statusQuery.load()
-    }
-    
+    @EnvironmentObject var loginHandler:LoginHandler
+    @EnvironmentObject var organizationQuery:OrganizationsQuery
+    @EnvironmentObject var statusQuery:StatusQuery
+    @EnvironmentObject var flagQuery:PageFlagQuery
+
     var body: some View {
         List {
             if organizationQuery.organizations.isEmpty {
@@ -33,12 +27,6 @@ struct OrganizationList: View {
         .listStyle(GroupedListStyle())
         .navigationBarTitle("Organizations")
         .navigationBarBackButtonHidden(true)
-        .onAppear(){
-            self.organizationQuery.load()
-        }
-        .environmentObject(self.statusQuery)
-        .environmentObject(self.organizationQuery)
-
     }
 }
 
@@ -49,10 +37,11 @@ private extension OrganizationList {
     }
     
     var organizationsList: some View {
-        ForEach(organizationQuery.getOrganizations()) {organization in
+        ForEach(organizationQuery.organizations) {organization in
             Section(header: Text(organization.name).bold()) {
                 ForEach(self.organizationQuery.getProducts(for: organization)){product in
-                    NavigationLink(destination: SubProductList(product:product, newspilot: self.newspilot, organizationQuery:self.organizationQuery)) {
+                    NavigationLink(destination: SubProductList(product:product,
+                                                               publicationDateQuery: PublicationDateQuery(withNewspilot: self.loginHandler.newspilot, productId: product.id))) {
                                                                 ProductRow(product:product)
                     }
                 }
@@ -63,6 +52,6 @@ private extension OrganizationList {
 
 struct OrganizationsView_Previews: PreviewProvider {
     static var previews: some View {
-        OrganizationList(newspilot: Newspilot(server: "", login: "", password: ""))
+        OrganizationList()
     }
 }

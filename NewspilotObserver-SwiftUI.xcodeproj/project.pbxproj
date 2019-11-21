@@ -80,6 +80,8 @@
 		EBD22A5422CBFBCD000DFD41 /* EmptyPagePreview.png in Resources */ = {isa = PBXBuildFile; fileRef = EBD22A3A22CBFBCD000DFD41 /* EmptyPagePreview.png */; };
 		EBD22A5622CBFBCD000DFD41 /* EmptyPageThumb.png in Resources */ = {isa = PBXBuildFile; fileRef = EBD22A3C22CBFBCD000DFD41 /* EmptyPageThumb.png */; };
 		EBD22A5922CC059F000DFD41 /* NewspilotManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD22A5822CC059F000DFD41 /* NewspilotManager.swift */; };
+		EBE97AA623833DF3005CACDB /* PageFlagQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE97AA523833DF3005CACDB /* PageFlagQuery.swift */; };
+		EBE97AA8238340A2005CACDB /* EntityFlag.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE97AA7238340A2005CACDB /* EntityFlag.swift */; };
 		EBEED2372327CBE400746C69 /* ProductRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEED2362327CBE400746C69 /* ProductRowViewModel.swift */; };
 		EBEED2392327D46E00746C69 /* ProductRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEED2382327D46E00746C69 /* ProductRow.swift */; };
 		EBF8055B23277C3D00C5590A /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF8055A23277C3D00C5590A /* Product.swift */; };
@@ -180,6 +182,8 @@
 		EBD22A3C22CBFBCD000DFD41 /* EmptyPageThumb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EmptyPageThumb.png; sourceTree = "<group>"; };
 		EBD22A3D22CBFBCD000DFD41 /* vb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vb.png; sourceTree = "<group>"; };
 		EBD22A5822CC059F000DFD41 /* NewspilotManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewspilotManager.swift; sourceTree = "<group>"; };
+		EBE97AA523833DF3005CACDB /* PageFlagQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageFlagQuery.swift; sourceTree = "<group>"; };
+		EBE97AA7238340A2005CACDB /* EntityFlag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityFlag.swift; sourceTree = "<group>"; };
 		EBEED2362327CBE400746C69 /* ProductRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRowViewModel.swift; sourceTree = "<group>"; };
 		EBEED2382327D46E00746C69 /* ProductRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRow.swift; sourceTree = "<group>"; };
 		EBF8055A23277C3D00C5590A /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
@@ -213,6 +217,7 @@
 				EB41EA5123479D2200550428 /* PublicationDateQuery.swift */,
 				EB41EA552348BF0A00550428 /* PageQuery.swift */,
 				EB6C226C2359090000101147 /* StatusQuery.swift */,
+				EBE97AA523833DF3005CACDB /* PageFlagQuery.swift */,
 			);
 			path = Queries;
 			sourceTree = "<group>";
@@ -341,6 +346,7 @@
 				EB6C22762359DCDC00101147 /* Section.swift */,
 				EB6C22802360AAFD00101147 /* SubProductSettings.swift */,
 				EB6C2284236233C100101147 /* BackKey.swift */,
+				EBE97AA7238340A2005CACDB /* EntityFlag.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -601,6 +607,7 @@
 				EB41EA542347A32D00550428 /* PublicationDate.swift in Sources */,
 				EB6C226F23590AAD00101147 /* Status.swift in Sources */,
 				EB7B9E3222C7F86E009EB2BE /* Calendar+StartStop.swift in Sources */,
+				EBE97AA623833DF3005CACDB /* PageFlagQuery.swift in Sources */,
 				EB7B9E3322C7F86E009EB2BE /* Notification.Name+ConnectionStatus.swift in Sources */,
 				EB6C22882368BBBF00101147 /* PageControl.swift in Sources */,
 				EB6C228C2368BCB400101147 /* PageViewController.swift in Sources */,
@@ -617,6 +624,7 @@
 				EB10054323434AF500E0973F /* ActivityIndicator.swift in Sources */,
 				EBA5F199236D6C230011E3EF /* OrderedArray.swift in Sources */,
 				EB5435182322F567004EE63F /* OrganizationList.swift in Sources */,
+				EBE97AA8238340A2005CACDB /* EntityFlag.swift in Sources */,
 				EB7B9E4722C80088009EB2BE /* ProductImageFactory.swift in Sources */,
 				EB5435162322F324004EE63F /* ColorExtensions.swift in Sources */,
 				EB7B9E4622C80088009EB2BE /* OSLog+NewspilotObserver.swift in Sources */,

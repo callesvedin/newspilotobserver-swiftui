@@ -76,6 +76,7 @@ struct InfoView: View {
                 KeyValueView(key:"Template", value:page.template)
                 KeyValueView(key:"Edition Type", value: page.editionType.stringValue)
                 KeyColorValueView(key:"Status", value: page.statusColor)
+//                KeyFlagValueView(key:"Flags", value:page.)
                 
             }
         }.background(Color.white.edgesIgnoringSafeArea(.all))
@@ -95,7 +96,7 @@ struct PageDetailView_Previews: PreviewProvider {
         let view = PageDetailView(page:PageViewModel(id: 1, name: "Great page", section: "Section A",
                                                      part: "Part A", edition: "Edition 1", version: "Version 3", template: "A-Section",
                                                      editionType: .identical,
-                                                     statusColor: UIColor.green, thumbUrl: nil, previewUrl: nil)
+                                                     statusColor: UIColor.green, flags:[UIImage(systemName: "star"), UIImage(systemName: "star.fill")], thumbUrl: nil, previewUrl: nil)
         )
         return Group {
             view.previewDevice(PreviewDevice(rawValue: "iPhone SE")).previewDisplayName("iPhone SE")

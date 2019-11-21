@@ -64,7 +64,8 @@ struct PageListCell: View {
 
 struct PageListCell_Previews: PreviewProvider {
     static var previews: some View {
-        let model = PageViewModel(id: 1, name: "Great page", section: "Section A", part: "Part A", edition: "Edition 1", version: "Version 3",template: "A-Section",editionType: .original, statusColor: UIColor.green, thumbUrl: nil, previewUrl: nil)
+        let model = PageViewModel(id: 1, name: "Great page", section: "Section A", part: "Part A", edition: "Edition 1", version: "Version 3",template: "A-Section",editionType: .original, statusColor: UIColor.green,flags:[UIImage(systemName: "star"), UIImage(systemName: "star.fill")],
+                                  thumbUrl: nil, previewUrl: nil)
         return PageListCell(page: model).previewLayout(.fixed(width: 300, height: 50))
     }
 }

@@ -12,13 +12,19 @@ import UIKit
 class PageModelAdapter {
     
     let newspilotServer:String
-    var statuses:[Status]    
+    var statuses:[Status]
     var sections:[NewspilotSection]
+    var flags:[EntityFlag] {
+        didSet {
+            self.flags.sort(by: {f1,f2 in f1.sortKey < f2.sortKey})
+        }
+    }
     
-    init(newspilotServer:String, statuses:[Status], sections:[NewspilotSection]){
+    init(newspilotServer:String, statuses:[Status], sections:[NewspilotSection], flags:[EntityFlag]){
         self.statuses = statuses
         self.newspilotServer = newspilotServer
         self.sections = sections
+        self.flags = flags
     }
     
     func getPageViewModel(from page:Page) -> PageViewModel {
@@ -35,12 +41,35 @@ class PageModelAdapter {
         let previewUrl = URL(string: "https://\(newspilotServer):8443/newspilot/preview?id=\(Int(page.id))&type=5")
 
         let editionType = EditionType(rawValue: page.edType) ?? .original
+        let flags:[UIImage?] = page.flags != nil ? createFlagImages(fromIds: page.flags):[]
         
         return PageViewModel(id:page.id, name: page.name, section:sectionName,
                              part: page.part, edition: page.edition,
                              version: page.version, template:template,
-                             editionType: editionType, statusColor: statusColor,
+                             editionType: editionType, statusColor: statusColor, flags: flags,
                               thumbUrl: thumbUrl, previewUrl: previewUrl)
+    }
+    
+    
+    func createFlagImages(fromIds inIds:[Int]?) -> [UIImage?] {
+        guard let ids = inIds else {
+            return []
+        }
+        var images:[UIImage?] = []
+        
+        for entityFlag in flags {
+            if ids.contains(entityFlag.id) {
+                images.append(entityFlag.onImage)
+            }else if (entityFlag.offImage != nil) {
+                images.append(entityFlag.offImage)
+            }else if (entityFlag.fillSpace) {
+                images.append(nil)
+            }
+        }
+        return images
+        
+        
+        
     }
     
     private func intToColor(value: Int) -> UIColor {

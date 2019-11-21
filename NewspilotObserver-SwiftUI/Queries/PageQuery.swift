@@ -14,7 +14,7 @@ import os.log
 class PageQuery : ObservableObject {
     
     @Published var backs:[BackKey:[Page]] = [:]
-    
+//    var passTrough:PassthroughSubject<[BackKey:[Page]], Never> = PassthroughSubject()
     
     var externalQueryId:String!
     var cancellableSubscriber:Cancellable?
@@ -108,7 +108,7 @@ class PageQuery : ObservableObject {
     private func process(_ events:[Event]) {
         events.forEach({ (event) in
             os_log("Processing page event from newspilot. EntityType: %@ , EntityId: %ld", log: .newspilot, type: .debug, event.entityType.rawValue, event.entityId)
-            os_log("Values %@",log:.newspilot, type:.debug, event.values)
+//            os_log("Values %@",log:.newspilot, type:.debug, event.values)
             do {
                 let data = try JSONSerialization.data(withJSONObject: event.values, options: [])
                 let decoder = JSONDecoder()
@@ -140,7 +140,9 @@ class PageQuery : ObservableObject {
                         var backList = backs[page.backKey, default:[]]
                         if let i = backList.firstIndex(where:{$0.id == event.entityId}) {
                             backList[i] = page
+                            backs[page.backKey] = backList
                         }
+                        
                     default:
                         print("Can not change \(event.entityType)")
                     }
@@ -159,7 +161,6 @@ class PageQuery : ObservableObject {
             }catch(let error) {
                 print("Could not decode Page. \(error)")
             }
-            
         })
     }
     

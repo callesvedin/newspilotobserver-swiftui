@@ -10,25 +10,35 @@ import SwiftUI
 import Newspilot
 
 struct SubProductList: View {
-    @ObservedObject var organizationQuery:OrganizationsQuery
+    @EnvironmentObject var organizationQuery:OrganizationsQuery
+    @EnvironmentObject var loginHandler:LoginHandler
     @ObservedObject var publicationDateQuery:PublicationDateQuery
     let product:Product
-    let newspilot:Newspilot
     
-    init(product:Product, newspilot:Newspilot, organizationQuery:OrganizationsQuery) {
+    
+    init(product:Product, publicationDateQuery: PublicationDateQuery) {
         self.product = product
-        self.newspilot = newspilot
-        self.organizationQuery = organizationQuery
-        self.publicationDateQuery=PublicationDateQuery(withNewspilot: newspilot, productId: product.id)
+        self.publicationDateQuery = publicationDateQuery
     }
     
     var body: some View {
+        
         List {
             ForEach(organizationQuery.getSubProducts(for:product)) {subProduct in
                 NavigationLink(destination:
-                PageList(newspilot:self.newspilot, subProduct:subProduct, publicationDates:self.publicationDateQuery.sortedPublicationDates)) {
+                
+                    PageList(newspilot:self.loginHandler.newspilot, subProduct:subProduct,
+                         publicationDates:self.publicationDateQuery.sortedPublicationDates))
+                    {
                     Text(subProduct.name) //.font(.caption).foregroundColor(.gray)
                 }
+
+                
+//                PageList(subProduct:subProduct,
+//                         publicationDates:self.publicationDateQuery.sortedPublicationDates,
+//                         pageQuery:PageQuery(withNewspilot: self.loginHandler.newspilot, productId: subProduct.productID, subProductId: subProduct.id, publicationDateId: -1))) {
+//                    Text(subProduct.name) //.font(.caption).foregroundColor(.gray)
+//                }
                 
             }
         }.navigationBarTitle(product.name).onAppear(){

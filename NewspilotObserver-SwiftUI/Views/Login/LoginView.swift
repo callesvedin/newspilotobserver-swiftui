@@ -15,7 +15,7 @@ struct LoginView: View {
     @State var password:String = ""
     @ObservedObject private var keyboard = KeyboardResponder()
     @ObservedObject var loginSettings:LoginSettings = LoginSettings()
-    @ObservedObject var loginHandler:LoginHandler = LoginHandler()
+    @EnvironmentObject var loginHandler:LoginHandler
     
     var body: some View {
         NavigationView {
@@ -25,7 +25,7 @@ struct LoginView: View {
                     .fontWeight(.bold)
                     .foregroundColor(Color.white)
                     .padding(.bottom, 50)
-
+                
                 TextField("Username", text: $loginSettings.login)
                     .textContentType(.none)
                     .autocapitalization(.none)
@@ -33,13 +33,13 @@ struct LoginView: View {
                     .background(lightGreyColor)
                     .cornerRadius(5.0)
                     .padding()
-
+                
                 SecureField("Password", text: $password)
                     .padding()
                     .background(lightGreyColor)
                     .cornerRadius(5.0)
                     .padding()
-
+                
                 TextField("Server", text: $loginSettings.server)
                     .textContentType(.none)
                     .autocapitalization(.none)
@@ -58,7 +58,11 @@ struct LoginView: View {
                     Text(" ")
                 }
                 
-                NavigationLink(destination: OrganizationList(newspilot: loginHandler.newspilot)  , tag: ConnectionStatus.connected, selection: $loginHandler.connectionStatus) {
+                NavigationLink(destination: OrganizationList()
+                    .environmentObject(OrganizationsQuery(withNewspilot: loginHandler.newspilot))
+                    .environmentObject(StatusQuery(withNewspilot: loginHandler.newspilot))
+                    .environmentObject(PageFlagQuery(withNewspilot: loginHandler.newspilot))
+                , tag: ConnectionStatus.connected, selection: $loginHandler.connectionStatus) {
                     Button(action:{
                         self.loginHandler.login(login: self.loginSettings.login, password: self.password, server: self.loginSettings.server)
                     }){
@@ -69,7 +73,7 @@ struct LoginView: View {
                                 Image(systemName: "lock.fill").font(Font.headline.weight(.regular))
                                     .foregroundColor(.white)
                             }
-                                
+                            
                             Text("LOGIN")
                                 .padding(.leading, 20)
                                 .font(.headline)
@@ -80,7 +84,7 @@ struct LoginView: View {
                         .cornerRadius(15.0)
                     }
                 }
-            
+                
                 Spacer()
             }
             .background(SwiftUI.Color.black.edgesIgnoringSafeArea(.all))
@@ -94,7 +98,7 @@ struct LoginView: View {
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView()
+        LoginView().environmentObject(LoginHandler())
         //        LoginView(loginSettings:LoginSettings(login:"calle", server:"testserver"))
     }
 }
