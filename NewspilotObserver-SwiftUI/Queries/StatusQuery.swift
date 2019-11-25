@@ -98,14 +98,15 @@ class StatusQuery :  ObservableObject {
                 case .CREATE:
                     switch event.entityType {
                     case .Status:
-                        print("We got a status with the name \(status.name)")
+                        os_log("We got a status with the name %@", log: .newspilot, type:.debug, status.name)
+                        
                         if let i = statuses.firstIndex(where:{$0.id == event.entityId}) {
                             statuses[i] = status
                         }else{
                             self.statuses.append(status)
                         }
                     default:
-                        print("Got event entity type not handled:\(event.entityType)")
+                        os_log("Got event entity type not handled:%@", log: .newspilot, type:.error, event.entityType.rawValue)
                     }
                     
                 case .CHANGE:
@@ -115,21 +116,21 @@ class StatusQuery :  ObservableObject {
                             statuses[i] = status
                         }
                     default:
-                        print("Can not change \(event.entityType)")
+                        os_log("Can not change:%@", log: .newspilot, type:.error, event.entityType.rawValue)
                     }
                 case .REMOVE:
                     switch (event.entityType) {
                     case .Status:
                         statuses.removeAll(where:{$0.id == event.entityId})
                     default:
-                        print("Can not remove \(event.entityType)")
+                        os_log("Can not remove:%@", log: .newspilot, type:.error, event.entityType.rawValue)
                     }
                 default:
                     os_log("Unhandled event in StatusQuery", log: .newspilot, type:.error)
                     
                 }
             }catch(let error) {
-                print("Could not decode PublicationDate. \(error)")
+                os_log("Could not decode Status. Error:%@", log: .newspilot, type:.error, error.localizedDescription)                
             }
             
         })

@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import os.log
 //
 //let testSettings =  """
 //<?xml version="1.0" encoding="UTF-8"?>
@@ -63,17 +63,17 @@ class SubProductSettings : NSObject, XMLParserDelegate {
             case .sequence:
                 sequenses.append(string)
             case .none:
-                print("Found option text but not in any parsed element. Text:\(string)")
+                os_log("Found option text but not in any parsed element. Text:%@", log: .newspilot, type:.error, string)
             }
         }
     }
     
     func parser(_ parser: XMLParser, parseErrorOccurred parseError: Error) {
-        print("Parse error occured. Error:\(parseError.localizedDescription)")
+        os_log("Parse error occured. Error:%@", log: .newspilot, type:.error, parseError.localizedDescription)
     }
     
     func parser(_ parser: XMLParser, validationErrorOccurred validationError: Error) {
-        print("Validation error occured")
+        os_log("Validation error occured. Error:%@", log: .newspilot, type:.error, validationError.localizedDescription)
     }
     
     
@@ -85,11 +85,11 @@ class SubProductSettings : NSObject, XMLParserDelegate {
                 if let element = ParsedElement(rawValue:name) {
                     parsedElement = element
                 }else{
-                    print("Strange field attribute for name \(name)")
+                    os_log("Strange field attribute for name %@", log: .newspilot, type:.error, name)
                     parsedElement = .none
                 }
             }else{
-                print("Could not find field name in \(attributeDict)")
+                os_log("Could not find field name in %@", log: .newspilot, type:.error, attributeDict)
                 parsedElement = .none
             }
         }else if elementName == "option" {
@@ -104,11 +104,11 @@ class SubProductSettings : NSObject, XMLParserDelegate {
     }
     
     func parserDidStartDocument(_ parser: XMLParser) {
-        print("Parsing started.")
+        os_log("Parsing started", log: .newspilot, type:.debug)
     }
     
     func parserDidEndDocument(_ parser: XMLParser) {
-        print("Parsing done.")
+        os_log("Parsing done", log: .newspilot, type:.debug)
     }
     
 }

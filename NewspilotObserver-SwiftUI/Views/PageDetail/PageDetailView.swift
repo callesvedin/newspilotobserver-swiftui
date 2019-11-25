@@ -31,7 +31,7 @@ struct PageDetailView: NameableView {
                     
                     WebImage(url: self.page.previewUrl, options: [.highPriority, .allowInvalidSSLCertificates,.retryFailed])
                         .onSuccess { image, cacheType in
-                            print("loaded preview")
+                            //print("loaded preview")
                     }
                         .resizable() // Resizable like SwiftUI.Image
                         .placeholder(Image(uiImage: UIImage(named: "EmptyPagePreview.png")!))

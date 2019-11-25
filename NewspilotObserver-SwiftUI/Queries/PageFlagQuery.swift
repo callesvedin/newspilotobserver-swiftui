@@ -99,7 +99,7 @@ class PageFlagQuery :  ObservableObject {
                 case .CREATE:
                     switch event.entityType {
                     case .EntityFlag:
-                        print("We got a flag with the name \(flag.name)")
+                        os_log("We got a flag with the name  %@", log: .newspilot, type: .debug, flag.name)
                         if flag.onSymbol != nil {
                             let createdImageData = createImageData(fromBase64: flag.onSymbol)
                             if let imageData = createdImageData {
@@ -112,7 +112,7 @@ class PageFlagQuery :  ObservableObject {
                             self.flags.append(flag)
                         }
                     default:
-                        print("Got event entity type not handled:\(event.entityType)")
+                        os_log("Got event entity type not handled:  %@", log: .newspilot, type: .error, event.entityType.rawValue)
                     }
                     
                 case .CHANGE:
@@ -128,21 +128,21 @@ class PageFlagQuery :  ObservableObject {
                             flags[i] = flag
                         }
                     default:
-                        print("Can not change \(event.entityType)")
+                        os_log("Can not change %@", log: .newspilot, type: .error, event.entityType.rawValue)
                     }
                 case .REMOVE:
                     switch (event.entityType) {
                     case .EntityFlag:
                         flags.removeAll(where:{$0.id == event.entityId})
                     default:
-                        print("Can not remove \(event.entityType)")
+                        os_log("Can not remove  %@", log: .newspilot, type: .error, event.entityType.rawValue)
                     }
                 default:
                     os_log("Unhandled event in FlagQuery", log: .newspilot, type:.error)
                     
                 }
             }catch(let error) {
-                print("Could not decode Flag. \(error)")
+                os_log("Could not decode Flag. %@", log: .newspilot, type: .error, error.localizedDescription)                
             }
             
         })

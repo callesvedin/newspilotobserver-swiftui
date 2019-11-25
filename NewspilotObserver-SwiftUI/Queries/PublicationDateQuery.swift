@@ -147,13 +147,14 @@ class PublicationDateQuery :  ObservableObject {
                     case .PublicationDate:
                         publicationDates.removeAll(where:{$0.id == event.entityId})
                     default:
-                        print("Can not remove \(event.entityType)")
+                        os_log("Can not remove  %@", log: .newspilot, type: .error, event.entityType.rawValue)
                     }
                 default:
                     os_log("Unhandled event in PublicationDateQuery", log: .newspilot, type:.error)
                     
                 }
             }catch(let error) {
+                os_log("Can not decode PublicationDate. Error: %@", log: .newspilot, type: .error, error.localizedDescription)
                 print("Could not decode PublicationDate. \(error)")
             }
             

@@ -99,7 +99,8 @@ class OrganizationsQuery :  ObservableObject {
                     case .Organization:
                         
                         let organization = try decoder.decode(Organization.self, from: data)
-                        print("We got an organization with the name \(organization.name)")
+                        os_log("We got an organization with the name %@", log: .newspilot, type: .debug, organization.name)
+                        
                         if let i = organizations.firstIndex(where:{$0.id == event.entityId}) {
                             organizations[i] = organization
                         }else{
@@ -110,7 +111,7 @@ class OrganizationsQuery :  ObservableObject {
                     case .Product:
                         
                         let product = try decoder.decode(Product.self, from: data)
-                        print("We got an product with the name \(product.name)")
+                        os_log("We got a product with the name %@", log: .newspilot, type: .debug, product.name)
                         if let organization = self.organizations.first(where: {organization in product.id == organization.id}) {
                             organization.products.append(product)
                         }
@@ -121,7 +122,7 @@ class OrganizationsQuery :  ObservableObject {
                         }
                     case .SubProduct:
                         let subProduct = try decoder.decode(SubProduct.self, from: data)
-                        print("We got an product with the name \(subProduct.name)")
+                        os_log("We got a sub product with the name %@", log: .newspilot, type: .debug, subProduct.name)
                         if let i = subProducts.firstIndex(where:{$0.id == event.entityId}) {
                             subProducts[i] = subProduct
                         }else{
@@ -129,14 +130,15 @@ class OrganizationsQuery :  ObservableObject {
                         }
                     case .Section:
                         let section = try decoder.decode(NewspilotSection.self, from: data)
-                        print("We got an section with the name \(section.name)")
+                        os_log("We got a section with the name %@", log: .newspilot, type: .debug, section.name)
+                        
                         if let i = sections.firstIndex(where:{$0.id == event.entityId}) {
                             sections[i] = section
                         }else{
                             sections.append(section)
                         }
                     default:
-                        print("Got event entity type not handled:\(event.entityType)")
+                        os_log("Got event entity type not handled: %@", log: .newspilot, type: .error, event.entityType.rawValue)
                     }
                     
                 case .CHANGE:
@@ -166,7 +168,7 @@ class OrganizationsQuery :  ObservableObject {
                             sections[i] = section
                         }
                     default:
-                        print("Can not change \(event.entityType)")                        
+                        os_log("Can not change %@", log: .newspilot, type: .error, event.entityType.rawValue)
                     }
                 case .REMOVE:
                     switch (event.entityType) {
@@ -179,15 +181,14 @@ class OrganizationsQuery :  ObservableObject {
                     case .Section:
                         sections.removeAll(where:{$0.id == event.entityId})
                     default:
-                        print("Can not remove \(event.entityType)")
-                        
+                        os_log("Can not remove %@", log: .newspilot, type: .error, event.entityType.rawValue)
                     }
                 default:
                     os_log("Unhandled event in OrganizationQuery", log: .newspilot, type:.error)
                     
                 }
             }catch(let error) {
-                print("Could not decode Organization. \(error)")
+                os_log("Could not decode organization %@", log: .newspilot, type: .error, error.localizedDescription)
             }
             
         })
@@ -199,17 +200,14 @@ class OrganizationsQuery :  ObservableObject {
     }
     
     func getProduct(withId id:Int) -> Product? {
-        print("Getting product")
         return products.first{$0.id == id}
     }
     
     func getProducts(for organization:Organization) -> [Product] {
-        print("Filtering products for organization")
         return products.filter{product in product.organizationID == organization.id}.sorted(){$0.name < $1.name}
     }
     
-    func getSubProducts(for product:Product) -> [SubProduct] {
-        print("Filtering subproducts for products")
+    func getSubProducts(for product:Product) -> [SubProduct] {        
         return subProducts.filter{subProduct in subProduct.productID == product.id}.sorted(){$0.name < $1.name}
     }
     

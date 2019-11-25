@@ -118,7 +118,7 @@ class PageQuery : ObservableObject {
                 case .CREATE:
                     switch event.entityType {
                     case .Page:
-                        print("We got an page with the name \(page.name)")
+                        os_log("We got an page with the name %@", log: .newspilot, type: .debug, page.name)
                         var backList = backs[page.backKey]
                         if backList == nil {
                             backList = [page]
@@ -131,7 +131,7 @@ class PageQuery : ObservableObject {
 //                            backs[page.backKey]!.append(page)
                         }
                     default:
-                        print("Got event entity type not handled:\(event.entityType)")
+                        os_log("Got event entity type not handled:%@", log: .newspilot, type: .debug, event.entityType.rawValue)
                     }
                     
                 case .CHANGE:
@@ -144,7 +144,7 @@ class PageQuery : ObservableObject {
                         }
                         
                     default:
-                        print("Can not change \(event.entityType)")
+                        os_log("Can not change:%@", log: .newspilot, type: .error, event.entityType.rawValue)
                     }
                 case .REMOVE:
                     switch (event.entityType) {
@@ -152,14 +152,14 @@ class PageQuery : ObservableObject {
                         var backList = backs[page.backKey, default:[]]
                         backList.removeAll(where:{$0.id == event.entityId})
                     default:
-                        print("Can not remove \(event.entityType)")
+                        os_log("Can not remove:%@", log: .newspilot, type: OSLogType.error, event.entityType.rawValue)
                     }
                 default:
                     os_log("Unhandled event in PageQuery", log: .newspilot, type:.error)
                     
                 }
             }catch(let error) {
-                print("Could not decode Page. \(error)")
+                os_log("Could not decode Page. Error:%@", log: .newspilot, type: .error, error.localizedDescription)
             }
         })
     }

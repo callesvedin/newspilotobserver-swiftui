@@ -25,7 +25,7 @@ struct PageListCell: View {
 
                 WebImage(url: self.page.thumbUrl, options: [.highPriority, .allowInvalidSSLCertificates,.retryFailed])
                                           .onSuccess { image, cacheType in
-                                              print("loaded preview")
+//                                              print("loaded preview")
                                           }
                                           .resizable() // Resizable like SwiftUI.Image
                                           .placeholder(Image(uiImage: UIImage(named: "EmptyPageThumb.png")!))

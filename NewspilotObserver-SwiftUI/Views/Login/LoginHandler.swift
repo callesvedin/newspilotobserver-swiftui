@@ -9,6 +9,7 @@
 import Foundation
 import Combine
 import Newspilot
+import os.log
 
 enum ConnectionStatus {
     case notConnected, connecting, connected, authenticationFailed, connectionFailed
@@ -28,7 +29,8 @@ class LoginHandler: ObservableObject {
         newspilot.connect(callback: {result in
             switch result {
             case .failure(let error):
-                print("Could not connect to newspilot. Error:\(error)")
+                os_log("Could not connect to newspilot. Error:%@", log: .newspilot, type: .debug, error.localizedDescription)
+                
                 DispatchQueue.main.async {
                     switch error {
                     case .httpError(let errorCode, _) where errorCode == 401:
@@ -39,7 +41,7 @@ class LoginHandler: ObservableObject {
                 }
 
             case .success(let sessionId):
-                print("Connected. Got new sessionId:\(sessionId)")
+                os_log("Connected. Got new sessionId:%d", log: .newspilot, type: .debug, sessionId)
                 
                 DispatchQueue.main.async {
                     self.query = OrganizationsQuery(withNewspilot: self.newspilot)
