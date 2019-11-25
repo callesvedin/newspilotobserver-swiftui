@@ -14,17 +14,14 @@ class PageModelAdapter {
     let newspilotServer:String
     var statuses:[Status]
     var sections:[NewspilotSection]
-    var flags:[EntityFlag] {
-        didSet {
-            self.flags.sort(by: {f1,f2 in f1.sortKey < f2.sortKey})
-        }
-    }
+    var flags:[EntityFlag]
+    
     
     init(newspilotServer:String, statuses:[Status], sections:[NewspilotSection], flags:[EntityFlag]){
         self.statuses = statuses
         self.newspilotServer = newspilotServer
         self.sections = sections
-        self.flags = flags
+        self.flags = flags.sorted(by: {f1,f2 in f1.sortKey < f2.sortKey})
     }
     
     func getPageViewModel(from page:Page) -> PageViewModel {

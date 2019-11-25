@@ -39,21 +39,13 @@ struct PageListCell: View {
                                           .scaledToFit()
                         .frame(width: 50, height: geometry.size.height, alignment: Alignment.center)
                 
-                
-//                WebImage(url: self.page.thumbUrl, placeholder: Image(uiImage: UIImage(named: "EmptyPageThumb.png")!), options: [.highPriority, .allowInvalidSSLCertificates,.retryFailed])
-//                    .onSuccess(perform: { (image, cacheType) in
-//                        
-//                    })
-//                    .resizable()
-//                    .scaledToFit()
-//                    .frame(width: 50, height: geometry.size.height, alignment: Alignment.center)
                 VStack(alignment: .leading) {
                     Text("\(self.page.name)")
                     HStack {
                         if self.page.section != nil {
                             Text(self.page.section!).font(.caption)
                         }
-                        //FlagView(page.flags)
+                        Text("\(self.page.flags.count)")
                     }
                 }
                 Spacer()

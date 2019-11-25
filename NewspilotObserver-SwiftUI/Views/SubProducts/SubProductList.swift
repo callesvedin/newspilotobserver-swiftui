@@ -31,15 +31,7 @@ struct SubProductList: View {
                          publicationDates:self.publicationDateQuery.sortedPublicationDates))
                     {
                     Text(subProduct.name) //.font(.caption).foregroundColor(.gray)
-                }
-
-                
-//                PageList(subProduct:subProduct,
-//                         publicationDates:self.publicationDateQuery.sortedPublicationDates,
-//                         pageQuery:PageQuery(withNewspilot: self.loginHandler.newspilot, productId: subProduct.productID, subProductId: subProduct.id, publicationDateId: -1))) {
-//                    Text(subProduct.name) //.font(.caption).foregroundColor(.gray)
-//                }
-                
+                }                
             }
         }.navigationBarTitle(product.name).onAppear(){
             self.publicationDateQuery.load()

@@ -76,7 +76,7 @@ struct InfoView: View {
                 KeyValueView(key:"Template", value:page.template)
                 KeyValueView(key:"Edition Type", value: page.editionType.stringValue)
                 KeyColorValueView(key:"Status", value: page.statusColor)
-//                KeyFlagValueView(key:"Flags", value:page.)
+                KeyFlagValueView(key:"Flags", flags:page.flags)
                 
             }
         }.background(Color.white.edgesIgnoringSafeArea(.all))
@@ -137,4 +137,35 @@ struct KeyColorValueView: View {
     }
 }
 
+struct KeyFlagValueView:View {
+    let key:String
+    let flags:[UIImage?]
+    
+    var body: some View {
+        HStack {
+            Text(self.key).bold()
+            Spacer()
+            HStack (spacing:0) {
+                ForEach (0..<flags.count) {index in
+                    FlagIcon(flag:self.flags[index])
+                }
+            }
+        }
+    }
+}
 
+
+struct FlagIcon : View {
+    let flag:UIImage?
+    
+    var body:some View {
+        Group {
+        if flag != nil {
+            Image.init(uiImage: self.flag!).frame(width: 16, height: 16, alignment: Alignment.center)
+        }else{
+            Image.init(systemName: "star")
+            }
+            
+        }
+    }
+}
