@@ -29,10 +29,6 @@ struct PageListCell: View {
                                           }
                                           .resizable() // Resizable like SwiftUI.Image
                                           .placeholder(Image(uiImage: UIImage(named: "EmptyPageThumb.png")!))
-                                          // Supports ViewBuilder as well
-                                          .placeholder {
-                                              Rectangle().foregroundColor(.gray)
-                                          }
                                           .indicator(.activity) // Activity Indicator
                                           .animation(.easeInOut(duration: 0.5)) // Animation Duration
                                           .transition(.fade) // Fade Transition
@@ -44,9 +40,14 @@ struct PageListCell: View {
                     HStack {
                         if self.page.section != nil {
                             Text(self.page.section!).font(.caption)
-                        }
-                        Text("\(self.page.flags.count)")
+                        }                        
                     }
+                    HStack (spacing:0) {
+                        ForEach (0..<self.page.flags.count) {index in
+                            FlagIcon(flag:self.page.flags[index])
+                        }
+                    }
+
                 }
                 Spacer()
             }
@@ -56,7 +57,7 @@ struct PageListCell: View {
 
 struct PageListCell_Previews: PreviewProvider {
     static var previews: some View {
-        let model = PageViewModel(id: 1, name: "Great page", section: "Section A", part: "Part A", edition: "Edition 1", version: "Version 3",template: "A-Section",editionType: .original, statusColor: UIColor.green,flags:[UIImage(systemName: "star"), UIImage(systemName: "star.fill")],
+        let model = PageViewModel(id: 1, name: "Great page", section: "Section A", part: "Part A", edition: "Edition 1", version: "Version 3",template: "A-Section",editionType: .original, statusName: "Ready", statusColor: UIColor.green,flags:[UIImage(systemName: "star"), UIImage(systemName: "star.fill")],
                                   thumbUrl: nil, previewUrl: nil)
         return PageListCell(page: model).previewLayout(.fixed(width: 300, height: 50))
     }

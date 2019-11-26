@@ -32,9 +32,8 @@ class PageQuery : ObservableObject {
     
     private var query:Query? {
         didSet {
-            if query == nil {
-                cancellableSubscriber?.cancel()
-            }else{
+            cancellableSubscriber?.cancel()
+            if query != nil {
                 cancellableSubscriber = self.query!.events.receive(on: RunLoop.main).sink(receiveCompletion: { completion in
                     os_log("PageQuery got completed", log:.newspilot, type:.debug)
                 }, receiveValue: {events in

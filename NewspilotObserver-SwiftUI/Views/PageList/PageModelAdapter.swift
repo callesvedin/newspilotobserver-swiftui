@@ -27,10 +27,13 @@ class PageModelAdapter {
     func getPageViewModel(from page:Page) -> PageViewModel {
         
         var statusColor:UIColor
+        var statusName:String
         if let status = statuses.first(where: {status in status.id == page.status}) {
             statusColor = intToColor(value: Int(status.color))
+            statusName = status.name
         }else{
             statusColor = UIColor.white
+            statusName = ""
         }
         let sectionName:String? = sections.first(where: {section in section.id == page.sectionID})?.name
         let template = page.template
@@ -43,7 +46,7 @@ class PageModelAdapter {
         return PageViewModel(id:page.id, name: page.name, section:sectionName,
                              part: page.part, edition: page.edition,
                              version: page.version, template:template,
-                             editionType: editionType, statusColor: statusColor, flags: flags,
+                             editionType: editionType,statusName: statusName, statusColor: statusColor, flags: flags,
                               thumbUrl: thumbUrl, previewUrl: previewUrl)
     }
     

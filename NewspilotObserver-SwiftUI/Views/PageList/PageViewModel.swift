@@ -18,6 +18,7 @@ struct PageViewModel {
     let version:String?
     let template:String?
     let editionType:EditionType
+    let statusName:String
     let statusColor:UIColor
     let flags:[UIImage?]
     let thumbUrl:URL?

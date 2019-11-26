@@ -75,8 +75,8 @@ struct InfoView: View {
                 KeyValueView(key:"Section", value:page.section)
                 KeyValueView(key:"Template", value:page.template)
                 KeyValueView(key:"Edition Type", value: page.editionType.stringValue)
-                KeyColorValueView(key:"Status", value: page.statusColor)
-                KeyFlagValueView(key:"Flags", flags:page.flags)
+                KeyColorValueView(key:"Status", name:page.statusName, color: page.statusColor)
+                FlagsView(key:"Flags", flags:page.flags)
                 
             }
         }.background(Color.white.edgesIgnoringSafeArea(.all))
@@ -95,7 +95,7 @@ struct PageDetailView_Previews: PreviewProvider {
         
         let view = PageDetailView(page:PageViewModel(id: 1, name: "Great page", section: "Section A",
                                                      part: "Part A", edition: "Edition 1", version: "Version 3", template: "A-Section",
-                                                     editionType: .identical,
+                                                     editionType: .identical, statusName: "Ready",
                                                      statusColor: UIColor.green, flags:[UIImage(systemName: "star"), UIImage(systemName: "star.fill")], thumbUrl: nil, previewUrl: nil)
         )
         return Group {
@@ -122,50 +122,23 @@ struct KeyValueView: View {
 
 struct KeyColorValueView: View {
     let key:String
-    let value:UIColor
+    let name:String
+    let color:UIColor
     
     var body: some View {
         HStack {
             Text(self.key).bold()
             Spacer()
-            if value == .white {
+            Text(self.name).foregroundColor(.gray)
+            if color == .white {
                 Image.init(systemName: "circle").foregroundColor(Color(.black))
             }else {
-                Image.init(systemName: "circle.fill").foregroundColor(Color(value))
-            }
-        }
-    }
-}
-
-struct KeyFlagValueView:View {
-    let key:String
-    let flags:[UIImage?]
-    
-    var body: some View {
-        HStack {
-            Text(self.key).bold()
-            Spacer()
-            HStack (spacing:0) {
-                ForEach (0..<flags.count) {index in
-                    FlagIcon(flag:self.flags[index])
-                }
+                Image.init(systemName: "circle.fill").foregroundColor(Color(color))
             }
         }
     }
 }
 
 
-struct FlagIcon : View {
-    let flag:UIImage?
-    
-    var body:some View {
-        Group {
-        if flag != nil {
-            Image.init(uiImage: self.flag!).frame(width: 16, height: 16, alignment: Alignment.center)
-        }else{
-            Image.init(systemName: "star")
-            }
-            
-        }
-    }
-}
+
+
