@@ -87,7 +87,7 @@ class StatusQuery :  ObservableObject {
     
     private func process(_ events:[Event]) {
         events.forEach({ (event) in
-            os_log("Processing status event from newspilot. EntityType: %@ , EntityId: %ld", log: .newspilot, type: .debug, event.entityType.rawValue, event.entityId)
+            os_log("Processing status event from newspilot. EntityType: %@ , EntityId: %d", log: .newspilot, type: .debug, event.entityType.rawValue, event.entityId)
 //            os_log("Values %@",log:.newspilot, type:.debug, event.values)
             do {
                 let data = try JSONSerialization.data(withJSONObject: event.values, options: [])
