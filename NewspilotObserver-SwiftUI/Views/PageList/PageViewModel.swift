@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-struct PageViewModel {
+struct PageViewModel : Identifiable {
     let id:Int
     let name:String
     let section:String?

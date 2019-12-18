@@ -12,9 +12,11 @@ import Newspilot
 struct PageList: View {
     private var publicationDates:[PublicationDate]
     private var subProduct:SubProduct
-
+    
     
     @State var filter=PageFilter()
+    @State var showFilterView = false
+    
     @EnvironmentObject var loginHandler:LoginHandler
     @EnvironmentObject var statusQuery:StatusQuery
     @EnvironmentObject var organizationQuery:OrganizationsQuery
@@ -33,23 +35,19 @@ struct PageList: View {
     
     var body: some View {
         let pageModelAdapter = PageModelAdapter(newspilotServer:loginHandler.newspilot.server,
-                                           statuses: self.statusQuery.statuses,
-                                           sections: self.organizationQuery.sections,
-                                           flags: self.flagQuery.flags)
+                                                statuses: self.statusQuery.statuses,
+                                                sections: self.organizationQuery.sections,
+                                                flags: self.flagQuery.flags)
         let backs = self.pageQuery.backs
-        let backKeys = backs.map{$0.key}
+        let backKeys = backs.map{$0.key}.sorted()
         let publicationDateString = publicationDates.first(where: {pubDate in pubDate.id == filter.publicationDateId})?.name ?? "Filter"
         return
             VStack {
-                NavigationLink(destination: PageFilterView(subProduct:self.subProduct, publicationDates: self.publicationDates, filter: self.filter))
-                {
-                    Text(publicationDateString)
-                }
-
+                Button(action:{self.showFilterView = true}, label: {Text(publicationDateString)})
                 List {
                     ForEach (backKeys, id: \.hashValue) {backKey in
                         Section(header:Text("Part: \(backKey.part ?? "-") Edition: \(backKey.edition ?? "-") Version:\(backKey.version ?? "-")")){
-                            ForEach (0 ..< backs[backKey]!.count) {index in
+                            ForEach (0 ..< backs[backKey]!.count, id:\.self) {index in
                                 NavigationLink(destination: PageDetailsView(self.getViewsFrom(pageModelAdapter: pageModelAdapter, backs: backs, backKey: backKey), currentPage: index)) {
                                     PageListCell(page:pageModelAdapter.getPageViewModel(from: backs[backKey]![index]))
                                 }
@@ -62,14 +60,21 @@ struct PageList: View {
             .onAppear(){
                 self.reload()
             }
-                //Currently this does not work for ios 13.2 :-(
 //            .navigationBarItems(trailing:
-//                    NavigationLink(destination: PageFilterView(subProduct:self.subProduct, publicationDates: self.publicationDates, filter: self.filter))
-//                    {
-//                        Text("Filter")
-//                    }
+//                //                    NavigationLink(destination: PageFilterView(subProduct:self.subProduct, publicationDates: self.publicationDates, filter: self.filter))
+//                //                    {
+//                //                        Text("\(publicationDateString)")
+//                //                    }
+////                NavigationLink(
+////                   destination:PageFilterView(subProduct:self.subProduct, publicationDates: self.publicationDates, filter: self.$filter),
+////                   label:{Text("\(publicationDateString)")}
+////                )
+//                Button(action:{self.showFilterView = true}, label: {Text(publicationDateString)})
 //            )
             .navigationBarTitle(self.subProduct.name)
+            .sheet(isPresented: $showFilterView) {
+                PageFilterView(subProduct:self.subProduct, publicationDates: self.publicationDates, filter: self.$filter)
+            }
             .onReceive(filter.objectWillChange, perform: {self.reload()})
     }
     
@@ -83,7 +88,7 @@ struct PageList: View {
     }
     
     func reload() {
-        if self.pageQuery.publicationDateId != self.filter.publicationDateId {
+        if self.pageQuery.publicationDateId != self.filter.publicationDateId {            
             self.pageQuery.publicationDateId = self.filter.publicationDateId
         }
     }

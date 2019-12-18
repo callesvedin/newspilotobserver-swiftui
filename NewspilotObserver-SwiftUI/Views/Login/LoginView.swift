@@ -17,7 +17,7 @@ struct LoginView: View {
     @ObservedObject var loginSettings:LoginSettings = LoginSettings()
     @EnvironmentObject var loginHandler:LoginHandler
     
-    var body: some View {
+    var body: some View {        
         NavigationView {
             VStack {
                 Text("Newspilot")
@@ -57,13 +57,7 @@ struct LoginView: View {
                 else{
                     Text(" ")
                 }
-                
-                NavigationLink(destination: OrganizationList()
-                    .environmentObject(OrganizationsQuery(withNewspilot: loginHandler.newspilot))
-                    .environmentObject(StatusQuery(withNewspilot: loginHandler.newspilot))
-                    .environmentObject(PageFlagQuery(withNewspilot: loginHandler.newspilot))
-                , tag: ConnectionStatus.connected, selection: $loginHandler.connectionStatus) {
-                    Button(action:{
+                Button(action:{
                         self.loginHandler.login(login: self.loginSettings.login, password: self.password, server: self.loginSettings.server)
                     }){
                         HStack {
@@ -82,8 +76,7 @@ struct LoginView: View {
                         .frame(width: 220, height: 50)
                         .background(Color.blue)
                         .cornerRadius(15.0)
-                    }
-                }
+                    }                
                 
                 Spacer()
             }
@@ -92,7 +85,7 @@ struct LoginView: View {
             .edgesIgnoringSafeArea(.bottom)
             .animation(.easeOut(duration: 0.16))
             
-        }
+            }.navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

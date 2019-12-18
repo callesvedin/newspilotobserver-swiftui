@@ -15,6 +15,7 @@ protocol NameableView:View {
 
 struct PageDetailView: NameableView {
     let page:PageViewModel
+    @State var infoViewShown = false
     
     var name:String {
         get {return page.name}
@@ -42,10 +43,11 @@ struct PageDetailView: NameableView {
                         .frame(width: geometry.size.width, height: geometry.size.height-80, alignment: Alignment.center)
                 }
                 
-                ZStack {
-                    InfoView(geometry:geometry, page:self.page)
+                BottomSheetView(isOpen: self.$infoViewShown,
+                                maxHeight: geometry.size.height * 0.7)
+                {
+                    InfoView(page:self.page)
                 }
-                
             }
         }
     }
@@ -53,41 +55,26 @@ struct PageDetailView: NameableView {
 
 
 struct InfoView: View {
-    let geometry:GeometryProxy
     let page:PageViewModel
-    @State private var shown=false
     
     var body: some View {
         UITableView.appearance().backgroundColor = .clear // tableview background
         UITableViewCell.appearance().backgroundColor = .clear // cell background
-        let y = shown ? geometry.size.height/2 - 200 : geometry.size.height - 30
+
         return List {
-            HStack {
-                Spacer()
-                Capsule().frame(width: 60, height: 6, alignment: .center).foregroundColor(.gray)
-                Spacer()
-            }
-            if shown {
-                KeyValueView(key:"Name", value:page.name)
-                KeyValueView(key:"Part", value:page.part)
-                KeyValueView(key:"Edition", value:page.edition)
-                KeyValueView(key:"Version", value:page.version)
-                KeyValueView(key:"Section", value:page.section)
-                KeyValueView(key:"Template", value:page.template)
-                KeyValueView(key:"Edition Type", value: page.editionType.stringValue)
-                KeyColorValueView(key:"Status", name:page.statusName, color: page.statusColor)
-                FlagsView(key:"Flags", flags:page.flags)
+            KeyValueView(key:"Name", value:page.name)
+            KeyValueView(key:"Part", value:page.part)
+            KeyValueView(key:"Edition", value:page.edition)
+            KeyValueView(key:"Version", value:page.version)
+            KeyValueView(key:"Section", value:page.section)
+            KeyValueView(key:"Template", value:page.template)
+            KeyValueView(key:"Edition Type", value: page.editionType.stringValue)
+            KeyColorValueView(key:"Status", name:page.statusName, color: page.statusColor)
+            FlagsView(key:"Flags", flags:page.flags)
                 
-            }
+            
         }.background(Color.white.edgesIgnoringSafeArea(.all))
-            .overlay(
-                RoundedRectangle(cornerRadius: 16)
-                    .stroke(Color.gray, lineWidth: 1)
-        ).onTapGesture {
-                self.shown.toggle()
-        }.animation(.easeInOut(duration: 0.5)).offset(y: y)
-    }
-    
+    }    
 }
 
 struct PageDetailView_Previews: PreviewProvider {

@@ -23,7 +23,7 @@ class PageFlagQuery :  ObservableObject {
     var cancellableSubscriber:Cancellable?
     var loaded:Bool = false
     
-    private let newspilot:Newspilot!
+    private weak var newspilot:Newspilot?
     
     private var query:Query? {
         didSet {
@@ -41,28 +41,35 @@ class PageFlagQuery :  ObservableObject {
     }
     
     
-    init(withNewspilot newspilot:Newspilot?) {
+    init(withNewspilot newspilot:Newspilot) {
         self.newspilot = newspilot
         load()
     }
     
     func load() {
+        guard let localNewspilot = newspilot else {
+            os_log("Can not load query when newspilot is nil", log:.newspilot, type:.default)
+            return
+        }
         if !loaded {
             let queryString = getQueryString()
             if queryString != nil {
                 if query != nil && externalQueryId != nil {
-                    self.newspilot.removeQuery(withQuid: externalQueryId)
+                    localNewspilot.removeQuery(withQuid: externalQueryId)
                     query = nil
                 }
                 self.externalQueryId = UUID().uuidString
                 
-                newspilot.addQuery(withExternalId:self.externalQueryId, queryString: queryString!, completionHandler: {result in
+                localNewspilot.addQuery(withExternalId:self.externalQueryId, queryString: queryString!, completionHandler: {[weak self] result in
+                    guard let strongSelf = self else {
+                        return
+                    }
                     switch (result) {
                     case .failure(let error):
                         os_log("Could not add query. Error:%@", log: .newspilot, type:.error, error.localizedDescription)
                     case .success(let query):
-                        self.query = query
-                        self.loaded = true
+                        strongSelf.query = query
+                        strongSelf.loaded = true
                     }
                 })
             }else{

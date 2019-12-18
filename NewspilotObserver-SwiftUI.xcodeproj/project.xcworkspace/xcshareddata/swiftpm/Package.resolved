@@ -2,15 +2,6 @@
   "object": {
     "pins": [
       {
-        "package": "Newspilot",
-        "repositoryURL": "git@bitbucket.org:infomaker/newspilotswiftclient.git",
-        "state": {
-          "branch": "feature/combine",
-          "revision": "788e6d46cf95b826c8e2d5cf8c3d32ef7a8308fc",
-          "version": null
-        }
-      },
-      {
         "package": "SDWebImage",
         "repositoryURL": "https://github.com/SDWebImage/SDWebImage.git",
         "state": {

@@ -11,6 +11,10 @@ import SDWebImageSwiftUI
 
 struct PageListCell: View {
     let page:PageViewModel
+    
+    init(page:PageViewModel) {
+        self.page = page
+    }
         
     var body: some View {
         GeometryReader {geometry in
@@ -30,20 +34,20 @@ struct PageListCell: View {
                                           .resizable() // Resizable like SwiftUI.Image
                                           .placeholder(Image(uiImage: UIImage(named: "EmptyPageThumb.png")!))
                                           .indicator(.activity) // Activity Indicator
-                                          .animation(.easeInOut(duration: 0.5)) // Animation Duration
+                                          .animation(.easeInOut(duration: 0.2)) // Animation Duration
                                           .transition(.fade) // Fade Transition
                                           .scaledToFit()
                         .frame(width: 50, height: geometry.size.height, alignment: Alignment.center)
                 
-                VStack(alignment: .leading) {
+                VStack(alignment: .leading, spacing: 0) {
                     Text("\(self.page.name)")
-                    HStack {
+                    HStack(spacing:0) {
                         if self.page.section != nil {
                             Text(self.page.section!).font(.caption)
-                        }                        
-                    }
-                    HStack (spacing:0) {
-                        ForEach (0..<self.page.flags.count) {index in
+                        }
+                        Spacer()                    
+
+                        ForEach (0..<self.page.flags.count, id:\.self) {index in
                             FlagIcon(flag:self.page.flags[index])
                         }
                     }

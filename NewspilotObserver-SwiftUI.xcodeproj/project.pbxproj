@@ -67,6 +67,8 @@
 		EB8CE4C223317D5B000A03A2 /* LoginSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8CE4C123317D5B000A03A2 /* LoginSettings.swift */; };
 		EB953D8A232C058800E65A73 /* SubProductList.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB953D89232C058800E65A73 /* SubProductList.swift */; };
 		EB995C4623A38D97006C9F84 /* ColorExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB995C4523A38D97006C9F84 /* ColorExtensionTests.swift */; };
+		EBA13CBB23A8D67E00FFB830 /* BottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA13CBA23A8D67E00FFB830 /* BottomSheetView.swift */; };
+		EBA13CBD23A980B500FFB830 /* ApplicationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA13CBC23A980B500FFB830 /* ApplicationView.swift */; };
 		EBA5F199236D6C230011E3EF /* OrderedArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA5F198236D6C230011E3EF /* OrderedArray.swift */; };
 		EBD22A3F22CBFBCD000DFD41 /* Product_15.png in Resources */ = {isa = PBXBuildFile; fileRef = EBD22A2522CBFBCD000DFD41 /* Product_15.png */; };
 		EBD22A4022CBFBCD000DFD41 /* Product_0.png in Resources */ = {isa = PBXBuildFile; fileRef = EBD22A2622CBFBCD000DFD41 /* Product_0.png */; };
@@ -160,6 +162,9 @@
 		EB8CE4C123317D5B000A03A2 /* LoginSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSettings.swift; sourceTree = "<group>"; };
 		EB953D89232C058800E65A73 /* SubProductList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubProductList.swift; sourceTree = "<group>"; };
 		EB995C4523A38D97006C9F84 /* ColorExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensionTests.swift; sourceTree = "<group>"; };
+		EBA13CBA23A8D67E00FFB830 /* BottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetView.swift; sourceTree = "<group>"; };
+		EBA13CBC23A980B500FFB830 /* ApplicationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationView.swift; sourceTree = "<group>"; };
+		EBA13CBE23AA06C200FFB830 /* newspilotswiftclient */ = {isa = PBXFileReference; lastKnownFileType = folder; name = newspilotswiftclient; path = ../../NPProjekt/newspilotswiftclient; sourceTree = "<group>"; };
 		EBA5F198236D6C230011E3EF /* OrderedArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderedArray.swift; sourceTree = "<group>"; };
 		EBD22A2322CBFBCD000DFD41 /* smd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smd.png; sourceTree = "<group>"; };
 		EBD22A2522CBFBCD000DFD41 /* Product_15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Product_15.png; sourceTree = "<group>"; };
@@ -232,6 +237,7 @@
 			isa = PBXGroup;
 			children = (
 				EB0E5B5A237B258A00BC67AB /* KeyboardResponder.swift */,
+				EBA13CBA23A8D67E00FFB830 /* BottomSheetView.swift */,
 			);
 			path = ViewUtils;
 			sourceTree = "<group>";
@@ -286,6 +292,7 @@
 		EB7B9DA222C7EDC7009EB2BE = {
 			isa = PBXGroup;
 			children = (
+				EBA13CBE23AA06C200FFB830 /* newspilotswiftclient */,
 				EB7B9DAD22C7EDC7009EB2BE /* NewspilotObserver-SwiftUI */,
 				EB7B9DC722C7EDC9009EB2BE /* NewspilotObserver-SwiftUITests */,
 				EB7B9DAC22C7EDC7009EB2BE /* Products */,
@@ -403,6 +410,7 @@
 				EB8CE4BC233170A9000A03A2 /* Login */,
 				EB953D88232C055100E65A73 /* SubProducts */,
 				EB54350E2322EC3C004EE63F /* Organizations */,
+				EBA13CBC23A980B500FFB830 /* ApplicationView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -631,11 +639,13 @@
 				EB5435222322FFF3004EE63F /* EntityType.swift in Sources */,
 				EB7B9E3022C7F86E009EB2BE /* EntityQuery.swift in Sources */,
 				EB10054323434AF500E0973F /* ActivityIndicator.swift in Sources */,
+				EBA13CBB23A8D67E00FFB830 /* BottomSheetView.swift in Sources */,
 				EBA5F199236D6C230011E3EF /* OrderedArray.swift in Sources */,
 				EB5435182322F567004EE63F /* OrganizationList.swift in Sources */,
 				EBE97AA8238340A2005CACDB /* EntityFlag.swift in Sources */,
 				EB296F66238DC3A700EE6135 /* FlagsView.swift in Sources */,
 				EB7B9E4722C80088009EB2BE /* ProductImageFactory.swift in Sources */,
+				EBA13CBD23A980B500FFB830 /* ApplicationView.swift in Sources */,
 				EB5435162322F324004EE63F /* ColorExtensions.swift in Sources */,
 				EB7B9E4622C80088009EB2BE /* OSLog+NewspilotObserver.swift in Sources */,
 				EB7B9E4A22C80088009EB2BE /* String+UppercaseCharacters.swift in Sources */,

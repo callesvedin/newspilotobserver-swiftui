@@ -33,7 +33,9 @@ struct SubProductList: View {
                     Text(subProduct.name) //.font(.caption).foregroundColor(.gray)
                 }                
             }
-        }.navigationBarTitle(product.name).onAppear(){
+        }
+        .navigationBarTitle(product.name)
+        .onAppear(){
             self.publicationDateQuery.load()
         }
     }

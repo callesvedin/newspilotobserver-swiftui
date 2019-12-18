@@ -18,24 +18,15 @@ struct OrganizationList: View {
 
     var body: some View {
         List {
-            if organizationQuery.organizations.isEmpty {
-                emptySection
-            } else {
-                organizationsList
-            }
+            organizationsList
         }
         .listStyle(GroupedListStyle())
         .navigationBarTitle("Organizations")
-        .navigationBarBackButtonHidden(true)
+        .navigationBarBackButtonHidden(true)        
     }
 }
 
-private extension OrganizationList {
-    var emptySection: some View {
-        Text("")
-            .foregroundColor(.gray)
-    }
-    
+private extension OrganizationList {    
     var organizationsList: some View {
         ForEach(organizationQuery.organizations) {organization in
             Section(header: Text(organization.name).bold()) {
