@@ -22,13 +22,15 @@ struct PageFilterView: View {
     @Environment(\.presentationMode) var presentationMode
     
     var filter:Binding<PageFilter>
+    var shown:Binding<Bool>
     
-    init(subProduct:SubProduct, publicationDates:[PublicationDate], filter:Binding<PageFilter>) {
+    init(subProduct:SubProduct, publicationDates:[PublicationDate], filter:Binding<PageFilter>, shown:Binding<Bool>) {
         self.subProduct = subProduct
         self.subProductSettings = subProduct.settings
         self.publicationDates = publicationDates
         self.editions = subProduct.settings?.editions ?? []
         self.filter = filter
+        self.shown = shown
         self.selectedPublicationDate = filter.publicationDateId.wrappedValue
     }
     
@@ -39,13 +41,15 @@ struct PageFilterView: View {
                         Text("\(publicationDate.name)").tag(publicationDate.id)
                     }
             }.labelsHidden()
-            HStack {
+            HStack(spacing:40) {
                 Button(action:{
-                    self.presentationMode.wrappedValue.dismiss()
+                    self.shown.wrappedValue = false
+//                    self.presentationMode.wrappedValue.dismiss()
                 }, label:{Text("Cancel")})
                 Button(action:{                    
                     self.filter.wrappedValue.publicationDateId = self.$selectedPublicationDate.wrappedValue
-                    self.presentationMode.wrappedValue.dismiss()
+                    self.shown.wrappedValue = false
+//                    self.presentationMode.wrappedValue.dismiss()
 //                    self.filter.publicationDateId = 1//$selectedPublicationDate.wrappedValue
                 }, label:{Text("Ok")})
             }.padding()
@@ -75,6 +79,6 @@ struct PageFilterView_Previews: PreviewProvider {
                        publicationDates: [
                         PublicationDate(entityType: "PublicationDate", id: 1, issuenumber: "", name: "Pub 1", productID: 1, pubDate: "2019-10-20"),
                         PublicationDate(entityType: "PublicationDate", id: 1, issuenumber: "", name: "Pub 1", productID: 1, pubDate: "2019-10-20")],
-                       filter: .constant(PageFilter()))
+                       filter: .constant(PageFilter()), shown:.constant(false))
     }
 }

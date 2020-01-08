@@ -49,6 +49,7 @@ struct PageDetailView: NameableView {
                     InfoView(page:self.page)
                 }
             }
+            .connectionBanner()
         }
     }
 }

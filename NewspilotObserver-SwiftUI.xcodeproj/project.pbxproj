@@ -84,11 +84,13 @@
 		EBD22A4A22CBFBCD000DFD41 /* Product_ot.png in Resources */ = {isa = PBXBuildFile; fileRef = EBD22A3022CBFBCD000DFD41 /* Product_ot.png */; };
 		EBD22A5422CBFBCD000DFD41 /* EmptyPagePreview.png in Resources */ = {isa = PBXBuildFile; fileRef = EBD22A3A22CBFBCD000DFD41 /* EmptyPagePreview.png */; };
 		EBD22A5622CBFBCD000DFD41 /* EmptyPageThumb.png in Resources */ = {isa = PBXBuildFile; fileRef = EBD22A3C22CBFBCD000DFD41 /* EmptyPageThumb.png */; };
-		EBD22A5922CC059F000DFD41 /* NewspilotManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD22A5822CC059F000DFD41 /* NewspilotManager.swift */; };
+		EBDCC32F23BE092E0092A6FE /* BannerModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDCC32E23BE092E0092A6FE /* BannerModifier.swift */; };
+		EBDCC33123BE09F00092A6FE /* View+Banner.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDCC33023BE09F00092A6FE /* View+Banner.swift */; };
 		EBE97AA623833DF3005CACDB /* PageFlagQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE97AA523833DF3005CACDB /* PageFlagQuery.swift */; };
 		EBE97AA8238340A2005CACDB /* EntityFlag.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE97AA7238340A2005CACDB /* EntityFlag.swift */; };
 		EBEED2372327CBE400746C69 /* ProductRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEED2362327CBE400746C69 /* ProductRowViewModel.swift */; };
 		EBEED2392327D46E00746C69 /* ProductRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEED2382327D46E00746C69 /* ProductRow.swift */; };
+		EBF1F63D23C641D5007A5088 /* ConnectionModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF1F63C23C641D5007A5088 /* ConnectionModifier.swift */; };
 		EBF8055B23277C3D00C5590A /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF8055A23277C3D00C5590A /* Product.swift */; };
 /* End PBXBuildFile section */
 
@@ -164,7 +166,6 @@
 		EB995C4523A38D97006C9F84 /* ColorExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensionTests.swift; sourceTree = "<group>"; };
 		EBA13CBA23A8D67E00FFB830 /* BottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetView.swift; sourceTree = "<group>"; };
 		EBA13CBC23A980B500FFB830 /* ApplicationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationView.swift; sourceTree = "<group>"; };
-		EBA13CBE23AA06C200FFB830 /* newspilotswiftclient */ = {isa = PBXFileReference; lastKnownFileType = folder; name = newspilotswiftclient; path = ../../NPProjekt/newspilotswiftclient; sourceTree = "<group>"; };
 		EBA5F198236D6C230011E3EF /* OrderedArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderedArray.swift; sourceTree = "<group>"; };
 		EBD22A2322CBFBCD000DFD41 /* smd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smd.png; sourceTree = "<group>"; };
 		EBD22A2522CBFBCD000DFD41 /* Product_15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Product_15.png; sourceTree = "<group>"; };
@@ -192,11 +193,14 @@
 		EBD22A3B22CBFBCD000DFD41 /* sklt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sklt.png; sourceTree = "<group>"; };
 		EBD22A3C22CBFBCD000DFD41 /* EmptyPageThumb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EmptyPageThumb.png; sourceTree = "<group>"; };
 		EBD22A3D22CBFBCD000DFD41 /* vb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vb.png; sourceTree = "<group>"; };
-		EBD22A5822CC059F000DFD41 /* NewspilotManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewspilotManager.swift; sourceTree = "<group>"; };
+		EBDCC32E23BE092E0092A6FE /* BannerModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerModifier.swift; sourceTree = "<group>"; };
+		EBDCC33023BE09F00092A6FE /* View+Banner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Banner.swift"; sourceTree = "<group>"; };
 		EBE97AA523833DF3005CACDB /* PageFlagQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageFlagQuery.swift; sourceTree = "<group>"; };
 		EBE97AA7238340A2005CACDB /* EntityFlag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityFlag.swift; sourceTree = "<group>"; };
+		EBEA549923BF2E1F00B88B8B /* newspilotswiftclient */ = {isa = PBXFileReference; lastKnownFileType = folder; name = newspilotswiftclient; path = ../../NPProjekt/newspilotswiftclient; sourceTree = "<group>"; };
 		EBEED2362327CBE400746C69 /* ProductRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRowViewModel.swift; sourceTree = "<group>"; };
 		EBEED2382327D46E00746C69 /* ProductRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRow.swift; sourceTree = "<group>"; };
+		EBF1F63C23C641D5007A5088 /* ConnectionModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionModifier.swift; sourceTree = "<group>"; };
 		EBF8055A23277C3D00C5590A /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -292,7 +296,7 @@
 		EB7B9DA222C7EDC7009EB2BE = {
 			isa = PBXGroup;
 			children = (
-				EBA13CBE23AA06C200FFB830 /* newspilotswiftclient */,
+				EBEA549923BF2E1F00B88B8B /* newspilotswiftclient */,
 				EB7B9DAD22C7EDC7009EB2BE /* NewspilotObserver-SwiftUI */,
 				EB7B9DC722C7EDC9009EB2BE /* NewspilotObserver-SwiftUITests */,
 				EB7B9DAC22C7EDC7009EB2BE /* Products */,
@@ -377,7 +381,6 @@
 		EB7B9E2822C7F7AE009EB2BE /* Newspilot */ = {
 			isa = PBXGroup;
 			children = (
-				EBD22A5822CC059F000DFD41 /* NewspilotManager.swift */,
 				EB7B9E2D22C7F86E009EB2BE /* Calendar+StartStop.swift */,
 				EB7B9E2B22C7F86E009EB2BE /* EntityQuery.swift */,
 				EB7B9E2C22C7F86E009EB2BE /* NotConnectedView.swift */,
@@ -404,6 +407,7 @@
 		EB7B9E4E22C80B0B009EB2BE /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				EBDCC32D23BE09130092A6FE /* Banner */,
 				EB0E5B59237B256200BC67AB /* ViewUtils */,
 				EB6C22862368BB9500101147 /* PageDetail */,
 				EB41EA4E2347991100550428 /* PageList */,
@@ -480,6 +484,16 @@
 				EBD22A3022CBFBCD000DFD41 /* Product_ot.png */,
 			);
 			path = Gota;
+			sourceTree = "<group>";
+		};
+		EBDCC32D23BE09130092A6FE /* Banner */ = {
+			isa = PBXGroup;
+			children = (
+				EBDCC32E23BE092E0092A6FE /* BannerModifier.swift */,
+				EBDCC33023BE09F00092A6FE /* View+Banner.swift */,
+				EBF1F63C23C641D5007A5088 /* ConnectionModifier.swift */,
+			);
+			path = Banner;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -626,6 +640,7 @@
 				EB7B9E3222C7F86E009EB2BE /* Calendar+StartStop.swift in Sources */,
 				EBE97AA623833DF3005CACDB /* PageFlagQuery.swift in Sources */,
 				EB7B9E3322C7F86E009EB2BE /* Notification.Name+ConnectionStatus.swift in Sources */,
+				EBDCC33123BE09F00092A6FE /* View+Banner.swift in Sources */,
 				EB6C22882368BBBF00101147 /* PageControl.swift in Sources */,
 				EB6C228C2368BCB400101147 /* PageViewController.swift in Sources */,
 				EB6C2285236233C100101147 /* BackKey.swift in Sources */,
@@ -635,7 +650,6 @@
 				EB05395B232FF175007880BB /* OrganizationsDataSource.swift in Sources */,
 				EB6C2279235E3D1500101147 /* PageFilter.swift in Sources */,
 				EB7B9DAF22C7EDC7009EB2BE /* AppDelegate.swift in Sources */,
-				EBD22A5922CC059F000DFD41 /* NewspilotManager.swift in Sources */,
 				EB5435222322FFF3004EE63F /* EntityType.swift in Sources */,
 				EB7B9E3022C7F86E009EB2BE /* EntityQuery.swift in Sources */,
 				EB10054323434AF500E0973F /* ActivityIndicator.swift in Sources */,
@@ -652,7 +666,9 @@
 				EB6C22692358CC0C00101147 /* PageViewModel.swift in Sources */,
 				EB5435202322FE2D004EE63F /* Entity.swift in Sources */,
 				EB41EA562348BF0A00550428 /* PageQuery.swift in Sources */,
+				EBF1F63D23C641D5007A5088 /* ConnectionModifier.swift in Sources */,
 				EB54351E2322FE1D004EE63F /* Organization.swift in Sources */,
+				EBDCC32F23BE092E0092A6FE /* BannerModifier.swift in Sources */,
 				EB7B9DB122C7EDC7009EB2BE /* SceneDelegate.swift in Sources */,
 				EB6AE6FF233A8A2E0020A501 /* LoginHandler.swift in Sources */,
 				EB8CE4C023317D08000A03A2 /* UserDefault.swift in Sources */,
@@ -940,7 +956,7 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "git@bitbucket.org:infomaker/newspilotswiftclient.git";
 			requirement = {
-				branch = feature/combine;
+				branch = develop;
 				kind = branch;
 			};
 		};

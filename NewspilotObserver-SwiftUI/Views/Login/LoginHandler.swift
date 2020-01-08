@@ -15,18 +15,36 @@ enum ConnectionStatus {
     case notConnected, connecting, connected, authenticationFailed, connectionFailed
 }
 
+
 class LoginHandler: ObservableObject {
     @Published var connectionStatus:ConnectionStatus! = .notConnected
+    @Published var loggedIn:Bool = false
     
-    var newspilot:Newspilot = Newspilot()
+    let newspilot:Newspilot
+    
+    init() {
+        newspilot = Newspilot()
+        newspilot.addConnectionCallback(){ [weak self] state in
+            DispatchQueue.main.async {
+                switch state {
+                case .Connected:
+                    self?.connectionStatus = .connected
+                case .Disconnected(let reason,let error):
+                    os_log("Connection lost. Reason: %@. Error:%@", log:.newspilot, type: .info, reason ?? "-", error.debugDescription)
+                    self?.connectionStatus = .notConnected
+                }
+            }
+        }
+    }
+    
+    
     
     func login(login:String, password:String, server:String) {
         connectionStatus = .connecting
         newspilot.disconnect()
-        newspilot = Newspilot(server: server, login:login, password: password)
         
         //TODO: Check this- https://stackoverflow.com/questions/56595542/use-navigationbutton-with-a-server-request-in-swiftui
-        newspilot.connect(callback: {[weak self] result in
+        newspilot.connect(server:server,login: login, password: password, callback: {[weak self] result in
             switch result {
             case .failure(let error):
                 os_log("Could not connect to newspilot. Error:%@", log: .newspilot, type: .debug, error.localizedDescription)
@@ -35,15 +53,18 @@ class LoginHandler: ObservableObject {
                     switch error {
                     case .httpError(let errorCode, _) where errorCode == 401:
                         self?.connectionStatus = .authenticationFailed
+                        self?.loggedIn = false
                     default:
                         self?.connectionStatus = .connectionFailed
+                        self?.loggedIn = false
                     }
                 }
-
+                
             case .success(let sessionId):
                 os_log("Connected. Got new sessionId:%d", log: .newspilot, type: .debug, sessionId)
                 
-                DispatchQueue.main.async {                    
+                DispatchQueue.main.async {
+                    self?.loggedIn = true
                     self?.connectionStatus = .connected
                 }
                 

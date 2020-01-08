@@ -34,48 +34,49 @@ struct PageList: View {
     
     
     var body: some View {
-        let pageModelAdapter = PageModelAdapter(newspilotServer:loginHandler.newspilot.server,
+        let pageModelAdapter = PageModelAdapter(newspilotServer:loginHandler.newspilot.server!,
                                                 statuses: self.statusQuery.statuses,
                                                 sections: self.organizationQuery.sections,
                                                 flags: self.flagQuery.flags)
         let backs = self.pageQuery.backs
         let backKeys = backs.map{$0.key}.sorted()
-        let publicationDateString = publicationDates.first(where: {pubDate in pubDate.id == filter.publicationDateId})?.name ?? "Filter"
+        let publicationDateString = publicationDates.first(where: {pubDate in pubDate.id == filter.publicationDateId})?.name ?? "PubDate"
         return
-            VStack {
-                Button(action:{self.showFilterView = true}, label: {Text(publicationDateString)})
-                List {
-                    ForEach (backKeys, id: \.hashValue) {backKey in
-                        Section(header:Text("Part: \(backKey.part ?? "-") Edition: \(backKey.edition ?? "-") Version:\(backKey.version ?? "-")")){
-                            ForEach (0 ..< backs[backKey]!.count, id:\.self) {index in
-                                NavigationLink(destination: PageDetailsView(self.getViewsFrom(pageModelAdapter: pageModelAdapter, backs: backs, backKey: backKey), currentPage: index)) {
-                                    PageListCell(page:pageModelAdapter.getPageViewModel(from: backs[backKey]![index]))
+            GeometryReader {geometry in
+                ZStack {
+                    List {
+                        ForEach (backKeys, id: \.hashValue) {backKey in
+                            Section(header:Text("Part: \(backKey.part ?? "-") Edition: \(backKey.edition ?? "-") Version:\(backKey.version ?? "-")")){
+                                ForEach (0 ..< backs[backKey]!.count, id:\.self) {index in
+                                    NavigationLink(destination: PageDetailsView(self.getViewsFrom(pageModelAdapter: pageModelAdapter, backs: backs, backKey: backKey), currentPage: index)) {
+                                        PageListCell(page:pageModelAdapter.getPageViewModel(from: backs[backKey]![index]))
+                                    }
                                 }
                             }
                         }
                     }
+                    if self.showFilterView {
+                        BottomSheetView(isOpen: self.$showFilterView,
+                                        maxHeight: geometry.size.height * 0.5)
+                        {
+                            PageFilterView(subProduct:self.subProduct, publicationDates: self.publicationDates, filter: self.$filter, shown:self.$showFilterView)
+                        }
+                    }
+                    
                 }
-                
-            }
-            .onAppear(){
-                self.reload()
-            }
-//            .navigationBarItems(trailing:
-//                //                    NavigationLink(destination: PageFilterView(subProduct:self.subProduct, publicationDates: self.publicationDates, filter: self.filter))
-//                //                    {
-//                //                        Text("\(publicationDateString)")
-//                //                    }
-////                NavigationLink(
-////                   destination:PageFilterView(subProduct:self.subProduct, publicationDates: self.publicationDates, filter: self.$filter),
-////                   label:{Text("\(publicationDateString)")}
-////                )
-//                Button(action:{self.showFilterView = true}, label: {Text(publicationDateString)})
-//            )
-            .navigationBarTitle(self.subProduct.name)
-            .sheet(isPresented: $showFilterView) {
-                PageFilterView(subProduct:self.subProduct, publicationDates: self.publicationDates, filter: self.$filter)
-            }
-            .onReceive(filter.objectWillChange, perform: {self.reload()})
+                .onAppear(){
+                    self.reload()
+                }
+                .navigationBarItems(trailing:
+                    Button(action:{self.showFilterView = true}, label: {Text(publicationDateString)})
+                )
+                    .navigationBarTitle(self.subProduct.name)
+                    //            .sheet(isPresented: $showFilterView) {
+                    //                PageFilterView(subProduct:self.subProduct, publicationDates: self.publicationDates, filter: self.$filter)
+                    //            }
+                    .onReceive(self.filter.objectWillChange, perform: {self.reload()})
+                    .connectionBanner()
+        }
     }
     
     func getViewsFrom(pageModelAdapter:PageModelAdapter, backs:[BackKey:[Page]], backKey:BackKey) -> [PageDetailView] {

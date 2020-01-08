@@ -21,8 +21,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         // Use a UIHostingController as window root view controller
         if let windowScene = scene as? UIWindowScene {
+            let loginHandler = LoginHandler()
+            let organizationQuery = OrganizationsQuery(withNewspilot: loginHandler.newspilot)
+            let statusQuery = StatusQuery(withNewspilot: loginHandler.newspilot)
+            let pageFlagQuery = PageFlagQuery(withNewspilot: loginHandler.newspilot)
             let window = UIWindow(windowScene: windowScene)
-            window.rootViewController = UIHostingController(rootView: ApplicationView().environmentObject(LoginHandler()))
+            window.rootViewController = UIHostingController(rootView: ApplicationView()
+                .environmentObject(loginHandler)
+                .environmentObject(organizationQuery)
+                .environmentObject(statusQuery)
+                .environmentObject(pageFlagQuery)
+            )
 
             
 //            let newspilotManager = NewspilotManager(host:"localhost", login:"infomaker", password:"newspilot")

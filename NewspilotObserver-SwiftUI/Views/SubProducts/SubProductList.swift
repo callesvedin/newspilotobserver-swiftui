@@ -21,8 +21,7 @@ struct SubProductList: View {
         self.publicationDateQuery = publicationDateQuery
     }
     
-    var body: some View {
-        
+    var body: some View {        
         List {
             ForEach(organizationQuery.getSubProducts(for:product)) {subProduct in
                 NavigationLink(destination:
@@ -34,6 +33,7 @@ struct SubProductList: View {
                 }                
             }
         }
+        .connectionBanner()
         .navigationBarTitle(product.name)
         .onAppear(){
             self.publicationDateQuery.load()

@@ -17,9 +17,9 @@ class NewspilotObserver_SwiftUITests: XCTestCase {
     override func setUp() {
         super.setUp()
         
-        newspilot = Newspilot(server:"localhost", login:"infomaker", password:"newspilot")
+        newspilot = Newspilot()
         //        newspilot = Newspilot(server:"newspilot.dev.np.infomaker.io", login:"infomaker", password:"newspilot")
-        newspilot.connect()
+        newspilot.connect(server:"localhost", login:"infomaker", password:"newspilot")
         sleep(1)
         print("Is connected:\(newspilot.connected)")
         sleep(1)

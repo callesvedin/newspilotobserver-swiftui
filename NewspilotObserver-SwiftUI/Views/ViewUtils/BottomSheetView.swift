@@ -1,11 +1,5 @@
-//
-//  BottomSheetView.swift
-//
-//  Created by Majid Jabrayilov
-//  Copyright © 2019 Majid Jabrayilov. All rights reserved.
-//
-
 import SwiftUI
+
 fileprivate enum Constants {
     static let radius: CGFloat = 16
     static let indicatorHeight: CGFloat = 6
@@ -13,15 +7,20 @@ fileprivate enum Constants {
     static let snapRatio: CGFloat = 0.25
     static let minHeightRatio: CGFloat = 0.1
 }
+
 struct BottomSheetView<Content: View>: View {
     @Binding var isOpen: Bool
+
     let maxHeight: CGFloat
     let minHeight: CGFloat
     let content: Content
+
     @GestureState private var translation: CGFloat = 0
+
     private var offset: CGFloat {
         isOpen ? 0 : maxHeight - minHeight
     }
+
     private var indicator: some View {
         RoundedRectangle(cornerRadius: Constants.radius)
             .fill(Color.secondary)
@@ -32,12 +31,14 @@ struct BottomSheetView<Content: View>: View {
             self.isOpen.toggle()
         }
     }
+
     init(isOpen: Binding<Bool>, maxHeight: CGFloat, @ViewBuilder content: () -> Content) {
         self.minHeight = maxHeight * Constants.minHeightRatio
         self.maxHeight = maxHeight
         self.content = content()
         self._isOpen = isOpen
     }
+
     var body: some View {
         GeometryReader { geometry in
             VStack(spacing: 0) {
@@ -45,10 +46,10 @@ struct BottomSheetView<Content: View>: View {
                 self.content
             }
             .frame(width: geometry.size.width, height: self.maxHeight, alignment: .top)
-            .background(Color(.secondarySystemBackground))
+            .background(Color(.systemBackground))
             .cornerRadius(Constants.radius)
             .frame(height: geometry.size.height, alignment: .bottom)
-            .offset(y: max(self.offset + self.translation, 0))
+            .offset(y: max(self.offset + self.translation, 0))                
             .animation(.interactiveSpring())
             .gesture(
                 DragGesture().updating(self.$translation) { value, state, _ in
@@ -64,6 +65,7 @@ struct BottomSheetView<Content: View>: View {
         }
     }
 }
+
 struct BottomSheetView_Previews: PreviewProvider {
     static var previews: some View {
         BottomSheetView(isOpen: .constant(false), maxHeight: 600) {

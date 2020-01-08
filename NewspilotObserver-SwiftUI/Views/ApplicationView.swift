@@ -13,12 +13,8 @@ struct ApplicationView: View {
     
     var body: some View {
         Group {
-            if loginHandler.connectionStatus == .connected {
-                NavigationView { OrganizationList()
-                    .environmentObject(OrganizationsQuery(withNewspilot: loginHandler.newspilot))
-                    .environmentObject(StatusQuery(withNewspilot: loginHandler.newspilot))
-                    .environmentObject(PageFlagQuery(withNewspilot: loginHandler.newspilot))
-                }
+            if loginHandler.loggedIn {
+                NavigationView { OrganizationList() }
             }else{
                 LoginView()
             }

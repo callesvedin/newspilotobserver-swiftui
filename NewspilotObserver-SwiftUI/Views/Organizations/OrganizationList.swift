@@ -15,14 +15,27 @@ struct OrganizationList: View {
     @EnvironmentObject var organizationQuery:OrganizationsQuery
     @EnvironmentObject var statusQuery:StatusQuery
     @EnvironmentObject var flagQuery:PageFlagQuery
-
+    @State var connectionLost:Bool = false
+    let bannerData = BannerModifier.BannerData(title: "Connection Lost", detail: "Spoky", type: .Warning)
+    
     var body: some View {
         List {
             organizationsList
         }
         .listStyle(GroupedListStyle())
         .navigationBarTitle("Organizations")
-        .navigationBarBackButtonHidden(true)        
+        .navigationBarBackButtonHidden(true)
+//        .onReceive(self.loginHandler.$connectionStatus) {newState in
+//            guard let connectionState = newState else {return}
+//            switch connectionState {
+//            case .notConnected,.connectionFailed, .authenticationFailed, .connecting:
+//                self.connectionLost = true
+//            case .connected:
+//                self.connectionLost = false
+//            }
+//        }
+            .connectionBanner()
+//        .banner(data: self.bannerData, show: $connectionLost)
     }
 }
 
