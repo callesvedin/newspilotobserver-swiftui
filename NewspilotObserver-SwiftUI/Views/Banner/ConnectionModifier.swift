@@ -8,27 +8,6 @@
 
 import SwiftUI
 
-enum ConnectionBannerType {
-    case Info
-    case Warning
-    case Success
-    case Error
-
-    var tintColor: Color {
-        switch self {
-        case .Info:
-            return Color(red: 67/255, green: 154/255, blue: 215/255)
-        case .Success:
-            return Color.green
-        case .Warning:
-            return Color.yellow
-        case .Error:
-            return Color.red
-        }
-    }
-}
-
-
 struct ConnectionModifier: ViewModifier {
     @EnvironmentObject var loginHandler:LoginHandler
     

@@ -19,45 +19,45 @@ struct LoginView: View {
     
     var body: some View {        
         NavigationView {
-            VStack {
-                Text("Newspilot")
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                    .foregroundColor(Color.white)
-                    .padding(.bottom, 50)
-                
-                TextField("Username", text: $loginSettings.login)
-                    .textContentType(.none)
-                    .autocapitalization(.none)
-                    .padding()
-                    .background(lightGreyColor)
-                    .cornerRadius(5.0)
-                    .padding()
-                
-                SecureField("Password", text: $password)
-                    .padding()
-                    .background(lightGreyColor)
-                    .cornerRadius(5.0)
-                    .padding()
-                
-                TextField("Server", text: $loginSettings.server)
-                    .textContentType(.none)
-                    .autocapitalization(.none)
-                    .padding()
-                    .background(lightGreyColor)
-                    .cornerRadius(5.0)
-                    .padding()
-                
-                if loginHandler.connectionStatus == .connectionFailed {
-                    Text("Connection failed. Please try again").foregroundColor(.red)
-                }else if loginHandler.connectionStatus == .authenticationFailed {
-                    Image(systemName: "lock.slash.fill").font(Font.title.weight(.regular)).foregroundColor(.gray)
-                    Text("Incorrect username or password").foregroundColor(.red)
-                }
-                else{
-                    Text(" ")
-                }
-                Button(action:{
+                VStack {
+                    Text("Newspilot")
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                        .foregroundColor(Color.white)
+                        .padding(.bottom, 50)
+                    
+                    TextField("Username", text: $loginSettings.login)
+                        .textContentType(.none)
+                        .autocapitalization(.none)
+                        .padding()
+                        .background(lightGreyColor)
+                        .cornerRadius(5.0)
+                        .padding()
+                    
+                    SecureField("Password", text: $password)
+                        .padding()
+                        .background(lightGreyColor)
+                        .cornerRadius(5.0)
+                        .padding()
+                    
+                    TextField("Server", text: $loginSettings.server)
+                        .textContentType(.none)
+                        .autocapitalization(.none)
+                        .padding()
+                        .background(lightGreyColor)
+                        .cornerRadius(5.0)
+                        .padding()
+                    
+                    if loginHandler.connectionStatus == .connectionFailed {
+                        Text("Connection failed. Please try again").foregroundColor(.red)
+                    }else if loginHandler.connectionStatus == .authenticationFailed {
+                        Image(systemName: "lock.slash.fill").font(Font.title.weight(.regular)).foregroundColor(.gray)
+                        Text("Incorrect username or password").foregroundColor(.red)
+                    }
+                    else{
+                        Text(" ")
+                    }
+                    Button(action:{
                         self.loginHandler.login(login: self.loginSettings.login, password: self.password, server: self.loginSettings.server)
                     }){
                         HStack {
@@ -77,15 +77,16 @@ struct LoginView: View {
                         .background(Color.blue)
                         .cornerRadius(15.0)
                     }                
-                
-                Spacer()
-            }
-            .background(SwiftUI.Color.black.edgesIgnoringSafeArea(.all))
-            .padding(.bottom, keyboard.currentHeight)
-            .edgesIgnoringSafeArea(.bottom)
-            .animation(.easeOut(duration: 0.16))
+                    
+                    Spacer()
+                }
+                .background(SwiftUI.Color.black.edgesIgnoringSafeArea(.all))
+                .padding(.bottom, keyboard.currentHeight)
+                .edgesIgnoringSafeArea(.bottom)
+                .animation(.easeOut(duration: 0.16))
             
-            }.navigationViewStyle(StackNavigationViewStyle())
+            
+        }.navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

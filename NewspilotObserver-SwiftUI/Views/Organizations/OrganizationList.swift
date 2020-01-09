@@ -16,7 +16,6 @@ struct OrganizationList: View {
     @EnvironmentObject var statusQuery:StatusQuery
     @EnvironmentObject var flagQuery:PageFlagQuery
     @State var connectionLost:Bool = false
-    let bannerData = BannerModifier.BannerData(title: "Connection Lost", detail: "Spoky", type: .Warning)
     
     var body: some View {
         List {
@@ -25,17 +24,7 @@ struct OrganizationList: View {
         .listStyle(GroupedListStyle())
         .navigationBarTitle("Organizations")
         .navigationBarBackButtonHidden(true)
-//        .onReceive(self.loginHandler.$connectionStatus) {newState in
-//            guard let connectionState = newState else {return}
-//            switch connectionState {
-//            case .notConnected,.connectionFailed, .authenticationFailed, .connecting:
-//                self.connectionLost = true
-//            case .connected:
-//                self.connectionLost = false
-//            }
-//        }
-            .connectionBanner()
-//        .banner(data: self.bannerData, show: $connectionLost)
+        .connectionBanner()
     }
 }
 
@@ -45,9 +34,9 @@ private extension OrganizationList {
             Section(header: Text(organization.name).bold()) {
                 ForEach(self.organizationQuery.getProducts(for: organization)){product in
                     NavigationLink(destination: SubProductList(product:product,
-                                                               publicationDateQuery: PublicationDateQuery(withNewspilot: self.loginHandler.newspilot, productId: product.id))) {
+                        publicationDateQuery: PublicationDateQuery(withNewspilot: self.loginHandler.newspilot, productId: product.id))) {
                                                                 ProductRow(product:product)
-                    }
+                    }.isDetailLink(false)
                 }
             }
         }
