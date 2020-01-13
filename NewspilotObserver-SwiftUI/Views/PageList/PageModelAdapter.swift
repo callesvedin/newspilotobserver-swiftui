@@ -43,7 +43,7 @@ class PageModelAdapter {
         let editionType = EditionType(rawValue: page.edType) ?? .original
         let flags:[UIImage?] = page.flags != nil ? createFlagImages(fromIds: page.flags):[]
         
-        return PageViewModel(id:page.id, name: page.name, section:sectionName,
+        return PageViewModel(id:page.id,pageNumber: page.pageNumber, name: page.name, section:sectionName,
                              part: page.part, edition: page.edition,
                              version: page.version, template:template,
                              editionType: editionType,statusName: statusName, statusColor: statusColor, flags: flags,

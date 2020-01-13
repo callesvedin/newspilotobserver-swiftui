@@ -2,12 +2,12 @@
   "object": {
     "pins": [
       {
-        "package": "Newspilot",
-        "repositoryURL": "git@bitbucket.org:infomaker/newspilotswiftclient.git",
+        "package": "QGrid",
+        "repositoryURL": "https://github.com/Q-Mobile/QGrid",
         "state": {
-          "branch": "develop",
-          "revision": "8121dd629460f4929e5650a6c0a34dee99c53c1f",
-          "version": null
+          "branch": null,
+          "revision": "40607aec336a8097c94bcadb81762592d89073ac",
+          "version": "0.1.3"
         }
       },
       {

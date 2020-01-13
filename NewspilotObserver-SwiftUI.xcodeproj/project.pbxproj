@@ -30,6 +30,9 @@
 		EB5435222322FFF3004EE63F /* EntityType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5435212322FFF3004EE63F /* EntityType.swift */; };
 		EB564829236EC9ED00A5925F /* ValueProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB564828236EC9ED00A5925F /* ValueProvider.swift */; };
 		EB56C5DB232B88AC00BF84A5 /* SubProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB56C5DA232B88AC00BF84A5 /* SubProduct.swift */; };
+		EB6A0CCF23CCDBA800DD6CAE /* QGrid in Frameworks */ = {isa = PBXBuildFile; productRef = EB6A0CCE23CCDBA800DD6CAE /* QGrid */; };
+		EB6A0CD123CCF2B300DD6CAE /* PageCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6A0CD023CCF2B300DD6CAE /* PageCollectionCell.swift */; };
+		EB6A0CD323CD0ED200DD6CAE /* GridStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6A0CD223CD0ED200DD6CAE /* GridStack.swift */; };
 		EB6AE6FF233A8A2E0020A501 /* LoginHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6AE6FE233A8A2E0020A501 /* LoginHandler.swift */; };
 		EB6C22672358C7D400101147 /* PageListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6C22662358C7D400101147 /* PageListCell.swift */; };
 		EB6C22692358CC0C00101147 /* PageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6C22682358CC0C00101147 /* PageViewModel.swift */; };
@@ -125,6 +128,8 @@
 		EB5435212322FFF3004EE63F /* EntityType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityType.swift; sourceTree = "<group>"; };
 		EB564828236EC9ED00A5925F /* ValueProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueProvider.swift; sourceTree = "<group>"; };
 		EB56C5DA232B88AC00BF84A5 /* SubProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubProduct.swift; sourceTree = "<group>"; };
+		EB6A0CD023CCF2B300DD6CAE /* PageCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageCollectionCell.swift; sourceTree = "<group>"; };
+		EB6A0CD223CD0ED200DD6CAE /* GridStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridStack.swift; sourceTree = "<group>"; };
 		EB6AE6FE233A8A2E0020A501 /* LoginHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginHandler.swift; sourceTree = "<group>"; };
 		EB6C22662358C7D400101147 /* PageListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageListCell.swift; sourceTree = "<group>"; };
 		EB6C22682358CC0C00101147 /* PageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewModel.swift; sourceTree = "<group>"; };
@@ -209,6 +214,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB6A0CCF23CCDBA800DD6CAE /* QGrid in Frameworks */,
 				EB6C22722359D0C400101147 /* SDWebImageSwiftUI in Frameworks */,
 				EB3CC52A22F34E520070139F /* Newspilot in Frameworks */,
 			);
@@ -242,6 +248,7 @@
 			children = (
 				EB0E5B5A237B258A00BC67AB /* KeyboardResponder.swift */,
 				EBA13CBA23A8D67E00FFB830 /* BottomSheetView.swift */,
+				EB6A0CD223CD0ED200DD6CAE /* GridStack.swift */,
 			);
 			path = ViewUtils;
 			sourceTree = "<group>";
@@ -251,6 +258,7 @@
 			children = (
 				EB41EA4F2347992A00550428 /* PageList.swift */,
 				EB6C22662358C7D400101147 /* PageListCell.swift */,
+				EB6A0CD023CCF2B300DD6CAE /* PageCollectionCell.swift */,
 				EB6C22682358CC0C00101147 /* PageViewModel.swift */,
 				EB6C226A2358CD1C00101147 /* PageModelAdapter.swift */,
 				EB6C2278235E3D1500101147 /* PageFilter.swift */,
@@ -515,6 +523,7 @@
 			packageProductDependencies = (
 				EB3CC52922F34E520070139F /* Newspilot */,
 				EB6C22712359D0C400101147 /* SDWebImageSwiftUI */,
+				EB6A0CCE23CCDBA800DD6CAE /* QGrid */,
 			);
 			productName = "NewspilotObserver-SwiftUI";
 			productReference = EB7B9DAB22C7EDC7009EB2BE /* NewspilotObserver-SwiftUI.app */;
@@ -572,6 +581,7 @@
 			packageReferences = (
 				EB3CC52822F34E520070139F /* XCRemoteSwiftPackageReference "newspilotswiftclient" */,
 				EB6C22702359D0C400101147 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
+				EB6A0CCD23CCDBA800DD6CAE /* XCRemoteSwiftPackageReference "QGrid" */,
 			);
 			productRefGroup = EB7B9DAC22C7EDC7009EB2BE /* Products */;
 			projectDirPath = "";
@@ -668,6 +678,7 @@
 				EB41EA562348BF0A00550428 /* PageQuery.swift in Sources */,
 				EBF1F63D23C641D5007A5088 /* ConnectionModifier.swift in Sources */,
 				EB54351E2322FE1D004EE63F /* Organization.swift in Sources */,
+				EB6A0CD323CD0ED200DD6CAE /* GridStack.swift in Sources */,
 				EBDCC32F23BE092E0092A6FE /* BannerModifier.swift in Sources */,
 				EB7B9DB122C7EDC7009EB2BE /* SceneDelegate.swift in Sources */,
 				EB6AE6FF233A8A2E0020A501 /* LoginHandler.swift in Sources */,
@@ -679,6 +690,7 @@
 				EB6C226B2358CD1C00101147 /* PageModelAdapter.swift in Sources */,
 				EB953D8A232C058800E65A73 /* SubProductList.swift in Sources */,
 				EB6C22812360AAFD00101147 /* SubProductSettings.swift in Sources */,
+				EB6A0CD123CCF2B300DD6CAE /* PageCollectionCell.swift in Sources */,
 				EB6C228E2368BFD300101147 /* PageDetailView.swift in Sources */,
 				EB6C22772359DCDC00101147 /* Section.swift in Sources */,
 				EB0E5B5B237B258A00BC67AB /* KeyboardResponder.swift in Sources */,
@@ -960,6 +972,14 @@
 				kind = branch;
 			};
 		};
+		EB6A0CCD23CCDBA800DD6CAE /* XCRemoteSwiftPackageReference "QGrid" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Q-Mobile/QGrid";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.3;
+			};
+		};
 		EB6C22702359D0C400101147 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
@@ -975,6 +995,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = EB3CC52822F34E520070139F /* XCRemoteSwiftPackageReference "newspilotswiftclient" */;
 			productName = Newspilot;
+		};
+		EB6A0CCE23CCDBA800DD6CAE /* QGrid */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EB6A0CCD23CCDBA800DD6CAE /* XCRemoteSwiftPackageReference "QGrid" */;
+			productName = QGrid;
 		};
 		EB6C22712359D0C400101147 /* SDWebImageSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;

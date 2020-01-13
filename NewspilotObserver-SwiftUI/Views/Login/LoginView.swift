@@ -17,9 +17,11 @@ struct LoginView: View {
     @ObservedObject var loginSettings:LoginSettings = LoginSettings()
     @EnvironmentObject var loginHandler:LoginHandler
     
-    var body: some View {        
-        NavigationView {
-                VStack {
+    var body: some View {
+            ZStack {
+                Color.black
+                VStack() {
+                    Spacer()
                     Text("Newspilot")
                         .font(.largeTitle)
                         .fontWeight(.bold)
@@ -80,19 +82,23 @@ struct LoginView: View {
                     
                     Spacer()
                 }
-                .background(SwiftUI.Color.black.edgesIgnoringSafeArea(.all))
-                .padding(.bottom, keyboard.currentHeight)
-                .edgesIgnoringSafeArea(.bottom)
-                .animation(.easeOut(duration: 0.16))
-            
-            
-        }.navigationViewStyle(StackNavigationViewStyle())
+            .frame(minWidth: 200, idealWidth: 300, maxWidth: 400, minHeight: 400, idealHeight: 500, maxHeight: nil, alignment: .top)
+            .padding(.bottom, keyboard.currentHeight)
+            .animation(.easeOut(duration: 0.16))
+                
+        }.edgesIgnoringSafeArea(.all)
     }
 }
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
+        Group {
         LoginView().environmentObject(LoginHandler())
-        //        LoginView(loginSettings:LoginSettings(login:"calle", server:"testserver"))
+            .previewDevice(PreviewDevice(rawValue: "iPhone SE"))
+            .previewDisplayName("iPhone SE")
+        LoginView().environmentObject(LoginHandler())
+                .previewDevice(PreviewDevice(rawValue: "iPad Air (3rd generation)"))
+                .previewDisplayName("iPad Air (3rd generation)")
+        }
     }
 }

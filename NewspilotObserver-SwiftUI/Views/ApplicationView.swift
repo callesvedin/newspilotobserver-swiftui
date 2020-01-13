@@ -16,7 +16,9 @@ struct ApplicationView: View {
             if loginHandler.loggedIn {
                 NavigationView { OrganizationList() }
             }else{
-                LoginView()
+                NavigationView {
+                    LoginView()
+                }.navigationViewStyle(StackNavigationViewStyle())
             }
         }
     }

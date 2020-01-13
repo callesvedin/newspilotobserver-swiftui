@@ -11,6 +11,7 @@ import UIKit
 
 struct PageViewModel : Identifiable {
     let id:Int
+    let pageNumber:Int
     let name:String
     let section:String?
     let part:String?

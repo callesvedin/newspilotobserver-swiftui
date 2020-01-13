@@ -81,7 +81,7 @@ struct InfoView: View {
 struct PageDetailView_Previews: PreviewProvider {
     static var previews: some View {
         
-        let view = PageDetailView(page:PageViewModel(id: 1, name: "Great page", section: "Section A",
+        let view = PageDetailView(page:PageViewModel(id: 1, pageNumber: 4, name: "Great page", section: "Section A",
                                                      part: "Part A", edition: "Edition 1", version: "Version 3", template: "A-Section",
                                                      editionType: .identical, statusName: "Ready",
                                                      statusColor: UIColor.green, flags:[UIImage(systemName: "star"), UIImage(systemName: "star.fill")], thumbUrl: nil, previewUrl: nil)
