@@ -8,7 +8,6 @@
 
 import SwiftUI
 import Newspilot
-import QGrid
 
 struct PageList: View {
     private var publicationDates:[PublicationDate]
@@ -43,20 +42,23 @@ struct PageList: View {
         let backs = self.pageQuery.backs
         let backKeys = backs.map{$0.key}.sorted()
         let publicationDateString = publicationDates.first(where: {pubDate in pubDate.id == filter.publicationDateId})?.name ?? "PubDate"
-        let columns = 4
+        let columns = 2
         return
             GeometryReader {geometry in
                 ZStack {
                     if self.useThumbView {
-                        List {
+                        ScrollView {
                             ForEach (backKeys, id: \.hashValue) {backKey in
-                                Section(header:Text("Part: \(backKey.part ?? "-") Edition: \(backKey.edition ?? "-") Version:\(backKey.version ?? "-")")){
+                                VStack {
+                                    Text("Part: \(backKey.part ?? "-") Edition: \(backKey.edition ?? "-") Version:\(backKey.version ?? "-")")
                                     GridStack(rows: Int(Float(backs[backKey]!.count / columns).rounded(.up)), columns: columns){row, col in
+                                        //NavigationLink(destination: PageDetailsView(self.getViewsFrom(pageModelAdapter: pageModelAdapter, backs: backs, backKey: backKey), currentPage: (row*columns)+col)){
                                         PageCollectionCell(page:pageModelAdapter.getPageViewModel(from: backs[backKey]![(row*columns)+col]))
+                                        //}
                                     }
                                 }
                             }
-                        }
+                        }.frame(width: nil, height:geometry.size.height - 40, alignment: .bottomLeading)
                     }else{
                         List {
                             ForEach (backKeys, id: \.hashValue) {backKey in
@@ -72,34 +74,42 @@ struct PageList: View {
                         
                     }
                     
-                    if self.showFilterView {
-                        BottomSheetView(isOpen: self.$showFilterView,
-                                        maxHeight: geometry.size.height * 0.6)
-                        {
-                            PageFilterView(subProduct:self.subProduct, publicationDates: self.publicationDates, filter: self.$filter, shown:self.$showFilterView)
-                        }
-                    }
+//                    if self.showFilterView {
+//                        BottomSheetView(isOpen: self.$showFilterView,
+//                                        maxHeight: geometry.size.height * 0.6)
+//                        {
+//                            PageFilterView(subProduct:self.subProduct, publicationDates: self.publicationDates, filter: self.$filter, shown:self.$showFilterView)
+//                        }
+//                    }
                     
                 }
                 .onAppear(){
                     self.reload()
                 }
                 .navigationBarItems(
-                    leading:
-                    Picker("", selection: self.$useThumbView) {
-                        Image(systemName: "list.bullet").tag(false)
-                        Image(systemName: "list.bullet.below.rectangle").tag(true)
+                    trailing:
+                    HStack {
+                        Picker("", selection: self.$useThumbView) {
+                            Image(systemName: "list.bullet").tag(false)
+                            Image(systemName: "list.bullet.below.rectangle").tag(true)
+                        }
+                        .pickerStyle(SegmentedPickerStyle())
+                        .padding()
+                        Button(action:{self.showFilterView = true}, label: {Text(publicationDateString)})
+                            .popover(
+                                isPresented: self.$showFilterView,
+                                arrowEdge: .top
+                            ) {
+                                PageFilterView(subProduct:self.subProduct, publicationDates: self.publicationDates, filter: self.$filter, shown:self.$showFilterView)
+                            }
                     }
-                    .pickerStyle(SegmentedPickerStyle())
-                    .padding(),
-                    trailing:Button(action:{self.showFilterView = true}, label: {Text(publicationDateString)})
                 )
-                    .navigationBarTitle(self.subProduct.name)
-                    //            .sheet(isPresented: $showFilterView) {
-                    //                PageFilterView(subProduct:self.subProduct, publicationDates: self.publicationDates, filter: self.$filter)
-                    //            }
-                    .onReceive(self.filter.objectWillChange, perform: {self.reload()})
-                    .connectionBanner()
+                .navigationBarTitle(self.subProduct.name)
+                //            .sheet(isPresented: $showFilterView) {
+                //                PageFilterView(subProduct:self.subProduct, publicationDates: self.publicationDates, filter: self.$filter)
+                //            }
+                .onReceive(self.filter.objectWillChange, perform: {self.reload()})
+                .connectionBanner()
         }
     }
     

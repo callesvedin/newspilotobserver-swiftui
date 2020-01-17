@@ -90,7 +90,7 @@ class PublicationDateQuery :  ObservableObject {
         let calendar = Calendar(identifier: .gregorian)
         let today = calendar.beginningOf(date: Date()) ?? Date()
         let aMonthAgo = calendar.date(byAdding: .month, value: -1, to: today, wrappingComponents: false)
-        let nextYear = calendar.date(byAdding: .month, value: 3, to: today, wrappingComponents: false)
+        let nextYear = calendar.date(byAdding: .month, value: 1, to: today, wrappingComponents: false)
         
         guard let fromDate = aMonthAgo, let toDate = nextYear else {
             os_log("Could not create beginning and end of date for publication dates", log: .newspilot, type: .error)

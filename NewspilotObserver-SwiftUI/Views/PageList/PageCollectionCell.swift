@@ -20,9 +20,9 @@ struct PageCollectionCell: View {
 //        GeometryReader {geometry in
             VStack {
                 WebImage(url: self.page.thumbUrl, options: [.highPriority, .allowInvalidSSLCertificates,.retryFailed])
-                    .onSuccess { image, cacheType in
-                        //                                              print("loaded preview")
-                }
+                   .onSuccess { image, cacheType in
+                                                                  print("loaded preview")
+                    }
                     .resizable() // Resizable like SwiftUI.Image
                     .placeholder(Image(uiImage: UIImage(named: "EmptyPageThumb.png")!))
                     .indicator(.activity) // Activity Indicator
@@ -32,7 +32,7 @@ struct PageCollectionCell: View {
                     //.frame(width: 80, height: 100, alignment: Alignment.center)
                 
                 
-                Text("\(self.page.name)").font(.caption)
+                Text("\(self.page.name)").font(.caption).foregroundColor(Color.primary)
                     //                    HStack(spacing:0) {
                     //
                     //                        ForEach (0..<self.page.flags.count, id:\.self) {index in

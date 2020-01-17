@@ -43,17 +43,17 @@ struct PageFilterView: View {
             }.labelsHidden()
             HStack(spacing:40) {
                 Button(action:{
-                    self.shown.wrappedValue = false
-//                    self.presentationMode.wrappedValue.dismiss()
+//                    self.shown.wrappedValue = false
+                    self.presentationMode.wrappedValue.dismiss()
                 }, label:{Text("Cancel")})
                 Button(action:{                    
                     self.filter.wrappedValue.publicationDateId = self.$selectedPublicationDate.wrappedValue
-                    self.shown.wrappedValue = false
-//                    self.presentationMode.wrappedValue.dismiss()
-//                    self.filter.publicationDateId = 1//$selectedPublicationDate.wrappedValue
+//                    self.shown.wrappedValue = false
+                    self.presentationMode.wrappedValue.dismiss()
                 }, label:{Text("Ok")})
-            }.padding()
-        }.onAppear(){
+            }
+        }
+        .onAppear(){
             self.selectedPublicationDate = self.filter.publicationDateId.wrappedValue
         }
 //            Picker(selection: $selectedEditionIndex, label: Text("Edition")){

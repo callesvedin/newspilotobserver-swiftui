@@ -30,7 +30,6 @@
 		EB5435222322FFF3004EE63F /* EntityType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5435212322FFF3004EE63F /* EntityType.swift */; };
 		EB564829236EC9ED00A5925F /* ValueProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB564828236EC9ED00A5925F /* ValueProvider.swift */; };
 		EB56C5DB232B88AC00BF84A5 /* SubProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB56C5DA232B88AC00BF84A5 /* SubProduct.swift */; };
-		EB6A0CCF23CCDBA800DD6CAE /* QGrid in Frameworks */ = {isa = PBXBuildFile; productRef = EB6A0CCE23CCDBA800DD6CAE /* QGrid */; };
 		EB6A0CD123CCF2B300DD6CAE /* PageCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6A0CD023CCF2B300DD6CAE /* PageCollectionCell.swift */; };
 		EB6A0CD323CD0ED200DD6CAE /* GridStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6A0CD223CD0ED200DD6CAE /* GridStack.swift */; };
 		EB6AE6FF233A8A2E0020A501 /* LoginHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6AE6FE233A8A2E0020A501 /* LoginHandler.swift */; };
@@ -214,7 +213,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EB6A0CCF23CCDBA800DD6CAE /* QGrid in Frameworks */,
 				EB6C22722359D0C400101147 /* SDWebImageSwiftUI in Frameworks */,
 				EB3CC52A22F34E520070139F /* Newspilot in Frameworks */,
 			);
@@ -523,7 +521,6 @@
 			packageProductDependencies = (
 				EB3CC52922F34E520070139F /* Newspilot */,
 				EB6C22712359D0C400101147 /* SDWebImageSwiftUI */,
-				EB6A0CCE23CCDBA800DD6CAE /* QGrid */,
 			);
 			productName = "NewspilotObserver-SwiftUI";
 			productReference = EB7B9DAB22C7EDC7009EB2BE /* NewspilotObserver-SwiftUI.app */;
@@ -581,7 +578,6 @@
 			packageReferences = (
 				EB3CC52822F34E520070139F /* XCRemoteSwiftPackageReference "newspilotswiftclient" */,
 				EB6C22702359D0C400101147 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
-				EB6A0CCD23CCDBA800DD6CAE /* XCRemoteSwiftPackageReference "QGrid" */,
 			);
 			productRefGroup = EB7B9DAC22C7EDC7009EB2BE /* Products */;
 			projectDirPath = "";
@@ -972,14 +968,6 @@
 				kind = branch;
 			};
 		};
-		EB6A0CCD23CCDBA800DD6CAE /* XCRemoteSwiftPackageReference "QGrid" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Q-Mobile/QGrid";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.1.3;
-			};
-		};
 		EB6C22702359D0C400101147 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
@@ -995,11 +983,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = EB3CC52822F34E520070139F /* XCRemoteSwiftPackageReference "newspilotswiftclient" */;
 			productName = Newspilot;
-		};
-		EB6A0CCE23CCDBA800DD6CAE /* QGrid */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = EB6A0CCD23CCDBA800DD6CAE /* XCRemoteSwiftPackageReference "QGrid" */;
-			productName = QGrid;
 		};
 		EB6C22712359D0C400101147 /* SDWebImageSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
