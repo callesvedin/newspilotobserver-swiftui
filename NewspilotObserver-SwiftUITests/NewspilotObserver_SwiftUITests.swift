@@ -18,8 +18,8 @@ class NewspilotObserver_SwiftUITests: XCTestCase {
         super.setUp()
         
         newspilot = Newspilot()
-        //        newspilot = Newspilot(server:"newspilot.dev.np.infomaker.io", login:"infomaker", password:"newspilot")
-        newspilot.connect(server:"localhost", login:"infomaker", password:"newspilot")
+        newspilot.connect(server:"newspilot.dev.np.infomaker.io", login:"infomaker", password:"newspilot")
+//        newspilot.connect(server:"localhost", login:"infomaker", password:"newspilot")
         sleep(1)
         print("Is connected:\(newspilot.connected)")
         sleep(1)
@@ -71,12 +71,43 @@ class NewspilotObserver_SwiftUITests: XCTestCase {
             }
         }, receiveValue: {
             print("Receiving value")
-            queryAddedExpectation.fulfill()
+            print("Backs:\(pageQuery.backs.count)")
+            if (pageQuery.backs.count > 0)  {
+//                do {
+//                    for (backKey, pages) in pageQuery.backs {
+//                        try self.writeToFile(backKey:backKey, pages: pages)
+//                    }
+//                } catch(let error) {
+//                    print("Could not write data. Error: \(error.localizedDescription)")
+//                }
+                queryAddedExpectation.fulfill()
+            }
         })
         
         pageQuery.load();
         self.wait(for: [queryAddedExpectation], timeout: 10)
         cancellable.cancel()
+    }
+    
+    private func writeToFile(backKey:BackKey, pages:[Page]) throws {
+        let file = "\(backKey).json" //this is the file. we will write to and read from it
+        
+//        let pageJsonData = try JSONSerialization.data(withJSONObject: pages, options: [.prettyPrinted])
+        let pageJsonData = try! JSONEncoder().encode(pages)
+//        let jsonString = String(data: jsonData, encoding: .utf8)!
+//        print(jsonString)
+
+        if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+
+            let fileURL = dir.appendingPathComponent(file)
+
+            //writing
+            do {
+                try pageJsonData.write(to: fileURL)
+            }
+            catch {/* error handling here */}
+            print("Wrote:\(fileURL)")
+        }
     }
     
 //    func testPerformanceExample() {

@@ -63,3 +63,11 @@ extension BackKey:Hashable {
         hasher.combine(version)
     }
 }
+
+extension BackKey:CustomStringConvertible {
+    var description: String {
+        return "P\(part ?? "-")V\(version ?? "-")E\(edition ?? "-")"
+    }
+    
+    
+}

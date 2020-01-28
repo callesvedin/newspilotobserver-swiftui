@@ -81,6 +81,7 @@ struct PageList: View {
 //                            PageFilterView(subProduct:self.subProduct, publicationDates: self.publicationDates, filter: self.$filter, shown:self.$showFilterView)
 //                        }
 //                    }
+                    PageFormatInfoFooter(backs:backs)
                     
                 }
                 .onAppear(){
