@@ -29,7 +29,7 @@ class PageModelAdapter {
         var statusColor:UIColor
         var statusName:String
         if let status = statuses.first(where: {status in status.id == page.status}) {
-            statusColor = intToColor(value: Int(status.color))
+            statusColor = UIColor.intToColor(value: Int(status.color))
             statusName = status.name
         }else{
             statusColor = UIColor.white
@@ -72,13 +72,13 @@ class PageModelAdapter {
         
     }
     
-    private func intToColor(value: Int) -> UIColor {
-        let value = value | 255 << 24
-        return UIColor(
-            red: CGFloat(CGFloat((value & 255 << 16) >> 16) / 255.0),
-            green: CGFloat(CGFloat((value & 255 << 8) >> 8) / 255.0),
-            blue: CGFloat(CGFloat((value & 255 << 0) >> 0) / 255.0),
-            alpha: 1.0
-        )
-    }
+//    private func intToColor(value: Int) -> UIColor {
+//        let value = value | 255 << 24
+//        return UIColor(
+//            red: CGFloat(CGFloat((value & 255 << 16) >> 16) / 255.0),
+//            green: CGFloat(CGFloat((value & 255 << 8) >> 8) / 255.0),
+//            blue: CGFloat(CGFloat((value & 255 << 0) >> 0) / 255.0),
+//            alpha: 1.0
+//        )
+//    }
 }

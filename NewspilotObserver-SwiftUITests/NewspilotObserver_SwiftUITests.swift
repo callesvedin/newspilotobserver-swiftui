@@ -89,7 +89,56 @@ class NewspilotObserver_SwiftUITests: XCTestCase {
         cancellable.cancel()
     }
     
-    private func writeToFile(backKey:BackKey, pages:[Page]) throws {
+    func testCreateStatusQuery() {
+            let queryAddedExpectation = XCTestExpectation(description:"QueryAdded")
+            
+            let statusQuery = StatusQuery(withNewspilot: newspilot)
+            let cancellable = statusQuery.objectWillChange.sink(receiveCompletion: {completion in
+                switch completion {
+                case .failure(let f):
+                    print("Failed \(f)")
+                    XCTFail("Received failure")
+                case .finished :
+                    print("Finished")
+                }
+            }, receiveValue: {
+                print("Receiving value")
+                print("Statuses:\(statusQuery.statuses.count)")
+                if (statusQuery.statuses.count > 0)  {
+//                    do {
+//                        try self.writeStatusToFile(statusArray: statusQuery.statuses)
+//                    } catch(let error) {
+//                        print("Could not write data. Error: \(error.localizedDescription)")
+//                    }
+                    queryAddedExpectation.fulfill()
+                }
+            })
+            
+            statusQuery.load();
+            self.wait(for: [queryAddedExpectation], timeout: 10)
+            cancellable.cancel()
+        }
+    
+    private func writeStatusToFile(statusArray:[Status]) throws {
+        let file = "statuses.json"
+            
+        let jsonData = try! JSONEncoder().encode(statusArray)
+
+        if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+            
+            let fileURL = dir.appendingPathComponent(file)
+
+            //writing
+            do {
+                try jsonData.write(to: fileURL)
+            }
+            catch {/* error handling here */}
+            print("Wrote:\(fileURL)")
+        }
+    }
+    
+    
+    private func writeBackToFile(backKey:BackKey, pages:[Page]) throws {
         let file = "\(backKey).json" //this is the file. we will write to and read from it
         
 //        let pageJsonData = try JSONSerialization.data(withJSONObject: pages, options: [.prettyPrinted])

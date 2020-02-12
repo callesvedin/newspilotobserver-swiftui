@@ -18,31 +18,33 @@ struct PageCollectionCell: View {
     
     var body: some View {
 //        GeometryReader {geometry in
-            VStack {
+            VStack(spacing:0) {
                 WebImage(url: self.page.thumbUrl, options: [.highPriority, .allowInvalidSSLCertificates,.retryFailed])
-                   .onSuccess { image, cacheType in
-                                                                  print("loaded preview")
-                    }
+                    .onSuccess { image, cacheType in
+                        print("loaded preview")
+                }
                     .resizable() // Resizable like SwiftUI.Image
                     .placeholder(Image(uiImage: UIImage(named: "EmptyPageThumb.png")!))
                     .indicator(.activity) // Activity Indicator
-                    .animation(.easeInOut(duration: 0.2)) // Animation Duration
-                    .transition(.fade) // Fade Transition
+//                    .animation(.easeInOut(duration: 0.2)) // Animation Duration
+//                    .transition(.fade) // Fade Transition
                     .scaledToFit()
-                    //.frame(width: 80, height: 100, alignment: Alignment.center)
+//                    .frame(width: 200*0.72, height: 200, alignment: Alignment.center)
                 
-                
-                Text("\(self.page.name)").font(.caption).foregroundColor(Color.primary)
-                    //                    HStack(spacing:0) {
-                    //
-                    //                        ForEach (0..<self.page.flags.count, id:\.self) {index in
-                    //                            FlagIcon(flag:self.page.flags[index])
-                    //                        }
-                    //                    }
+                Rectangle().frame(width: nil, height: 5, alignment: .top).foregroundColor(Color(self.page.statusColor)).padding(.top, 4).padding(.horizontal, 4)
+                    Text("\(self.page.name)").font(.caption).foregroundColor(Color.primary)
                     
                 
-        }.padding(20)
-//            .frame(width: 80, height: 100, alignment: Alignment.center)
+                //                    HStack(spacing:0) {
+                //
+                //                        ForEach (0..<self.page.flags.count, id:\.self) {index in
+                //                            FlagIcon(flag:self.page.flags[index])
+                //                        }
+                //                    }
+                
+                
+            }
+//            .frame(width: 100, height: 150, alignment: Alignment.center)
 //        }
     }
     
@@ -52,6 +54,6 @@ struct PageCollectionCell_Previews: PreviewProvider {
     static var previews: some View {
         let model = PageViewModel(id: 1, pageNumber: 4, name: "Great page", section: "Section A", part: "Part A", edition: "Edition 1", version: "Version 3",template: "A-Section",editionType: .original, statusName: "Ready", statusColor: UIColor.green,flags:[UIImage(systemName: "star"), UIImage(systemName: "star.fill")],
                                   thumbUrl: nil, previewUrl: nil)
-        return PageCollectionCell(page: model).previewLayout(.fixed(width: 80, height: 100))
+        return PageCollectionCell(page: model).previewLayout(.fixed(width: 200, height: 300)).border(Color.gray)
     }
 }

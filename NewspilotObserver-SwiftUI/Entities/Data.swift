@@ -10,6 +10,7 @@ import SwiftUI
 import CoreLocation
 
 let pageData: [Page] = load("PAV1E1.json")
+let statusData: [Status] = load("statuses.json")
 
 func load<T: Decodable>(_ filename: String, as type: T.Type = T.self) -> T {
     let data: Data

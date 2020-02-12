@@ -23,6 +23,7 @@ struct PageList: View {
     @EnvironmentObject var flagQuery:PageFlagQuery
     @ObservedObject var pageQuery:PageQuery
     @State private var useThumbView = false
+    @State private var expandedBacks:Set<BackKey> = Set<BackKey>()
     
     let newspilot:Newspilot
     
@@ -42,23 +43,44 @@ struct PageList: View {
         let backs = self.pageQuery.backs
         let backKeys = backs.map{$0.key}.sorted()
         let publicationDateString = publicationDates.first(where: {pubDate in pubDate.id == filter.publicationDateId})?.name ?? "PubDate"
-        let columns = 2
+        
         return
             GeometryReader {geometry in
-                ZStack {
+                VStack {
                     if self.useThumbView {
                         ScrollView {
                             ForEach (backKeys, id: \.hashValue) {backKey in
                                 VStack {
-                                    Text("Part: \(backKey.part ?? "-") Edition: \(backKey.edition ?? "-") Version:\(backKey.version ?? "-")")
-                                    GridStack(rows: Int(Float(backs[backKey]!.count / columns).rounded(.up)), columns: columns){row, col in
-                                        //NavigationLink(destination: PageDetailsView(self.getViewsFrom(pageModelAdapter: pageModelAdapter, backs: backs, backKey: backKey), currentPage: (row*columns)+col)){
-                                        PageCollectionCell(page:pageModelAdapter.getPageViewModel(from: backs[backKey]![(row*columns)+col]))
-                                        //}
+                                    HStack {
+                                        Text("Part: \(backKey.part ?? "-") Edition: \(backKey.edition ?? "-") Version:\(backKey.version ?? "-")").font(.headline)
+                                        Spacer()
+                                        Image(systemName: "chevron.right")
+//                                            .imageScale(.large)
+                                            .rotationEffect(.degrees(self.expandedBacks.contains(backKey) ? 90 : 0))
+                                            .padding(.horizontal)
+//                                            .animation(.easeInOut)
+                                        
+                                    }.padding(.top,10).background(Color.white).onTapGesture {
+                                        if (self.expandedBacks.contains(backKey)){
+                                            withAnimation {
+                                                self.expandedBacks.remove(backKey)
+                                            }
+                                        }else{
+                                            withAnimation {
+                                                self.expandedBacks.insert(backKey)
+                                            }
+                                        }
+                                    }
+                                    if (self.expandedBacks.contains(backKey)){
+                                        GridStack(rows: Int(Float(backs[backKey]!.count / self.getColumns(width:geometry.size.width)).rounded(.up)), columns: self.getColumns(width:geometry.size.width)){row, col in
+                                            //NavigationLink(destination: PageDetailsView(self.getViewsFrom(pageModelAdapter: pageModelAdapter, backs: backs, backKey: backKey), currentPage: (row*columns)+col)){
+                                            PageCollectionCell(page:pageModelAdapter.getPageViewModel(from: backs[backKey]![(row*self.getColumns(width:geometry.size.width))+col])).padding(10)
+                                            //}
+                                        }.padding(.vertical, 20).background(Color.gray).cornerRadius(20) //.animation(.spring())
                                     }
                                 }
                             }
-                        }.frame(width: nil, height:geometry.size.height - 40, alignment: .bottomLeading)
+                        }.frame(width: nil, height:geometry.size.height - 60, alignment: .bottomLeading).padding(.horizontal,10)
                     }else{
                         List {
                             ForEach (backKeys, id: \.hashValue) {backKey in
@@ -73,16 +95,7 @@ struct PageList: View {
                         }
                         
                     }
-                    
-//                    if self.showFilterView {
-//                        BottomSheetView(isOpen: self.$showFilterView,
-//                                        maxHeight: geometry.size.height * 0.6)
-//                        {
-//                            PageFilterView(subProduct:self.subProduct, publicationDates: self.publicationDates, filter: self.$filter, shown:self.$showFilterView)
-//                        }
-//                    }
-                    PageFormatInfoFooter(backs:backs)
-                    
+                    PageFormatInfoFooter(backs:backs, statusArray: self.statusQuery.statuses).frame(width: geometry.size.width, height: 40, alignment: .center)
                 }
                 .onAppear(){
                     self.reload()
@@ -97,7 +110,7 @@ struct PageList: View {
                         .pickerStyle(SegmentedPickerStyle())
                         .padding()
                         Button(action:{self.showFilterView = true}, label: {Text(publicationDateString)})
-                            .popover(
+                            .popover( // Why is this so large?
                                 isPresented: self.$showFilterView,
                                 arrowEdge: .top
                             ) {
@@ -112,6 +125,10 @@ struct PageList: View {
                 .onReceive(self.filter.objectWillChange, perform: {self.reload()})
                 .connectionBanner()
         }
+    }
+    
+    func getColumns(width:CGFloat) -> Int {
+        return Int(width/200)
     }
     
     func getViewsFrom(pageModelAdapter:PageModelAdapter, backs:[BackKey:[Page]], backKey:BackKey) -> [PageDetailView] {

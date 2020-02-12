@@ -79,6 +79,6 @@ struct PageFilterView_Previews: PreviewProvider {
                        publicationDates: [
                         PublicationDate(entityType: "PublicationDate", id: 1, issuenumber: "", name: "Pub 1", productID: 1, pubDate: "2019-10-20"),
                         PublicationDate(entityType: "PublicationDate", id: 1, issuenumber: "", name: "Pub 1", productID: 1, pubDate: "2019-10-20")],
-                       filter: .constant(PageFilter()), shown:.constant(false))
+                       filter: .constant(PageFilter()), shown:.constant(false)).border(Color.gray)
     }
 }

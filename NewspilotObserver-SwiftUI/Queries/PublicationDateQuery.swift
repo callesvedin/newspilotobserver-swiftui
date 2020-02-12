@@ -97,8 +97,14 @@ class PublicationDateQuery :  ObservableObject {
             return nil
         }
         
-        let fromString = newspilotDateFormatter.string(from: fromDate)
-        let toString = newspilotDateFormatter.string(from: toDate)
+        #if DEBUG
+            let fromString = "2019-12-30 00:00:00"
+            let toString = "2020-01-31 00:00:00"
+        #else
+            let fromString = newspilotDateFormatter.string(from: fromDate)
+            let toString = newspilotDateFormatter.string(from: toDate)
+        #endif
+
                 
         return """
             <query type="PublicationDate" version="1.1">

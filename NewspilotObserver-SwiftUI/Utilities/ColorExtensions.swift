@@ -59,6 +59,16 @@ extension UIColor {
 
 extension UIColor {
     
+    
+    public static func intToColor(value: Int) -> UIColor {
+        let value = value | 255 << 24
+        return UIColor(
+            red: CGFloat(CGFloat((value & 255 << 16) >> 16) / 255.0),
+            green: CGFloat(CGFloat((value & 255 << 8) >> 8) / 255.0),
+            blue: CGFloat(CGFloat((value & 255 << 0) >> 0) / 255.0),
+            alpha: 1.0
+        )
+    }
     /**
      Creates an UIColor from HEX String in "#363636" format
      

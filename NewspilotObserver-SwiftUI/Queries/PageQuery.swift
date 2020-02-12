@@ -14,7 +14,6 @@ import os.log
 class PageQuery : ObservableObject {
     
     @Published var backs:[BackKey:[Page]] = [:]
-//    var passTrough:PassthroughSubject<[BackKey:[Page]], Never> = PassthroughSubject()
     
     var externalQueryId:String!
     var cancellableSubscriber:Cancellable?
