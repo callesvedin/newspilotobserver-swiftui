@@ -18,19 +18,16 @@ struct PageFilterView: View {
     let subProductSettings:SubProductSettings?
     let editions:[String]
     @State private var selectedPublicationDate:Int = 0
-//    @Binding var filter:PageFilter
     @Environment(\.presentationMode) var presentationMode
     
-    var filter:Binding<PageFilter>
-    var shown:Binding<Bool>
+    var filter:Binding<PageFilter>    
     
-    init(subProduct:SubProduct, publicationDates:[PublicationDate], filter:Binding<PageFilter>, shown:Binding<Bool>) {
+    init(subProduct:SubProduct, publicationDates:[PublicationDate], filter:Binding<PageFilter>) {
         self.subProduct = subProduct
         self.subProductSettings = subProduct.settings
         self.publicationDates = publicationDates
         self.editions = subProduct.settings?.editions ?? []
         self.filter = filter
-        self.shown = shown
         self.selectedPublicationDate = filter.publicationDateId.wrappedValue
     }
     
@@ -43,12 +40,10 @@ struct PageFilterView: View {
             }.labelsHidden()
             HStack(spacing:40) {
                 Button(action:{
-//                    self.shown.wrappedValue = false
                     self.presentationMode.wrappedValue.dismiss()
                 }, label:{Text("Cancel")})
                 Button(action:{                    
                     self.filter.wrappedValue.publicationDateId = self.$selectedPublicationDate.wrappedValue
-//                    self.shown.wrappedValue = false
                     self.presentationMode.wrappedValue.dismiss()
                 }, label:{Text("Ok")})
             }
@@ -79,6 +74,6 @@ struct PageFilterView_Previews: PreviewProvider {
                        publicationDates: [
                         PublicationDate(entityType: "PublicationDate", id: 1, issuenumber: "", name: "Pub 1", productID: 1, pubDate: "2019-10-20"),
                         PublicationDate(entityType: "PublicationDate", id: 1, issuenumber: "", name: "Pub 1", productID: 1, pubDate: "2019-10-20")],
-                       filter: .constant(PageFilter()), shown:.constant(false)).border(Color.gray)
+                       filter: .constant(PageFilter())).border(Color.gray)
     }
 }

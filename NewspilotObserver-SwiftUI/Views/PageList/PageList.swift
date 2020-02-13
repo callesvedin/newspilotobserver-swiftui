@@ -22,7 +22,7 @@ struct PageList: View {
     @EnvironmentObject var organizationQuery:OrganizationsQuery
     @EnvironmentObject var flagQuery:PageFlagQuery
     @ObservedObject var pageQuery:PageQuery
-    @State private var useThumbView = false
+    @State private var useThumbView = true
     @State private var expandedBacks:Set<BackKey> = Set<BackKey>()
     
     let newspilot:Newspilot
@@ -114,7 +114,7 @@ struct PageList: View {
                                 isPresented: self.$showFilterView,
                                 arrowEdge: .top
                             ) {
-                                PageFilterView(subProduct:self.subProduct, publicationDates: self.publicationDates, filter: self.$filter, shown:self.$showFilterView)
+                                PageFilterView(subProduct:self.subProduct, publicationDates: self.publicationDates, filter: self.$filter)
                             }
                     }
                 )
