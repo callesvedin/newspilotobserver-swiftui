@@ -17,19 +17,15 @@ struct PageCollectionCell: View {
     }
     
     var body: some View {
-//        GeometryReader {geometry in
             VStack(spacing:0) {
                 WebImage(url: self.page.thumbUrl, options: [.highPriority, .allowInvalidSSLCertificates,.retryFailed])
                     .onSuccess { image, cacheType in
-                        print("loaded preview")
+//                        print("loaded preview")
                 }
                     .resizable() // Resizable like SwiftUI.Image
                     .placeholder(Image(uiImage: UIImage(named: "EmptyPageThumb.png")!))
                     .indicator(.activity) // Activity Indicator
-//                    .animation(.easeInOut(duration: 0.2)) // Animation Duration
-//                    .transition(.fade) // Fade Transition
                     .scaledToFit()
-//                    .frame(width: 200*0.72, height: 200, alignment: Alignment.center)
                 
                 Rectangle().frame(width: nil, height: 5, alignment: .top).foregroundColor(Color(self.page.statusColor)).padding(.top, 4).padding(.horizontal, 4)
                     Text("\(self.page.name)").font(.caption).foregroundColor(Color.primary)
@@ -44,8 +40,7 @@ struct PageCollectionCell: View {
                 
                 
             }
-//            .frame(width: 100, height: 150, alignment: Alignment.center)
-//        }
+
     }
     
 }

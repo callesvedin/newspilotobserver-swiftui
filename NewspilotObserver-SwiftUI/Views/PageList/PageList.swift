@@ -23,7 +23,7 @@ struct PageList: View {
     @EnvironmentObject var flagQuery:PageFlagQuery
     @ObservedObject var pageQuery:PageQuery
     @State private var useThumbView = true
-    @State private var expandedBacks:Set<BackKey> = Set<BackKey>()
+    
     
     let newspilot:Newspilot
     
@@ -40,66 +40,23 @@ struct PageList: View {
                                                 statuses: self.statusQuery.statuses,
                                                 sections: self.organizationQuery.sections,
                                                 flags: self.flagQuery.flags)
+        
         let backs = self.pageQuery.backs
         let backKeys = backs.map{$0.key}.sorted()
+        
         let publicationDateString = publicationDates.first(where: {pubDate in pubDate.id == filter.publicationDateId})?.name ?? "PubDate"
         
         return
             GeometryReader {geometry in
                 VStack {
                     if self.useThumbView {
-                        ScrollView {
-                            ForEach (backKeys, id: \.hashValue) {backKey in
-                                VStack {
-                                    HStack {
-                                        Text("Part: \(backKey.part ?? "-") Edition: \(backKey.edition ?? "-") Version:\(backKey.version ?? "-")").font(.headline)
-                                        Spacer()
-                                        Image(systemName: "chevron.right")
-//                                            .imageScale(.large)
-                                            .rotationEffect(.degrees(self.expandedBacks.contains(backKey) ? 90 : 0))
-                                            .padding(.horizontal)
-//                                            .animation(.easeInOut)
-                                        
-                                    }.padding(.top,10).background(Color.white).onTapGesture {
-                                        if (self.expandedBacks.contains(backKey)){
-                                            withAnimation {
-                                                self.expandedBacks.remove(backKey)
-                                            }
-                                        }else{
-                                            withAnimation {
-                                                self.expandedBacks.insert(backKey)
-                                            }
-                                        }
-                                    }
-                                    if (self.expandedBacks.contains(backKey)){
-                                        GridStack(rows: Int(Float(backs[backKey]!.count / self.getColumns(width:geometry.size.width)).rounded(.up)), columns: self.getColumns(width:geometry.size.width)){row, col in
-                                            //NavigationLink(destination: PageDetailsView(self.getViewsFrom(pageModelAdapter: pageModelAdapter, backs: backs, backKey: backKey), currentPage: (row*columns)+col)){
-                                            PageCollectionCell(page:pageModelAdapter.getPageViewModel(from: backs[backKey]![(row*self.getColumns(width:geometry.size.width))+col])).padding(10)
-                                            //}
-                                        }.padding(.vertical, 20).background(Color.gray).cornerRadius(20) //.animation(.spring())
-                                    }
-                                }
-                            }
-                        }.frame(width: nil, height:geometry.size.height - 60, alignment: .bottomLeading).padding(.horizontal,10)
+                        ThumbView(pageModelAdapter:pageModelAdapter, backs:backs, backKeys:backKeys, columns: self.getColumns(width:geometry.size.width))
                     }else{
-                        List {
-                            ForEach (backKeys, id: \.hashValue) {backKey in
-                                Section(header:Text("Part: \(backKey.part ?? "-") Edition: \(backKey.edition ?? "-") Version:\(backKey.version ?? "-")")){
-                                    ForEach (0 ..< backs[backKey]!.count, id:\.self) {index in
-                                        NavigationLink(destination: PageDetailsView(self.getViewsFrom(pageModelAdapter: pageModelAdapter, backs: backs, backKey: backKey), currentPage: index)) {
-                                            PageListCell(page:pageModelAdapter.getPageViewModel(from: backs[backKey]![index]))
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                        
+                        ListView(pageModelAdapter: pageModelAdapter, backs:backs, backKeys: backKeys)
                     }
                     PageFormatInfoFooter(backs:backs, statusArray: self.statusQuery.statuses).frame(width: geometry.size.width, height: 40, alignment: .center)
                 }
-                .onAppear(){
-                    self.reload()
-                }
+                .navigationBarTitle(self.subProduct.name)
                 .navigationBarItems(
                     trailing:
                     HStack {
@@ -115,20 +72,101 @@ struct PageList: View {
                                 arrowEdge: .top
                             ) {
                                 PageFilterView(subProduct:self.subProduct, publicationDates: self.publicationDates, filter: self.$filter)
-                            }
+                        }
                     }
                 )
-                .navigationBarTitle(self.subProduct.name)
-                //            .sheet(isPresented: $showFilterView) {
-                //                PageFilterView(subProduct:self.subProduct, publicationDates: self.publicationDates, filter: self.$filter)
-                //            }
-                .onReceive(self.filter.objectWillChange, perform: {self.reload()})
-                .connectionBanner()
-        }
+                
+            }
+                
+            .onReceive(self.filter.objectWillChange, perform: {self.reload()})
+            .connectionBanner()
+        
     }
     
     func getColumns(width:CGFloat) -> Int {
         return Int(width/200)
+    }
+    
+    func reload() {
+        if self.pageQuery.publicationDateId != self.filter.publicationDateId {
+            self.pageQuery.publicationDateId = self.filter.publicationDateId
+        }
+    }
+}
+
+struct ThumbView:View
+{
+    let pageModelAdapter:PageModelAdapter
+    let backs:[BackKey:[Page]]
+    let backKeys:[BackKey]
+    let columns:Int
+    @State private var expandedBacks:Set<BackKey> = Set<BackKey>()
+    
+    var body: some View {
+        List {
+            ForEach (self.backKeys, id: \.hashValue) {backKey in
+                Section(header:SectionHeader(backKey: backKey, expandedBacks:self.$expandedBacks)) {
+                    if (self.expandedBacks.contains(backKey)){
+                        GridStack(rows: Int(Float(self.backs[backKey]!.count / self.columns).rounded(.up)), columns: self.columns){row, col in
+                            
+                            //                            NavigationLink(destination: PageDetailsView(self.getViewsFrom(pageModelAdapter: self.pageModelAdapter, backs: self.backs, backKey: backKey), currentPage: index)) {
+                            
+                            //                            NavigationLink(destination: PageDetailsView(self.getViewsFrom(pageModelAdapter: self.pageModelAdapter, backs: self.backs, backKey: backKey), currentPage: (row*self.columns)+col)){
+                            PageCollectionCell(page:self.pageModelAdapter.getPageViewModel(from: self.backs[backKey]![(row*self.columns)+col])).padding(10)
+                            
+                        }.padding(.vertical, 20).background(Color.white).cornerRadius(20) //.animation(.spring())
+                        
+                    }
+                }
+            }
+        }//.background(Color.gray)
+    }
+    
+    
+}
+
+struct SectionHeader:View {
+    let backKey:BackKey
+    @Binding var expandedBacks:Set<BackKey>
+    
+    var body : some View {
+        HStack {
+            Text("Part: \(self.backKey.part ?? "-") Edition: \(self.backKey.edition ?? "-") Version:\(self.backKey.version ?? "-")")
+            Spacer()
+            Image(systemName: "chevron.right")
+                .rotationEffect(.degrees(self.expandedBacks.contains(backKey) ? 90 : 0))
+        }.padding(.top,10).onTapGesture {
+            if (self.expandedBacks.contains(self.backKey)){
+                withAnimation {
+                    self.expandedBacks.remove(self.backKey)
+                }
+            }else{
+                withAnimation {
+                    self.expandedBacks.insert(self.backKey)
+                }
+            }
+        }
+    }
+}
+
+struct ListView:View
+{
+    let pageModelAdapter:PageModelAdapter
+    let backs:[BackKey:[Page]]
+    let backKeys:[BackKey]
+    
+    var body :some View {
+        List {
+            ForEach (backKeys, id: \.hashValue) {backKey in
+                Section(header:Text("Part: \(backKey.part ?? "-") Edition: \(backKey.edition ?? "-") Version:\(backKey.version ?? "-")")){
+                    ForEach (0 ..< self.backs[backKey]!.count, id:\.self) {index in
+                        NavigationLink(destination: PageDetailsView(self.getViewsFrom(pageModelAdapter: self.pageModelAdapter, backs: self.backs, backKey: backKey), currentPage: index)) {
+                            PageListCell(page:self.pageModelAdapter.getPageViewModel(from: self.backs[backKey]![index]))
+                        }
+                    }
+                }
+            }
+        }
     }
     
     func getViewsFrom(pageModelAdapter:PageModelAdapter, backs:[BackKey:[Page]], backKey:BackKey) -> [PageDetailView] {
@@ -140,11 +178,6 @@ struct PageList: View {
         return views
     }
     
-    func reload() {
-        if self.pageQuery.publicationDateId != self.filter.publicationDateId {            
-            self.pageQuery.publicationDateId = self.filter.publicationDateId
-        }
-    }
 }
 
 //struct PageList_Previews: PreviewProvider {

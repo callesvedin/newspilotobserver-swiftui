@@ -1,0 +1,86 @@
+[
+    {
+        "id": 24,
+        "name": "Archived",
+        "entityType": "Status",
+        "color": -16737895
+    },
+    {
+        "id": 1126,
+        "name": "Waiting for CF",
+        "entityType": "Status",
+        "color": -6710887
+    },
+    {
+        "id": 1130,
+        "name": "Send to Open Content",
+        "entityType": "Status",
+        "color": -52225
+    },
+    {
+        "id": 1138,
+        "name": "Utskrift fel",
+        "entityType": "Status",
+        "color": -1
+    },
+    {
+        "id": 19,
+        "name": "Ready",
+        "entityType": "Status",
+        "color": -8652138
+    },
+    {
+        "id": 21,
+        "name": "In Export",
+        "entityType": "Status",
+        "color": -21705
+    },
+    {
+        "id": 1137,
+        "name": "Skickad till tryckeri",
+        "entityType": "Status",
+        "color": -1
+    },
+    {
+        "id": 17,
+        "name": "Not Initiated",
+        "entityType": "Status",
+        "color": -1
+    },
+    {
+        "id": 22,
+        "name": "Exported",
+        "entityType": "Status",
+        "color": -10066177
+    },
+    {
+        "id": 23,
+        "name": "Export Error",
+        "entityType": "Status",
+        "color": -47554
+    },
+    {
+        "id": 20,
+        "name": "Approved",
+        "entityType": "Status",
+        "color": -10225921
+    },
+    {
+        "id": 1125,
+        "name": "Needs Approval",
+        "entityType": "Status",
+        "color": -39169
+    },
+    {
+        "id": 18,
+        "name": "In Production",
+        "entityType": "Status",
+        "color": -5256
+    },
+    {
+        "id": 99,
+        "name": "In Production 2",
+        "entityType": "Status",
+        "color": -5256
+    }
+]
