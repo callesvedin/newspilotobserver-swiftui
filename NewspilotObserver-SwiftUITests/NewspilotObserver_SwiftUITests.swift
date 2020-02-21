@@ -106,7 +106,7 @@ class NewspilotObserver_SwiftUITests: XCTestCase {
                 print("Statuses:\(statusQuery.statuses.count)")
                 if (statusQuery.statuses.count > 0)  {
 //                    do {
-//                        try self.writeStatusToFile(statusArray: statusQuery.statuses)
+//                          try self.write(array: statusQuery.statuses, toFile: "statuses.json")
 //                    } catch(let error) {
 //                        print("Could not write data. Error: \(error.localizedDescription)")
 //                    }
@@ -119,10 +119,72 @@ class NewspilotObserver_SwiftUITests: XCTestCase {
             cancellable.cancel()
         }
     
-    private func writeStatusToFile(statusArray:[Status]) throws {
-        let file = "statuses.json"
-            
-        let jsonData = try! JSONEncoder().encode(statusArray)
+     func testCreateOrganizationQuery() {
+        let queryAddedExpectation = XCTestExpectation(description:"QueryAdded")
+        
+        let organizationQuery = OrganizationsQuery(withNewspilot: newspilot)
+        
+        let cancellable = organizationQuery.$organizations.sink(receiveCompletion: {completion in
+            switch completion {
+            case .failure(let f):
+                print("Failed \(f)")
+                XCTFail("Received failure")
+            case .finished :
+                print("Finished")
+            }
+        }, receiveValue: {_ in
+            print("Receiving value")
+            print("Organizations:\(organizationQuery.organizations.count)")
+            if (organizationQuery.organizations.count > 0)  {
+//                do {
+//                    try self.write(array: organizationQuery.organizations, toFile: "organizations.json")
+//                } catch(let error) {
+//                    print("Could not write data. Error: \(error.localizedDescription)")
+//                }
+                queryAddedExpectation.fulfill()
+            }
+        })
+        
+        organizationQuery.load();
+        self.wait(for: [queryAddedExpectation], timeout: 10)
+        cancellable.cancel()
+        
+    }
+    
+    func testCreateOrganizationQueryProducts() {
+        let queryAddedExpectation = XCTestExpectation(description:"QueryAdded")
+        
+        let organizationQuery = OrganizationsQuery(withNewspilot: newspilot)
+        
+        let cancellable = organizationQuery.$products.sink(receiveCompletion: {completion in
+            switch completion {
+            case .failure(let f):
+                print("Failed \(f)")
+                XCTFail("Received failure")
+            case .finished :
+                print("Finished")
+            }
+        }, receiveValue: {_ in
+            print("Receiving value")
+            print("Products:\(organizationQuery.products.count)")
+            if (organizationQuery.products.count > 0)  {
+                do {
+                    try self.write(array: organizationQuery.products, toFile: "products.json")
+                } catch(let error) {
+                    print("Could not write data. Error: \(error.localizedDescription)")
+                }
+                queryAddedExpectation.fulfill()
+            }
+        })
+        
+        organizationQuery.load();
+        self.wait(for: [queryAddedExpectation], timeout: 10)
+        cancellable.cancel()
+        
+    }
+    
+    private func write<T : Codable> (array:[T], toFile file:String) throws {            
+        let jsonData = try! JSONEncoder().encode(array)
 
         if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
             
@@ -136,6 +198,7 @@ class NewspilotObserver_SwiftUITests: XCTestCase {
             print("Wrote:\(fileURL)")
         }
     }
+
     
     
     private func writeBackToFile(backKey:BackKey, pages:[Page]) throws {
