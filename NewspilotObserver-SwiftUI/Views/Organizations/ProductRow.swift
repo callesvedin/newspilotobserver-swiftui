@@ -9,11 +9,11 @@
 import SwiftUI
 
 struct ProductRow: View {
-    var product:ProductViewModel
+    var product:Product
     var imageString:String
     var image:UIImage?
     
-    init(product:ProductViewModel) {
+    init(product:Product) {
         self.product = product
         self.imageString = "Product_\(product.id).png"
         if let filepath = Bundle.main.path(forResource: "Product_\(product.id)", ofType: "png") {
@@ -42,8 +42,8 @@ struct ProductRow: View {
 struct ProductRowView_Previews: PreviewProvider {
     static var previews: some View {
         List {
-            ProductRow(product: ProductViewModel(id:11,name: "WCN Daily",organizationID: 1)).previewLayout(.fixed(width: 300, height: 50))
-            ProductRow(product: ProductViewModel(id:1,name: "WCN Nightly",organizationID: 1)).previewLayout(.fixed(width: 300, height: 50))
+            ProductRow(product: Product(id:11,name: "WCN Daily",organizationID: 1)).previewLayout(.fixed(width: 300, height: 50))
+            ProductRow(product: Product(id:1,name: "WCN Nightly",organizationID: 1)).previewLayout(.fixed(width: 300, height: 50))
         }
     }
 }

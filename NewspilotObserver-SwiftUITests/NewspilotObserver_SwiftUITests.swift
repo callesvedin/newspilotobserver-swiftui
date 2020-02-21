@@ -151,6 +151,38 @@ class NewspilotObserver_SwiftUITests: XCTestCase {
         
     }
     
+    func testCreateProductQuerySubProducts() {
+        let queryAddedExpectation = XCTestExpectation(description:"QueryAdded")
+        
+        let organizationQuery = OrganizationsQuery(withNewspilot: newspilot)
+        
+        let cancellable = organizationQuery.$subProducts.sink(receiveCompletion: {completion in
+            switch completion {
+            case .failure(let f):
+                print("Failed \(f)")
+                XCTFail("Received failure")
+            case .finished :
+                print("Finished")
+            }
+        }, receiveValue: {_ in
+            print("Receiving value")
+            print("SubProducts:\(organizationQuery.subProducts.count)")
+            if (organizationQuery.subProducts.count > 0)  {
+                do {
+                    try self.write(array: organizationQuery.subProducts, toFile: "subproducts.json")
+                } catch(let error) {
+                    print("Could not write data. Error: \(error.localizedDescription)")
+                }
+                queryAddedExpectation.fulfill()
+            }
+        })
+        
+        organizationQuery.load();
+        self.wait(for: [queryAddedExpectation], timeout: 10)
+        cancellable.cancel()
+        
+    }
+    
     func testCreateOrganizationQueryProducts() {
         let queryAddedExpectation = XCTestExpectation(description:"QueryAdded")
         

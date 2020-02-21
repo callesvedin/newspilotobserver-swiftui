@@ -12,6 +12,7 @@ import CoreLocation
 
 let organizationData: [Organization] = load("organizations.json")
 let productsData: [Product] = load("products.json")
+let subProductsData: [SubProduct] = load("subproducts.json")
 let pageData: [Page] = load("PAV1E1.json")
 let statusData: [Status] = load("statuses.json")
 
