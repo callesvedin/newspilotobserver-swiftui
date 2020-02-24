@@ -10,33 +10,31 @@ import SwiftUI
 import Newspilot
 
 struct PageList: View {
-    private var publicationDates:[PublicationDate]
     private var subProduct:SubProduct
-    
     
     @State var filter=PageFilter()
     @State var showFilterView = false
-    
-    @EnvironmentObject var loginHandler:LoginHandler
+        
     @EnvironmentObject var statusQuery:StatusQuery
     @EnvironmentObject var organizationQuery:OrganizationsQuery
     @EnvironmentObject var flagQuery:PageFlagQuery
     @ObservedObject var pageQuery:PageQuery
+    @ObservedObject var publicationDateQuery:PublicationDateQuery
     @State private var useThumbView = true
     
     
     let newspilot:Newspilot
     
-    init(newspilot:Newspilot, subProduct:SubProduct, publicationDates:[PublicationDate]) {
+    init(newspilot:Newspilot, subProduct:SubProduct) {
         self.newspilot = newspilot;        
         self.subProduct = subProduct
-        self.publicationDates = publicationDates
+        self.publicationDateQuery = PublicationDateQuery(withNewspilot: newspilot, productId: subProduct.productID)
         self.pageQuery = PageQuery(withNewspilot: self.newspilot, productId: subProduct.productID, subProductId: subProduct.id, publicationDateId: -1)
     }
     
     
     var body: some View {
-        let pageModelAdapter = PageModelAdapter(newspilotServer:loginHandler.newspilot.server!,
+        let pageModelAdapter = PageModelAdapter(newspilotServer:self.newspilot.server!,
                                                 statuses: self.statusQuery.statuses,
                                                 sections: self.organizationQuery.sections,
                                                 flags: self.flagQuery.flags)
@@ -44,7 +42,7 @@ struct PageList: View {
         let backs = self.pageQuery.backs
         let backKeys = backs.map{$0.key}.sorted()
         
-        let publicationDateString = publicationDates.first(where: {pubDate in pubDate.id == filter.publicationDateId})?.name ?? "PubDate"
+        let publicationDateString = publicationDateQuery.sortedPublicationDates.first(where: {pubDate in pubDate.id == filter.publicationDateId})?.name ?? "PubDate"
         
         return
             GeometryReader {geometry in
@@ -71,7 +69,7 @@ struct PageList: View {
                                 isPresented: self.$showFilterView,
                                 arrowEdge: .top
                             ) {
-                                PageFilterView(subProduct:self.subProduct, publicationDates: self.publicationDates, filter: self.$filter)
+                                PageFilterView(subProduct:self.subProduct, publicationDates: self.publicationDateQuery.sortedPublicationDates, filter: self.$filter)
                         }
                     }
                 )
@@ -79,7 +77,6 @@ struct PageList: View {
             }
                 
             .onReceive(self.filter.objectWillChange, perform: {self.reload()})
-            .connectionBanner()
         
     }
     

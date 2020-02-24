@@ -13,7 +13,9 @@ import os.log
 
 class PublicationDateQuery :  ObservableObject {
     
-    @Published var publicationDates:[PublicationDate] = []
+    var objectWillChange = PassthroughSubject<Void, Never>()
+
+    var publicationDates:[PublicationDate] = []
     var sortedPublicationDates:[PublicationDate] {
         get {
             return publicationDates.sorted {date1,date2 in
@@ -51,6 +53,14 @@ class PublicationDateQuery :  ObservableObject {
         self.newspilotDateFormatter.timeZone = TimeZone(identifier: "UTC")
         self.newspilotDateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         load()
+    }
+    
+    init(withProductId productId:Int, publicationDates:[PublicationDate]) {
+        self.newspilotDateFormatter = DateFormatter()
+        self.newspilotDateFormatter.timeZone = TimeZone(identifier: "UTC")
+        self.newspilotDateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        self.productId = productId
+        self.publicationDates = publicationDates
     }
     
     func load() {
@@ -171,6 +181,7 @@ class PublicationDateQuery :  ObservableObject {
             }
             
         })
+        objectWillChange.send()
     }
     
     

@@ -12,37 +12,33 @@ import Newspilot
 struct SubProductList: View {
     @EnvironmentObject var organizationQuery:OrganizationsQuery
     @EnvironmentObject var loginHandler:LoginHandler
-    @ObservedObject var publicationDateQuery:PublicationDateQuery
+    
     let product:Product
     
     
-    init(product:Product, publicationDateQuery: PublicationDateQuery) {
+    init(product:Product) {
         self.product = product
-        self.publicationDateQuery = publicationDateQuery
     }
     
     var body: some View {        
         List {
             ForEach(organizationQuery.getSubProducts(for:product)) {subProduct in
-                NavigationLink(destination:
-                
-                    PageList(newspilot:self.loginHandler.newspilot, subProduct:subProduct,
-                         publicationDates:self.publicationDateQuery.sortedPublicationDates))
-                    {
+                NavigationLink(destination: PageList(newspilot:self.loginHandler.newspilot, subProduct:subProduct))
+                {
                     Text(subProduct.name) //.font(.caption).foregroundColor(.gray)
                 }                
             }
         }
-        .connectionBanner()
-        .navigationBarTitle(product.name)
-        .onAppear(){
-            self.publicationDateQuery.load()
-        }
+        .navigationBarTitle(product.name)        
     }
 }
 
-//struct SubProductList_Previews: PreviewProvider {
-//    static var previews: some View {
-//        SubProductList(product:Product(id: 1, name: "Test Product", organizationID: 1))
-//    }
-//}
+struct SubProductList_Previews: PreviewProvider {
+    static var previews: some View {
+        let dates = [PublicationDate]()
+        return SubProductList(
+            product:Product(id: 1, name: "Test Product", organizationID: 1))
+            .environmentObject(OrganizationsQuery(withStaticOrganizations: organizationData, products: productsData, subProducts: subProductsData, andSections: sectionsData))
+            .environmentObject(LoginHandler())
+    }
+}

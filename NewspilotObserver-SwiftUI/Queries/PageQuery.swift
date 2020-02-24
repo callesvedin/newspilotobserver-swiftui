@@ -12,8 +12,9 @@ import Combine
 import os.log
 
 class PageQuery : ObservableObject {
-    
-    @Published var backs:[BackKey:[Page]] = [:]
+    var objectWillChange = PassthroughSubject<Void, Never>()
+
+    var backs:[BackKey:[Page]] = [:]
     
     var externalQueryId:String!
     var cancellableSubscriber:Cancellable?
@@ -169,6 +170,7 @@ class PageQuery : ObservableObject {
                 os_log("Could not decode Page. Error:%@", log: .newspilot, type: .error, error.localizedDescription)
             }
         })
+        objectWillChange.send()
     }
     
     

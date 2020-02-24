@@ -124,7 +124,7 @@ class NewspilotObserver_SwiftUITests: XCTestCase {
         
         let organizationQuery = OrganizationsQuery(withNewspilot: newspilot)
         
-        let cancellable = organizationQuery.$organizations.sink(receiveCompletion: {completion in
+        let cancellable = organizationQuery.objectWillChange.sink(receiveCompletion: {completion in
             switch completion {
             case .failure(let f):
                 print("Failed \(f)")
@@ -156,7 +156,7 @@ class NewspilotObserver_SwiftUITests: XCTestCase {
         
         let organizationQuery = OrganizationsQuery(withNewspilot: newspilot)
         
-        let cancellable = organizationQuery.$subProducts.sink(receiveCompletion: {completion in
+        let cancellable = organizationQuery.objectWillChange.sink(receiveCompletion: {completion in
             switch completion {
             case .failure(let f):
                 print("Failed \(f)")
@@ -168,11 +168,11 @@ class NewspilotObserver_SwiftUITests: XCTestCase {
             print("Receiving value")
             print("SubProducts:\(organizationQuery.subProducts.count)")
             if (organizationQuery.subProducts.count > 0)  {
-                do {
-                    try self.write(array: organizationQuery.subProducts, toFile: "subproducts.json")
-                } catch(let error) {
-                    print("Could not write data. Error: \(error.localizedDescription)")
-                }
+//                do {
+//                    try self.write(array: organizationQuery.subProducts, toFile: "subproducts.json")
+//                } catch(let error) {
+//                    print("Could not write data. Error: \(error.localizedDescription)")
+//                }
                 queryAddedExpectation.fulfill()
             }
         })
@@ -188,7 +188,7 @@ class NewspilotObserver_SwiftUITests: XCTestCase {
         
         let organizationQuery = OrganizationsQuery(withNewspilot: newspilot)
         
-        let cancellable = organizationQuery.$products.sink(receiveCompletion: {completion in
+        let cancellable = organizationQuery.objectWillChange.sink(receiveCompletion: {completion in
             switch completion {
             case .failure(let f):
                 print("Failed \(f)")
@@ -200,11 +200,11 @@ class NewspilotObserver_SwiftUITests: XCTestCase {
             print("Receiving value")
             print("Products:\(organizationQuery.products.count)")
             if (organizationQuery.products.count > 0)  {
-                do {
-                    try self.write(array: organizationQuery.products, toFile: "products.json")
-                } catch(let error) {
-                    print("Could not write data. Error: \(error.localizedDescription)")
-                }
+//                do {
+//                    try self.write(array: organizationQuery.products, toFile: "products.json")
+//                } catch(let error) {
+//                    print("Could not write data. Error: \(error.localizedDescription)")
+//                }
                 queryAddedExpectation.fulfill()
             }
         })
@@ -214,6 +214,40 @@ class NewspilotObserver_SwiftUITests: XCTestCase {
         cancellable.cancel()
         
     }
+    
+    func testCreateOrganizationQuerySections() {
+            let queryAddedExpectation = XCTestExpectation(description:"QueryAdded")
+            
+            let organizationQuery = OrganizationsQuery(withNewspilot: newspilot)
+            
+        let cancellable = organizationQuery.objectWillChange
+//            .throttle(for: 5, scheduler: DispatchQueue(label: self.debugDescription), latest:true)
+            .sink(receiveCompletion: {completion in
+                switch completion {
+                case .failure(let f):
+                    print("Failed \(f)")
+                    XCTFail("Received failure")
+                case .finished :
+                    print("Finished")
+                }
+            }, receiveValue: {_ in
+                print("Receiving value")
+                print("Sections:\(organizationQuery.sections.count)")
+                if (organizationQuery.sections.count > 0)  {
+//                    do {
+//                        try self.write(array: organizationQuery.sections, toFile: "sections.json")
+//                    } catch(let error) {
+//                        print("Could not write data. Error: \(error.localizedDescription)")
+//                    }
+                    queryAddedExpectation.fulfill()
+                }
+            })
+            
+            organizationQuery.load();
+            self.wait(for: [queryAddedExpectation], timeout: 10)
+            cancellable.cancel()
+            
+        }
     
     private func write<T : Codable> (array:[T], toFile file:String) throws {            
         let jsonData = try! JSONEncoder().encode(array)

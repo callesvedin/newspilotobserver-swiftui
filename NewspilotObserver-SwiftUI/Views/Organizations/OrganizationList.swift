@@ -13,8 +13,6 @@ import Combine
 struct OrganizationList: View {
     @EnvironmentObject var loginHandler:LoginHandler
     @EnvironmentObject var organizationQuery:OrganizationsQuery
-    @EnvironmentObject var statusQuery:StatusQuery
-    @EnvironmentObject var flagQuery:PageFlagQuery
     @State var connectionLost:Bool = false
     
     var body: some View {
@@ -33,8 +31,7 @@ private extension OrganizationList {
         ForEach(organizationQuery.organizations) {organization in
             Section(header: Text(organization.name).bold()) {
                 ForEach(self.organizationQuery.getProducts(for: organization)){product in
-                    NavigationLink(destination: SubProductList(product:product,
-                        publicationDateQuery: PublicationDateQuery(withNewspilot: self.loginHandler.newspilot, productId: product.id))) {
+                    NavigationLink(destination: SubProductList(product:product)) {
                                                                 ProductRow(product:product)
                     }.isDetailLink(false)
                 }
@@ -44,7 +41,6 @@ private extension OrganizationList {
 }
 
 struct OrganizationsView_Previews: PreviewProvider {
-    static var previews: some View {
-        OrganizationList()
+    static var previews: some View {        OrganizationList().environmentObject(OrganizationsQuery(withStaticOrganizations: organizationData, products: productsData, subProducts: subProductsData, andSections: sectionsData)).environmentObject(LoginHandler())
     }
 }

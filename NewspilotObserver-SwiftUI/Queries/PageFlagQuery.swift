@@ -16,8 +16,9 @@ import Combine
 import UIKit
 
 class PageFlagQuery :  ObservableObject {
-    
-    @Published var flags:[EntityFlag] = []
+    var objectWillChange = PassthroughSubject<Void, Never>()
+
+    var flags:[EntityFlag] = []
     
     var externalQueryId:String!
     var cancellableSubscriber:Cancellable?
@@ -153,6 +154,7 @@ class PageFlagQuery :  ObservableObject {
             }
             
         })
+        objectWillChange.send()
     }
     
     func createImageData(fromBase64 _base64:String?) -> Data? {

@@ -13,10 +13,12 @@ import Combine
 
 class OrganizationsQuery :  ObservableObject {
     
-    @Published var organizations:[Organization] = []
-    @Published var products:[Product] = []
-    @Published var subProducts:[SubProduct] = []
-    @Published var sections:[NewspilotSection] = []
+    var objectWillChange = PassthroughSubject<Void, Never>()
+    
+    var organizations:[Organization] = []
+    var products:[Product] = []
+    var subProducts:[SubProduct] = []
+    var sections:[NewspilotSection] = []
     
     var externalQueryId:String!
     var cancellableSubscriber:Cancellable?
@@ -67,6 +69,13 @@ class OrganizationsQuery :  ObservableObject {
         load()
     }
     
+    init(withStaticOrganizations organizations:[Organization], products:[Product], subProducts:[SubProduct], andSections sections:[NewspilotSection]) {
+        self.organizations = organizations
+        self.products = products
+        self.subProducts = subProducts
+        self.sections = sections
+    }
+    
     func load() {
         guard let localNewspilot = newspilot else {
             os_log("Can not load query when newspilot is nil", log:.newspilot, type:.default)
@@ -95,11 +104,13 @@ class OrganizationsQuery :  ObservableObject {
     
     
     private func process(_ events:[Event]) {
+        
         events.forEach({ (event) in
             os_log("Processing organization event from newspilot. EntityType: %@ , EntityId: %d", log: .newspilot, type: .debug, event.entityType.rawValue, event.entityId)
             do {
                 let data = try JSONSerialization.data(withJSONObject: event.values, options: [])
                 let decoder = JSONDecoder()
+                
                 switch event.eventType {
                 case .CREATE:
                     switch event.entityType {
@@ -109,9 +120,9 @@ class OrganizationsQuery :  ObservableObject {
                         os_log("We got an organization with the name %@", log: .newspilot, type: .debug, organization.name)
                         
                         if let i = organizations.firstIndex(where:{$0.id == event.entityId}) {
-                            organizations[i] = organization
+                            self.organizations[i] = organization
                         }else{
-                            self.organizations.append(organization)
+                            organizations.append(organization)
                         }
                         let organizationProducts = products.filter({product in product.organizationID == organization.id})
                         organization.products.append(contentsOf: organizationProducts)
@@ -195,10 +206,11 @@ class OrganizationsQuery :  ObservableObject {
                     
                 }
             }catch(let error) {
-                os_log("Could not decode organization %@", log: .newspilot, type: .error, error.localizedDescription)
+                os_log("Could not process event %@", log: .newspilot, type: .error, error.localizedDescription)
             }
             
         })
+        objectWillChange.send()
     }
     
     

@@ -12,8 +12,8 @@ import os.log
 import Combine
 
 class StatusQuery :  ObservableObject {
-    
-    @Published var statuses:[Status] = []
+    var objectWillChange = PassthroughSubject<Void, Never>()
+    var statuses:[Status] = []
     
     var externalQueryId:String!
     var cancellableSubscriber:Cancellable?
@@ -141,6 +141,8 @@ class StatusQuery :  ObservableObject {
             }
             
         })
+        objectWillChange.send()
+
     }
     
     
