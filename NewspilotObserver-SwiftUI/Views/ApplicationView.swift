@@ -14,7 +14,16 @@ struct ApplicationView: View {
     var body: some View {
         Group {
             if loginHandler.loggedIn {
-                NavigationView { OrganizationList() }
+                NavigationView {
+                    OrganizationList()
+                    HStack(alignment: .center) {
+                        Image(systemName: "arrow.left")
+                        Text("Select organization")
+                        Spacer()
+                    }
+                    .padding()
+                    .font(.headline)
+                }
             }else{
                 NavigationView {
                     LoginView()

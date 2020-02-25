@@ -9,6 +9,7 @@
 import Foundation
 import Combine
 import Newspilot
+import SDWebImage
 import os.log
 
 enum ConnectionStatus {
@@ -64,6 +65,9 @@ class LoginHandler: ObservableObject {
                 os_log("Connected. Got new sessionId:%d", log: .newspilot, type: .debug, sessionId)
                 
                 DispatchQueue.main.async {
+                    SDWebImageDownloader.shared.config.username = login;
+                    SDWebImageDownloader.shared.config.password = password;
+
                     self?.loggedIn = true
                     self?.connectionStatus = .connected
                 }

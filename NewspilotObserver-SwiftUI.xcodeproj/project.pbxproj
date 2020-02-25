@@ -174,6 +174,7 @@
 		EB8CE4BD233170C8000A03A2 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		EB8CE4BF23317D08000A03A2 /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
 		EB8CE4C123317D5B000A03A2 /* LoginSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSettings.swift; sourceTree = "<group>"; };
+		EB9088AE240527C9000E11A0 /* newspilotswiftclient */ = {isa = PBXFileReference; lastKnownFileType = folder; name = newspilotswiftclient; path = ../../NPProjekt/newspilotswiftclient; sourceTree = "<group>"; };
 		EB953D89232C058800E65A73 /* SubProductList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubProductList.swift; sourceTree = "<group>"; };
 		EB995C4523A38D97006C9F84 /* ColorExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensionTests.swift; sourceTree = "<group>"; };
 		EBA13CBA23A8D67E00FFB830 /* BottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetView.swift; sourceTree = "<group>"; };
@@ -310,6 +311,7 @@
 		EB7B9DA222C7EDC7009EB2BE = {
 			isa = PBXGroup;
 			children = (
+				EB9088AE240527C9000E11A0 /* newspilotswiftclient */,
 				EB7B9DAD22C7EDC7009EB2BE /* NewspilotObserver-SwiftUI */,
 				EB7B9DC722C7EDC9009EB2BE /* NewspilotObserver-SwiftUITests */,
 				EB7B9DAC22C7EDC7009EB2BE /* Products */,
@@ -986,8 +988,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.3.2;
+				kind = exactVersion;
+				version = "1.0.0-beta3";
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

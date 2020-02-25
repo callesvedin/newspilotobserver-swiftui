@@ -2,15 +2,6 @@
   "object": {
     "pins": [
       {
-        "package": "Newspilot",
-        "repositoryURL": "git@bitbucket.org:infomaker/newspilotswiftclient.git",
-        "state": {
-          "branch": "develop",
-          "revision": "6ac90a24e0a94f969b2dce5a31c92babc7e110ec",
-          "version": null
-        }
-      },
-      {
         "package": "SDWebImage",
         "repositoryURL": "https://github.com/SDWebImage/SDWebImage.git",
         "state": {
@@ -24,8 +15,8 @@
         "repositoryURL": "https://github.com/SDWebImage/SDWebImageSwiftUI.git",
         "state": {
           "branch": null,
-          "revision": "63c30596b0904db29498df255921f2c6fb8c65b4",
-          "version": "0.8.3"
+          "revision": "b32d3ca8f18178da88df0d107bf436aea52b818b",
+          "version": "1.0.0-beta3"
         }
       },
       {
