@@ -10,8 +10,7 @@ import SwiftUI
 import Newspilot
 import Combine
 
-struct OrganizationList: View {
-    @EnvironmentObject var loginHandler:LoginHandler
+struct OrganizationList: View {    
     @EnvironmentObject var organizationQuery:OrganizationsQuery
     @State var connectionLost:Bool = false
     
@@ -41,6 +40,8 @@ private extension OrganizationList {
 }
 
 struct OrganizationsView_Previews: PreviewProvider {
-    static var previews: some View {        OrganizationList().environmentObject(OrganizationsQuery(withStaticOrganizations: organizationData, products: productsData, subProducts: subProductsData, andSections: sectionsData)).environmentObject(LoginHandler())
+    static var previews: some View {
+        NavigationView {OrganizationList().environmentObject(OrganizationsQuery(withStaticOrganizations: organizationData, products: productsData, subProducts: subProductsData, andSections: sectionsData)).environmentObject(LoginHandler())            
+        }
     }
 }

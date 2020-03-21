@@ -18,18 +18,18 @@ struct PageList: View {
     @EnvironmentObject var statusQuery:StatusQuery
     @EnvironmentObject var organizationQuery:OrganizationsQuery
     @EnvironmentObject var flagQuery:PageFlagQuery
+
     @ObservedObject var pageQuery:PageQuery
-    @ObservedObject var publicationDateQuery:PublicationDateQuery
+    @EnvironmentObject var publicationDateQuery:PublicationDateQuery
     @State private var useThumbView = true
-    
     
     let newspilot:Newspilot
     
-    init(newspilot:Newspilot, subProduct:SubProduct) {
-        self.newspilot = newspilot;        
+    init(newspilot:Newspilot, subProduct:SubProduct, pageQuery:PageQuery) {
+        self.newspilot = newspilot
         self.subProduct = subProduct
-        self.publicationDateQuery = PublicationDateQuery(withNewspilot: newspilot, productId: subProduct.productID)
-        self.pageQuery = PageQuery(withNewspilot: self.newspilot, productId: subProduct.productID, subProductId: subProduct.id, publicationDateId: -1)
+        
+        self.pageQuery = pageQuery
     }
     
     
@@ -38,12 +38,10 @@ struct PageList: View {
                                                 statuses: self.statusQuery.statuses,
                                                 sections: self.organizationQuery.sections,
                                                 flags: self.flagQuery.flags)
-        
         let backs = self.pageQuery.backs
-        let backKeys = backs.map{$0.key}.sorted()
+        let backKeys = backs.map{$0.key}.filter{$0.publicationDateId == self.filter.publicationDate?.id}.sorted()
         
-        let publicationDateString = publicationDateQuery.sortedPublicationDates.first(where: {pubDate in pubDate.id == filter.publicationDateId})?.name ?? "PubDate"
-        
+        let publicationDateString = self.filter.publicationDate?.name ?? "PubDate"
         return
             GeometryReader {geometry in
                 VStack {
@@ -69,26 +67,22 @@ struct PageList: View {
                                 isPresented: self.$showFilterView,
                                 arrowEdge: .top
                             ) {
-                                PageFilterView(subProduct:self.subProduct, publicationDates: self.publicationDateQuery.sortedPublicationDates, filter: self.$filter)
+                                PageFilterView(subProduct:self.subProduct,publicationDateQuery:self.publicationDateQuery, filter: self.$filter)
                         }
                     }
                 )
                 
             }
-                
-            .onReceive(self.filter.objectWillChange, perform: {self.reload()})
+            .onAppear(){
+                self.pageQuery.load()
+            }
         
     }
     
     func getColumns(width:CGFloat) -> Int {
         return Int(width/200)
     }
-    
-    func reload() {
-        if self.pageQuery.publicationDateId != self.filter.publicationDateId {
-            self.pageQuery.publicationDateId = self.filter.publicationDateId
-        }
-    }
+
 }
 
 struct ThumbView:View
@@ -104,11 +98,7 @@ struct ThumbView:View
             ForEach (self.backKeys, id: \.hashValue) {backKey in
                 Section(header:SectionHeader(backKey: backKey, expandedBacks:self.$expandedBacks)) {
                     if (self.expandedBacks.contains(backKey)){
-                        GridStack(rows: Int(Float(self.backs[backKey]!.count / self.columns).rounded(.up)), columns: self.columns){row, col in
-                            
-                            //                            NavigationLink(destination: PageDetailsView(self.getViewsFrom(pageModelAdapter: self.pageModelAdapter, backs: self.backs, backKey: backKey), currentPage: index)) {
-                            
-                            //                            NavigationLink(destination: PageDetailsView(self.getViewsFrom(pageModelAdapter: self.pageModelAdapter, backs: self.backs, backKey: backKey), currentPage: (row*self.columns)+col)){
+                        GridStack(rows: Int(Float(self.backs[backKey]!.count / self.columns).rounded(.up)), columns: self.columns){row, col in                            
                             PageCollectionCell(page:self.pageModelAdapter.getPageViewModel(from: self.backs[backKey]![(row*self.columns)+col])).padding(10)
                             
                         }.padding(.vertical, 20).background(Color.white).cornerRadius(20) //.animation(.spring())

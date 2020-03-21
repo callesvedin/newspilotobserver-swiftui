@@ -9,7 +9,8 @@
 import Foundation
 
 class PageFilter:ObservableObject {
-    @Published var publicationDateId:Int = -1
+//    @Published var publicationDateId:Int = -1
+    @Published var publicationDate:PublicationDate? = nil
     @Published var version:String = ""
     @Published var edition:String = ""
     @Published var part:String = ""

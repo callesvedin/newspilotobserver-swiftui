@@ -14,15 +14,20 @@ import os.log
 class PageQuery : ObservableObject {
     var objectWillChange = PassthroughSubject<Void, Never>()
 
-    var backs:[BackKey:[Page]] = [:]
+    var backs:[BackKey:[Page]] = [:] {
+        didSet {
+            print("Backs didset. Count:\(self.backs.count)")
+        }
+    }
     
     var externalQueryId:String!
     var cancellableSubscriber:Cancellable?
     var loaded:Bool = false
     
     private weak var newspilot:Newspilot?
-    private let productId:Int
-    private let subProductId:Int
+    public let productId:Int
+    public let subProductId:Int
+    
     var publicationDateId:Int {
         didSet {
             loaded = false
@@ -104,7 +109,7 @@ class PageQuery : ObservableObject {
                 <and>
                     <eq field="product.id" type="Page" value="\(productId)"/>
                     <ne field="preproductionType" type="Page" value="1"/>
-                    <eq field="publicationDate.id" type="Page" value="\(publicationDateId)"/>
+                    <!-- <eq field="publicationDate.id" type="Page" value="\(publicationDateId)"/> -->
                     <eq field="subProduct.id" type="Page" value="\(subProductId)"/>
                 </and>
             </base-query>

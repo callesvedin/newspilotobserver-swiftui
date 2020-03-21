@@ -10,6 +10,7 @@ import Foundation
 
 struct BackKey {
 //    let id:String = UUID().uuidString
+    let publicationDateId:Int
     let part:String?
     let version:String?
     let edition:String?
@@ -17,6 +18,10 @@ struct BackKey {
 
 extension BackKey:Equatable, Comparable {
     static func < (lhs: BackKey, rhs: BackKey) -> Bool {
+        
+        if rhs.publicationDateId != lhs.publicationDateId {
+            return lhs.publicationDateId < rhs.publicationDateId
+        }
         
         let partCompared = compareParts(lhs.part, rhs.part)
         if partCompared != .orderedSame {
@@ -58,6 +63,7 @@ extension BackKey:Equatable, Comparable {
 
 extension BackKey:Hashable {
     func hash(into hasher: inout Hasher) {
+        hasher.combine(publicationDateId)
         hasher.combine(part)
         hasher.combine(edition)
         hasher.combine(version)
@@ -66,7 +72,7 @@ extension BackKey:Hashable {
 
 extension BackKey:CustomStringConvertible {
     var description: String {
-        return "P\(part ?? "-")V\(version ?? "-")E\(edition ?? "-")"
+        return "PiD\(publicationDateId) P\(part ?? "-")V\(version ?? "-")E\(edition ?? "-")"
     }
     
     

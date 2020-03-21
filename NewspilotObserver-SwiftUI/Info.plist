@@ -4,10 +4,23 @@
 <dict>
 	<key>NSAppTransportSecurity</key>
 	<dict>
+	<key>NSAllowsArbitraryLoadsInWebContent</key>
+	<true/>
+	<key>NSAllowsArbitraryLoads</key>
+	<true/>
 		<key>NSAllowsLocalNetworking</key>
 		<true/>
 		<key>NSExceptionDomains</key>
 		<dict>
+			<key>localhost</key>
+			<dict>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+				<key>NSExceptionRequiresForwardSecrecy</key>
+				<false/>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+			</dict>
 			<key>infomaker.io</key>
 			<dict>
 				<key>NSIncludesSubdomains</key>
@@ -70,6 +83,8 @@
 			</dict>
 		</dict>
 	</dict>
+	
+
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>

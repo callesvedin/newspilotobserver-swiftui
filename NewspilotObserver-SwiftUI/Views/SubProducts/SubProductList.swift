@@ -13,6 +13,11 @@ struct SubProductList: View {
     @EnvironmentObject var organizationQuery:OrganizationsQuery
     @EnvironmentObject var loginHandler:LoginHandler
     
+    var publicationDateQuery:PublicationDateQuery {
+        get {
+            PublicationDateQuery(withNewspilot: loginHandler.newspilot, productId: product.id)
+        }
+    }
     let product:Product
     
     
@@ -23,7 +28,14 @@ struct SubProductList: View {
     var body: some View {        
         List {
             ForEach(organizationQuery.getSubProducts(for:product)) {subProduct in
-                NavigationLink(destination: PageList(newspilot:self.loginHandler.newspilot, subProduct:subProduct))
+                NavigationLink(
+                    destination: PageList(newspilot:self.loginHandler.newspilot,
+                                          subProduct:subProduct,
+                                          pageQuery: PageQueryManager.shared.getPageQuery(
+                                            withProductId: subProduct.productID,
+                                            subProductId:subProduct.id)
+                    ).environmentObject(self.publicationDateQuery)
+                )
                 {
                     Text(subProduct.name) //.font(.caption).foregroundColor(.gray)
                 }                

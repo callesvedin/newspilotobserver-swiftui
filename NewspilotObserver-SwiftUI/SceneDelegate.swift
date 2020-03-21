@@ -26,6 +26,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let statusQuery = StatusQuery(withNewspilot: loginHandler.newspilot)
             let pageFlagQuery = PageFlagQuery(withNewspilot: loginHandler.newspilot)
             let window = UIWindow(windowScene: windowScene)
+            PageQueryManager.shared.setup(withNewspilot: loginHandler.newspilot)
             window.rootViewController = UIHostingController(rootView: ApplicationView()
                 .environmentObject(loginHandler)
                 .environmentObject(organizationQuery)

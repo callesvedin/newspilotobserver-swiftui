@@ -17,23 +17,29 @@ struct PageFilterView: View {
     let publicationDates:[PublicationDate]
     let subProductSettings:SubProductSettings?
     let editions:[String]
-    @State private var selectedPublicationDate:Int = 0
+    @State private var selectedPublicationDateId:Int = 0
+    var selectedPublicationDate:PublicationDate? {
+        get {
+            publicationDates.first(where: {date in date.id == selectedPublicationDateId})
+        }
+    }
+    
     @Environment(\.presentationMode) var presentationMode
     
     var filter:Binding<PageFilter>    
     
-    init(subProduct:SubProduct, publicationDates:[PublicationDate], filter:Binding<PageFilter>) {
+    init(subProduct:SubProduct, publicationDateQuery:PublicationDateQuery, filter:Binding<PageFilter>) {
         self.subProduct = subProduct
         self.subProductSettings = subProduct.settings
-        self.publicationDates = publicationDates
+        self.publicationDates = publicationDateQuery.sortedPublicationDates
         self.editions = subProduct.settings?.editions ?? []
         self.filter = filter
-        self.selectedPublicationDate = filter.publicationDateId.wrappedValue
+        self.selectedPublicationDateId = filter.publicationDate.wrappedValue?.id ?? 0
     }
     
     var body: some View {
         VStack {
-            Picker(selection: $selectedPublicationDate, label: Text("Publication")){
+            Picker(selection: $selectedPublicationDateId, label: Text("Publication")){
                     ForEach(self.publicationDates) { publicationDate in
                         Text("\(publicationDate.name)").tag(publicationDate.id)
                     }
@@ -43,13 +49,13 @@ struct PageFilterView: View {
                     self.presentationMode.wrappedValue.dismiss()
                 }, label:{Text("Cancel")})
                 Button(action:{                    
-                    self.filter.wrappedValue.publicationDateId = self.$selectedPublicationDate.wrappedValue
+                    self.filter.wrappedValue.publicationDate = self.selectedPublicationDate
                     self.presentationMode.wrappedValue.dismiss()
                 }, label:{Text("Ok")})
             }
         }
         .onAppear(){
-            self.selectedPublicationDate = self.filter.publicationDateId.wrappedValue
+            self.selectedPublicationDateId = self.filter.publicationDate.wrappedValue?.id ?? 0
         }
 //            Picker(selection: $selectedEditionIndex, label: Text("Edition")){
 //                ForEach(0 ..< self.editions.count) { index in
@@ -71,9 +77,7 @@ struct PageFilterView_Previews: PreviewProvider {
     static var previews: some View {
         
         return PageFilterView(subProduct: SubProduct(id: 1, productId: 1, name: "Test Sub Product", settingsString: ""),
-                       publicationDates: [
-                        PublicationDate(entityType: "PublicationDate", id: 1, issuenumber: "", name: "Pub 1", productID: 1, pubDate: "2019-10-20"),
-                        PublicationDate(entityType: "PublicationDate", id: 1, issuenumber: "", name: "Pub 1", productID: 1, pubDate: "2019-10-20")],
+                       publicationDateQuery: PublicationDateQuery(withNewspilot: nil, productId: 1),
                        filter: .constant(PageFilter())).border(Color.gray)
     }
 }

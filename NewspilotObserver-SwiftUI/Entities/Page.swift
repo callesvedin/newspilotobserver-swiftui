@@ -52,7 +52,7 @@ struct Page: Codable, Identifiable, Comparable {
     let preproductionType, previewCRC, previewCreator: Int?
     let printDateBW, printDateCmyk, printMacroBW, printMacroCmyk: String?
     let printVersionBW, printVersionCmyk, printableBW, printableCmyk: Int?
-    let productID, publicationDateID: Int?
+    let productID, publicationDateID: Int
     let reference: String?
     let respUserID: Int?
     let restoredDate: String?
@@ -154,7 +154,7 @@ struct Page: Codable, Identifiable, Comparable {
 extension Page {
     var backKey:BackKey {
         get{
-            return BackKey(part: self.part, version: self.version, edition: self.edition)
+            return BackKey(publicationDateId: self.publicationDateID, part: self.part, version: self.version, edition: self.edition)
         }
     }
 }

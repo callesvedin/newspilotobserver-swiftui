@@ -107,13 +107,13 @@ class PublicationDateQuery :  ObservableObject {
             return nil
         }
         
-//        #if DEBUG
-//            let fromString = "2019-12-30 00:00:00"
-//            let toString = "2020-01-31 00:00:00"
-//        #else
+        #if DEBUG
+            let fromString = "2019-12-30 00:00:00"
+            let toString = "2020-01-01 00:00:00"
+        #else
             let fromString = newspilotDateFormatter.string(from: fromDate)
             let toString = newspilotDateFormatter.string(from: toDate)
-//        #endif
+        #endif
 
                 
         return """

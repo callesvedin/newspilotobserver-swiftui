@@ -93,6 +93,9 @@ struct LoginView: View {
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
+            LoginView().environmentObject(LoginHandler())
+            .previewDevice(PreviewDevice(rawValue: "iPhone 11"))
+            .previewDisplayName("iPhone 11")
         LoginView().environmentObject(LoginHandler())
             .previewDevice(PreviewDevice(rawValue: "iPhone SE"))
             .previewDisplayName("iPhone SE")
