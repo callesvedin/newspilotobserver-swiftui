@@ -85,32 +85,7 @@ struct PageList: View {
 
 }
 
-struct ThumbView:View
-{
-    let pageModelAdapter:PageModelAdapter
-    let backs:[BackKey:[Page]]
-    let backKeys:[BackKey]
-    let columns:Int
-    @State private var expandedBacks:Set<BackKey> = Set<BackKey>()
-    
-    var body: some View {
-        List {
-            ForEach (self.backKeys, id: \.hashValue) {backKey in
-                Section(header:SectionHeader(backKey: backKey, expandedBacks:self.$expandedBacks)) {
-                    if (self.expandedBacks.contains(backKey)){
-                        GridStack(rows: Int(Float(self.backs[backKey]!.count / self.columns).rounded(.up)), columns: self.columns){row, col in                            
-                            PageCollectionCell(page:self.pageModelAdapter.getPageViewModel(from: self.backs[backKey]![(row*self.columns)+col])).padding(10)
-                            
-                        }.padding(.vertical, 20).background(Color.white).cornerRadius(20) //.animation(.spring())
-                        
-                    }
-                }
-            }
-        }//.background(Color.gray)
-    }
-    
-    
-}
+
 
 struct SectionHeader:View {
     let backKey:BackKey

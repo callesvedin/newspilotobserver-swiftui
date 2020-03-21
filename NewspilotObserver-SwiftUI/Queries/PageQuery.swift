@@ -197,15 +197,15 @@ class PageQuery : ObservableObject {
        
     }
     
-//    private func createBacks(pages:[Page]) -> [BackKey:[Page]] {
-//        var backs:[BackKey:[Page]] = [:]
-//        
-//        for page in pages {
-//            let pageBackKey = page.backKey
-//            backs[pageBackKey, default:[]].append(page)
-//        }
-//        return backs
-//    }
+    public static func createBacks(pages:[Page]) -> [BackKey:[Page]] {
+        var backs:[BackKey:[Page]] = [:]
+        
+        for page in pages {
+            let pageBackKey = page.backKey
+            backs[pageBackKey, default:[]].append(page)
+        }
+        return backs
+    }
     
 }
 

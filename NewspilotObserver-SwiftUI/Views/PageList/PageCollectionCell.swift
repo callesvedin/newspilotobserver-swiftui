@@ -39,7 +39,7 @@ struct PageCollectionCell: View {
                 //                    }
                 
                 
-            }
+            }        
 
     }
     
@@ -49,6 +49,6 @@ struct PageCollectionCell_Previews: PreviewProvider {
     static var previews: some View {
         let model = PageViewModel(id: 1, pageNumber: 4, name: "Great page", section: "Section A", part: "Part A", edition: "Edition 1", version: "Version 3",template: "A-Section",editionType: .original, statusName: "Ready", statusColor: UIColor.green,flags:[UIImage(systemName: "star"), UIImage(systemName: "star.fill")],
                                   thumbUrl: nil, previewUrl: nil)
-        return PageCollectionCell(page: model).previewLayout(.fixed(width: 200, height: 300)).border(Color.gray)
+        return PageCollectionCell(page: model).previewLayout(.fixed(width: 200, height: 300)) //.border(Color.gray)
     }
 }
