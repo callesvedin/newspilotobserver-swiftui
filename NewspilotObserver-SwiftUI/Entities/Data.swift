@@ -15,6 +15,9 @@ let productsData: [Product] = load("products.json")
 let subProductsData: [SubProduct] = load("subproducts.json")
 let sectionsData: [NewspilotSection] = load("sections.json")
 let pageData: [Page] = load("PAV1E1.json")
+let pageData2: [Page] = load("PAV1E2.json")
+let pageData3: [Page] = load("PAV1E3.json")
+
 let statusData: [Status] = load("statuses.json")
 
 func load<T: Decodable>(_ filename: String, as type: T.Type = T.self) -> T {

@@ -87,29 +87,6 @@ struct PageList: View {
 
 
 
-struct SectionHeader:View {
-    let backKey:BackKey
-    @Binding var expandedBacks:Set<BackKey>
-    
-    var body : some View {
-        HStack {
-            Text("Part: \(self.backKey.part ?? "-") Edition: \(self.backKey.edition ?? "-") Version:\(self.backKey.version ?? "-")")
-            Spacer()
-            Image(systemName: "chevron.right")
-                .rotationEffect(.degrees(self.expandedBacks.contains(backKey) ? 90 : 0))
-        }.padding(.top,10).onTapGesture {
-            if (self.expandedBacks.contains(self.backKey)){
-                withAnimation {
-                    self.expandedBacks.remove(self.backKey)
-                }
-            }else{
-                withAnimation {
-                    self.expandedBacks.insert(self.backKey)
-                }
-            }
-        }
-    }
-}
 
 struct ListView:View
 {

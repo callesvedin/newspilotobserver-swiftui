@@ -17,30 +17,35 @@ struct PageCollectionCell: View {
     }
     
     var body: some View {
-            VStack(spacing:0) {
+        HStack (alignment: .top){
+            VStack (spacing:0){
+                ForEach (0..<self.page.flags.count, id:\.self) {index in
+                    FlagIcon(flag:self.page.flags[index])
+                }
+            }
+            .frame(minWidth: 18, maxWidth: 20, minHeight: 20, maxHeight: 200, alignment: Alignment.top)
+            
+            VStack(alignment: .center, spacing:0) {
                 WebImage(url: self.page.thumbUrl, options: [.highPriority, .allowInvalidSSLCertificates,.retryFailed])
                     .onSuccess { image, cacheType in
-//                        print("loaded preview")
+                        //                        print("loaded preview")
                 }
                     .resizable() // Resizable like SwiftUI.Image
                     .placeholder(Image(uiImage: UIImage(named: "EmptyPageThumb.png")!))
                     .indicator(.activity) // Activity Indicator
-                    .scaledToFit()
+                    .scaledToFit().shadow(radius: 5)
                 
-                Rectangle().frame(width: nil, height: 5, alignment: .top).foregroundColor(Color(self.page.statusColor)).padding(.top, 4).padding(.horizontal, 4)
-                    Text("\(self.page.name)").font(.caption).foregroundColor(Color.primary)
-                    
+                Rectangle()
+                    .frame(width: nil, height: 5).padding(.top,4)
+                    .foregroundColor(Color(self.page.statusColor))
                 
-                //                    HStack(spacing:0) {
-                //
-                //                        ForEach (0..<self.page.flags.count, id:\.self) {index in
-                //                            FlagIcon(flag:self.page.flags[index])
-                //                        }
-                //                    }
+                Text("\(self.page.name)").font(.caption)
+                    .foregroundColor(Color.primary)
                 
-                
-            }        
-
+            }
+            
+        }.padding()
+        
     }
     
 }
