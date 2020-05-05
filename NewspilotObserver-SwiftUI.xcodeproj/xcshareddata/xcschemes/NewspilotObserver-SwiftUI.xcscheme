@@ -38,6 +38,16 @@
                ReferencedContainer = "container:NewspilotObserver-SwiftUI.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "NewspilotTests"
+               BuildableName = "NewspilotTests"
+               BlueprintName = "NewspilotTests"
+               ReferencedContainer = "container:../../NPProjekt/newspilotswiftclient">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
