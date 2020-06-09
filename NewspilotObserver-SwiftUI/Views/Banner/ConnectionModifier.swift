@@ -28,9 +28,9 @@ struct ConnectionModifier: ViewModifier {
                         }
                         Spacer()
                     }
-                    .foregroundColor(Color.white)
+                    .foregroundColor(Color(UIColor.label))
                     .padding(8)
-                    .background(Color.red)
+                    .background(Color(UIColor.systemRed))
                     .cornerRadius(8)
                 }
                 .animation(.easeInOut)

@@ -12,6 +12,8 @@ import Combine
 
 struct OrganizationList: View {    
     @EnvironmentObject var organizationQuery:OrganizationsQuery
+    @EnvironmentObject var loginHandler:LoginHandler
+    
     @State var connectionLost:Bool = false
     
     var body: some View {
@@ -39,9 +41,17 @@ private extension OrganizationList {
     }
 }
 
-struct OrganizationsView_Previews: PreviewProvider {
+struct OrganizationList_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {OrganizationList().environmentObject(OrganizationsQuery(withStaticOrganizations: organizationData, products: productsData, subProducts: subProductsData, andSections: sectionsData)).environmentObject(LoginHandler())            
+        Group {
+            NavigationView {
+                OrganizationList().environmentObject(OrganizationsQuery(withStaticOrganizations: organizationData, products: productsData, subProducts: subProductsData, andSections: sectionsData)).environmentObject(LoginHandler())
+            }.environment(\.colorScheme, .dark)
+            
+            NavigationView {
+                OrganizationList().environmentObject(OrganizationsQuery(withStaticOrganizations: organizationData, products: productsData, subProducts: subProductsData, andSections: sectionsData)).environmentObject(LoginHandler())
+            }
+            
         }
     }
 }

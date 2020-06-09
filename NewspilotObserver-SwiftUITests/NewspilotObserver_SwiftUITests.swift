@@ -49,6 +49,12 @@ class NewspilotObserver_SwiftUITests: XCTestCase {
             }
         }, receiveValue: {
             print("Receiving value")
+        do {
+              try self.write(array: publicationDateQuery.publicationDates, toFile: "publicationDates.json")
+        } catch(let error) {
+            print("Could not write data. Error: \(error.localizedDescription)")
+        }
+
             queryAddedExpectation.fulfill()
         })
         

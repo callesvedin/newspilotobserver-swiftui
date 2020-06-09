@@ -20,7 +20,8 @@ struct PageList: View {
     @EnvironmentObject var flagQuery:PageFlagQuery
 
     @ObservedObject var pageQuery:PageQuery
-    @EnvironmentObject var publicationDateQuery:PublicationDateQuery
+    var publicationDateQuery:PublicationDateQuery
+    
     @State private var useThumbView = true
     
     let newspilot:Newspilot
@@ -28,8 +29,8 @@ struct PageList: View {
     init(newspilot:Newspilot, subProduct:SubProduct, pageQuery:PageQuery) {
         self.newspilot = newspilot
         self.subProduct = subProduct
-        
         self.pageQuery = pageQuery
+        self.publicationDateQuery = PublicationDateQueryManager.shared.getPublicationDateQuery(withProductId: subProduct.productID)
     }
     
     
@@ -52,7 +53,7 @@ struct PageList: View {
                     }
                     PageFormatInfoFooter(backs:backs, statusArray: self.statusQuery.statuses).frame(width: geometry.size.width, height: 40, alignment: .center)
                 }
-                .navigationBarTitle(self.subProduct.name)
+                .navigationBarTitle(Text(self.subProduct.name), displayMode: NavigationBarItem.TitleDisplayMode.inline )
                 .navigationBarItems(
                     trailing:
                     HStack {
@@ -67,12 +68,13 @@ struct PageList: View {
                                 isPresented: self.$showFilterView,
                                 arrowEdge: .top
                             ) {
-                                PageFilterView(subProduct:self.subProduct,publicationDateQuery:self.publicationDateQuery, filter: self.$filter)
+                                PageFilterView(subProduct:self.subProduct, pages: self.pageQuery.pages,publicationDateQuery:self.publicationDateQuery, filter: self.$filter)
                         }
                     }
                 )
                 
             }
+            .connectionBanner()
             .onAppear(){
                 self.pageQuery.load()
             }

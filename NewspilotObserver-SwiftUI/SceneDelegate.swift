@@ -19,6 +19,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
 
+//        for fontFamily in UIFont.familyNames {
+//            for fontName in UIFont.fontNames(forFamilyName: fontFamily) {
+//                print("\(fontName)")
+//            }
+//        }
+        
+        
+        
         // Use a UIHostingController as window root view controller
         if let windowScene = scene as? UIWindowScene {
             let loginHandler = LoginHandler()
@@ -27,6 +35,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let pageFlagQuery = PageFlagQuery(withNewspilot: loginHandler.newspilot)
             let window = UIWindow(windowScene: windowScene)
             PageQueryManager.shared.setup(withNewspilot: loginHandler.newspilot)
+            PublicationDateQueryManager.shared.setup(withNewspilot: loginHandler.newspilot)
             window.rootViewController = UIHostingController(rootView: ApplicationView()
                 .environmentObject(loginHandler)
                 .environmentObject(organizationQuery)

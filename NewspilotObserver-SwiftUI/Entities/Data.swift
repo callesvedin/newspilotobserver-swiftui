@@ -10,6 +10,7 @@ import SwiftUI
 import CoreLocation
 
 
+let publicationDatesData: [PublicationDate] = load("publicationDates.json")
 let organizationData: [Organization] = load("organizations.json")
 let productsData: [Product] = load("products.json")
 let subProductsData: [SubProduct] = load("subproducts.json")

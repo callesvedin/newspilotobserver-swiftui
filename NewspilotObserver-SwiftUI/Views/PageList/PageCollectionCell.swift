@@ -26,25 +26,34 @@ struct PageCollectionCell: View {
             .frame(minWidth: 18, maxWidth: 20, minHeight: 20, maxHeight: 200, alignment: Alignment.top)
             
             VStack(alignment: .center, spacing:0) {
-                WebImage(url: self.page.thumbUrl, options: [.highPriority, .allowInvalidSSLCertificates,.retryFailed])
-                    .onSuccess { image, cacheType in
-                        //                        print("loaded preview")
+                ZStack(alignment: .bottomTrailing){
+                    WebImage(url: self.page.thumbUrl, options: [.highPriority, .allowInvalidSSLCertificates,.retryFailed])
+                        .onSuccess { image, cacheType in
+                            //                        print("loaded preview")
+                        }
+                        .resizable()
+                        .placeholder(Image(uiImage: UIImage(named: "EmptyPageThumb.png")!))
+                        .indicator(.activity)
+                        .scaledToFit().shadow(radius: 5)
+                    Text("\(self.page.pageNumber)")
+                        .font(.caption)
+                        .bold()
+                        .padding(2)
+                        .background(Color(self.page.statusColor).opacity(0.4))
+                        .padding(2)
                 }
-                    .resizable() // Resizable like SwiftUI.Image
-                    .placeholder(Image(uiImage: UIImage(named: "EmptyPageThumb.png")!))
-                    .indicator(.activity) // Activity Indicator
-                    .scaledToFit().shadow(radius: 5)
                 
-                Rectangle()
-                    .frame(width: nil, height: 5).padding(.top,4)
-                    .foregroundColor(Color(self.page.statusColor))
-                
-                Text("\(self.page.name)").font(.caption)
-                    .foregroundColor(Color.primary)
+                HStack {
+                    Text("\(self.page.name)")
+                        .font(.caption)
+                        .foregroundColor(Color.primary)
+                        .padding(.top, 4)
+                    Spacer()
+                }
                 
             }
-            
-        }.padding()
+        }
+        .padding()
         
     }
     
@@ -52,7 +61,7 @@ struct PageCollectionCell: View {
 
 struct PageCollectionCell_Previews: PreviewProvider {
     static var previews: some View {
-        let model = PageViewModel(id: 1, pageNumber: 4, name: "Great page", section: "Section A", part: "Part A", edition: "Edition 1", version: "Version 3",template: "A-Section",editionType: .original, statusName: "Ready", statusColor: UIColor.green,flags:[UIImage(systemName: "star"), UIImage(systemName: "star.fill")],
+        let model = PageViewModel(id: 1, pageNumber: 1, name: "Great page", section: "Section A", part: "Part A", edition: "Edition 1", version: "Version 3",template: "A-Section",editionType: .original, statusName: "Ready", statusColor: UIColor.green,flags:[UIImage(systemName: "star"), UIImage(systemName: "star.fill")],
                                   thumbUrl: nil, previewUrl: nil)
         return PageCollectionCell(page: model).previewLayout(.fixed(width: 200, height: 300)) //.border(Color.gray)
     }

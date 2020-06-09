@@ -13,7 +13,7 @@ enum BannerType {
     case Warning
     case Success
     case Error
-
+    
     var tintColor: Color {
         switch self {
         case .Info:
@@ -36,7 +36,7 @@ struct BannerModifier: ViewModifier {
         var detail:String
         var type: BannerType
     }
-
+    
     
     var data:BannerData
     @Binding var show:Bool
@@ -56,7 +56,9 @@ struct BannerModifier: ViewModifier {
                         Spacer()
                     }
                     .foregroundColor(Color.white)
-                    .padding(8)
+                    .padding(.horizontal, 22)
+                    .padding(.top, 12)
+                    .padding(.bottom, 14)
                     .background(data.type.tintColor)
                     .cornerRadius(8)
                 }
@@ -68,20 +70,30 @@ struct BannerModifier: ViewModifier {
                     }
                 }
                 Spacer()
-//                .onAppear(perform: {
-//                    DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
-//                        withAnimation {
-//                            self.show = false
-//                        }
-//                    }
-//                })
+                //                .onAppear(perform: {
+                //                    DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+                //                        withAnimation {
+                //                            self.show = false
+                //                        }
+                //                    }
+                //                })
             }
-        }
+        }.edgesIgnoringSafeArea(.bottom)
     }
 }
 
-//struct BannerModifier_Previews: PreviewProvider {
-//    static var previews: some View {
-//        BannerModifier(data:BannerModifier.BannerData(title:"Hello", detail: "Details comming here",type:.Info))
-//    }
-//}
+struct BannerModifier_Previews: PreviewProvider {
+    static var previews: some View {
+        Group {
+            Text("ContentView").frame(minWidth: 300, idealWidth: nil, maxWidth: .infinity, minHeight: 600, idealHeight: nil, maxHeight: .infinity)
+                .modifier(BannerModifier(data:BannerModifier.BannerData(title:"Hello", detail: "Details comming here",type:.Info), show:Binding.constant(true))
+            )
+            Text("ContentView").frame(minWidth: 300, idealWidth: nil, maxWidth: .infinity, minHeight: 600, idealHeight: nil, maxHeight: .infinity)
+                .modifier(BannerModifier(data:BannerModifier.BannerData(title:"Hello", detail: "Details comming here",type:.Warning), show:Binding.constant(true))
+            )
+            Text("ContentView").frame(minWidth: 300, idealWidth: nil, maxWidth: .infinity, minHeight: 600, idealHeight: nil, maxHeight: .infinity)
+                .modifier(BannerModifier(data:BannerModifier.BannerData(title:"Hello", detail: "Details comming here",type:.Error), show:Binding.constant(true))
+            )
+        }
+    }
+}

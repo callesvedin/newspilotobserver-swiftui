@@ -1,60 +1,11 @@
 import Foundation
 import UIKit
+import SwiftUI
 
-
-extension UIColor {
-    //    Colours on Navigation Bar, Button Titles, Progress Indicator etc.
-    static var theme: UIColor {
-        return intermidiateBackground
-    }
-
-    //Hair line separators in between views.
-    static var border: UIColor {
-        return UIColor(hexString: "#666666")
-    }
-
-    //Shadow colours for card like design.
-    static var shadow: UIColor {
-        return UIColor(hexString: "#1473E6")
-    }
-    
-    //Dark background colour to group UI components with light colour.
-    static var darkBackground: UIColor {
-        return UIColor(hexString: "#0C458A")
-    }
-    
-    //Light background colour to group UI components with dark colour.
-    static var lightBackground: UIColor {
-        return UIColor(hexString: "#E7F1FC")
-    }
-
-    //Used for grouping UI elements with some other colour scheme.
-    static var intermidiateBackground: UIColor {
-        return UIColor(hexString: "#6EAAF2")
-    }
-
-    static var lightText: UIColor {
-        return UIColor(hexString: "#FFFFFF")
-    }
-    
-    static var darkText: UIColor {
-        return UIColor(hexString: "#000000")
-    }
-    
-    static var intermidiateText: UIColor {
-        return UIColor(hexString: "#666666")
-    }
-    
-    //Colour to show success, something right for user.
-    static var affirmation: UIColor {
-        return UIColor(hexString: "#66C47F")
-    }
-    
-    //    Colour to show error, some danger zones for user.
-    static var negation: UIColor {
-        return UIColor(hexString: "#ED3B3F")
-    }
-
+extension Color {
+    public static let navigaButtonBackground = Color("NavigaButtonBackground")
+    public static let navigaBackground = Color("NavigaBackground")
+    public static let navigaTextFieldBackground = Color(UIColor.secondarySystemBackground)
 }
 
 extension UIColor {

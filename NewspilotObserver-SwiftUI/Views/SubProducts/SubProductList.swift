@@ -13,11 +13,6 @@ struct SubProductList: View {
     @EnvironmentObject var organizationQuery:OrganizationsQuery
     @EnvironmentObject var loginHandler:LoginHandler
     
-    var publicationDateQuery:PublicationDateQuery {
-        get {
-            PublicationDateQuery(withNewspilot: loginHandler.newspilot, productId: product.id)
-        }
-    }
     let product:Product
     
     
@@ -34,13 +29,14 @@ struct SubProductList: View {
                                           pageQuery: PageQueryManager.shared.getPageQuery(
                                             withProductId: subProduct.productID,
                                             subProductId:subProduct.id)
-                    ).environmentObject(self.publicationDateQuery)
+                    )
                 )
                 {
                     Text(subProduct.name) //.font(.caption).foregroundColor(.gray)
                 }                
             }
         }
+        .connectionBanner()
         .navigationBarTitle(product.name)        
     }
 }

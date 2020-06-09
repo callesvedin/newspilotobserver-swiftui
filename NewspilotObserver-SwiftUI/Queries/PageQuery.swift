@@ -27,15 +27,20 @@ class PageQuery : ObservableObject {
     private weak var newspilot:Newspilot?
     public let productId:Int
     public let subProductId:Int
-    
-    var publicationDateId:Int {
-        didSet {
-            loaded = false
-            backs = [:]
-            load()
+    public var pages:[Page] {
+        get {
+            PageQuery.getAllPagesFrom(backs: self.backs)
         }
     }
     
+//    var publicationDateId:Int {
+//        didSet {
+//            loaded = false
+//            backs = [:]
+//            load()
+//        }
+//    }
+//
     private var query:Query? {
         didSet {
             cancellableSubscriber?.cancel()
@@ -55,7 +60,7 @@ class PageQuery : ObservableObject {
         self.newspilot = newspilot
         self.productId = productId
         self.subProductId = subProductId
-        self.publicationDateId = publicationDateId
+//        self.publicationDateId = publicationDateId
     }
     
     func cancel() {
@@ -109,12 +114,12 @@ class PageQuery : ObservableObject {
                 <and>
                     <eq field="product.id" type="Page" value="\(productId)"/>
                     <ne field="preproductionType" type="Page" value="1"/>
-                    <!-- <eq field="publicationDate.id" type="Page" value="\(publicationDateId)"/> -->
                     <eq field="subProduct.id" type="Page" value="\(subProductId)"/>
                 </and>
             </base-query>
         </query>
         """
+//        <!-- <eq field="publicationDate.id" type="Page" value="\(publicationDateId)"/> -->
     
     }
     
@@ -195,6 +200,13 @@ class PageQuery : ObservableObject {
            }
            return startIndex
        
+    }
+    
+    
+    public static func getAllPagesFrom(backs:[BackKey:[Page]]) -> [Page]{
+        backs.flatMap({(key:BackKey,pages:[Page]) in
+            return pages
+        })
     }
     
     public static func createBacks(pages:[Page]) -> [BackKey:[Page]] {
