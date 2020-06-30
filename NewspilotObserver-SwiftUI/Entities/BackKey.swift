@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct BackKey {
+struct BackKey:PageFilterable {    
 //    let id:String = UUID().uuidString
     let publicationDateId:Int
     let part:String?
@@ -74,6 +74,4 @@ extension BackKey:CustomStringConvertible {
     var description: String {
         return "PiD\(publicationDateId) P\(part ?? "-")V\(version ?? "-")E\(edition ?? "-")"
     }
-    
-    
 }

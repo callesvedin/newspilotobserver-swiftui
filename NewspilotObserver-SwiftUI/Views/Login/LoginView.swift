@@ -31,7 +31,8 @@ struct LoginView: View {
                 }
                 VStack() {
                     Spacer()
-                    Text("Newspilot").font(Font.titleFont)
+                    Text("Newspilot")
+                        .font(Font.titleFont)
                         .foregroundColor(Color.white)
                         .padding(.bottom, 50)
 //                    NPTextField(placeHolder: "Username", text: $loginSettings.login)
@@ -39,10 +40,10 @@ struct LoginView: View {
 //                        .textContentType(.none)
 //                        .autocapitalization(.none)
 //                        .padding()
-//                        .background(Color("TextField"))
+//                        .background(Color.navigaTextFieldBackground)
 //                        .cornerRadius(5.0)
 //                        .padding()
-//
+
                     TextField("Username", text: $loginSettings.login)
                         .font(Font.bodyFont)                        
                         .textContentType(.none)
@@ -72,7 +73,7 @@ struct LoginView: View {
                     if loginHandler.connectionStatus == .connectionFailed {
                         Text("Connection failed. Please try again").foregroundColor(Color.red)
                     }else if loginHandler.connectionStatus == .authenticationFailed {
-                        Image(systemName: "lock.slash.fill").font(Font.title.weight(.regular)).foregroundColor(.gray)
+//                        Image(systemName: "lock.slash.fill").font(Font.title.weight(.regular)).foregroundColor(.gray)
                         Text("Incorrect username or password").foregroundColor(.red)
                     }
                     else{
@@ -83,10 +84,10 @@ struct LoginView: View {
                     }){
                         HStack {
                             if loginHandler.connectionStatus == .connecting {
-                                ActivityIndicator(isAnimating: .constant(true), style: .medium).foregroundColor(.white)
+                                ActivityIndicator(isAnimating: .constant(true), style: .medium)
                             }else{                                
                                 Image(systemName: "lock.fill").font(Font.headline.weight(.regular))
-                                    .foregroundColor(.white)
+                                    .foregroundColor(.white).padding(4)
                             }
                             
                             Text("Login")
@@ -97,6 +98,7 @@ struct LoginView: View {
                         .frame(width: 180, height: 50)
                         .background(Color.navigaButtonBackground)
                         .cornerRadius(15.0)
+                        .shadow(color: Color.navigaButtonBackground.opacity(loginHandler.connectionStatus == .connecting ? 0 : 0.3), radius: 5.0, x: 5, y: 5)
                     }                
                     
                     Spacer()

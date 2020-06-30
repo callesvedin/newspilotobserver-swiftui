@@ -16,10 +16,11 @@ struct PageFormatInfoFooter: View {
     private let publicationStatus = 17
     private var statusArray:[Status] = []
     
-    init(backs:[BackKey:[Page]], statusArray:[Status]) {
+    init(backs:[BackKey:[Page]], filter:PageFilter, statusArray:[Status]) {
         self.backs = backs
         self.statusArray = statusArray
-        backKeys = backs.map{$0.key}.sorted()
+        self.backKeys = backs.filter({filter.match($0.key)}).map{$0.key}.sorted()
+        
         for (_,pages) in backs {
             for page in pages {
                 pageCount += 1
@@ -53,7 +54,7 @@ struct PageFormatInfoFooter: View {
 //                    StatusInfo(status:status,  nrOfPages:self.pageStatuses[status.id] ?? 0)
 //                }
                 
-                Text("\(self.pageStatuses[self.publicationStatus] ?? 0) of \(self.pageCount) pages publicated")
+                Text("\(self.pageStatuses[self.publicationStatus] ?? 0) of \(self.pageCount) pages published")
                 .background(Color(UIColor.systemBackground))
                 .cornerRadius(10)
                 .offset(y: 5)
@@ -68,6 +69,7 @@ struct PageFormatInfoFooter_Previews: PreviewProvider {
         
         let view = PageFormatInfoFooter(
             backs: [pageData[0].backKey:pageData],
+            filter:PageFilter(),
             statusArray: statusData
         ).border(Color.gray)
         return Group{

@@ -28,11 +28,15 @@ struct NPTextField: View {
 struct NPTextField_Previews: PreviewProvider {
     
     static var previews: some View {
-        let labels = ["First Name", "Last Name", "Street", "City", "Post Code"]
+        let labels = ["First Name", "Last Name", "Street", "City", "Post Code", "Etc"]
+        let values = ["Carl-Johan", "Svedin", "Homestreet", "Hometown", "999 99", ""]
         
         return
-            List(0..<5) { index in
-                NPTextField(placeHolder: labels[index], text: .constant("fasd"))
-            }.listStyle(GroupedListStyle())
+            Group {
+                List(0..<labels.count) { index in
+                    NPTextField(placeHolder: labels[index], text: .constant(values[index])).padding(.top,15)
+                }.listStyle(GroupedListStyle())
+            }
+        
     }
 }

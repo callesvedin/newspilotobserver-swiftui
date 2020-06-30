@@ -159,3 +159,11 @@ extension Page {
     }
 }
 
+extension Page:PageFilterable {
+    var publicationDateId: Int {
+        get{
+            return self.publicationDateID
+        }
+    }    
+}
+

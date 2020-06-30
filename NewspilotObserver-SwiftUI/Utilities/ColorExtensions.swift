@@ -4,6 +4,8 @@ import SwiftUI
 
 extension Color {
     public static let navigaButtonBackground = Color("NavigaButtonBackground")
+    // Går inte att använda med .navigaBackground (knappen försvinner)
+    public static let navigaPressedButtonBackground = Color("NavigaPressedButtonBackground")
     public static let navigaBackground = Color("NavigaBackground")
     public static let navigaTextFieldBackground = Color(UIColor.secondarySystemBackground)
 }

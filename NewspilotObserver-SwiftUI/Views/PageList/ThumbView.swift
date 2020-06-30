@@ -15,14 +15,26 @@ struct ThumbView:View
     let backs:[BackKey:[Page]]
     let backKeys:[BackKey]
     let columns:Int
-    @State private var expandedBacks:Set<BackKey> = Set<BackKey>()
+    @State var expandedBacks:Set<BackKey> = Set<BackKey>()
     
     var body: some View {
         List {
             ForEach (self.backKeys, id: \.hashValue) {backKey in
-                Section(header:SectionHeader(backKey: backKey, expandedBacks:self.$expandedBacks)) {
+                
+                Section(header:
+                                SectionHeaderView(backKey: backKey, expandedBacks: self.$expandedBacks)
+                                    .padding()
+                                .background(Color.white)
+                                .listRowInsets(EdgeInsets(
+                                    top: 0,
+                                    leading: 0,
+                                    bottom: 0,
+                                    trailing: 0)))
+
+                {
                     if (self.expandedBacks.contains(backKey)){
                         GridStack(rows: Int(Float(self.backs[backKey]!.count / self.columns).rounded(.up)), columns: self.columns){row, col in
+                            
 //                            ZStack {
 //                                NavigationLink(
 //                                    destination: PageDetailsView(
@@ -30,12 +42,14 @@ struct ThumbView:View
 //                                ){EmptyView()}
                                 PageCollectionCell(page:self.pageModelAdapter.getPageViewModel(from: self.backs[backKey]![(row*self.columns)+col])).padding(10)
 //                            }
-                        }.padding(.vertical, 20).background(Color.white).cornerRadius(20) //.animation(.spring())
-                        
+                        }
+                        .background(Color.white)
+                        .padding(.vertical, 20)
+                        .cornerRadius(20) //.animation(.spring())                        
                     }
                 }
             }
-        }//.background(Color.gray)
+        }
     }
     
     func getViewsFrom(pageModelAdapter:PageModelAdapter, backs:[BackKey:[Page]], backKey:BackKey) -> [PageDetailView] {
@@ -50,31 +64,6 @@ struct ThumbView:View
 }
 
 
-struct SectionHeader:View {
-    let backKey:BackKey
-    @Binding var expandedBacks:Set<BackKey>
-    
-    var body : some View {
-        HStack {
-            Text("Part: \(self.backKey.part ?? "-") Edition: \(self.backKey.edition ?? "-") Version:\(self.backKey.version ?? "-")")
-            Spacer()
-            Image(systemName: "chevron.right")
-                .rotationEffect(.degrees(self.expandedBacks.contains(backKey) ? 90 : 0))
-        }.padding(.all,10).onTapGesture {
-            if (self.expandedBacks.contains(self.backKey)){
-                withAnimation {
-                    self.expandedBacks.remove(self.backKey)
-                }
-            }else{
-                withAnimation {
-                    self.expandedBacks.insert(self.backKey)
-                }
-            }
-        }
-    }
-}
-
-
 struct ThumbView_Previews: PreviewProvider {
     static var previews: some View {
         var pages:[Page] = []
@@ -85,7 +74,8 @@ struct ThumbView_Previews: PreviewProvider {
         let pageBacks = PageQuery.createBacks(pages: pages)
         let pageModelAdapter = PageModelAdapter(newspilotServer: "server", statuses: statusData, sections:sectionsData, flags: [])
         let backs = pageBacks.keys.map({$0})
-        return NavigationView { ThumbView(pageModelAdapter: pageModelAdapter , backs: pageBacks, backKeys: backs, columns: 3)}
+        return NavigationView {
+            ThumbView(pageModelAdapter: pageModelAdapter , backs: pageBacks, backKeys: backs, columns: 3, expandedBacks: Set(arrayLiteral: pageBacks.first!.key))}.previewDevice("iPhone 11").background(Color.white)
         
     }
 }
