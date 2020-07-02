@@ -114,21 +114,24 @@ struct LoginView: View {
 }
 
 struct LoginView_Previews: PreviewProvider {
+    static let devices = [PreviewDevice(rawValue: "iPhone 11"),
+                   PreviewDevice(rawValue: "iPhone SE"),
+                   PreviewDevice(rawValue: "iPad Pro (12.9-inch) (4th generation)")]
+    
     static var previews: some View {
+        
         Group {
-        LoginView().environmentObject(LoginHandler())
-            .previewDevice(PreviewDevice(rawValue: "iPhone 11"))
-            .previewDisplayName("iPhone 11")
-            .environment(\.colorScheme, .dark)
-        LoginView().environmentObject(LoginHandler())
-            .previewDevice(PreviewDevice(rawValue: "iPhone 11"))
-            .previewDisplayName("iPhone 11")
-        LoginView().environmentObject(LoginHandler())
-            .previewDevice(PreviewDevice(rawValue: "iPhone SE"))
-            .previewDisplayName("iPhone SE")
-        LoginView().environmentObject(LoginHandler())
-                .previewDevice(PreviewDevice(rawValue: "iPad Air (3rd generation)"))
-                .previewDisplayName("iPad Air (3rd generation)")
-        }
+            ForEach (devices, id: \.rawValue) {device in
+                LoginView().environmentObject(LoginHandler())
+                    .previewDevice(device)
+                    .previewDisplayName(device.rawValue)
+                    .environment(\.colorScheme, .dark)
+                
+                LoginView().environmentObject(LoginHandler())
+                    .previewDevice(device)
+                    .previewDisplayName(device.rawValue)
+                    .environment(\.colorScheme, .light)
+            }
+        }        
     }
 }
