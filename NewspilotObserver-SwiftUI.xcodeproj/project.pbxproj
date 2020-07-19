@@ -31,6 +31,10 @@
 		EB56C5DB232B88AC00BF84A5 /* SubProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB56C5DA232B88AC00BF84A5 /* SubProduct.swift */; };
 		EB59C44D24125B6E003FB040 /* Shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB59C44C24125B6E003FB040 /* Shake.swift */; };
 		EB5B06E4248A4D1900F5F86B /* NPTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5B06E3248A4D1900F5F86B /* NPTextField.swift */; };
+		EB601D1424C3089800FB90B1 /* Arc.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB601D0A24C3089800FB90B1 /* Arc.swift */; };
+		EB601D1824C3089800FB90B1 /* PieChartModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB601D0F24C3089800FB90B1 /* PieChartModel.swift */; };
+		EB601D1924C3089800FB90B1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB601D1024C3089800FB90B1 /* ContentView.swift */; };
+		EB601D1B24C3089800FB90B1 /* PieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB601D1224C3089800FB90B1 /* PieChartView.swift */; };
 		EB6A0CD123CCF2B300DD6CAE /* PageCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6A0CD023CCF2B300DD6CAE /* PageCollectionCell.swift */; };
 		EB6A0CD323CD0ED200DD6CAE /* GridStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6A0CD223CD0ED200DD6CAE /* GridStack.swift */; };
 		EB6AE6FF233A8A2E0020A501 /* LoginHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6AE6FE233A8A2E0020A501 /* LoginHandler.swift */; };
@@ -152,6 +156,10 @@
 		EB56C5DA232B88AC00BF84A5 /* SubProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubProduct.swift; sourceTree = "<group>"; };
 		EB59C44C24125B6E003FB040 /* Shake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shake.swift; sourceTree = "<group>"; };
 		EB5B06E3248A4D1900F5F86B /* NPTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NPTextField.swift; sourceTree = "<group>"; };
+		EB601D0A24C3089800FB90B1 /* Arc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Arc.swift; sourceTree = "<group>"; };
+		EB601D0F24C3089800FB90B1 /* PieChartModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PieChartModel.swift; sourceTree = "<group>"; };
+		EB601D1024C3089800FB90B1 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		EB601D1224C3089800FB90B1 /* PieChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PieChartView.swift; sourceTree = "<group>"; };
 		EB6A0CD023CCF2B300DD6CAE /* PageCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageCollectionCell.swift; sourceTree = "<group>"; };
 		EB6A0CD223CD0ED200DD6CAE /* GridStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridStack.swift; sourceTree = "<group>"; };
 		EB6AE6FE233A8A2E0020A501 /* LoginHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginHandler.swift; sourceTree = "<group>"; };
@@ -330,6 +338,17 @@
 			path = Organizations;
 			sourceTree = "<group>";
 		};
+		EB601D0824C3089800FB90B1 /* PieChart */ = {
+			isa = PBXGroup;
+			children = (
+				EB601D0A24C3089800FB90B1 /* Arc.swift */,
+				EB601D0F24C3089800FB90B1 /* PieChartModel.swift */,
+				EB601D1024C3089800FB90B1 /* ContentView.swift */,
+				EB601D1224C3089800FB90B1 /* PieChartView.swift */,
+			);
+			path = PieChart;
+			sourceTree = "<group>";
+		};
 		EB6C22732359DC4500101147 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -467,6 +486,7 @@
 		EB7B9E4E22C80B0B009EB2BE /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				EB601D0824C3089800FB90B1 /* PieChart */,
 				EBDCC32D23BE09130092A6FE /* Banner */,
 				EB0E5B59237B256200BC67AB /* ViewUtils */,
 				EB6C22862368BB9500101147 /* PageDetail */,
@@ -723,11 +743,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB601D1B24C3089800FB90B1 /* PieChartView.swift in Sources */,
 				EB8CE4C223317D5B000A03A2 /* LoginSettings.swift in Sources */,
 				EB8CE4BE233170C8000A03A2 /* LoginView.swift in Sources */,
 				EB6C22672358C7D400101147 /* PageListCell.swift in Sources */,
 				EB41EA5223479D2200550428 /* PublicationDateQuery.swift in Sources */,
 				EB41EA582348BF7400550428 /* Page.swift in Sources */,
+				EB601D1824C3089800FB90B1 /* PieChartModel.swift in Sources */,
 				EB5435102322EC61004EE63F /* OrganizationsQuery.swift in Sources */,
 				EB7D5D762486D8F4006C7314 /* FontExtensions.swift in Sources */,
 				EB6C226D2359090000101147 /* StatusQuery.swift in Sources */,
@@ -741,6 +763,7 @@
 				EB117D252463067500AF52EF /* PublicationDateQueryManager.swift in Sources */,
 				EB6C22882368BBBF00101147 /* PageControl.swift in Sources */,
 				EB6C228C2368BCB400101147 /* PageViewController.swift in Sources */,
+				EB601D1424C3089800FB90B1 /* Arc.swift in Sources */,
 				EB6C2285236233C100101147 /* BackKey.swift in Sources */,
 				EB59C44D24125B6E003FB040 /* Shake.swift in Sources */,
 				EB56C5DB232B88AC00BF84A5 /* SubProduct.swift in Sources */,
@@ -783,6 +806,7 @@
 				EB6C22812360AAFD00101147 /* SubProductSettings.swift in Sources */,
 				EB6A0CD123CCF2B300DD6CAE /* PageCollectionCell.swift in Sources */,
 				EB6C228E2368BFD300101147 /* PageDetailView.swift in Sources */,
+				EB601D1924C3089800FB90B1 /* ContentView.swift in Sources */,
 				EB6C22772359DCDC00101147 /* Section.swift in Sources */,
 				EBCF5C9C24267AC000F34055 /* ThumbView.swift in Sources */,
 				EB0E5B5B237B258A00BC67AB /* KeyboardResponder.swift in Sources */,

@@ -11,6 +11,7 @@ import Newspilot
 
 struct PageList: View {
     private var subProduct:SubProduct
+    var pieChartModel:PieChartModel
     
     @State var filter=PageFilter()
     @State var showFilterView = false
@@ -23,6 +24,7 @@ struct PageList: View {
     var publicationDateQuery:PublicationDateQuery
     
     @State private var useThumbView = true
+    @State private var expandChart = false
     
     let newspilot:Newspilot
     
@@ -31,6 +33,13 @@ struct PageList: View {
         self.subProduct = subProduct
         self.pageQuery = pageQuery
         self.publicationDateQuery = PublicationDateQueryManager.shared.getPublicationDateQuery(withProductId: subProduct.productID)
+        let values:[Double] = [11, 12, 13, 14, 15, 16]
+        var data:[PieChartItem] = []
+        for value in values {
+            data.append(PieChartItem(title: "The status \(Int(value))",value: value, color: .random))
+        }
+        self.pieChartModel = PieChartModel(data: data)
+
     }
     
     
@@ -45,9 +54,30 @@ struct PageList: View {
         let publicationDateString = self.filter.publicationDate?.name ?? "PubDate"
         return
             GeometryReader {geometry in
-                ZStack {
-                    Color.white
+                ZStack {                    
                     VStack {
+                        Button(action:{
+                            withAnimation {
+                                expandChart.toggle()
+                            }
+                            
+                        }) {
+                            PieChartView(chartData:pieChartModel).frame(width: 50, height: 50)
+                        }
+                        
+                        if expandChart {
+                            ForEach(pieChartModel.arcData) {arc in
+                                HStack {
+                                    Arc(startAngle: arc.startAngle, endAngle: arc.endAngle, clockwise: true)
+                                        .foregroundColor(Color(arc.pieData.color))
+                                        .frame(width: 30, height: 30, alignment: .center).padding(0)
+                                        
+                                    Text("\(Int(arc.pieData.value)) of status \(arc.pieData.title)")
+                                    Spacer()
+                                }.padding(.leading, 5)
+                            }
+                        }
+                        
                         if self.useThumbView {
                             ThumbView(pageModelAdapter:pageModelAdapter, backs:backs, backKeys:backKeys, columns: self.getColumns(width:geometry.size.width))
                         }else{
@@ -76,7 +106,7 @@ struct PageList: View {
                             }
                     )
                     
-                }.edgesIgnoringSafeArea(.all)
+                }.edgesIgnoringSafeArea(.bottom) //.edgesIgnoringSafeArea(.leading).edgesIgnoringSafeArea(.trailing)
             }
             .connectionBanner()
             .onAppear(){
