@@ -6,7 +6,7 @@
         "repositoryURL": "git@bitbucket.org:infomaker/newspilotswiftclient.git",
         "state": {
           "branch": "develop",
-          "revision": "dbec674a883f69ec92c360dd590292f35d31ae38",
+          "revision": "b25e1cf9857cea2e2f9cc38c6bd0ed313830cbbb",
           "version": null
         }
       },
@@ -15,8 +15,8 @@
         "repositoryURL": "https://github.com/SDWebImage/SDWebImage.git",
         "state": {
           "branch": null,
-          "revision": "7adc385b7d9aa758fb5073bcea478f31293c4e40",
-          "version": "5.3.1"
+          "revision": "2f9ef53b99a25bdfba97660c69c42cb54e323b78",
+          "version": "5.8.4"
         }
       },
       {

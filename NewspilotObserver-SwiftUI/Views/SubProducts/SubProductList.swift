@@ -43,7 +43,7 @@ struct SubProductList: View {
 
 struct SubProductList_Previews: PreviewProvider {
     static var previews: some View {
-        let dates = [PublicationDate]()
+//        let dates = [PublicationDate]()
         return SubProductList(
             product:Product(id: 1, name: "Test Product", organizationID: 1))
             .environmentObject(OrganizationsQuery(withStaticOrganizations: organizationData, products: productsData, subProducts: subProductsData, andSections: sectionsData))

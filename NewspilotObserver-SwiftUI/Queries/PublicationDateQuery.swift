@@ -99,8 +99,8 @@ class PublicationDateQuery :  ObservableObject {
         
         let calendar = Calendar(identifier: .gregorian)
         let today = calendar.beginningOf(date: Date()) ?? Date()
-        let aMonthAgo = calendar.date(byAdding: .month, value: -1, to: today, wrappingComponents: false)
-        let nextYear = calendar.date(byAdding: .year, value: 1, to: today, wrappingComponents: false)
+        let aMonthAgo = calendar.date(byAdding: .month, value: -10, to: today, wrappingComponents: false)
+        let nextYear = calendar.date(byAdding: .year, value: 2, to: today, wrappingComponents: false)
         
         guard let fromDate = aMonthAgo, let toDate = nextYear else {
             os_log("Could not create beginning and end of date for publication dates", log: .newspilot, type: .error)
@@ -170,10 +170,7 @@ class PublicationDateQuery :  ObservableObject {
                         publicationDates.removeAll(where:{$0.id == event.entityId})
                     default:
                         os_log("Can not remove  %@", log: .newspilot, type: .error, event.entityType.rawValue)
-                    }
-                default:
-                    os_log("Unhandled event in PublicationDateQuery", log: .newspilot, type:.error)
-                    
+                    }                    
                 }
             }catch(let error) {
                 os_log("Can not decode PublicationDate. Error: %@", log: .newspilot, type: .error, error.localizedDescription)

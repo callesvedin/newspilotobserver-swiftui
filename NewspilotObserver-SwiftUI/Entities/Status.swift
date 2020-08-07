@@ -7,10 +7,23 @@
 //
 
 import Foundation
-struct Status:Identifiable,Codable {
+struct Status:Identifiable,Codable,Comparable {
+    static func < (lhs: Status, rhs: Status) -> Bool {
+        return lhs.sortKey < rhs.sortKey
+    }
+    
     let id:Int
     let entityType:String
     let name:String
     let color:Double
+    let sortKey:Int
+
+    enum CodingKeys: String, CodingKey {
+     case id
+     case entityType
+     case name
+     case color
+     case sortKey = "sort_key"
+    }
     
 }

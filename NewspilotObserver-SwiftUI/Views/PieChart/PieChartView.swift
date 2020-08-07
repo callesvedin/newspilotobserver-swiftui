@@ -12,13 +12,13 @@ class PieChartItem:PieChartData, Identifiable {
     var value:Double
     var title:String
     var color:UIColor
-
+    
     init(title:String, value:Double, color:UIColor) {
         self.title = title
         self.value = value
         self.color = color
     }
-
+    
 }
 
 class ArcData:Identifiable {
@@ -31,12 +31,12 @@ class ArcData:Identifiable {
     var endAngle:Angle!
     var annotationDeltaX:CGFloat!
     var annotationDeltaY:CGFloat!
-//    var percentTitle:String!
+    //    var percentTitle:String!
 }
 
 struct PieChartView: View {
     @ObservedObject var chartData:PieChartModel
-        
+    
     var body: some View {
         
         return
@@ -44,7 +44,7 @@ struct PieChartView: View {
                 ZStack {
                     ForEach(chartData.arcData) {arc in
                         Arc(startAngle: arc.startAngle, endAngle: arc.endAngle, clockwise: true)
-                            .foregroundColor(Color(arc.pieData.color))
+                            .fill(Color(arc.pieData.color),opacity:1, strokeWidth: 1, strokeColor: Color.gray)
                     }
                     
                     if geometry.size.width >= 200 {
@@ -61,6 +61,7 @@ struct PieChartView: View {
     }
 }
 
+
 extension Double {
     func format(f: String) -> String {
         return String(format: "%\(f)f", self)
@@ -72,14 +73,14 @@ struct PieChartView_Previews: PreviewProvider {
     static var previews: some View {
         let values:[Double] = [11, 12, 13, 14, 15, 16]
         var data:[PieChartData] = []
-                
+        
         for value in values {
             
             data.append(PieChartItem(title: "\(Int(value))",value: value, color: .random))
         }
-
+        
         return
             PieChartView(chartData: PieChartModel(data: data))
-                .frame(width: 200, height: 200, alignment: .center)
+            .frame(width: 200, height: 200, alignment: .center)
     }
 }

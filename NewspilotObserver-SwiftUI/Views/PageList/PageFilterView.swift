@@ -84,7 +84,7 @@ struct PageFilterView_Previews: PreviewProvider {
     static var previews: some View {
         let publicationDates = publicationDatesData
         let pages = pageData
-        let pageBacks = PageQuery.createBacks(pages: pages)
+//        let pageBacks = PageQuery.createBacks(pages: pages)
         return PageFilterView(subProduct: SubProduct(id: 1, productId: 1, name: "Test Sub Product", settingsString: ""),
                               pages: pages,
                               publicationDateQuery: PublicationDateQuery(withProductId: 1, publicationDates: publicationDates),

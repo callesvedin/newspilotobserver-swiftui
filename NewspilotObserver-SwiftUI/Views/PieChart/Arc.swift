@@ -26,9 +26,17 @@ struct Arc: Shape {
 
 struct Arc_Previews: PreviewProvider {
     static var previews: some View {
+        Group {
         Arc(startAngle: .degrees(0), endAngle: .degrees(45), clockwise: true)
 //            .stroke(Color.blue, lineWidth: 1)
             .foregroundColor(.random)
             .frame(width: 300, height: 300)
+        Arc(startAngle: .degrees(0), endAngle: .degrees(45), clockwise: true)
+                .stroke(Color.gray, lineWidth: 1)
+                .foregroundColor(.white)
+                .frame(width: 300, height: 300)
+                
+
+        }
     }
 }

@@ -200,10 +200,7 @@ class OrganizationsQuery :  ObservableObject {
                         sections.removeAll(where:{$0.id == event.entityId})
                     default:
                         os_log("Can not remove %@", log: .newspilot, type: .error, event.entityType.rawValue)
-                    }
-                default:
-                    os_log("Unhandled event in OrganizationQuery", log: .newspilot, type:.error)
-                    
+                    }                    
                 }
             }catch(let error) {
                 os_log("Could not process event %@", log: .newspilot, type: .error, error.localizedDescription)

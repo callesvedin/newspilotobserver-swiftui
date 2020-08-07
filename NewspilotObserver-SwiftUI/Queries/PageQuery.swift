@@ -14,12 +14,8 @@ import os.log
 class PageQuery : ObservableObject {
     var objectWillChange = PassthroughSubject<Void, Never>()
 
-    var backs:[BackKey:[Page]] = [:] {
-        didSet {
-            print("Backs didset. Count:\(self.backs.count)")
-        }
-    }
-    
+    var backs:[BackKey:[Page]] = [:]
+        
     var externalQueryId:String!
     var cancellableSubscriber:Cancellable?
     var loaded:Bool = false
@@ -171,10 +167,7 @@ class PageQuery : ObservableObject {
                         backList.removeAll(where:{$0.id == event.entityId})
                     default:
                         os_log("Can not remove:%@", log: .newspilot, type: OSLogType.error, event.entityType.rawValue)
-                    }
-                default:
-                    os_log("Unhandled event in PageQuery", log: .newspilot, type:.error)
-                    
+                    }                    
                 }
             }catch(let error) {
                 os_log("Could not decode Page. Error:%@", log: .newspilot, type: .error, error.localizedDescription)

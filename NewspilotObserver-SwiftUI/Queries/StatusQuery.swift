@@ -95,7 +95,7 @@ class StatusQuery :  ObservableObject {
     private func process(_ events:[Event]) {
         events.forEach({ (event) in
             os_log("Processing status event from newspilot. EntityType: %@ , EntityId: %d", log: .newspilot, type: .debug, event.entityType.rawValue, event.entityId)
-//            os_log("Values %@",log:.newspilot, type:.debug, event.values)
+            os_log("Values %@",log:.newspilot, type:.debug, event.values)
             do {
                 let data = try JSONSerialization.data(withJSONObject: event.values, options: [])
                 let decoder = JSONDecoder()
@@ -105,7 +105,7 @@ class StatusQuery :  ObservableObject {
                 case .CREATE:
                     switch event.entityType {
                     case .Status:
-                        os_log("We got a status with the name %@", log: .newspilot, type:.debug, status.name)
+                        os_log("We got a status with the name %@ and sort_key %d", log: .newspilot, type:.debug, status.name, status.sortKey)
                         
                         if let i = statuses.firstIndex(where:{$0.id == event.entityId}) {
                             statuses[i] = status
@@ -131,10 +131,7 @@ class StatusQuery :  ObservableObject {
                         statuses.removeAll(where:{$0.id == event.entityId})
                     default:
                         os_log("Can not remove:%@", log: .newspilot, type:.error, event.entityType.rawValue)
-                    }
-                default:
-                    os_log("Unhandled event in StatusQuery", log: .newspilot, type:.error)
-                    
+                    }                    
                 }
             }catch(let error) {
                 os_log("Could not decode Status. Error:%@", log: .newspilot, type:.error, error.localizedDescription)                
@@ -145,6 +142,8 @@ class StatusQuery :  ObservableObject {
 
     }
     
-    
+    func status(forId id:Int) -> Status? {
+        return statuses.first(where: {$0.id == id})
+    }
 }
 

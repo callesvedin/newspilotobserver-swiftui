@@ -9,9 +9,40 @@
 import SwiftUI
 import Newspilot
 
+
+class StatusItem:PieChartData, Identifiable, Comparable {
+    static func < (lhs: StatusItem, rhs: StatusItem) -> Bool {
+        lhs.status.sortKey < rhs.status.sortKey
+    }
+    
+    static func == (lhs: StatusItem, rhs: StatusItem) -> Bool {
+        lhs.status.id == rhs.status.id
+    }
+    
+    public let id:UUID = UUID.init()
+    let status:Status
+    var value:Double
+    var title:String {
+        get {
+            status.name
+        }
+    }
+    var color:UIColor {
+        get{
+            UIColor.intToColor(value: Int(status.color))
+        }
+    }
+    
+    init(status:Status, value:Int) {
+        self.status = status
+        self.value = Double(value)
+    }
+    
+}
+
+
 struct PageList: View {
     private var subProduct:SubProduct
-    var pieChartModel:PieChartModel
     
     @State var filter=PageFilter()
     @State var showFilterView = false
@@ -26,6 +57,19 @@ struct PageList: View {
     @State private var useThumbView = true
     @State private var expandChart = false
     
+    var backs:[BackKey:[Page]] {
+        get {
+            self.pageQuery.backs.filter{self.filter.match($0.key)}
+        }
+    }
+    
+    var statusItems:[StatusItem] {
+        get {
+            getStatusItems(fromBacks:backs)
+        }
+    }
+
+    
     let newspilot:Newspilot
     
     init(newspilot:Newspilot, subProduct:SubProduct, pageQuery:PageQuery) {
@@ -33,13 +77,6 @@ struct PageList: View {
         self.subProduct = subProduct
         self.pageQuery = pageQuery
         self.publicationDateQuery = PublicationDateQueryManager.shared.getPublicationDateQuery(withProductId: subProduct.productID)
-        let values:[Double] = [11, 12, 13, 14, 15, 16]
-        var data:[PieChartItem] = []
-        for value in values {
-            data.append(PieChartItem(title: "The status \(Int(value))",value: value, color: .random))
-        }
-        self.pieChartModel = PieChartModel(data: data)
-
     }
     
     
@@ -48,9 +85,8 @@ struct PageList: View {
                                                 statuses: self.statusQuery.statuses,
                                                 sections: self.organizationQuery.sections,
                                                 flags: self.flagQuery.flags)
-        let backs = self.pageQuery.backs
-        let backKeys = backs.map{$0.key}.filter{self.filter.match($0)}.sorted()
-        
+        let backs = self.pageQuery.backs.filter({(key,_) in filter.match(key)})
+        let pieChartModel = PieChartModel(data: statusItems)
         let publicationDateString = self.filter.publicationDate?.name ?? "PubDate"
         return
             GeometryReader {geometry in
@@ -79,11 +115,10 @@ struct PageList: View {
                         }
                         
                         if self.useThumbView {
-                            ThumbView(pageModelAdapter:pageModelAdapter, backs:backs, backKeys:backKeys, columns: self.getColumns(width:geometry.size.width))
+                            ThumbView(pageModelAdapter:pageModelAdapter, backs:backs, columns: self.getColumns(width:geometry.size.width))
                         }else{
-                            ListView(pageModelAdapter: pageModelAdapter, backs:backs, backKeys: backKeys)
+                            ListView(pageModelAdapter: pageModelAdapter, backs:backs)
                         }
-                        PageFormatInfoFooter(backs:backs, filter:self.filter, statusArray: self.statusQuery.statuses).frame(width: geometry.size.width, height: 40, alignment: .center)
                     }.background(Color.white)
                     
                     .navigationBarTitle(Text(self.subProduct.name), displayMode: NavigationBarItem.TitleDisplayMode.inline )
@@ -119,13 +154,40 @@ struct PageList: View {
         return Int(width/200)
     }
     
+    func getStatusItems(fromBacks backs:[BackKey:[Page]]) -> [StatusItem]{
+        var statusItems:[StatusItem] = []
+        var statusCountDictionary:[Int:Int] = [:]
+        
+        for pages in backs.values {
+            for page in pages {
+                if let statusCount = statusCountDictionary[page.status] {
+                    statusCountDictionary[page.status] = statusCount + 1
+                }else{
+                    statusCountDictionary[page.status] = 1
+                }
+            }
+        }
+        
+        for (key,value) in statusCountDictionary {
+            if let status = statusQuery.status(forId: key) {
+                statusItems.append(StatusItem(status: status, value:value))
+            }
+        }
+        return statusItems.sorted()
+    }
 }
 
 struct ListView:View
 {
     let pageModelAdapter:PageModelAdapter
     let backs:[BackKey:[Page]]
-    let backKeys:[BackKey]
+    
+    var backKeys:[BackKey] {
+        get {
+            backs.map{$0.key}
+        }
+    }
+    
     @State private var expandedBacks:Set<BackKey> = Set<BackKey>()
     
     var body :some View {
@@ -133,8 +195,8 @@ struct ListView:View
             ForEach (backKeys, id: \.hashValue) {backKey in
                 Section(
                     header:
-                        SectionHeaderView(backKey: backKey, expandedBacks: self.$expandedBacks)
-                        .padding()
+                        SectionHeaderView(backKey: backKey, expandedBacks: self.expandedBacks)
+                        .padding(0)
                         .background(Color.white)
                         .listRowInsets(EdgeInsets(
                             top: 0,
@@ -149,6 +211,17 @@ struct ListView:View
                                 PageListCell(page:self.pageModelAdapter.getPageViewModel(from: self.backs[backKey]![index]))
                             }
                         }                        
+                    }
+                }.onTapGesture {
+                    
+                    if (self.expandedBacks.contains(backKey)){
+                        _ = withAnimation {
+                            self.expandedBacks.remove(backKey)
+                        }
+                    }else{
+                        _ = withAnimation {
+                            self.expandedBacks.insert(backKey)
+                        }
                     }
                 }
                 

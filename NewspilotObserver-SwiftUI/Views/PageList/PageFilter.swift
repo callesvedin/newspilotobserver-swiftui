@@ -26,7 +26,7 @@ class PageFilter:ObservableObject {
 
 extension PageFilter {
     func match(_ page:PageFilterable ) -> Bool {
-        if (publicationDate != nil && publicationDate!.id != page.publicationDateId) {
+        if (publicationDate == nil || publicationDate!.id != page.publicationDateId) {
             return false
         }
         if (version != nil && version! != page.version) {

@@ -9,10 +9,10 @@
 import SwiftUI
 struct SectionHeaderView:View {
     let backKey:BackKey
-    @Binding var expandedBacks:Set<BackKey>
-    
+//    @Binding var expandedBacks:Set<BackKey>
+    let expandedBacks:Set<BackKey> //Använd en bool istället....
     var body : some View {
-        GeometryReader {geometry in
+        
         HStack {
             Text("Part: \(self.backKey.part ?? "-") Edition: \(self.backKey.edition ?? "-") Version:\(self.backKey.version ?? "-")")
             Spacer()
@@ -23,21 +23,8 @@ struct SectionHeaderView:View {
         }
         .font(Font.sectionHeaderFont)
         .padding(.horizontal,10)
-        .frame(width: geometry.size.width, height: geometry.size.height, alignment: .center)
-        .onTapGesture {
-            
-            if (self.expandedBacks.contains(self.backKey)){
-                withAnimation {
-                    self.expandedBacks.remove(self.backKey)
-                }
-            }else{
-                withAnimation {
-                    self.expandedBacks.insert(self.backKey)
-                }
-            }
-        }
-        }
     }
+    
 }
 
 struct SectionHeaderView_Previews: PreviewProvider {
@@ -48,10 +35,17 @@ struct SectionHeaderView_Previews: PreviewProvider {
     
     static var previews: some View {
         Group {
-            SectionHeaderView(backKey: backs.randomElement()!, expandedBacks: Binding.constant(backs))
+            SectionHeaderView(backKey: backs.randomElement()!, expandedBacks: backs)
                 .previewDevice("iPhone 11")
-            SectionHeaderView(backKey: backs.randomElement()!, expandedBacks: Binding.constant(backs))
+            SectionHeaderView(backKey: backs.randomElement()!, expandedBacks: backs)
                 .previewDevice("iPad Pro (12.9-inch) (4th generation)")
         }
+
+//        Group {
+//            SectionHeaderView(backKey: backs.randomElement()!, expandedBacks: Binding.constant(backs))
+//                .previewDevice("iPhone 11")
+//            SectionHeaderView(backKey: backs.randomElement()!, expandedBacks: Binding.constant(backs))
+//                .previewDevice("iPad Pro (12.9-inch) (4th generation)")
+//        }
     }
 }

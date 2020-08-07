@@ -3,84 +3,98 @@
         "id": 24,
         "name": "Archived",
         "entityType": "Status",
-        "color": -16737895
+        "color": -16737895,
+        "sort_key": 831
     },
     {
         "id": 1126,
         "name": "Waiting for CF",
         "entityType": "Status",
-        "color": -6710887
+        "color": -6710887,
+        "sort_key": 832
     },
     {
         "id": 1130,
         "name": "Send to Open Content",
         "entityType": "Status",
-        "color": -52225
+        "color": -52225,
+        "sort_key": 833
     },
     {
         "id": 1138,
         "name": "Utskrift fel",
         "entityType": "Status",
-        "color": -1
+        "color": -1,
+        "sort_key": 833
     },
     {
         "id": 19,
         "name": "Ready",
         "entityType": "Status",
-        "color": -8652138
+        "color": -8652138,
+        "sort_key": 833
     },
     {
         "id": 21,
         "name": "In Export",
         "entityType": "Status",
-        "color": -21705
+        "color": -21705,
+        "sort_key": 833
     },
     {
         "id": 1137,
         "name": "Skickad till tryckeri",
         "entityType": "Status",
-        "color": -1
+        "color": -1,
+        "sort_key": 833
     },
     {
         "id": 17,
         "name": "Not Initiated",
         "entityType": "Status",
-        "color": -1
+        "color": -1,
+        "sort_key": 833
     },
     {
         "id": 22,
         "name": "Exported",
         "entityType": "Status",
-        "color": -10066177
+        "color": -10066177,
+        "sort_key": 833
     },
     {
         "id": 23,
         "name": "Export Error",
         "entityType": "Status",
-        "color": -47554
+        "color": -47554,
+        "sort_key": 833
     },
     {
         "id": 20,
         "name": "Approved",
         "entityType": "Status",
-        "color": -10225921
+        "color": -10225921,
+        "sort_key": 833
     },
     {
         "id": 1125,
         "name": "Needs Approval",
         "entityType": "Status",
-        "color": -39169
+        "color": -39169,
+        "sort_key": 833
     },
     {
         "id": 18,
         "name": "In Production",
         "entityType": "Status",
-        "color": -5256
+        "color": -5256,
+        "sort_key": 833
     },
     {
         "id": 99,
         "name": "In Production 2",
         "entityType": "Status",
-        "color": -5256
+        "color": -5256,
+        "sort_key": 833
     }
 ]
