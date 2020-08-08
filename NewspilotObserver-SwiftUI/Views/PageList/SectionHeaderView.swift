@@ -12,17 +12,26 @@ struct SectionHeaderView:View {
 //    @Binding var expandedBacks:Set<BackKey>
     let expandedBacks:Set<BackKey> //Använd en bool istället....
     var body : some View {
-        
-        HStack {
-            Text("Part: \(self.backKey.part ?? "-") Edition: \(self.backKey.edition ?? "-") Version:\(self.backKey.version ?? "-")")
+        VStack {
             Spacer()
+            HStack {
+                Text("Part: \(self.backKey.part ?? "-") Edition: \(self.backKey.edition ?? "-") Version:\(self.backKey.version ?? "-")")
+                Spacer()
+                
+                Image(systemName: "chevron.right")
+                    .rotationEffect(.degrees(self.expandedBacks.contains(backKey) ? 90 : 0))
+            }
+            .font(Font.sectionHeaderFont)
+            .padding(.horizontal,10)
             
-            Image(systemName: "chevron.right")
-                .rotationEffect(.degrees(self.expandedBacks.contains(backKey) ? 90 : 0))
-            
+            Spacer()
         }
-        .font(Font.sectionHeaderFont)
-        .padding(.horizontal,10)
+        .listRowInsets(EdgeInsets(
+            top: 0,
+            leading: 0,
+            bottom: 0,
+            trailing: 0))
+        .background(Color.white)        
     }
     
 }

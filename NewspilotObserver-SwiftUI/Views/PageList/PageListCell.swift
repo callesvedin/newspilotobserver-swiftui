@@ -54,7 +54,7 @@ struct PageListCell: View {
 
                 }
                 Spacer()
-            }
+            } //.cornerRadius(8.0).border(Color.gray, width: 1)
         }
     }
 }

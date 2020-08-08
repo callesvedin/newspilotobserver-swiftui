@@ -85,7 +85,7 @@ struct PageList: View {
                                                 statuses: self.statusQuery.statuses,
                                                 sections: self.organizationQuery.sections,
                                                 flags: self.flagQuery.flags)
-        let backs = self.pageQuery.backs.filter({(key,_) in filter.match(key)})
+        
         let pieChartModel = PieChartModel(data: statusItems)
         let publicationDateString = self.filter.publicationDate?.name ?? "PubDate"
         return
@@ -177,68 +177,6 @@ struct PageList: View {
     }
 }
 
-struct ListView:View
-{
-    let pageModelAdapter:PageModelAdapter
-    let backs:[BackKey:[Page]]
-    
-    var backKeys:[BackKey] {
-        get {
-            backs.map{$0.key}
-        }
-    }
-    
-    @State private var expandedBacks:Set<BackKey> = Set<BackKey>()
-    
-    var body :some View {
-        List {
-            ForEach (backKeys, id: \.hashValue) {backKey in
-                Section(
-                    header:
-                        SectionHeaderView(backKey: backKey, expandedBacks: self.expandedBacks)
-                        .padding(0)
-                        .background(Color.white)
-                        .listRowInsets(EdgeInsets(
-                            top: 0,
-                            leading: 0,
-                            bottom: 0,
-                            trailing: 0))
-                )
-                {
-                    if (self.expandedBacks.contains(backKey)){
-                        ForEach (0 ..< self.backs[backKey]!.count, id:\.self) {index in
-                            NavigationLink(destination: PageDetailsView(self.getViewsFrom(pageModelAdapter: self.pageModelAdapter, backs: self.backs, backKey: backKey), currentPage: index)) {
-                                PageListCell(page:self.pageModelAdapter.getPageViewModel(from: self.backs[backKey]![index]))
-                            }
-                        }                        
-                    }
-                }.onTapGesture {
-                    
-                    if (self.expandedBacks.contains(backKey)){
-                        _ = withAnimation {
-                            self.expandedBacks.remove(backKey)
-                        }
-                    }else{
-                        _ = withAnimation {
-                            self.expandedBacks.insert(backKey)
-                        }
-                    }
-                }
-                
-            }
-        }
-    }
-    
-    func getViewsFrom(pageModelAdapter:PageModelAdapter, backs:[BackKey:[Page]], backKey:BackKey) -> [PageDetailView] {
-        let pageList = backs[backKey] ?? []
-        let views = pageList.map {page -> PageDetailView in
-            let pageViewModel = pageModelAdapter.getPageViewModel(from: page)
-            return PageDetailView(page:pageViewModel)
-        }
-        return views
-    }
-    
-}
 
 //struct PageList_Previews: PreviewProvider {
 //    static var previews: some View {
