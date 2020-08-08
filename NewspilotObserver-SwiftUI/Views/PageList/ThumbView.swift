@@ -28,11 +28,11 @@ struct ThumbView:View
         UITableView.appearance().backgroundColor = .clear
     }
     
-    init(pageModelAdapter:PageModelAdapter, backs:[BackKey:[Page]], columns:Int = 2, expandedBackso:Set<BackKey>) {
+    init(pageModelAdapter:PageModelAdapter, backs:[BackKey:[Page]], columns:Int = 2, expandedBacks:Set<BackKey>) {
         self.pageModelAdapter = pageModelAdapter
         self.backs = backs
         self.columns = columns
-        expandedBackso.forEach({self.expandedBacks.insert($0)})
+        expandedBacks.forEach({self.expandedBacks.insert($0)})
 //        self.expandedBacks
         UITableView.appearance().backgroundColor = .clear
     }
@@ -41,7 +41,7 @@ struct ThumbView:View
         List {
             ForEach (self.backKeys, id: \.hashValue) {backKey in
                 Section(header:
-                            SectionHeaderView(backKey: backKey, expandedBacks: self.expandedBacks)
+                            SectionHeaderView(backKey: backKey, expanded: self.expandedBacks.contains(backKey))
                             .onTapGesture {
                                 
                                 if (self.expandedBacks.contains(backKey)){
@@ -103,9 +103,23 @@ struct ThumbView_Previews: PreviewProvider {
         let pageBacks = PageQuery.createBacks(pages: pages)
         let pageModelAdapter = PageModelAdapter(newspilotServer: "server", statuses: statusData, sections:sectionsData, flags: [])
 //        let backs = pageBacks.keys.map({$0})
-        return NavigationView {
-            ThumbView(pageModelAdapter: pageModelAdapter , backs: pageBacks, columns: 3, expandedBackso: Set(arrayLiteral: pageBacks.first!.key))}.previewDevice("iPhone 11").background(Color.white)
         
+        let devices = ["iPhone 11","iPad Pro (12.9-inch) (4th generation)"]
+        return ForEach (devices, id: \.self) {device in
+            ThumbView(pageModelAdapter: pageModelAdapter , backs: pageBacks, columns: 3, expandedBacks: Set(arrayLiteral: pageBacks.first!.key))
+                .previewDisplayName(device)
+                .previewDevice(PreviewDevice(rawValue:device))
+        
+            ThumbView(pageModelAdapter: pageModelAdapter , backs: pageBacks, columns: 3, expandedBacks: Set(arrayLiteral: pageBacks.first!.key))
+                .environment(\.colorScheme, .dark)
+                .previewDisplayName(device)
+                .previewDevice(PreviewDevice(rawValue:device))
+        }
+
+        
+//        return NavigationView {
+//            ThumbView(pageModelAdapter: pageModelAdapter , backs: pageBacks, columns: 3, expandedBacks: Set(arrayLiteral: pageBacks.first!.key))}.previewDevice("iPhone 11").background(Color.white)
+//
     }
 }
 

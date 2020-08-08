@@ -10,7 +10,9 @@ import SwiftUI
 struct SectionHeaderView:View {
     let backKey:BackKey
 //    @Binding var expandedBacks:Set<BackKey>
-    let expandedBacks:Set<BackKey> //Använd en bool istället....
+//    let expandedBacks:Set<BackKey> //Använd en bool istället....
+    let expanded:Bool
+    
     var body : some View {
         VStack {
             Spacer()
@@ -19,7 +21,7 @@ struct SectionHeaderView:View {
                 Spacer()
                 
                 Image(systemName: "chevron.right")
-                    .rotationEffect(.degrees(self.expandedBacks.contains(backKey) ? 90 : 0))
+                    .rotationEffect(.degrees(self.expanded ? 90 : 0))
             }
             .font(Font.sectionHeaderFont)
             .padding(.horizontal,10)
@@ -31,7 +33,7 @@ struct SectionHeaderView:View {
             leading: 0,
             bottom: 0,
             trailing: 0))
-        .background(Color.white)        
+        .background(Color(.systemBackground))        
     }
     
 }
@@ -43,18 +45,16 @@ struct SectionHeaderView_Previews: PreviewProvider {
                                         BackKey(publicationDateId: 1, part: "B", version: "V1", edition: "E1"))
     
     static var previews: some View {
-        Group {
-            SectionHeaderView(backKey: backs.randomElement()!, expandedBacks: backs)
-                .previewDevice("iPhone 11")
-            SectionHeaderView(backKey: backs.randomElement()!, expandedBacks: backs)
-                .previewDevice("iPad Pro (12.9-inch) (4th generation)")
-        }
+        let devices = ["iPhone 11","iPad Pro (12.9-inch) (4th generation)"]
+        return ForEach (devices, id: \.self) {device in
+            SectionHeaderView(backKey: backs.randomElement()!, expanded: true)
+                .previewDisplayName(device)
+                .previewDevice(PreviewDevice(rawValue:device))
+            SectionHeaderView(backKey: backs.randomElement()!, expanded: false)
+                .environment(\.colorScheme, .dark)
+                .previewDisplayName(device)
+                .previewDevice(PreviewDevice(rawValue:device))
 
-//        Group {
-//            SectionHeaderView(backKey: backs.randomElement()!, expandedBacks: Binding.constant(backs))
-//                .previewDevice("iPhone 11")
-//            SectionHeaderView(backKey: backs.randomElement()!, expandedBacks: Binding.constant(backs))
-//                .previewDevice("iPad Pro (12.9-inch) (4th generation)")
-//        }
+        }
     }
 }

@@ -26,8 +26,8 @@ struct ListView:View
         List {
             ForEach (backKeys, id: \.hashValue) {backKey in
                 Section(
-                    header:
-                        SectionHeaderView(backKey: backKey, expandedBacks: self.expandedBacks)
+                    header:                        
+                        SectionHeaderView(backKey: backKey, expanded: self.expandedBacks.contains(backKey))
                             .onTapGesture {
                                 
                                 if (self.expandedBacks.contains(backKey)){
@@ -75,6 +75,19 @@ struct ListView_Previews: PreviewProvider {
         
         let pageBacks = PageQuery.createBacks(pages: pages)
         let pageModelAdapter = PageModelAdapter(newspilotServer: "server", statuses: statusData, sections:sectionsData, flags: [])
-        return ListView(pageModelAdapter: pageModelAdapter, backs: pageBacks)
+        return
+            Group{
+                ListView(pageModelAdapter: pageModelAdapter, backs: pageBacks)
+//                    .previewLayout(PreviewLayout.sizeThatFits)
+                                    .padding()
+                                    .previewDisplayName("Default preview 1")
+
+                ListView(pageModelAdapter: pageModelAdapter, backs: pageBacks)
+//                                    .previewLayout(PreviewLayout.sizeThatFits)
+                                    .padding()
+//                                    .background(Color(.systemBackground))
+                                    .environment(\.colorScheme, .dark)
+                                    .previewDisplayName("Dark Mode")
+            }
     }
 }
