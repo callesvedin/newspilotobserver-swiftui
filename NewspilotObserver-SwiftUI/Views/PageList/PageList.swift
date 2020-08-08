@@ -119,7 +119,7 @@ struct PageList: View {
                         }else{
                             ListView(pageModelAdapter: pageModelAdapter, backs:backs)
                         }
-                    }.background(Color.white)
+                    }
                     
                     .navigationBarTitle(Text(self.subProduct.name), displayMode: NavigationBarItem.TitleDisplayMode.inline )
                     .navigationBarItems(

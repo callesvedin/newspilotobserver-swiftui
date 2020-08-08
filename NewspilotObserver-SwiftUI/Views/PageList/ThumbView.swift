@@ -25,7 +25,7 @@ struct ThumbView:View
         self.pageModelAdapter = pageModelAdapter
         self.backs = backs
         self.columns = columns
-        UITableView.appearance().backgroundColor = .clear
+//        UITableView.appearance().backgroundColor = .clear
     }
     
     init(pageModelAdapter:PageModelAdapter, backs:[BackKey:[Page]], columns:Int = 2, expandedBacks:Set<BackKey>) {
@@ -33,8 +33,7 @@ struct ThumbView:View
         self.backs = backs
         self.columns = columns
         expandedBacks.forEach({self.expandedBacks.insert($0)})
-//        self.expandedBacks
-        UITableView.appearance().backgroundColor = .clear
+//        UITableView.appearance().backgroundColor = .clear
     }
     
     var body: some View {
@@ -70,7 +69,6 @@ struct ThumbView:View
                                 Color(.white).frame(maxWidth: .infinity).padding(10)
                             }
                         }
-                        .background(Color.white)
                         .padding(.vertical, 20)
                         .cornerRadius(20) //.animation(.spring())                        
                     }
@@ -102,7 +100,6 @@ struct ThumbView_Previews: PreviewProvider {
         
         let pageBacks = PageQuery.createBacks(pages: pages)
         let pageModelAdapter = PageModelAdapter(newspilotServer: "server", statuses: statusData, sections:sectionsData, flags: [])
-//        let backs = pageBacks.keys.map({$0})
         
         let devices = ["iPhone 11","iPad Pro (12.9-inch) (4th generation)"]
         return ForEach (devices, id: \.self) {device in
