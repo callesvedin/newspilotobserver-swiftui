@@ -9,8 +9,7 @@
 import SwiftUI
 
 struct ApplicationView: View {
-    @EnvironmentObject var loginHandler:LoginHandler
-    
+    @ObservedObject var loginHandler = LoginHandler.shared
     var body: some View {
         Group {
             if loginHandler.loggedIn {
@@ -35,6 +34,6 @@ struct ApplicationView: View {
 
 struct ApplicationView_Previews: PreviewProvider {
     static var previews: some View {
-        ApplicationView().environmentObject(LoginHandler())
+        ApplicationView()
     }
 }

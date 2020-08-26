@@ -21,9 +21,11 @@ class LoginHandler: ObservableObject {
     @Published var connectionStatus:ConnectionStatus! = .notConnected
     @Published var loggedIn:Bool = false
     
+    static let shared = LoginHandler()
+    
     let newspilot:Newspilot
     
-    init() {
+    private init() {
         newspilot = Newspilot()
         newspilot.addConnectionCallback(){ [weak self] state in
             DispatchQueue.main.async {

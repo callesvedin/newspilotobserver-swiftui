@@ -16,9 +16,14 @@ struct PageFilterView: View {
     let subProduct:SubProduct
     let publicationDates:[PublicationDate]
     let subProductSettings:SubProductSettings?
-    let editions:[String]
+    var editions:[String]
+    var versions:[String]
+    var parts:[String]
     let pagesInPublications:[Int:[Page]]
     @State private var selectedPublicationDateIndex:Int=0
+    @State private var selectedEditionIndex:Int=0
+    @State private var selectedVersionIndex:Int=0
+    @State private var selectedPartIndex:Int=0
     
     @Environment(\.presentationMode) var presentationMode
     
@@ -29,14 +34,21 @@ struct PageFilterView: View {
         self.subProductSettings = subProduct.settings
         self.pagesInPublications = Dictionary(grouping: pages, by: \.publicationDateID)
         self.publicationDates = publicationDateQuery.sortedPublicationDates //.filter({(self.pagesInPublications[$0.id])?.count ?? 0 > 0})
+        self.parts = subProduct.settings?.parts ?? []
+        self.parts.insert("-", at: 0)
         self.editions = subProduct.settings?.editions ?? []
+        self.editions.insert("-", at: 0)
+        self.versions = subProduct.settings?.versions ?? []
+        self.versions.insert("-", at: 0)
         self.filter = filter
         self._selectedPublicationDateIndex = State(initialValue:publicationDates.firstIndex(where: {$0.id == filter.publicationDate.wrappedValue?.id}) ?? 0)
+        self._selectedPartIndex = State(initialValue:parts.firstIndex(where: {$0 == filter.part.wrappedValue}) ?? 0)
+        self._selectedVersionIndex = State(initialValue:versions.firstIndex(where: {$0 == filter.version.wrappedValue}) ?? 0)
+        self._selectedEditionIndex = State(initialValue:editions.firstIndex(where: {$0 == filter.edition.wrappedValue}) ?? 0)
     }
     
     var body: some View {
-        return NavigationView {
-            VStack {
+        NavigationView {
                 Form {
                     Section {
                         Picker(selection: $selectedPublicationDateIndex, label: Text("Publication")){
@@ -50,6 +62,25 @@ struct PageFilterView: View {
                             }
                         }
                     }
+                    Section {
+                        Picker(selection: $selectedPartIndex, label: Text("Part")){
+                            ForEach(0 ..< self.parts.count) { index in
+                                Text("\(self.parts[index])").tag(self.parts[index])
+                            }
+                        }
+
+                        Picker(selection: $selectedEditionIndex, label: Text("Edition")){
+                            ForEach(0 ..< self.editions.count) { index in
+                                Text("\(self.editions[index])").tag(self.editions[index])
+                            }
+                        }
+                        Picker(selection: $selectedVersionIndex, label: Text("Version")){
+                            ForEach(0 ..< self.versions.count) { index in
+                                Text("\(self.versions[index])").tag(self.versions[index])
+                            }
+                        }
+
+                    }
                     HStack(spacing:40) {
                         Spacer()
                         Button(action:{
@@ -57,18 +88,16 @@ struct PageFilterView: View {
                         }, label:{Text("Cancel")})
                         Button(action:{
                             self.filter.wrappedValue.publicationDate = self.publicationDates[self.selectedPublicationDateIndex]
+                            self.filter.wrappedValue.part = self.parts[self.selectedPartIndex] == "-" ? nil : self.parts[self.selectedPartIndex]
+                            self.filter.wrappedValue.edition = self.editions[self.selectedEditionIndex] == "-" ? nil : self.editions[self.selectedEditionIndex]
+                            self.filter.wrappedValue.version = self.versions[self.selectedVersionIndex] == "-" ? nil : self.versions[self.selectedVersionIndex]
                             self.presentationMode.wrappedValue.dismiss()
                         }, label:{Text("Ok")})
                     }
                 }
                 .navigationBarTitle("Filter")
             }
-        }
-        //            Picker(selection: $selectedEditionIndex, label: Text("Edition")){
-        //                ForEach(0 ..< self.editions.count) { index in
-        //                    Text("\(self.editions[index])").tag(self.editions[index])
-        //                }
-        //            }
+
         //
         //            Picker(selection: $filter.edition, label: Text("Edition 2")){
         //                ForEach(subProduct.settings!.editions, id: \.self) { edition in

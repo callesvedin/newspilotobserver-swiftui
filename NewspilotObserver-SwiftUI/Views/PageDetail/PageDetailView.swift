@@ -74,7 +74,7 @@ struct InfoView: View {
             FlagsView(key:"Flags", flags:page.flags)
                 
             
-        }.background(Color.white.edgesIgnoringSafeArea(.all))
+        } //.background(Color. edgesIgnoringSafeArea(.all))
     }    
 }
 

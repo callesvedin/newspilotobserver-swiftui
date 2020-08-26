@@ -21,21 +21,16 @@ struct ThumbView:View
         get {backs.map({$0.key}).sorted()}
     }
     
-    init(pageModelAdapter:PageModelAdapter, backs:[BackKey:[Page]], columns:Int = 2) {
+    init(pageModelAdapter:PageModelAdapter, backs:[BackKey:[Page]], columns:Int = 2, filterText:String) {
         self.pageModelAdapter = pageModelAdapter
-        self.backs = backs
+        var filteredBacks:[BackKey:[Page]] = [:]
+        backs.keys.forEach({key in
+            filteredBacks[key]=backs[key]!.filter({page in filterText.count == 0 || page.name.contains(filterText)})
+        })
+        self.backs = filteredBacks
         self.columns = columns
-//        UITableView.appearance().backgroundColor = .clear
     }
-    
-    init(pageModelAdapter:PageModelAdapter, backs:[BackKey:[Page]], columns:Int = 2, expandedBacks:Set<BackKey>) {
-        self.pageModelAdapter = pageModelAdapter
-        self.backs = backs
-        self.columns = columns
-        expandedBacks.forEach({self.expandedBacks.insert($0)})
-//        UITableView.appearance().backgroundColor = .clear
-    }
-    
+        
     var body: some View {
         List {
             ForEach (self.backKeys, id: \.hashValue) {backKey in
@@ -76,6 +71,9 @@ struct ThumbView:View
 
             }
         }
+        .onAppear {
+            self.backs.keys.forEach {expandedBacks.insert($0)}
+        }
         
     }
     
@@ -103,11 +101,11 @@ struct ThumbView_Previews: PreviewProvider {
         
         let devices = ["iPhone 11","iPad Pro (12.9-inch) (4th generation)"]
         return ForEach (devices, id: \.self) {device in
-            ThumbView(pageModelAdapter: pageModelAdapter , backs: pageBacks, columns: 3, expandedBacks: Set(arrayLiteral: pageBacks.first!.key))
+            ThumbView(pageModelAdapter: pageModelAdapter , backs: pageBacks, columns: 3, filterText: "")
                 .previewDisplayName(device)
                 .previewDevice(PreviewDevice(rawValue:device))
         
-            ThumbView(pageModelAdapter: pageModelAdapter , backs: pageBacks, columns: 3, expandedBacks: Set(arrayLiteral: pageBacks.first!.key))
+            ThumbView(pageModelAdapter: pageModelAdapter , backs: pageBacks, columns: 3, filterText: "")
                 .environment(\.colorScheme, .dark)
                 .previewDisplayName(device)
                 .previewDevice(PreviewDevice(rawValue:device))

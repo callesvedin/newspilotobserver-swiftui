@@ -29,7 +29,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         // Use a UIHostingController as window root view controller
         if let windowScene = scene as? UIWindowScene {
-            let loginHandler = LoginHandler()
+            let loginHandler = LoginHandler.shared
             let organizationQuery = OrganizationsQuery(withNewspilot: loginHandler.newspilot)
             let statusQuery = StatusQuery(withNewspilot: loginHandler.newspilot)
             let pageFlagQuery = PageFlagQuery(withNewspilot: loginHandler.newspilot)
@@ -37,20 +37,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             PageQueryManager.shared.setup(withNewspilot: loginHandler.newspilot)
             PublicationDateQueryManager.shared.setup(withNewspilot: loginHandler.newspilot)
             window.rootViewController = UIHostingController(rootView: ApplicationView()
-                .environmentObject(loginHandler)
                 .environmentObject(organizationQuery)
                 .environmentObject(statusQuery)
                 .environmentObject(pageFlagQuery)
             )
-
             
-//            let newspilotManager = NewspilotManager(host:"localhost", login:"infomaker", password:"newspilot")
-//            newspilotManager.connect()
-//
-//            let organizationQuery = OrganizationsQuery(withNewspilotManager:newspilotManager)
-//            let organizationsView = OrganizationList().environmentObject(organizationQuery)
-//
-//            window.rootViewController = UIHostingController(rootView: organizationsView)
             self.window = window
             window.makeKeyAndVisible()
         }

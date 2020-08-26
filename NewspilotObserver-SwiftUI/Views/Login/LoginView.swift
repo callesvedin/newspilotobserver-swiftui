@@ -17,7 +17,12 @@ struct LoginView: View {
     @State var password:String = ""
     @ObservedObject private var keyboard = KeyboardResponder()
     @ObservedObject var loginSettings:LoginSettings = LoginSettings()
-    @EnvironmentObject var loginHandler:LoginHandler
+    @ObservedObject var loginHandler = LoginHandler.shared
+    
+    let dismissKeyboard: () -> Void = {
+     print("onCommit")
+     UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
     
     var body: some View {
             ZStack {
@@ -35,16 +40,8 @@ struct LoginView: View {
                         .font(Font.titleFont)
                         .foregroundColor(Color.white)
                         .padding(.bottom, 50)
-//                    NPTextField(placeHolder: "Username", text: $loginSettings.login)
-//                        .font(Font.bodyFont)
-//                        .textContentType(.none)
-//                        .autocapitalization(.none)
-//                        .padding()
-//                        .background(Color.navigaTextFieldBackground)
-//                        .cornerRadius(5.0)
-//                        .padding()
-
-                    TextField("Username", text: $loginSettings.login)
+                    
+                    TextField("Username", text: $loginSettings.login,onCommit: dismissKeyboard)
                         .font(Font.bodyFont)                        
                         .textContentType(.none)
                         .autocapitalization(.none)
@@ -54,14 +51,14 @@ struct LoginView: View {
                         .padding()
 
                     
-                    SecureField("Password", text: $password)                    
+                    SecureField("Password", text: $password,onCommit: dismissKeyboard)
                         .font(Font.bodyFont)
                         .padding()
                         .background(Color.navigaTextFieldBackground)
                         .cornerRadius(5.0)
                         .padding()
                     
-                    TextField("Server", text: $loginSettings.server)
+                    TextField("Server", text: $loginSettings.server,onCommit: dismissKeyboard)
                         .font(Font.bodyFont)
                         .textContentType(.none)
                         .autocapitalization(.none)
@@ -80,6 +77,7 @@ struct LoginView: View {
                         Text(" ")
                     }
                     Button(action:{
+                        dismissKeyboard()
                         self.loginHandler.login(login: self.loginSettings.login, password: self.password, server: self.loginSettings.server)
                     }){
                         HStack {
@@ -97,8 +95,7 @@ struct LoginView: View {
                         }
                         .frame(width: 180, height: 50)
                         .background(Color.navigaButtonBackground)
-                        .cornerRadius(15.0)
-                        .shadow(color: Color.navigaButtonBackground.opacity(loginHandler.connectionStatus == .connecting ? 0 : 0.3), radius: 5.0, x: 5, y: 5)
+                        .cornerRadius(15.0).padding(.top, 10)
                     }                
                     
                     Spacer()
@@ -122,12 +119,12 @@ struct LoginView_Previews: PreviewProvider {
         
         Group {
             ForEach (devices, id: \.rawValue) {device in
-                LoginView().environmentObject(LoginHandler())
+                LoginView()
                     .previewDevice(device)
                     .previewDisplayName(device.rawValue)
                     .environment(\.colorScheme, .dark)
                 
-                LoginView().environmentObject(LoginHandler())
+                LoginView()
                     .previewDevice(device)
                     .previewDisplayName(device.rawValue)
                     .environment(\.colorScheme, .light)

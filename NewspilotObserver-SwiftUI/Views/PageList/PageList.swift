@@ -47,6 +47,7 @@ struct PageList: View {
     @State var filter=PageFilter()
     @State var showFilterView = false
     
+    @ObservedObject var loginHandler = LoginHandler.shared
     @EnvironmentObject var statusQuery:StatusQuery
     @EnvironmentObject var organizationQuery:OrganizationsQuery
     @EnvironmentObject var flagQuery:PageFlagQuery
@@ -56,6 +57,7 @@ struct PageList: View {
     
     @State private var useThumbView = true
     @State private var expandChart = false
+    @State private var searchText = ""
     
     var backs:[BackKey:[Page]] {
         get {
@@ -87,7 +89,7 @@ struct PageList: View {
                                                 flags: self.flagQuery.flags)
         
         let pieChartModel = PieChartModel(data: statusItems)
-        let publicationDateString = self.filter.publicationDate?.name ?? "PubDate"
+//        let publicationDateString = self.filter.publicationDate?.name ?? "PubDate"
         return
             GeometryReader {geometry in
                 ZStack {                    
@@ -108,16 +110,18 @@ struct PageList: View {
                                         .foregroundColor(Color(arc.pieData.color))
                                         .frame(width: 30, height: 30, alignment: .center).padding(0)
                                         
-                                    Text("\(Int(arc.pieData.value)) of status \(arc.pieData.title)")
+                                    Text("\(Int(arc.pieData.value)) is \(arc.pieData.title)")
                                     Spacer()
                                 }.padding(.leading, 5)
                             }
                         }
+
+                        SearchBar(searchText: $searchText)
                         
                         if self.useThumbView {
-                            ThumbView(pageModelAdapter:pageModelAdapter, backs:backs, columns: self.getColumns(width:geometry.size.width))
+                            ThumbView(pageModelAdapter:pageModelAdapter, backs:backs, columns: self.getColumns(width:geometry.size.width), filterText:self.searchText)
                         }else{
-                            ListView(pageModelAdapter: pageModelAdapter, backs:backs)
+                            ListView(pageModelAdapter: pageModelAdapter, backs:backs, filterText:self.searchText)
                         }
                     }
                     
@@ -131,7 +135,7 @@ struct PageList: View {
                                 }
                                 .pickerStyle(SegmentedPickerStyle())
                                 .padding()
-                                Button(action:{self.showFilterView = true}, label: {Text(publicationDateString)})
+                                Button(action:{self.showFilterView = true}, label: {Image(systemName:"line.horizontal.3.decrease.circle")})
                                     .popover( // Why is this so large?
                                         isPresented: self.$showFilterView,
                                         arrowEdge: .top

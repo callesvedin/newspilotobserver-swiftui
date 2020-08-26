@@ -11,7 +11,7 @@ import Newspilot
 
 struct SubProductList: View {
     @EnvironmentObject var organizationQuery:OrganizationsQuery
-    @EnvironmentObject var loginHandler:LoginHandler
+    @ObservedObject var loginHandler = LoginHandler.shared
     
     let product:Product
     
@@ -43,10 +43,8 @@ struct SubProductList: View {
 
 struct SubProductList_Previews: PreviewProvider {
     static var previews: some View {
-//        let dates = [PublicationDate]()
         return SubProductList(
             product:Product(id: 1, name: "Test Product", organizationID: 1))
-            .environmentObject(OrganizationsQuery(withStaticOrganizations: organizationData, products: productsData, subProducts: subProductsData, andSections: sectionsData))
-            .environmentObject(LoginHandler())
+            .environmentObject(OrganizationsQuery(withStaticOrganizations: organizationData, products: productsData, subProducts: subProductsData, andSections: sectionsData))            
     }
 }

@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct ConnectionModifier: ViewModifier {
-    @EnvironmentObject var loginHandler:LoginHandler
+    @ObservedObject var loginHandler = LoginHandler.shared
     
     func body(content: Content) -> some View {
         let title = self.loginHandler.connectionStatus == .notConnected ? "Connection lost":"Connecting..."

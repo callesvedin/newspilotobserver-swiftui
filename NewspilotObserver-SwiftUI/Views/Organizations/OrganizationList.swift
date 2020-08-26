@@ -12,7 +12,7 @@ import Combine
 
 struct OrganizationList: View {    
     @EnvironmentObject var organizationQuery:OrganizationsQuery
-    @EnvironmentObject var loginHandler:LoginHandler
+    @ObservedObject var loginHandler = LoginHandler.shared
     
     @State var connectionLost:Bool = false
     
@@ -45,11 +45,11 @@ struct OrganizationList_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             NavigationView {
-                OrganizationList().environmentObject(OrganizationsQuery(withStaticOrganizations: organizationData, products: productsData, subProducts: subProductsData, andSections: sectionsData)).environmentObject(LoginHandler())
+                OrganizationList().environmentObject(OrganizationsQuery(withStaticOrganizations: organizationData, products: productsData, subProducts: subProductsData, andSections: sectionsData))
             }.environment(\.colorScheme, .dark)
             
             NavigationView {
-                OrganizationList().environmentObject(OrganizationsQuery(withStaticOrganizations: organizationData, products: productsData, subProducts: subProductsData, andSections: sectionsData)).environmentObject(LoginHandler())
+                OrganizationList().environmentObject(OrganizationsQuery(withStaticOrganizations: organizationData, products: productsData, subProducts: subProductsData, andSections: sectionsData))
             }
             
         }

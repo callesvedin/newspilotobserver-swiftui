@@ -39,7 +39,7 @@ struct ContentView: View {
                             .foregroundColor(Color(arc.pieData.color))
                             .frame(width: 30, height: 30, alignment: .center).padding(0)
                             
-                        Text("\(Int(arc.pieData.value)) of status \(arc.pieData.title)")
+                        Text("\(Int(arc.pieData.value)) is \(arc.pieData.title)")
                         Spacer()
                     }.padding(.leading, 5)
                 }

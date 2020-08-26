@@ -20,7 +20,16 @@ struct ListView:View
         }
     }
     
-    @State private var expandedBacks:Set<BackKey> = Set<BackKey>()
+    @State private var expandedBacks:Set<BackKey> = Set<BackKey>()    
+    
+    init(pageModelAdapter:PageModelAdapter, backs:[BackKey:[Page]], filterText:String) {
+        self.pageModelAdapter = pageModelAdapter
+        var filteredBacks:[BackKey:[Page]] = [:]
+        backs.keys.forEach({key in
+            filteredBacks[key]=backs[key]!.filter({page in filterText.count == 0 || page.name.contains(filterText)})
+        })
+        self.backs = filteredBacks
+    }
     
     var body :some View {
         List {
@@ -44,13 +53,16 @@ struct ListView:View
                 {
                     if (self.expandedBacks.contains(backKey)){
                         ForEach (0 ..< self.backs[backKey]!.count, id:\.self) {index in
-                            NavigationLink(destination: PageDetailsView(self.getViewsFrom(pageModelAdapter: self.pageModelAdapter, backs: self.backs, backKey: backKey), currentPage: index)) {
-                                PageListCell(page:self.pageModelAdapter.getPageViewModel(from: self.backs[backKey]![index]))
-                            }
+                                NavigationLink(destination: PageDetailsView(self.getViewsFrom(pageModelAdapter: self.pageModelAdapter, backs: self.backs, backKey: backKey), currentPage: index)) {
+                                    PageListCell(page:self.pageModelAdapter.getPageViewModel(from: self.backs[backKey]![index]))
+                                }
                         }
                     }
                 }
             }
+        }
+        .onAppear {
+            self.backs.keys.forEach {expandedBacks.insert($0)}
         }
     }
     
@@ -77,12 +89,12 @@ struct ListView_Previews: PreviewProvider {
         let pageModelAdapter = PageModelAdapter(newspilotServer: "server", statuses: statusData, sections:sectionsData, flags: [])
         return
             Group{
-                ListView(pageModelAdapter: pageModelAdapter, backs: pageBacks)
+                ListView(pageModelAdapter: pageModelAdapter, backs: pageBacks, filterText: "")
 //                    .previewLayout(PreviewLayout.sizeThatFits)
                                     .padding()
                                     .previewDisplayName("Default preview 1")
 
-                ListView(pageModelAdapter: pageModelAdapter, backs: pageBacks)
+                ListView(pageModelAdapter: pageModelAdapter, backs: pageBacks, filterText: "")
 //                                    .previewLayout(PreviewLayout.sizeThatFits)
                                     .padding()
 //                                    .background(Color(.systemBackground))
