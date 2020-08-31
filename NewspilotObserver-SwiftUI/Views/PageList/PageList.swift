@@ -141,6 +141,7 @@ struct PageList: View {
                                         arrowEdge: .top
                                     ) {
                                         PageFilterView(subProduct:self.subProduct, pages: self.pageQuery.pages,publicationDateQuery:self.publicationDateQuery, filter: self.$filter)
+                                            .frame(minWidth: 400, maxWidth: .infinity, minHeight: 400,maxHeight: .infinity, alignment: .center)
                                     }
                             }
                     )
