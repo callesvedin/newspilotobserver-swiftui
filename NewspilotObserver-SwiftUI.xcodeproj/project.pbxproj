@@ -118,6 +118,8 @@
 		EBD22A5622CBFBCD000DFD41 /* EmptyPageThumb.png in Resources */ = {isa = PBXBuildFile; fileRef = EBD22A3C22CBFBCD000DFD41 /* EmptyPageThumb.png */; };
 		EBDCC32F23BE092E0092A6FE /* BannerModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDCC32E23BE092E0092A6FE /* BannerModifier.swift */; };
 		EBDCC33123BE09F00092A6FE /* View+Banner.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDCC33023BE09F00092A6FE /* View+Banner.swift */; };
+		EBDE13A324F83DFF008B4E87 /* PagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDE13A224F83DFF008B4E87 /* PagerView.swift */; };
+		EBDE13A524F8EC23008B4E87 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDE13A424F8EC23008B4E87 /* TestView.swift */; };
 		EBE97AA623833DF3005CACDB /* PageFlagQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE97AA523833DF3005CACDB /* PageFlagQuery.swift */; };
 		EBE97AA8238340A2005CACDB /* EntityFlag.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE97AA7238340A2005CACDB /* EntityFlag.swift */; };
 		EBEED2392327D46E00746C69 /* ProductRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEED2382327D46E00746C69 /* ProductRow.swift */; };
@@ -260,6 +262,8 @@
 		EBD22A3D22CBFBCD000DFD41 /* vb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vb.png; sourceTree = "<group>"; };
 		EBDCC32E23BE092E0092A6FE /* BannerModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerModifier.swift; sourceTree = "<group>"; };
 		EBDCC33023BE09F00092A6FE /* View+Banner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Banner.swift"; sourceTree = "<group>"; };
+		EBDE13A224F83DFF008B4E87 /* PagerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagerView.swift; sourceTree = "<group>"; };
+		EBDE13A424F8EC23008B4E87 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		EBE97AA523833DF3005CACDB /* PageFlagQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageFlagQuery.swift; sourceTree = "<group>"; };
 		EBE97AA7238340A2005CACDB /* EntityFlag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityFlag.swift; sourceTree = "<group>"; };
 		EBEED2382327D46E00746C69 /* ProductRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRow.swift; sourceTree = "<group>"; };
@@ -375,6 +379,7 @@
 		EB7B9DA222C7EDC7009EB2BE = {
 			isa = PBXGroup;
 			children = (
+				EBDE13A424F8EC23008B4E87 /* TestView.swift */,
 				EBA90A052485019400E493AD /* CustomFonts */,
 				EB7B9DAD22C7EDC7009EB2BE /* NewspilotObserver-SwiftUI */,
 				EB7B9DC722C7EDC9009EB2BE /* NewspilotObserver-SwiftUITests */,
@@ -499,6 +504,7 @@
 				EB54350E2322EC3C004EE63F /* Organizations */,
 				EBA13CBC23A980B500FFB830 /* ApplicationView.swift */,
 				EB31B4A924F63A1B00DCDD34 /* SearchBar.swift */,
+				EBDE13A224F83DFF008B4E87 /* PagerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -769,6 +775,7 @@
 				EBDCC33123BE09F00092A6FE /* View+Banner.swift in Sources */,
 				EB117D252463067500AF52EF /* PublicationDateQueryManager.swift in Sources */,
 				EB6C22882368BBBF00101147 /* PageControl.swift in Sources */,
+				EBDE13A324F83DFF008B4E87 /* PagerView.swift in Sources */,
 				EB6C228C2368BCB400101147 /* PageViewController.swift in Sources */,
 				EB601D1424C3089800FB90B1 /* Arc.swift in Sources */,
 				EB6C2285236233C100101147 /* BackKey.swift in Sources */,
@@ -784,6 +791,7 @@
 				EBA7211023D36860003B1BC5 /* Data.swift in Sources */,
 				EB5B06E4248A4D1900F5F86B /* NPTextField.swift in Sources */,
 				EBA5F199236D6C230011E3EF /* OrderedArray.swift in Sources */,
+				EBDE13A524F8EC23008B4E87 /* TestView.swift in Sources */,
 				EB5435182322F567004EE63F /* OrganizationList.swift in Sources */,
 				EBE97AA8238340A2005CACDB /* EntityFlag.swift in Sources */,
 				EB296F66238DC3A700EE6135 /* FlagsView.swift in Sources */,
