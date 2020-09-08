@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "EB7B9DAA22C7EDC7009EB2BE"
-               BuildableName = "NewspilotObserver-SwiftUI.app"
-               BlueprintName = "NewspilotObserver-SwiftUI"
-               ReferencedContainer = "container:NewspilotObserver-SwiftUI.xcodeproj">
+               BuildableName = "NewspilotObserver.app"
+               BlueprintName = "NewspilotObserver"
+               ReferencedContainer = "container:NewspilotObserver.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "EB7B9DC322C7EDC9009EB2BE"
-               BuildableName = "NewspilotObserver-SwiftUITests.xctest"
-               BlueprintName = "NewspilotObserver-SwiftUITests"
-               ReferencedContainer = "container:NewspilotObserver-SwiftUI.xcodeproj">
+               BuildableName = "NewspilotObserverTests.xctest"
+               BlueprintName = "NewspilotObserverTests"
+               ReferencedContainer = "container:NewspilotObserver.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -65,9 +65,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EB7B9DAA22C7EDC7009EB2BE"
-            BuildableName = "NewspilotObserver-SwiftUI.app"
-            BlueprintName = "NewspilotObserver-SwiftUI"
-            ReferencedContainer = "container:NewspilotObserver-SwiftUI.xcodeproj">
+            BuildableName = "NewspilotObserver.app"
+            BlueprintName = "NewspilotObserver"
+            ReferencedContainer = "container:NewspilotObserver.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -82,9 +82,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EB7B9DAA22C7EDC7009EB2BE"
-            BuildableName = "NewspilotObserver-SwiftUI.app"
-            BlueprintName = "NewspilotObserver-SwiftUI"
-            ReferencedContainer = "container:NewspilotObserver-SwiftUI.xcodeproj">
+            BuildableName = "NewspilotObserver.app"
+            BlueprintName = "NewspilotObserver"
+            ReferencedContainer = "container:NewspilotObserver.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

@@ -188,14 +188,14 @@
 		EB7928D223FFC1EE00889104 /* products.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = products.json; sourceTree = "<group>"; };
 		EB7928D323FFC1EE00889104 /* organizations.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = organizations.json; sourceTree = "<group>"; };
 		EB7928D623FFC3BE00889104 /* subproducts.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = subproducts.json; sourceTree = "<group>"; };
-		EB7B9DAB22C7EDC7009EB2BE /* NewspilotObserver-SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NewspilotObserver-SwiftUI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB7B9DAB22C7EDC7009EB2BE /* NewspilotObserver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewspilotObserver.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB7B9DAE22C7EDC7009EB2BE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EB7B9DB022C7EDC7009EB2BE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		EB7B9DB722C7EDC9009EB2BE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EB7B9DBA22C7EDC9009EB2BE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		EB7B9DBD22C7EDC9009EB2BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EB7B9DBF22C7EDC9009EB2BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EB7B9DC422C7EDC9009EB2BE /* NewspilotObserver-SwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "NewspilotObserver-SwiftUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB7B9DC422C7EDC9009EB2BE /* NewspilotObserverTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NewspilotObserverTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB7B9DC822C7EDC9009EB2BE /* NewspilotObserver_SwiftUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewspilotObserver_SwiftUITests.swift; sourceTree = "<group>"; };
 		EB7B9DCA22C7EDC9009EB2BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EB7B9E2B22C7F86E009EB2BE /* EntityQuery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntityQuery.swift; sourceTree = "<group>"; };
@@ -376,8 +376,8 @@
 			isa = PBXGroup;
 			children = (
 				EBA90A052485019400E493AD /* CustomFonts */,
-				EB7B9DAD22C7EDC7009EB2BE /* NewspilotObserver-SwiftUI */,
-				EB7B9DC722C7EDC9009EB2BE /* NewspilotObserver-SwiftUITests */,
+				EB7B9DAD22C7EDC7009EB2BE /* NewspilotObserver */,
+				EB7B9DC722C7EDC9009EB2BE /* NewspilotObserverTests */,
 				EB7B9DAC22C7EDC7009EB2BE /* Products */,
 				EB6C22732359DC4500101147 /* Frameworks */,
 			);
@@ -386,13 +386,13 @@
 		EB7B9DAC22C7EDC7009EB2BE /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				EB7B9DAB22C7EDC7009EB2BE /* NewspilotObserver-SwiftUI.app */,
-				EB7B9DC422C7EDC9009EB2BE /* NewspilotObserver-SwiftUITests.xctest */,
+				EB7B9DAB22C7EDC7009EB2BE /* NewspilotObserver.app */,
+				EB7B9DC422C7EDC9009EB2BE /* NewspilotObserverTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		EB7B9DAD22C7EDC7009EB2BE /* NewspilotObserver-SwiftUI */ = {
+		EB7B9DAD22C7EDC7009EB2BE /* NewspilotObserver */ = {
 			isa = PBXGroup;
 			children = (
 				EB05395C23300570007880BB /* Queries */,
@@ -408,7 +408,7 @@
 				EB7B9DBF22C7EDC9009EB2BE /* Info.plist */,
 				EB7B9DB922C7EDC9009EB2BE /* Preview Content */,
 			);
-			path = "NewspilotObserver-SwiftUI";
+			path = NewspilotObserver;
 			sourceTree = "<group>";
 		};
 		EB7B9DB922C7EDC9009EB2BE /* Preview Content */ = {
@@ -428,7 +428,7 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		EB7B9DC722C7EDC9009EB2BE /* NewspilotObserver-SwiftUITests */ = {
+		EB7B9DC722C7EDC9009EB2BE /* NewspilotObserverTests */ = {
 			isa = PBXGroup;
 			children = (
 				EB7B9DC822C7EDC9009EB2BE /* NewspilotObserver_SwiftUITests.swift */,
@@ -436,7 +436,7 @@
 				EB7B9DCA22C7EDC9009EB2BE /* Info.plist */,
 				EB995C4523A38D97006C9F84 /* ColorExtensionTests.swift */,
 			);
-			path = "NewspilotObserver-SwiftUITests";
+			path = NewspilotObserverTests;
 			sourceTree = "<group>";
 		};
 		EB7B9DD922C7F0AC009EB2BE /* Entities */ = {
@@ -602,9 +602,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		EB7B9DAA22C7EDC7009EB2BE /* NewspilotObserver-SwiftUI */ = {
+		EB7B9DAA22C7EDC7009EB2BE /* NewspilotObserver */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EB7B9DCD22C7EDC9009EB2BE /* Build configuration list for PBXNativeTarget "NewspilotObserver-SwiftUI" */;
+			buildConfigurationList = EB7B9DCD22C7EDC9009EB2BE /* Build configuration list for PBXNativeTarget "NewspilotObserver" */;
 			buildPhases = (
 				EB7B9DA722C7EDC7009EB2BE /* Sources */,
 				EB7B9DA822C7EDC7009EB2BE /* Frameworks */,
@@ -614,18 +614,18 @@
 			);
 			dependencies = (
 			);
-			name = "NewspilotObserver-SwiftUI";
+			name = NewspilotObserver;
 			packageProductDependencies = (
 				EB3CC52922F34E520070139F /* Newspilot */,
 				EB6C22712359D0C400101147 /* SDWebImageSwiftUI */,
 			);
 			productName = "NewspilotObserver-SwiftUI";
-			productReference = EB7B9DAB22C7EDC7009EB2BE /* NewspilotObserver-SwiftUI.app */;
+			productReference = EB7B9DAB22C7EDC7009EB2BE /* NewspilotObserver.app */;
 			productType = "com.apple.product-type.application";
 		};
-		EB7B9DC322C7EDC9009EB2BE /* NewspilotObserver-SwiftUITests */ = {
+		EB7B9DC322C7EDC9009EB2BE /* NewspilotObserverTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EB7B9DD022C7EDC9009EB2BE /* Build configuration list for PBXNativeTarget "NewspilotObserver-SwiftUITests" */;
+			buildConfigurationList = EB7B9DD022C7EDC9009EB2BE /* Build configuration list for PBXNativeTarget "NewspilotObserverTests" */;
 			buildPhases = (
 				EB7B9DC022C7EDC9009EB2BE /* Sources */,
 				EB7B9DC122C7EDC9009EB2BE /* Frameworks */,
@@ -636,11 +636,11 @@
 			dependencies = (
 				EB7B9DC622C7EDC9009EB2BE /* PBXTargetDependency */,
 			);
-			name = "NewspilotObserver-SwiftUITests";
+			name = NewspilotObserverTests;
 			packageProductDependencies = (
 			);
 			productName = "NewspilotObserver-SwiftUITests";
-			productReference = EB7B9DC422C7EDC9009EB2BE /* NewspilotObserver-SwiftUITests.xctest */;
+			productReference = EB7B9DC422C7EDC9009EB2BE /* NewspilotObserverTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -662,7 +662,7 @@
 					};
 				};
 			};
-			buildConfigurationList = EB7B9DA622C7EDC7009EB2BE /* Build configuration list for PBXProject "NewspilotObserver-SwiftUI" */;
+			buildConfigurationList = EB7B9DA622C7EDC7009EB2BE /* Build configuration list for PBXProject "NewspilotObserver" */;
 			compatibilityVersion = "Xcode 11.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -679,8 +679,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				EB7B9DAA22C7EDC7009EB2BE /* NewspilotObserver-SwiftUI */,
-				EB7B9DC322C7EDC9009EB2BE /* NewspilotObserver-SwiftUITests */,
+				EB7B9DAA22C7EDC7009EB2BE /* NewspilotObserver */,
+				EB7B9DC322C7EDC9009EB2BE /* NewspilotObserverTests */,
 			);
 		};
 /* End PBXProject section */
@@ -837,7 +837,7 @@
 /* Begin PBXTargetDependency section */
 		EB7B9DC622C7EDC9009EB2BE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = EB7B9DAA22C7EDC7009EB2BE /* NewspilotObserver-SwiftUI */;
+			target = EB7B9DAA22C7EDC7009EB2BE /* NewspilotObserver */;
 			targetProxy = EB7B9DC522C7EDC9009EB2BE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -976,10 +976,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "NewspilotObserver-SwiftUI/Preview\\ Content";
+				DEVELOPMENT_ASSET_PATHS = "NewspilotObserver/Preview\\ Content";
 				DEVELOPMENT_TEAM = 9469B78B2K;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = "NewspilotObserver-SwiftUI/Info.plist";
+				INFOPLIST_FILE = NewspilotObserver/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -998,10 +998,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "NewspilotObserver-SwiftUI/Preview\\ Content";
+				DEVELOPMENT_ASSET_PATHS = "NewspilotObserver/Preview\\ Content";
 				DEVELOPMENT_TEAM = 9469B78B2K;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = "NewspilotObserver-SwiftUI/Info.plist";
+				INFOPLIST_FILE = NewspilotObserver/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1031,7 +1031,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NewspilotObserver-SwiftUI.app/NewspilotObserver-SwiftUI";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NewspilotObserver.app/NewspilotObserver";
 			};
 			name = Debug;
 		};
@@ -1052,14 +1052,14 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NewspilotObserver-SwiftUI.app/NewspilotObserver-SwiftUI";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NewspilotObserver.app/NewspilotObserver";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		EB7B9DA622C7EDC7009EB2BE /* Build configuration list for PBXProject "NewspilotObserver-SwiftUI" */ = {
+		EB7B9DA622C7EDC7009EB2BE /* Build configuration list for PBXProject "NewspilotObserver" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EB7B9DCB22C7EDC9009EB2BE /* Debug */,
@@ -1068,7 +1068,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EB7B9DCD22C7EDC9009EB2BE /* Build configuration list for PBXNativeTarget "NewspilotObserver-SwiftUI" */ = {
+		EB7B9DCD22C7EDC9009EB2BE /* Build configuration list for PBXNativeTarget "NewspilotObserver" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EB7B9DCE22C7EDC9009EB2BE /* Debug */,
@@ -1077,7 +1077,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EB7B9DD022C7EDC9009EB2BE /* Build configuration list for PBXNativeTarget "NewspilotObserver-SwiftUITests" */ = {
+		EB7B9DD022C7EDC9009EB2BE /* Build configuration list for PBXNativeTarget "NewspilotObserverTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EB7B9DD122C7EDC9009EB2BE /* Debug */,
