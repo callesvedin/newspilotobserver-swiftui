@@ -227,9 +227,9 @@
 		EB10054223434AF500E0973F /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		EB117D242463067500AF52EF /* PublicationDateQueryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicationDateQueryManager.swift; sourceTree = "<group>"; };
 		EB14A2F8250FEECD00A9F8B9 /* MultiNewspilotObserverApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiNewspilotObserverApp.swift; sourceTree = "<group>"; };
-		EB14A2FF250FEECE00A9F8B9 /* MultiNewspilotObserver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MultiNewspilotObserver.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB14A2FF250FEECE00A9F8B9 /* NewspilotObserver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewspilotObserver.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB14A301250FEECE00A9F8B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EB14A306250FEECE00A9F8B9 /* MultiNewspilotObserver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MultiNewspilotObserver.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB14A306250FEECE00A9F8B9 /* NewspilotObserver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewspilotObserver.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB14A308250FEECE00A9F8B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EB14A309250FEECE00A9F8B9 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		EB14A30E250FEECE00A9F8B9 /* Tests iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -559,8 +559,8 @@
 		EB7B9DAC22C7EDC7009EB2BE /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				EB14A2FF250FEECE00A9F8B9 /* MultiNewspilotObserver.app */,
-				EB14A306250FEECE00A9F8B9 /* MultiNewspilotObserver.app */,
+				EB14A2FF250FEECE00A9F8B9 /* NewspilotObserver.app */,
+				EB14A306250FEECE00A9F8B9 /* NewspilotObserver.app */,
 				EB14A30E250FEECE00A9F8B9 /* Tests iOS.xctest */,
 				EB14A319250FEECE00A9F8B9 /* Tests macOS.xctest */,
 			);
@@ -747,9 +747,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		EB14A2FE250FEECE00A9F8B9 /* MultiNewspilotObserver (iOS) */ = {
+		EB14A2FE250FEECE00A9F8B9 /* NewspilotObserver (iOS) */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EB14A32E250FEECE00A9F8B9 /* Build configuration list for PBXNativeTarget "MultiNewspilotObserver (iOS)" */;
+			buildConfigurationList = EB14A32E250FEECE00A9F8B9 /* Build configuration list for PBXNativeTarget "NewspilotObserver (iOS)" */;
 			buildPhases = (
 				EB14A2FB250FEECE00A9F8B9 /* Sources */,
 				EB14A2FC250FEECE00A9F8B9 /* Frameworks */,
@@ -759,18 +759,18 @@
 			);
 			dependencies = (
 			);
-			name = "MultiNewspilotObserver (iOS)";
+			name = "NewspilotObserver (iOS)";
 			packageProductDependencies = (
 				EB81695B250FFB6E001048E2 /* Newspilot */,
 				EB81695E250FFBB2001048E2 /* SDWebImageSwiftUI */,
 			);
 			productName = "MultiNewspilotObserver (iOS)";
-			productReference = EB14A2FF250FEECE00A9F8B9 /* MultiNewspilotObserver.app */;
+			productReference = EB14A2FF250FEECE00A9F8B9 /* NewspilotObserver.app */;
 			productType = "com.apple.product-type.application";
 		};
-		EB14A305250FEECE00A9F8B9 /* MultiNewspilotObserver (macOS) */ = {
+		EB14A305250FEECE00A9F8B9 /* NewspilotObserver (macOS) */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EB14A32F250FEECE00A9F8B9 /* Build configuration list for PBXNativeTarget "MultiNewspilotObserver (macOS)" */;
+			buildConfigurationList = EB14A32F250FEECE00A9F8B9 /* Build configuration list for PBXNativeTarget "NewspilotObserver (macOS)" */;
 			buildPhases = (
 				EB14A302250FEECE00A9F8B9 /* Sources */,
 				EB14A303250FEECE00A9F8B9 /* Frameworks */,
@@ -780,13 +780,13 @@
 			);
 			dependencies = (
 			);
-			name = "MultiNewspilotObserver (macOS)";
+			name = "NewspilotObserver (macOS)";
 			packageProductDependencies = (
 				EB816965251003DD001048E2 /* Newspilot */,
 				EB816967251003E2001048E2 /* SDWebImageSwiftUI */,
 			);
 			productName = "MultiNewspilotObserver (macOS)";
-			productReference = EB14A306250FEECE00A9F8B9 /* MultiNewspilotObserver.app */;
+			productReference = EB14A306250FEECE00A9F8B9 /* NewspilotObserver.app */;
 			productType = "com.apple.product-type.application";
 		};
 		EB14A30D250FEECE00A9F8B9 /* Tests iOS */ = {
@@ -868,8 +868,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				EB14A2FE250FEECE00A9F8B9 /* MultiNewspilotObserver (iOS) */,
-				EB14A305250FEECE00A9F8B9 /* MultiNewspilotObserver (macOS) */,
+				EB14A2FE250FEECE00A9F8B9 /* NewspilotObserver (iOS) */,
+				EB14A305250FEECE00A9F8B9 /* NewspilotObserver (macOS) */,
 				EB14A30D250FEECE00A9F8B9 /* Tests iOS */,
 				EB14A318250FEECE00A9F8B9 /* Tests macOS */,
 			);
@@ -1132,12 +1132,12 @@
 /* Begin PBXTargetDependency section */
 		EB14A310250FEECE00A9F8B9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = EB14A2FE250FEECE00A9F8B9 /* MultiNewspilotObserver (iOS) */;
+			target = EB14A2FE250FEECE00A9F8B9 /* NewspilotObserver (iOS) */;
 			targetProxy = EB14A30F250FEECE00A9F8B9 /* PBXContainerItemProxy */;
 		};
 		EB14A31B250FEECE00A9F8B9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = EB14A305250FEECE00A9F8B9 /* MultiNewspilotObserver (macOS) */;
+			target = EB14A305250FEECE00A9F8B9 /* NewspilotObserver (macOS) */;
 			targetProxy = EB14A31A250FEECE00A9F8B9 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -1169,7 +1169,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = se.infomaker.MultiNewspilotObserver;
-				PRODUCT_NAME = MultiNewspilotObserver;
+				PRODUCT_NAME = NewspilotObserver;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1191,7 +1191,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = se.infomaker.MultiNewspilotObserver;
-				PRODUCT_NAME = MultiNewspilotObserver;
+				PRODUCT_NAME = NewspilotObserver;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1217,7 +1217,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				PRODUCT_BUNDLE_IDENTIFIER = se.infomaker.MultiNewspilotObserver;
-				PRODUCT_NAME = MultiNewspilotObserver;
+				PRODUCT_NAME = NewspilotObserver;
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
 			};
@@ -1241,7 +1241,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				PRODUCT_BUNDLE_IDENTIFIER = se.infomaker.MultiNewspilotObserver;
-				PRODUCT_NAME = MultiNewspilotObserver;
+				PRODUCT_NAME = NewspilotObserver;
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
 			};
@@ -1389,6 +1389,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = NewspilotObserver;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1444,6 +1445,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = NewspilotObserver;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -1454,7 +1456,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		EB14A32E250FEECE00A9F8B9 /* Build configuration list for PBXNativeTarget "MultiNewspilotObserver (iOS)" */ = {
+		EB14A32E250FEECE00A9F8B9 /* Build configuration list for PBXNativeTarget "NewspilotObserver (iOS)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EB14A326250FEECE00A9F8B9 /* Debug */,
@@ -1463,7 +1465,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EB14A32F250FEECE00A9F8B9 /* Build configuration list for PBXNativeTarget "MultiNewspilotObserver (macOS)" */ = {
+		EB14A32F250FEECE00A9F8B9 /* Build configuration list for PBXNativeTarget "NewspilotObserver (macOS)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EB14A328250FEECE00A9F8B9 /* Debug */,

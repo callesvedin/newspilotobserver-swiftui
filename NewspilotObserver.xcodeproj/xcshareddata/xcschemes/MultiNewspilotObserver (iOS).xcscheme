@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "EB14A2FE250FEECE00A9F8B9"
-               BuildableName = "MultiNewspilotObserver.app"
-               BlueprintName = "MultiNewspilotObserver (iOS)"
+               BuildableName = "NewspilotObserver.app"
+               BlueprintName = "NewspilotObserver (iOS)"
                ReferencedContainer = "container:NewspilotObserver.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -55,8 +55,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EB14A2FE250FEECE00A9F8B9"
-            BuildableName = "MultiNewspilotObserver.app"
-            BlueprintName = "MultiNewspilotObserver (iOS)"
+            BuildableName = "NewspilotObserver.app"
+            BlueprintName = "NewspilotObserver (iOS)"
             ReferencedContainer = "container:NewspilotObserver.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -72,8 +72,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EB14A2FE250FEECE00A9F8B9"
-            BuildableName = "MultiNewspilotObserver.app"
-            BlueprintName = "MultiNewspilotObserver (iOS)"
+            BuildableName = "NewspilotObserver.app"
+            BlueprintName = "NewspilotObserver (iOS)"
             ReferencedContainer = "container:NewspilotObserver.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
