@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "EB7B9DAA22C7EDC7009EB2BE"
-               BuildableName = "NewspilotObserver.app"
-               BlueprintName = "NewspilotObserver"
+               BlueprintIdentifier = "EB14A2FE250FEECE00A9F8B9"
+               BuildableName = "MultiNewspilotObserver.app"
+               BlueprintName = "MultiNewspilotObserver (iOS)"
                ReferencedContainer = "container:NewspilotObserver.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,20 +32,10 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "EB7B9DC322C7EDC9009EB2BE"
-               BuildableName = "NewspilotObserverTests.xctest"
-               BlueprintName = "NewspilotObserverTests"
+               BlueprintIdentifier = "EB14A30D250FEECE00A9F8B9"
+               BuildableName = "Tests iOS.xctest"
+               BlueprintName = "Tests iOS"
                ReferencedContainer = "container:NewspilotObserver.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "NewspilotTests"
-               BuildableName = "NewspilotTests"
-               BlueprintName = "NewspilotTests"
-               ReferencedContainer = "container:../../NPProjekt/newspilotswiftclient">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -64,9 +54,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "EB7B9DAA22C7EDC7009EB2BE"
-            BuildableName = "NewspilotObserver.app"
-            BlueprintName = "NewspilotObserver"
+            BlueprintIdentifier = "EB14A2FE250FEECE00A9F8B9"
+            BuildableName = "MultiNewspilotObserver.app"
+            BlueprintName = "MultiNewspilotObserver (iOS)"
             ReferencedContainer = "container:NewspilotObserver.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -81,9 +71,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "EB7B9DAA22C7EDC7009EB2BE"
-            BuildableName = "NewspilotObserver.app"
-            BlueprintName = "NewspilotObserver"
+            BlueprintIdentifier = "EB14A2FE250FEECE00A9F8B9"
+            BuildableName = "MultiNewspilotObserver.app"
+            BlueprintName = "MultiNewspilotObserver (iOS)"
             ReferencedContainer = "container:NewspilotObserver.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

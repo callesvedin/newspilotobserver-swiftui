@@ -20,7 +20,6 @@ struct LoginView: View {
     @ObservedObject var loginHandler = LoginHandler.shared
     
     let dismissKeyboard: () -> Void = {
-     print("onCommit")
      UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
     
