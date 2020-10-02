@@ -1215,7 +1215,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = "macOS 11";
 				PRODUCT_BUNDLE_IDENTIFIER = se.infomaker.MultiNewspilotObserver;
 				PRODUCT_NAME = NewspilotObserver;
 				SDKROOT = macosx;
@@ -1239,7 +1239,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = "macOS 11";
 				PRODUCT_BUNDLE_IDENTIFIER = se.infomaker.MultiNewspilotObserver;
 				PRODUCT_NAME = NewspilotObserver;
 				SDKROOT = macosx;
