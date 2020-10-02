@@ -8,6 +8,30 @@
 
 import SwiftUI
 import Newspilot
+import LocalAuthentication
+
+func getBiometricType() -> String {
+  let context = LAContext()
+
+  _ = context.canEvaluatePolicy(
+    .deviceOwnerAuthenticationWithBiometrics,
+    error: nil)
+  switch context.biometryType {
+  case .faceID:
+    return "faceid"
+  case .touchID:
+    // In iOS 14 and later, you can use "touchid" here
+    if #available(iOS 14.0, *) {
+        return "touchid"
+    }else{
+        return "lock"
+    }
+  case .none:
+    return "lock"
+  @unknown default:
+    return "lock"
+  }
+}
 
 let lightGreyColor = Color(red: 239.0/255.0, green: 243.0/255.0, blue: 244.0/255.0, opacity: 1.0)
 //let backgroundColor = Color(red: 24/255, green: 0, blue: 54/255, opacity: 1.0)
@@ -22,6 +46,38 @@ struct LoginView: View {
     let dismissKeyboard: () -> Void = {
      UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
+    
+    func tryBiometricAuthentication() {
+      let context = LAContext()
+      var error: NSError?
+
+      if context.canEvaluatePolicy(
+        .deviceOwnerAuthenticationWithBiometrics,
+        error: &error) {
+
+        let reason = "Authenticate to login with stored Newspilot password."
+        context.evaluatePolicy(
+          .deviceOwnerAuthenticationWithBiometrics,
+          localizedReason: reason) { authenticated, error in
+
+          DispatchQueue.main.async {
+            if authenticated {
+                self.password = loginHandler.getStoredPassword(server: loginSettings.server, login: loginSettings.login)
+                loginHandler.login(login: self.loginSettings.login, password: self.password, server: self.loginSettings.server)
+            } else {
+              if let errorString = error?.localizedDescription {
+                print("Error in biometric policy evaluation: \(errorString)")
+              }
+            }
+          }
+        }
+      } else {        
+        if let errorString = error?.localizedDescription {
+          print("Error in biometric policy evaluation: \(errorString)")
+        }
+      }
+    }
+    
     
     var body: some View {
             ZStack {
@@ -51,13 +107,22 @@ struct LoginView: View {
                         .padding()
 
                     
-                    SecureField("Password", text: $password,onCommit: dismissKeyboard)
+                    ZStack(alignment:Alignment.trailing) {
+                        SecureField("Password", text: $password,onCommit: dismissKeyboard)
                         .font(Font.bodyFont)
                         .padding()
                         .background(Color.navigaTextFieldBackground)
                         .cornerRadius(5.0)
                         .padding()
-                    
+                        
+                        Button(action: {
+                            tryBiometricAuthentication()
+                        }, label: {
+                            Image(systemName: getBiometricType())
+                        })
+                        .font(Font.title).accentColor(.secondary)
+                        .padding(.horizontal,30)
+                    }
                     TextField("Server", text: $loginSettings.server,onCommit: dismissKeyboard)
                         .font(Font.bodyFont)
                         .textContentType(.none)
