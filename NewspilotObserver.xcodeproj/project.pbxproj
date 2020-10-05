@@ -303,7 +303,6 @@
 		EB7B9E4322C80088009EB2BE /* String+UppercaseCharacters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+UppercaseCharacters.swift"; sourceTree = "<group>"; };
 		EB7B9E4422C80088009EB2BE /* UIImage+Rezise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Rezise.swift"; sourceTree = "<group>"; };
 		EB7D5D752486D8F4006C7314 /* FontExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontExtensions.swift; sourceTree = "<group>"; };
-		EB8169602510021D001048E2 /* newspilotswiftclient */ = {isa = PBXFileReference; lastKnownFileType = folder; name = newspilotswiftclient; path = ../../NPProjekt/newspilotswiftclient; sourceTree = "<group>"; };
 		EB8CE4BD233170C8000A03A2 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		EB8CE4BF23317D08000A03A2 /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
 		EB8CE4C123317D5B000A03A2 /* LoginSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSettings.swift; sourceTree = "<group>"; };
@@ -547,7 +546,6 @@
 		EB7B9DA222C7EDC7009EB2BE = {
 			isa = PBXGroup;
 			children = (
-				EB8169602510021D001048E2 /* newspilotswiftclient */,
 				EBA90A052485019400E493AD /* CustomFonts */,
 				EB14A2F7250FEECD00A9F8B9 /* Shared */,
 				EB14A300250FEECE00A9F8B9 /* iOS */,
@@ -1174,7 +1172,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = se.infomaker.MultiNewspilotObserver;
+				PRODUCT_BUNDLE_IDENTIFIER = se.infomaker.NewspilotObserver;
 				PRODUCT_NAME = NewspilotObserver;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
@@ -1196,7 +1194,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = se.infomaker.MultiNewspilotObserver;
+				PRODUCT_BUNDLE_IDENTIFIER = se.infomaker.NewspilotObserver;
 				PRODUCT_NAME = NewspilotObserver;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
@@ -1222,7 +1220,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = "macOS 11";
-				PRODUCT_BUNDLE_IDENTIFIER = se.infomaker.MultiNewspilotObserver;
+				PRODUCT_BUNDLE_IDENTIFIER = se.infomaker.NewspilotObserver;
 				PRODUCT_NAME = NewspilotObserver;
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
@@ -1246,7 +1244,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = "macOS 11";
-				PRODUCT_BUNDLE_IDENTIFIER = se.infomaker.MultiNewspilotObserver;
+				PRODUCT_BUNDLE_IDENTIFIER = se.infomaker.NewspilotObserver;
 				PRODUCT_NAME = NewspilotObserver;
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;

@@ -99,21 +99,21 @@ class PublicationDateQuery :  ObservableObject {
         
         let calendar = Calendar(identifier: .gregorian)
         let today = calendar.beginningOf(date: Date()) ?? Date()
-        let aMonthAgo = calendar.date(byAdding: .month, value: -10, to: today, wrappingComponents: false)
-        let nextYear = calendar.date(byAdding: .year, value: 2, to: today, wrappingComponents: false)
+        let aMonthAgo = calendar.date(byAdding: .month, value: -1, to: today, wrappingComponents: false)
+        let nextYear = calendar.date(byAdding: .year, value: 1, to: today, wrappingComponents: false)
         
         guard let fromDate = aMonthAgo, let toDate = nextYear else {
             os_log("Could not create beginning and end of date for publication dates", log: .newspilot, type: .error)
             return nil
         }
         
-//        #if DEBUG
-//            let fromString = "2019-12-30 00:00:00"
-//            let toString = "2020-01-01 00:00:00"
-//        #else
+        #if DEBUG
+            let fromString = "2019-12-29 00:00:00"
+            let toString = "2020-06-01 00:00:00"
+        #else
             let fromString = newspilotDateFormatter.string(from: fromDate)
             let toString = newspilotDateFormatter.string(from: toDate)
-//        #endif
+        #endif
 
                 
         return """
