@@ -45,8 +45,7 @@ class LoginHandler: ObservableObject {
     func login(login:String, password:String, server:String) {
         connectionStatus = .connecting
         newspilot.disconnect()
-        
-        //TODO: Check this- https://stackoverflow.com/questions/56595542/use-navigationbutton-with-a-server-request-in-swiftui
+                
         newspilot.connect(server:server,login: login, password: password, callback: {[weak self] result in
             switch result {
             case .failure(let error):
@@ -65,7 +64,7 @@ class LoginHandler: ObservableObject {
                 
             case .success(let sessionId):
                 os_log("Connected. Got new sessionId:%d", log: .newspilot, type: .debug, sessionId)
-                
+                self?.updateStoredPassword(server:server, login:login, password:password)
                 DispatchQueue.main.async {
                     SDWebImageDownloader.shared.config.username = login;
                     SDWebImageDownloader.shared.config.password = password;
@@ -78,4 +77,29 @@ class LoginHandler: ObservableObject {
         })
     }
     
+    
+    func getStoredPassword(server:String, login:String) -> String {
+      let kcw = KeychainWrapper()
+      if let password = try? kcw.getGenericPasswordFor(
+        account: login,
+        service: server) {
+        return password
+      }
+
+      return ""
+    }
+    
+    func updateStoredPassword(server:String, login:String, password: String) {
+      let kcw = KeychainWrapper()
+      do {
+        try kcw.storeGenericPasswordFor(
+          account: login,
+          service: server,
+          password: password)
+      } catch let error as KeychainWrapperError {
+        print("Exception setting password: \(error.message ?? "no message")")
+      } catch {
+        print("An error occurred setting the password.")
+      }
+    }
 }
