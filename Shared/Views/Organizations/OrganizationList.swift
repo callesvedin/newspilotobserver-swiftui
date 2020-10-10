@@ -23,6 +23,13 @@ struct OrganizationList: View {
         .listStyle(GroupedListStyle())
         .navigationBarTitle("Organizations")
         .navigationBarBackButtonHidden(true)
+        .navigationBarItems(leading: Button(action: {loginHandler.logout()}, label: {
+            HStack {
+                Image(systemName: "lock")
+                Text("Logout").fontWeight(.medium)
+            }
+        }))
+
         .connectionBanner()
     }
 }

@@ -77,6 +77,10 @@ class LoginHandler: ObservableObject {
         })
     }
     
+    func logout() {
+        loggedIn = false
+        newspilot.disconnect()
+    }
     
     func getStoredPassword(server:String, login:String) -> String {
       let kcw = KeychainWrapper()
