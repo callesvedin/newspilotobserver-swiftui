@@ -36,6 +36,9 @@ class StatusQuery :  ObservableObject {
         }
     }
     
+    init(withStaticStatuses statuses:[Status]) {
+        self.statuses = statuses
+    }
     
     init(withNewspilot newspilot:Newspilot?) {
         self.newspilot = newspilot
@@ -140,6 +143,18 @@ class StatusQuery :  ObservableObject {
         })
         objectWillChange.send()
 
+    }
+    
+    
+    func sortedByKey<Value: Comparable>(on property: KeyPath<Status, Value>,  by areInIncreasingOrder: ((Value, Value) -> Bool ) = {c,n in c<n}) -> [Status] {
+        return statuses.sorted(by: {currentElement, nextElement in
+            areInIncreasingOrder(currentElement[keyPath: property], nextElement[keyPath: property])
+        })
+   }
+    
+    
+    func statusesBySortkey() -> [Status] {
+        return sortedByKey(on: \Status.sortKey)
     }
     
     func status(forId id:Int) -> Status? {

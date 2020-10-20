@@ -55,8 +55,8 @@ struct PageList: View {
     @ObservedObject var pageQuery:PageQuery
     var publicationDateQuery:PublicationDateQuery
     
-    @State private var useThumbView = true
-    @State private var expandChart = false
+    @State private var useThumbView = false
+    //@State private var expandChart = false
     @State private var searchText = ""
     
     var backs:[BackKey:[Page]] {
@@ -88,40 +88,40 @@ struct PageList: View {
                                                 sections: self.organizationQuery.sections,
                                                 flags: self.flagQuery.flags)
         
-        let pieChartModel = PieChartModel(data: statusItems)
+//        let pieChartModel = PieChartModel(data: statusItems)
 //        let publicationDateString = self.filter.publicationDate?.name ?? "PubDate"
         return
             GeometryReader {geometry in
                 ZStack {                    
                     VStack {
-                        Button(action:{
-                            withAnimation {
-                                expandChart.toggle()
-                            }
-                            
-                        }) {
-                            PieChartView(chartData:pieChartModel).frame(width: 50, height: 50)
-                        }
-                        
-                        if expandChart {
-                            ForEach(pieChartModel.arcData) {arc in
-                                HStack {
-                                    Arc(startAngle: arc.startAngle, endAngle: arc.endAngle, clockwise: true)
-                                        .foregroundColor(Color(arc.pieData.color))
-                                        .frame(width: 30, height: 30, alignment: .center).padding(0)
-                                        
-                                    Text("\(Int(arc.pieData.value)) is \(arc.pieData.title)")
-                                    Spacer()
-                                }.padding(.leading, 5)
-                            }
-                        }
+//                        Button(action:{
+//                            withAnimation {
+//                                expandChart.toggle()
+//                            }
+//
+//                        }) {
+//                            PieChartView(chartData:pieChartModel).frame(width: 50, height: 50)
+//                        }
+//
+//                        if expandChart {
+//                            ForEach(pieChartModel.arcData) {arc in
+//                                HStack {
+//                                    Arc(startAngle: arc.startAngle, endAngle: arc.endAngle, clockwise: true)
+//                                        .foregroundColor(Color(arc.pieData.color))
+//                                        .frame(width: 30, height: 30, alignment: .center).padding(0)
+//
+//                                    Text("\(Int(arc.pieData.value)) is \(arc.pieData.title)")
+//                                    Spacer()
+//                                }.padding(.leading, 5)
+//                            }
+//                        }
 
-                        SearchBar(searchText: $searchText)
+                        SearchBar(searchText: $searchText).padding()
                         
                         if self.useThumbView {
                             ThumbView(pageModelAdapter:pageModelAdapter, backs:backs, columns: self.getColumns(width:geometry.size.width), filterText:self.searchText)
                         }else{
-                            ListView(pageModelAdapter: pageModelAdapter, backs:backs, filterText:self.searchText)
+                            ListView(pageModelAdapter: pageModelAdapter, backs:backs, statuses:statusQuery.statusesBySortkey(), filterText:self.searchText)
                         }
                     }
                     

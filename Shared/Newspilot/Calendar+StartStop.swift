@@ -9,7 +9,7 @@
 import Foundation
 
 extension Calendar {
-    func beginningOf(date:Date) -> Date? {
+    public func beginningOf(date:Date) -> Date? {
         var fromComponents = self.dateComponents([.year, .month, .day], from: date)
         fromComponents.hour = 0
         fromComponents.minute = 0
@@ -18,7 +18,7 @@ extension Calendar {
         return self.date(from: fromComponents)
     }
     
-    func endOf(date:Date) -> Date? {
+    public func endOf(date:Date) -> Date? {
         var fromComponents = self.dateComponents([.year, .month, .day], from: date)
         fromComponents.hour = 23
         fromComponents.minute = 59

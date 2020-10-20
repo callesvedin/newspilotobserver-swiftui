@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import NewspilotObserver_SwiftUI
+@testable import NewspilotObserver
 @testable import Newspilot
 
 class NewspilotObserver_SwiftUITests: XCTestCase {
@@ -254,6 +254,13 @@ class NewspilotObserver_SwiftUITests: XCTestCase {
             cancellable.cancel()
             
         }
+    
+    let returnString = "{\"id\": 42,\"entityType\": \"Page\",\"status\": 33}"
+    
+    func testCreateUpdateStruct() throws {
+        let jsonStruct = try NewspilotManager.createUpdateStructure(entityType: "Page", entityId: 42, values: ["status":33])
+        XCTAssertEqual(returnString, jsonStruct)
+    }
     
     private func write<T : Codable> (array:[T], toFile file:String) throws {            
         let jsonData = try! JSONEncoder().encode(array)

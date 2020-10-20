@@ -7,7 +7,8 @@
 //
 
 import XCTest
-@testable import NewspilotObserver_SwiftUI
+@testable import NewspilotObserver
+import Newspilot
 
 class SubProductTests: XCTestCase {
         

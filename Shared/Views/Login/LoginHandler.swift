@@ -23,10 +23,13 @@ class LoginHandler: ObservableObject {
     
     static let shared = LoginHandler()
     
-    let newspilot:Newspilot
+    var newspilot:Newspilot {
+        get {
+            NewspilotManager.shared
+        }
+    }
     
-    private init() {
-        newspilot = Newspilot()
+    private init() {        
         newspilot.addConnectionCallback(){ [weak self] state in
             DispatchQueue.main.async {
                 switch state {

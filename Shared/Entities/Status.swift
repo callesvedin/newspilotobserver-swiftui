@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import UIKit
+
 struct Status:Identifiable,Codable,Comparable {
     static func < (lhs: Status, rhs: Status) -> Bool {
         return lhs.sortKey < rhs.sortKey
@@ -26,4 +28,10 @@ struct Status:Identifiable,Codable,Comparable {
      case sortKey = "sort_key"
     }
     
+}
+
+extension Status {
+    var statusColor:UIColor {
+        get {UIColor.intToColor(value: Int(color))}
+    }
 }

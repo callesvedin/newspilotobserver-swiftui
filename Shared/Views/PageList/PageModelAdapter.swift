@@ -29,7 +29,7 @@ class PageModelAdapter {
         var statusColor:UIColor
         var statusName:String
         if let status = statuses.first(where: {status in status.id == page.status}) {
-            statusColor = UIColor.intToColor(value: Int(status.color))
+            statusColor = status.statusColor
             statusName = status.name
         }else{
             statusColor = UIColor.white

@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import NewspilotObserver_SwiftUI
+@testable import NewspilotObserver
 
 
 class ColorExtensionTests: XCTestCase {

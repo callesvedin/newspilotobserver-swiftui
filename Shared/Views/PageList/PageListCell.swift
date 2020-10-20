@@ -8,6 +8,7 @@
 
 import SwiftUI
 import SDWebImageSwiftUI
+import Newspilot
 
 struct PageListCell: View {
     let page:PageViewModel
@@ -21,8 +22,8 @@ struct PageListCell: View {
             HStack {
                 Rectangle()
                     .fill(Color(self.page.statusColor))
-                    .position(x: 3, y: geometry.size.height/2)
-                    .frame(width: 6, height: geometry.size.height)
+//                    .position(x: 0, y: geometry.size.height/2)
+                    .frame(width: 10, height: geometry.size.height)
                     .edgesIgnoringSafeArea(.all)
 
                     //         pageImage?.sd_setImage(with: url, placeholderImage: placeholderImage, options: [.highPriority, .allowInvalidSSLCertificates,.retryFailed], completed: { (image, error, cacheType, url) in
@@ -54,7 +55,8 @@ struct PageListCell: View {
 
                 }
                 Spacer()
-            } //.cornerRadius(8.0).border(Color.gray, width: 1)
+            }
+            //.cornerRadius(8.0).border(Color.gray, width: 1)
         }
     }
 }
@@ -63,6 +65,13 @@ struct PageListCell_Previews: PreviewProvider {
     static var previews: some View {
         let model = PageViewModel(id: 1, pageNumber: 2, name: "Great page", section: "Section A", part: "Part A", edition: "Edition 1", version: "Version 3",template: "A-Section",editionType: .original, statusName: "Ready", statusColor: UIColor.green,flags:[UIImage(systemName: "star"), UIImage(systemName: "star.fill")],
                                   thumbUrl: nil, previewUrl: nil)
-        return PageListCell(page: model).previewLayout(.fixed(width: 300, height: 50))
+
+        let model2 = PageViewModel(id: 2, pageNumber: 3, name: "Great page", section: "Section A", part: "Part A", edition: "Edition 1", version: "Version 3",template: "A-Section",editionType: .original, statusName: "Ready", statusColor: UIColor.green,flags:[UIImage(systemName: "star"), UIImage(systemName: "star.fill")],
+                                  thumbUrl: nil, previewUrl: nil)
+
+        return List{
+            PageListCell(page: model)
+            PageListCell(page: model2)
+        }
     }
 }
