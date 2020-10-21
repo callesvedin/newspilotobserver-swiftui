@@ -85,16 +85,17 @@ struct PageFilterView: View {
                         Spacer()
                         Button(action:{
                             self.presentationMode.wrappedValue.dismiss()
-                        }, label:{Text("Cancel")})
+                        }, label:{Text("Cancel").font(Font.buttonFont)})
                         Button(action:{
                             self.filter.wrappedValue.publicationDate = self.publicationDates[self.selectedPublicationDateIndex]
                             self.filter.wrappedValue.part = self.parts[self.selectedPartIndex] == "-" ? nil : self.parts[self.selectedPartIndex]
                             self.filter.wrappedValue.edition = self.editions[self.selectedEditionIndex] == "-" ? nil : self.editions[self.selectedEditionIndex]
                             self.filter.wrappedValue.version = self.versions[self.selectedVersionIndex] == "-" ? nil : self.versions[self.selectedVersionIndex]
                             self.presentationMode.wrappedValue.dismiss()
-                        }, label:{Text("Ok")})
+                        }, label:{Text("Ok").font(Font.buttonFont)})
                     }
                 }
+                .font(Font.bodyFont)
                 .navigationBarTitle("Filter")
             }
 

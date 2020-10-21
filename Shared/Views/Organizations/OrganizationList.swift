@@ -26,9 +26,9 @@ struct OrganizationList: View {
         .navigationBarItems(leading: Button(action: {loginHandler.logout()}, label: {
             HStack {
                 Image(systemName: "lock")
-                Text("Logout").fontWeight(.medium)
+                Text("Logout").font(Font.buttonFont)
             }
-        }))
+        })).font(Font.bodyFont)
 
         .connectionBanner()
     }

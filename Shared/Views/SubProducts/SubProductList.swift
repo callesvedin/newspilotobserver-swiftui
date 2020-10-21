@@ -32,7 +32,7 @@ struct SubProductList: View {
                     )
                 )
                 {
-                    Text(subProduct.name) //.font(.caption).foregroundColor(.gray)
+                    Text(subProduct.name).font(Font.bodyFont) 
                 }                
             }
         }

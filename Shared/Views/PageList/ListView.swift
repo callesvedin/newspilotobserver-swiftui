@@ -14,8 +14,8 @@ struct ListView:View
     let pageModelAdapter:PageModelAdapter
     let backs:[BackKey:[Page]]
     let statuses:[Status]
-    @State private var page:Page?
-    @State private var statusSelectionViewIsPresented = false
+    @ObservedObject private var pageAction:PageAction
+    @Binding var statusSelectionViewIsPresented:Bool
     
     var backKeys:[BackKey] {
         get {
@@ -25,9 +25,11 @@ struct ListView:View
     
     @State private var expandedBacks:Set<BackKey> = Set<BackKey>()    
     
-    init(pageModelAdapter:PageModelAdapter, backs:[BackKey:[Page]], statuses:[Status], filterText:String) {
+    init(pageModelAdapter:PageModelAdapter, backs:[BackKey:[Page]], statuses:[Status], filterText:String, pageAction:PageAction, showAction:Binding<Bool>) {
         self.pageModelAdapter = pageModelAdapter
         self.statuses = statuses
+        self.pageAction = pageAction
+        self._statusSelectionViewIsPresented = showAction
         var filteredBacks:[BackKey:[Page]] = [:]
         backs.keys.forEach({key in
             filteredBacks[key]=backs[key]!.filter({page in filterText.count == 0 || page.name.contains(filterText)})
@@ -65,8 +67,11 @@ struct ListView:View
                                     PageListCell(page:self.pageModelAdapter.getPageViewModel(from: self.backs[backKey]![index]))
                                         .contextMenu(/*@START_MENU_TOKEN@*/ContextMenu(menuItems: {
                                             Button("Change status"){
+//                                                self.statusSelectionViewIsPresented = true
+                                                self.pageAction.page = self.backs[backKey]![index]
+                                                self.pageAction.type = .ChangeStatus
                                                 self.statusSelectionViewIsPresented = true
-                                                self.page = self.backs[backKey]![index]
+                                                
                                             }
                                         })/*@END_MENU_TOKEN@*/)
                                 }
@@ -75,12 +80,12 @@ struct ListView:View
                     }
                 }
             }
-                if statusSelectionViewIsPresented {
-                    SetStatusView(page: page!,
-                                  statuses: statuses,
-                                  isShown:$statusSelectionViewIsPresented
-                    )
-                }
+//                if statusSelectionViewIsPresented {
+//                    SetStatusView(page: page!,
+//                                  statuses: statuses,
+//                                  isShown:$statusSelectionViewIsPresented
+//                    )
+//                }
             }
     }
     
@@ -107,12 +112,12 @@ struct ListView_Previews: PreviewProvider {
         let pageModelAdapter = PageModelAdapter(newspilotServer: "server", statuses: statusData, sections:sectionsData, flags: [])
         return
             Group{
-                ListView(pageModelAdapter: pageModelAdapter, backs: pageBacks, statuses:[], filterText: "")
+                ListView(pageModelAdapter: pageModelAdapter, backs: pageBacks, statuses:[], filterText: "", pageAction: PageAction(), showAction:Binding.constant(false))
                     //                    .previewLayout(PreviewLayout.sizeThatFits)
                     .padding()
                     .previewDisplayName("Default preview 1")
                 
-                ListView(pageModelAdapter: pageModelAdapter, backs: pageBacks, statuses:[], filterText: "")
+                ListView(pageModelAdapter: pageModelAdapter, backs: pageBacks, statuses:[], filterText: "", pageAction: PageAction(), showAction:Binding.constant(false))
                     //                                    .previewLayout(PreviewLayout.sizeThatFits)
                     .padding()
                     //                                    .background(Color(.systemBackground))

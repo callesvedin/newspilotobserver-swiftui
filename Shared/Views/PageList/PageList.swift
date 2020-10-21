@@ -58,6 +58,8 @@ struct PageList: View {
     @State private var useThumbView = false
     //@State private var expandChart = false
     @State private var searchText = ""
+    @State var pageAction = PageAction()
+    @State var showStatusChange = false
     
     var backs:[BackKey:[Page]] {
         get {
@@ -65,11 +67,11 @@ struct PageList: View {
         }
     }
     
-    var statusItems:[StatusItem] {
-        get {
-            getStatusItems(fromBacks:backs)
-        }
-    }
+//    var statusItems:[StatusItem] {
+//        get {
+//            getStatusItems(fromBacks:backs)
+//        }
+//    }
 
     
     let newspilot:Newspilot
@@ -87,7 +89,6 @@ struct PageList: View {
                                                 statuses: self.statusQuery.statuses,
                                                 sections: self.organizationQuery.sections,
                                                 flags: self.flagQuery.flags)
-        
 //        let pieChartModel = PieChartModel(data: statusItems)
 //        let publicationDateString = self.filter.publicationDate?.name ?? "PubDate"
         return
@@ -121,7 +122,7 @@ struct PageList: View {
                         if self.useThumbView {
                             ThumbView(pageModelAdapter:pageModelAdapter, backs:backs, columns: self.getColumns(width:geometry.size.width), filterText:self.searchText)
                         }else{
-                            ListView(pageModelAdapter: pageModelAdapter, backs:backs, statuses:statusQuery.statusesBySortkey(), filterText:self.searchText)
+                            ListView(pageModelAdapter: pageModelAdapter, backs:backs, statuses:statusQuery.statusesBySortkey(), filterText:self.searchText, pageAction: self.pageAction, showAction:self.$showStatusChange)
                         }
                     }
                     
@@ -151,7 +152,11 @@ struct PageList: View {
             .connectionBanner()
             .onAppear(){
                 self.pageQuery.load()
-            }
+            }.sheet(isPresented: self.$showStatusChange, content: {
+                if (pageAction.type == .ChangeStatus) {
+                    SetStatusView(page:pageAction.page!, statuses:statusQuery.statusesBySortkey(),isShown: self.$showStatusChange)                    
+                }
+            })
         
     }
     
@@ -159,27 +164,27 @@ struct PageList: View {
         return Int(width/200)
     }
     
-    func getStatusItems(fromBacks backs:[BackKey:[Page]]) -> [StatusItem]{
-        var statusItems:[StatusItem] = []
-        var statusCountDictionary:[Int:Int] = [:]
-        
-        for pages in backs.values {
-            for page in pages {
-                if let statusCount = statusCountDictionary[page.status] {
-                    statusCountDictionary[page.status] = statusCount + 1
-                }else{
-                    statusCountDictionary[page.status] = 1
-                }
-            }
-        }
-        
-        for (key,value) in statusCountDictionary {
-            if let status = statusQuery.status(forId: key) {
-                statusItems.append(StatusItem(status: status, value:value))
-            }
-        }
-        return statusItems.sorted()
-    }
+//    func getStatusItems(fromBacks backs:[BackKey:[Page]]) -> [StatusItem]{
+//        var statusItems:[StatusItem] = []
+//        var statusCountDictionary:[Int:Int] = [:]
+//        
+//        for pages in backs.values {
+//            for page in pages {
+//                if let statusCount = statusCountDictionary[page.status] {
+//                    statusCountDictionary[page.status] = statusCount + 1
+//                }else{
+//                    statusCountDictionary[page.status] = 1
+//                }
+//            }
+//        }
+//        
+//        for (key,value) in statusCountDictionary {
+//            if let status = statusQuery.status(forId: key) {
+//                statusItems.append(StatusItem(status: status, value:value))
+//            }
+//        }
+//        return statusItems.sorted()
+//    }
 }
 
 
