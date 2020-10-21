@@ -16,13 +16,19 @@ struct ThumbView:View
     
     let columns:Int
     @State private var expandedBacks:Set<BackKey> = Set<BackKey>()
-    
+    @ObservedObject private var pageAction:PageAction
+    @Binding var statusSelectionViewIsPresented:Bool
+
     var backKeys:[BackKey] {
         get {backs.map({$0.key}).sorted()}
     }
     
-    init(pageModelAdapter:PageModelAdapter, backs:[BackKey:[Page]], columns:Int = 2, filterText:String) {
+    init(pageModelAdapter:PageModelAdapter, backs:[BackKey:[Page]], columns:Int = 2, filterText:String, pageAction:PageAction, showAction:Binding<Bool>) {
         self.pageModelAdapter = pageModelAdapter
+        
+        self.pageAction = pageAction
+        self._statusSelectionViewIsPresented = showAction
+        
         var filteredBacks:[BackKey:[Page]] = [:]
         backs.keys.forEach({key in
             filteredBacks[key]=backs[key]!.filter({page in filterText.count == 0 || page.name.contains(filterText)})
@@ -59,7 +65,15 @@ struct ThumbView:View
 //                                        self.getViewsFrom(pageModelAdapter: self.pageModelAdapter, backs: self.backs, backKey: backKey), currentPage: (row*self.columns)+col)
 //                                ){EmptyView()}
                             if (self.backs[backKey]!.count > (row*self.columns)+col) {
-                                PageCollectionCell(page:self.pageModelAdapter.getPageViewModel(from: self.backs[backKey]![(row*self.columns)+col])).padding(10)
+                                PageCollectionCell(page:self.pageModelAdapter.getPageViewModel(from: self.backs[backKey]![(row*self.columns)+col]))
+                                    .contextMenu(ContextMenu(menuItems: {
+                                        Button("Change status"){
+                                            self.pageAction.page = self.backs[backKey]![(row*self.columns)+col]
+                                            self.pageAction.type = .ChangeStatus
+                                            self.statusSelectionViewIsPresented = true
+                                            
+                                        }
+                                    })).padding(10)
                             } else {
                                 Color(.white).frame(maxWidth: .infinity).padding(10)
                             }
@@ -101,11 +115,11 @@ struct ThumbView_Previews: PreviewProvider {
         
         let devices = ["iPhone 11","iPad Pro (12.9-inch) (4th generation)"]
         return ForEach (devices, id: \.self) {device in
-            ThumbView(pageModelAdapter: pageModelAdapter , backs: pageBacks, columns: 3, filterText: "")
+            ThumbView(pageModelAdapter: pageModelAdapter , backs: pageBacks, columns: 3, filterText: "",  pageAction: PageAction(), showAction:Binding.constant(false))
                 .previewDisplayName(device)
                 .previewDevice(PreviewDevice(rawValue:device))
         
-            ThumbView(pageModelAdapter: pageModelAdapter , backs: pageBacks, columns: 3, filterText: "")
+            ThumbView(pageModelAdapter: pageModelAdapter , backs: pageBacks, columns: 3, filterText: "", pageAction: PageAction(), showAction:Binding.constant(false))
                 .environment(\.colorScheme, .dark)
                 .previewDisplayName(device)
                 .previewDevice(PreviewDevice(rawValue:device))

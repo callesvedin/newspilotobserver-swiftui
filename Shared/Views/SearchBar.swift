@@ -40,7 +40,7 @@ struct SearchBar: View {
                }
                .font(Font.bodyFont)
                .padding(EdgeInsets(top: 8, leading: 6, bottom: 8, trailing: 6))
-               .foregroundColor(.secondary) // For magnifying glass and placeholder test
+               .foregroundColor(.secondary) // For magnifying glass and placeholder text
                .background(Color(.tertiarySystemFill))
                .cornerRadius(10.0)
      

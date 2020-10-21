@@ -65,27 +65,20 @@ struct ListView:View
                             ForEach (0 ..< self.backs[backKey]!.count, id:\.self) {index in
                                 NavigationLink(destination: PageDetailsView(self.getViewsFrom(pageModelAdapter: self.pageModelAdapter, backs: self.backs, backKey: backKey), currentPage: index)) {
                                     PageListCell(page:self.pageModelAdapter.getPageViewModel(from: self.backs[backKey]![index]))
-                                        .contextMenu(/*@START_MENU_TOKEN@*/ContextMenu(menuItems: {
+                                        .contextMenu(ContextMenu(menuItems: {
                                             Button("Change status"){
-//                                                self.statusSelectionViewIsPresented = true
                                                 self.pageAction.page = self.backs[backKey]![index]
                                                 self.pageAction.type = .ChangeStatus
                                                 self.statusSelectionViewIsPresented = true
                                                 
                                             }
-                                        })/*@END_MENU_TOKEN@*/)
+                                        }))
                                 }
                             }
                         }
                     }
                 }
             }
-//                if statusSelectionViewIsPresented {
-//                    SetStatusView(page: page!,
-//                                  statuses: statuses,
-//                                  isShown:$statusSelectionViewIsPresented
-//                    )
-//                }
             }
     }
     
