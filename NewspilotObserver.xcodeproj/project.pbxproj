@@ -72,7 +72,6 @@
 		EB14A392250FF0EB00A9F8B9 /* ConnectionModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF1F63C23C641D5007A5088 /* ConnectionModifier.swift */; };
 		EB14A393250FF0EB00A9F8B9 /* FlagIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB296F67238DC59500EE6135 /* FlagIcon.swift */; };
 		EB14A394250FF0EB00A9F8B9 /* ValueProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB564828236EC9ED00A5925F /* ValueProvider.swift */; };
-		EB14A395250FF0EB00A9F8B9 /* ThumbView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCF5C9B24267AC000F34055 /* ThumbView.swift */; };
 		EB14A396250FF0EB00A9F8B9 /* LoginHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6AE6FE233A8A2E0020A501 /* LoginHandler.swift */; };
 		EB14A397250FF0EB00A9F8B9 /* SubProductList.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB953D89232C058800E65A73 /* SubProductList.swift */; };
 		EB14A398250FF0EB00A9F8B9 /* NPTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5B06E3248A4D1900F5F86B /* NPTextField.swift */; };
@@ -109,7 +108,6 @@
 		EB14A3B7250FF0EC00A9F8B9 /* ConnectionModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF1F63C23C641D5007A5088 /* ConnectionModifier.swift */; };
 		EB14A3B8250FF0EC00A9F8B9 /* FlagIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB296F67238DC59500EE6135 /* FlagIcon.swift */; };
 		EB14A3B9250FF0EC00A9F8B9 /* ValueProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB564828236EC9ED00A5925F /* ValueProvider.swift */; };
-		EB14A3BA250FF0EC00A9F8B9 /* ThumbView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCF5C9B24267AC000F34055 /* ThumbView.swift */; };
 		EB14A3BB250FF0EC00A9F8B9 /* LoginHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6AE6FE233A8A2E0020A501 /* LoginHandler.swift */; };
 		EB14A3BC250FF0EC00A9F8B9 /* SubProductList.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB953D89232C058800E65A73 /* SubProductList.swift */; };
 		EB14A3BD250FF0EC00A9F8B9 /* NPTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5B06E3248A4D1900F5F86B /* NPTextField.swift */; };
@@ -215,6 +213,8 @@
 		EBCD89672539D41500DC3D0B /* statuses.json in Resources */ = {isa = PBXBuildFile; fileRef = EB19F83423E42A580007F52D /* statuses.json */; };
 		EBD83E7C253F5174009319A6 /* PageAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD83E7B253F5174009319A6 /* PageAction.swift */; };
 		EBD83E7D253F5174009319A6 /* PageAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD83E7B253F5174009319A6 /* PageAction.swift */; };
+		EBF0AB8C2545CD1200B71D5C /* ThumbView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF0AB8B2545CD1200B71D5C /* ThumbView.swift */; };
+		EBF0AB8D2545CD1200B71D5C /* ThumbView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF0AB8B2545CD1200B71D5C /* ThumbView.swift */; };
 		EBF54E33253E07200039C7D7 /* NewspilotManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3F6C0F2534DB1D00E7D0CA /* NewspilotManager.swift */; };
 		EBF54E4B253E097F0039C7D7 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = EBF54E4A253E097F0039C7D7 /* SDWebImageSwiftUI */; };
 		EBF54E50253E09A90039C7D7 /* PublicationDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB41EA532347A32D00550428 /* PublicationDate.swift */; };
@@ -357,7 +357,6 @@
 		EBA90A10248501CD00E493AD /* Roboto-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-LightItalic.ttf"; sourceTree = "<group>"; };
 		EBA90A11248501CD00E493AD /* Roboto-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Italic.ttf"; sourceTree = "<group>"; };
 		EBCF5C9924241ADF00F34055 /* PageQueryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageQueryManager.swift; sourceTree = "<group>"; };
-		EBCF5C9B24267AC000F34055 /* ThumbView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbView.swift; sourceTree = "<group>"; };
 		EBD22A2322CBFBCD000DFD41 /* smd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smd.png; sourceTree = "<group>"; };
 		EBD22A2522CBFBCD000DFD41 /* Product_15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Product_15.png; sourceTree = "<group>"; };
 		EBD22A2622CBFBCD000DFD41 /* Product_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Product_0.png; sourceTree = "<group>"; };
@@ -390,6 +389,7 @@
 		EBE97AA523833DF3005CACDB /* PageFlagQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageFlagQuery.swift; sourceTree = "<group>"; };
 		EBE97AA7238340A2005CACDB /* EntityFlag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityFlag.swift; sourceTree = "<group>"; };
 		EBEED2382327D46E00746C69 /* ProductRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRow.swift; sourceTree = "<group>"; };
+		EBF0AB8B2545CD1200B71D5C /* ThumbView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbView.swift; sourceTree = "<group>"; };
 		EBF1F63C23C641D5007A5088 /* ConnectionModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionModifier.swift; sourceTree = "<group>"; };
 		EBF8055A23277C3D00C5590A /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		EBFB66C724628AD800D6D2CA /* publicationDates.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = publicationDates.json; sourceTree = "<group>"; };
@@ -528,9 +528,9 @@
 				EB6C2278235E3D1500101147 /* PageFilter.swift */,
 				EB6C227C235E56B600101147 /* PageFilterView.swift */,
 				EB564828236EC9ED00A5925F /* ValueProvider.swift */,
-				EBCF5C9B24267AC000F34055 /* ThumbView.swift */,
 				EB6E551824A93D20008359DF /* SectionHeaderView.swift */,
 				EB215B9024DEEBEF0075C7DF /* ListView.swift */,
+				EBF0AB8B2545CD1200B71D5C /* ThumbView.swift */,
 			);
 			path = PageList;
 			sourceTree = "<group>";
@@ -1038,7 +1038,6 @@
 				EB14A3E6250FF10A00A9F8B9 /* UserDefault.swift in Sources */,
 				EB14A3B5250FF0EB00A9F8B9 /* PageListCell.swift in Sources */,
 				EB14A405250FF11C00A9F8B9 /* SubProductSettings.swift in Sources */,
-				EB14A395250FF0EB00A9F8B9 /* ThumbView.swift in Sources */,
 				EB14A3EA250FF10A00A9F8B9 /* OrderedArray.swift in Sources */,
 				EB14A394250FF0EB00A9F8B9 /* ValueProvider.swift in Sources */,
 				EB3F6C172534E7B500E7D0CA /* SetStatusView.swift in Sources */,
@@ -1061,6 +1060,7 @@
 				EB14A3F2250FF11400A9F8B9 /* Notification.Name+ConnectionStatus.swift in Sources */,
 				EB14A336250FEF9D00A9F8B9 /* OrganizationsQuery.swift in Sources */,
 				EB14A409250FF11C00A9F8B9 /* Status.swift in Sources */,
+				EBF0AB8C2545CD1200B71D5C /* ThumbView.swift in Sources */,
 				EB14A339250FEF9D00A9F8B9 /* PageQueryManager.swift in Sources */,
 				EB14A3ED250FF10A00A9F8B9 /* String+UppercaseCharacters.swift in Sources */,
 				EB14A3EE250FF10A00A9F8B9 /* ColorExtensions.swift in Sources */,
@@ -1118,7 +1118,6 @@
 				EB14A3DC250FF10A00A9F8B9 /* UserDefault.swift in Sources */,
 				EB14A3DA250FF0EC00A9F8B9 /* PageListCell.swift in Sources */,
 				EB14A3F8250FF11C00A9F8B9 /* SubProductSettings.swift in Sources */,
-				EB14A3BA250FF0EC00A9F8B9 /* ThumbView.swift in Sources */,
 				EB14A3E0250FF10A00A9F8B9 /* OrderedArray.swift in Sources */,
 				EB14A3B9250FF0EC00A9F8B9 /* ValueProvider.swift in Sources */,
 				EB3F6C182534E7B500E7D0CA /* SetStatusView.swift in Sources */,
@@ -1141,6 +1140,7 @@
 				EB14A3EF250FF11300A9F8B9 /* Notification.Name+ConnectionStatus.swift in Sources */,
 				EB14A33D250FEF9E00A9F8B9 /* OrganizationsQuery.swift in Sources */,
 				EB14A3FC250FF11C00A9F8B9 /* Status.swift in Sources */,
+				EBF0AB8D2545CD1200B71D5C /* ThumbView.swift in Sources */,
 				EB14A340250FEF9E00A9F8B9 /* PageQueryManager.swift in Sources */,
 				EB14A3E3250FF10A00A9F8B9 /* String+UppercaseCharacters.swift in Sources */,
 				EB14A3E4250FF10A00A9F8B9 /* ColorExtensions.swift in Sources */,

@@ -24,8 +24,7 @@ class PageModelAdapter {
         self.flags = flags.sorted(by: {f1,f2 in f1.sortKey < f2.sortKey})
     }
     
-    func getPageViewModel(from page:Page) -> PageViewModel {
-        
+    func getPageViewModel(from page:Page) -> PageViewModel {        
         var statusColor:UIColor
         var statusName:String
         if let status = statuses.first(where: {status in status.id == page.status}) {

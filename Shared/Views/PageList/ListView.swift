@@ -13,7 +13,7 @@ struct ListView:View
 {
     let pageModelAdapter:PageModelAdapter
     let backs:[BackKey:[Page]]
-    let statuses:[Status]
+    
     @ObservedObject private var pageAction:PageAction
     @Binding var statusSelectionViewIsPresented:Bool
     
@@ -23,13 +23,13 @@ struct ListView:View
         }
     }
     
-    @State private var expandedBacks:Set<BackKey> = Set<BackKey>()    
+    @Binding var expandedBacks:Set<BackKey>
     
-    init(pageModelAdapter:PageModelAdapter, backs:[BackKey:[Page]], statuses:[Status], filterText:String, pageAction:PageAction, showAction:Binding<Bool>) {
+    init(pageModelAdapter:PageModelAdapter, backs:[BackKey:[Page]], expandedBacks:Binding<Set<BackKey>>, filterText:String, pageAction:PageAction, showAction:Binding<Bool>) {
         self.pageModelAdapter = pageModelAdapter
-        self.statuses = statuses
         self.pageAction = pageAction
         self._statusSelectionViewIsPresented = showAction
+        self._expandedBacks = expandedBacks
         var filteredBacks:[BackKey:[Page]] = [:]
         backs.keys.forEach({key in
             filteredBacks[key]=backs[key]!.filter({page in filterText.count == 0 || page.name.contains(filterText)})
@@ -39,47 +39,43 @@ struct ListView:View
     }
     
     var body :some View {
-        return
-            ZStack {
-            List {
-                
-                ForEach (backKeys, id: \.hashValue) {backKey in
-                    Section(
-                        header:
-                            SectionHeaderView(backKey: backKey, expanded: self.expandedBacks.contains(backKey))
-                            .onTapGesture {
-                                
-                                if (self.expandedBacks.contains(backKey)){
-                                    _ = withAnimation {
-                                        self.expandedBacks.remove(backKey)
-                                    }
-                                }else{
-                                    _ = withAnimation {
-                                        self.expandedBacks.insert(backKey)
-                                    }
+        List {
+            ForEach (backKeys, id: \.hashValue) {backKey in
+                Section(
+                    header:
+                        SectionHeaderView(backKey: backKey, expanded: self.expandedBacks.contains(backKey))
+                        .onTapGesture {
+                            
+                            if (self.expandedBacks.contains(backKey)){
+                                _ = withAnimation {
+                                    self.expandedBacks.remove(backKey)
+                                }
+                            }else{
+                                _ = withAnimation {
+                                    self.expandedBacks.insert(backKey)
                                 }
                             }
-                    )
-                    {
-                        if (self.expandedBacks.contains(backKey)) {
-                            ForEach (0 ..< self.backs[backKey]!.count, id:\.self) {index in
-                                NavigationLink(destination: PageDetailsView(self.getViewsFrom(pageModelAdapter: self.pageModelAdapter, backs: self.backs, backKey: backKey), currentPage: index)) {
-                                    PageListCell(page:self.pageModelAdapter.getPageViewModel(from: self.backs[backKey]![index]))
-                                        .contextMenu(ContextMenu(menuItems: {
-                                            Button("Change status"){
-                                                self.pageAction.page = self.backs[backKey]![index]
-                                                self.pageAction.type = .ChangeStatus
-                                                self.statusSelectionViewIsPresented = true
-                                                
-                                            }
-                                        }))
-                                }
+                        }
+                )
+                {
+                    if (self.expandedBacks.contains(backKey)) {
+                        ForEach (0 ..< self.backs[backKey]!.count, id:\.self) {index in
+                            NavigationLink(destination: PageDetailsView(self.getViewsFrom(pageModelAdapter: self.pageModelAdapter, backs: self.backs, backKey: backKey), currentPage: index)) {
+                                PageListCell(page:self.pageModelAdapter.getPageViewModel(from: self.backs[backKey]![index]))
+                                    .contextMenu(ContextMenu(menuItems: {
+                                        Button("Change status"){
+                                            self.pageAction.page = self.backs[backKey]![index]
+                                            self.pageAction.type = .ChangeStatus
+                                            self.statusSelectionViewIsPresented = true
+                                            
+                                        }
+                                    }))
                             }
                         }
                     }
                 }
             }
-            }
+        }
     }
     
     func getViewsFrom(pageModelAdapter:PageModelAdapter, backs:[BackKey:[Page]], backKey:BackKey) -> [PageDetailView] {
@@ -102,15 +98,18 @@ struct ListView_Previews: PreviewProvider {
         pages.append(contentsOf: pageData3)
         
         let pageBacks = PageQuery.createBacks(pages: pages)
+        var expandedBacks = Set<BackKey>()
+        expandedBacks.insert(pageBacks.first!.key)
+
         let pageModelAdapter = PageModelAdapter(newspilotServer: "server", statuses: statusData, sections:sectionsData, flags: [])
         return
             Group{
-                ListView(pageModelAdapter: pageModelAdapter, backs: pageBacks, statuses:[], filterText: "", pageAction: PageAction(), showAction:Binding.constant(false))
+                ListView(pageModelAdapter: pageModelAdapter, backs: pageBacks, expandedBacks: .constant(expandedBacks), filterText: "", pageAction: PageAction(), showAction:Binding.constant(false))
                     //                    .previewLayout(PreviewLayout.sizeThatFits)
                     .padding()
                     .previewDisplayName("Default preview 1")
                 
-                ListView(pageModelAdapter: pageModelAdapter, backs: pageBacks, statuses:[], filterText: "", pageAction: PageAction(), showAction:Binding.constant(false))
+                ListView(pageModelAdapter: pageModelAdapter, backs: pageBacks, expandedBacks: .constant(expandedBacks),filterText: "", pageAction: PageAction(), showAction:Binding.constant(false))
                     //                                    .previewLayout(PreviewLayout.sizeThatFits)
                     .padding()
                     //                                    .background(Color(.systemBackground))

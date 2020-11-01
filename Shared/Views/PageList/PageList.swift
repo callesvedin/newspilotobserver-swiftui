@@ -60,6 +60,7 @@ struct PageList: View {
     @State private var searchText = ""
     @State var pageAction = PageAction()
     @State var showStatusChange = false
+    @State var expandedBacks = Set<BackKey>()
     
     var backs:[BackKey:[Page]] {
         get {
@@ -120,9 +121,10 @@ struct PageList: View {
                         SearchBar(searchText: $searchText).padding()
                         
                         if self.useThumbView {
-                            ThumbView(pageModelAdapter:pageModelAdapter, backs:backs, columns: self.getColumns(width:geometry.size.width), filterText:self.searchText, pageAction: self.pageAction, showAction:self.$showStatusChange)
+                            
+                            ThumbView(pageModelAdapter:pageModelAdapter, backs:backs, expandedBacks: self.$expandedBacks, filterText:self.searchText, pageAction: self.pageAction, showAction:self.$showStatusChange)
                         }else{
-                            ListView(pageModelAdapter: pageModelAdapter, backs:backs, statuses:statusQuery.statusesBySortkey(), filterText:self.searchText, pageAction: self.pageAction, showAction:self.$showStatusChange)
+                            ListView(pageModelAdapter: pageModelAdapter, backs:backs, expandedBacks: self.$expandedBacks, filterText:self.searchText, pageAction: self.pageAction, showAction:self.$showStatusChange)
                         }
                     }
                     
