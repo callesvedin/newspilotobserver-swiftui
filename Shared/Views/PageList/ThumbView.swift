@@ -57,18 +57,39 @@ struct ThumbView: View {
                                         }
                                     }){
                             if expandedBacks.contains(backKey), let back = backs[backKey] {
-                                ForEach(back.filter({self.filterText.isEmpty || $0.name.contains(self.filterText)})){page in
-                                    PageCollectionCell(
-                                        page:self.pageModelAdapter.getPageViewModel(from: page))
-                                        .id(page.id).padding()
+                                ForEach(back.filter({self.filterText.isEmpty || $0.name.contains(self.filterText)}), id:\.id){page in
+                                    NavigationLink(destination:
+                                                    PageDetailsView(self.getViewsFrom(pageModelAdapter: self.pageModelAdapter, backs: self.backs, backKey: backKey), currentPage: back.firstIndex(of: page))) {
+
+                                        PageCollectionCell(
+                                            page:self.pageModelAdapter.getPageViewModel(from: page))
+                                            .id(page.id)
+                                            .padding()
+                                            .contextMenu(ContextMenu(menuItems: {
+                                                Button("Change status"){
+                                                    self.pageAction.page = page
+                                                    self.pageAction.type = .ChangeStatus
+                                                    self.statusSelectionViewIsPresented = true
+                                                    
+                                                }
+                                            }))
+                                    }
                                 }
-                                
                             }
-                        }
+                        }.textCase(nil)
                     }
                 }
             }
         }
+    }
+    
+    func getViewsFrom(pageModelAdapter:PageModelAdapter, backs:[BackKey:[Page]], backKey:BackKey) -> [PageDetailView] {
+        let pageList = backs[backKey] ?? []
+        let views = pageList.map {page -> PageDetailView in
+            let pageViewModel = pageModelAdapter.getPageViewModel(from: page)
+            return PageDetailView(page:pageViewModel)
+        }
+        return views
     }
 }
 

@@ -44,7 +44,7 @@ struct PageListCell: View {
                     Text("\(self.page.name)")
                     HStack(spacing:0) {
                         if self.page.section != nil {
-                            Text(self.page.section!).font(.caption)
+                            Text(self.page.section!).font(.smallBodyFont)
                         }
                         Spacer()                    
 

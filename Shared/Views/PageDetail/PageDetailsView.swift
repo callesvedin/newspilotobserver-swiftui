@@ -16,9 +16,9 @@ struct PageDetailsView<Pageable:NameableView>: View {
 
     @State private var currentPage:Int
     
-    init(_ views: [Pageable], currentPage:Int) {
+    init(_ views: [Pageable], currentPage:Int?) {
         self.viewControllers = views.map { UIHostingController(rootView: $0) }
-        _currentPage = State(initialValue: currentPage) // This is swifts weird way of representing the wrapper instead of its value (i think)
+        _currentPage = State(initialValue: currentPage ?? 0) // This is swifts weird way of representing the wrapper instead of its value (i think)
     }
 
     var body: some View {

@@ -121,7 +121,6 @@ struct PageList: View {
                         SearchBar(searchText: $searchText).padding()
                         
                         if self.useThumbView {
-                            
                             ThumbView(pageModelAdapter:pageModelAdapter, backs:backs, expandedBacks: self.$expandedBacks, filterText:self.searchText, pageAction: self.pageAction, showAction:self.$showStatusChange)
                         }else{
                             ListView(pageModelAdapter: pageModelAdapter, backs:backs, expandedBacks: self.$expandedBacks, filterText:self.searchText, pageAction: self.pageAction, showAction:self.$showStatusChange)

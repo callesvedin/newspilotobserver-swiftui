@@ -39,7 +39,7 @@ struct PageCollectionCell: View {
                             .scaledToFit()
                             .shadow(radius: 5)
                         Text("\(self.page!.pageNumber)")
-                            .font(.caption)
+                            .font(.smallBodyFont)
                             .bold()
                             .padding(2)
                             .background(Color(self.page!.statusColor).opacity(0.4))
@@ -48,7 +48,8 @@ struct PageCollectionCell: View {
                     
                     HStack {
                         Text("\(self.page!.name)")
-                            .font(.caption)
+                            .font(.smallBodyFont)
+                            .foregroundColor(.primary)
                             .padding(.top, 4)
                         Spacer()
                     }

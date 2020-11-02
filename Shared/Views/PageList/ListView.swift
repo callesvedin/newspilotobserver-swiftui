@@ -73,7 +73,7 @@ struct ListView:View
                             }
                         }
                     }
-                }
+                }.textCase(nil)
             }
         }
     }
