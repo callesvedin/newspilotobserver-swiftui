@@ -7,7 +7,11 @@
 //
 
 import Foundation
-//import UIKit
+#if os(macOS)
+import Cocoa
+#else
+import UIKit
+#endif
 
 extension UIImage {
     func resizeImage(_ dimension: CGFloat, opaque: Bool, contentMode: UIView.ContentMode = .scaleAspectFit) -> UIImage {

@@ -7,7 +7,11 @@
 //
 
 import Foundation
-//import UIKit
+#if os(macOS)
+import Cocoa
+#else
+import UIKit
+#endif
 
 struct PageViewModel : Identifiable {
     let id:Int

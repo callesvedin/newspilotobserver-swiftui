@@ -13,7 +13,12 @@ import Foundation
 import Newspilot
 import os.log
 import Combine
-//import UIKit
+#if os(macOS)
+import Cocoa
+#else
+import UIKit
+#endif
+
 
 class PageFlagQuery :  ObservableObject {
     var objectWillChange = PassthroughSubject<Void, Never>()
