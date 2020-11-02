@@ -41,6 +41,7 @@ struct PageCollectionCell: View {
                         Text("\(self.page!.pageNumber)")
                             .font(.smallBodyFont)
                             .bold()
+                            .foregroundColor(.black)
                             .padding(2)
                             .background(Color(self.page!.statusColor).opacity(0.4))
                             .padding(2)

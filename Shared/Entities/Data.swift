@@ -5,7 +5,7 @@ Abstract:
 Helpers for loading images and data.
 */
 
-import UIKit
+//import UIKit
 import SwiftUI
 import CoreLocation
 

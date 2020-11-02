@@ -9,6 +9,12 @@
 import SwiftUI
 import Newspilot
 import LocalAuthentication
+#if os(macOS)
+import Cocoa
+#else
+import UIKit
+#endif
+
 
 func getBiometricType() -> String {
   let context = LAContext()
@@ -44,7 +50,12 @@ struct LoginView: View {
     @ObservedObject var loginHandler = LoginHandler.shared
     
     let dismissKeyboard: () -> Void = {
-     UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+        #if os(macOS)
+            NSApplication.shared.sendAction(#selector(NSResponder.resignFirstResponder), to: nil, from: nil)
+        #else
+            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+        #endif
+     
     }
     
     func tryBiometricAuthentication() {
@@ -148,7 +159,12 @@ struct LoginView: View {
                     }){
                         HStack {
                             if loginHandler.connectionStatus == .connecting {
-                                ActivityIndicator(isAnimating: .constant(true), style: .medium)
+                                if #available(iOS 13, *) {
+                                    ActivityIndicator(isAnimating: .constant(true), style: .medium)
+                                }else{
+                                    ProgressView()
+                                        .progressViewStyle(CircularProgressViewStyle())
+                                }
                             }else{                                
                                 Image(systemName: "lock.fill").font(Font.headline.weight(.regular))
                                     .foregroundColor(.white).padding(4)

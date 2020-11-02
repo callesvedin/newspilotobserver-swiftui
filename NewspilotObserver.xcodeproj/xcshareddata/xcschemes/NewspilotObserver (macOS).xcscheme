@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "EB14A2FE250FEECE00A9F8B9"
+               BlueprintIdentifier = "EB14A305250FEECE00A9F8B9"
                BuildableName = "NewspilotObserver.app"
-               BlueprintName = "NewspilotObserver (iOS)"
+               BlueprintName = "NewspilotObserver (macOS)"
                ReferencedContainer = "container:NewspilotObserver.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,18 +32,18 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "EB14A30D250FEECE00A9F8B9"
-               BuildableName = "Tests iOS.xctest"
-               BlueprintName = "Tests iOS"
+               BlueprintIdentifier = "EB14A318250FEECE00A9F8B9"
+               BuildableName = "Tests macOS.xctest"
+               BlueprintName = "Tests macOS"
                ReferencedContainer = "container:NewspilotObserver.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
-      buildConfiguration = "Release"
-      selectedDebuggerIdentifier = ""
-      selectedLauncherIdentifier = "Xcode.IDEFoundation.Launcher.PosixSpawn"
+      buildConfiguration = "Debug"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
@@ -54,9 +54,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "EB14A2FE250FEECE00A9F8B9"
+            BlueprintIdentifier = "EB14A305250FEECE00A9F8B9"
             BuildableName = "NewspilotObserver.app"
-            BlueprintName = "NewspilotObserver (iOS)"
+            BlueprintName = "NewspilotObserver (macOS)"
             ReferencedContainer = "container:NewspilotObserver.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -71,9 +71,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "EB14A2FE250FEECE00A9F8B9"
+            BlueprintIdentifier = "EB14A305250FEECE00A9F8B9"
             BuildableName = "NewspilotObserver.app"
-            BlueprintName = "NewspilotObserver (iOS)"
+            BlueprintName = "NewspilotObserver (macOS)"
             ReferencedContainer = "container:NewspilotObserver.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

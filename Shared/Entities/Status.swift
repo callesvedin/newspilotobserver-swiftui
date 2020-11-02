@@ -7,7 +7,12 @@
 //
 
 import Foundation
+#if os(macOS)
+import Cocoa
+#else
 import UIKit
+#endif
+
 
 struct Status:Identifiable,Codable,Comparable {
     static func < (lhs: Status, rhs: Status) -> Bool {

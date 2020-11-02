@@ -16,7 +16,12 @@ struct ApplicationView: View {
                 NavigationView {
                     OrganizationList()
                     HStack(alignment: .center) {
-                        Image(systemName: "arrow.left")
+                        if #available(OSX 11.0, *) {
+                            Image(systemName: "arrow.left")
+                        } else {
+                            Image("arrow.left") // Imported as a supporting format like PDF (not SVG)
+                        }
+                        
                         Text("Select organization")
                         Spacer()
                     }
@@ -24,9 +29,17 @@ struct ApplicationView: View {
                     .font(.headline)
                 }
             }else{
+                #if os(macOS)
                 NavigationView {
                     LoginView()
-                }.navigationViewStyle(StackNavigationViewStyle())
+                }
+                .navigationViewStyle(DefaultNavigationViewStyle())
+                #else
+                NavigationView {
+                    LoginView()
+                }
+                .navigationViewStyle(StackNavigationViewStyle())
+                #endif
             }
         }
     }

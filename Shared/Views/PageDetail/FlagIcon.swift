@@ -8,10 +8,20 @@
 
 import Foundation
 import SwiftUI
+#if os(macOS)
+import Cocoa
+#else
+import UIKit
+#endif
 
 
 struct FlagIcon : View {
+    #if os(macOS)
+    let flag:NSImage?
+    #else
     let flag:UIImage?
+    #endif
+    
     
     var body:some View {
         Group {

@@ -4,7 +4,11 @@
 //   let entityFlag = try? newJSONDecoder().decode(EntityFlag.self, from: jsonData)
 
 import Foundation
+#if os(macOS)
+import Cocoa
+#else
 import UIKit
+#endif
 
 // MARK: - EntityFlag
 struct EntityFlag: Identifiable, Codable {
@@ -16,8 +20,13 @@ struct EntityFlag: Identifiable, Codable {
     let sortKey: Int
     let type: String
     let userEditable: Bool
-    
+
+    #if os(macOS)
+    var offImage, onImage: NSImage?
+    #else
     var offImage, onImage: UIImage?
+    #endif
+    
     
     enum CodingKeys: String, CodingKey {
         case entityType
@@ -29,7 +38,17 @@ struct EntityFlag: Identifiable, Codable {
         case type
         case userEditable = "user_editable"
     }
-    
+   
+    #if os(macOS)
+    mutating func setOffImage(_ image:NSImage) {
+        offImage = image
+    }
+        
+    mutating func setOnImage(_ image:NSImage?) {
+        onImage = image
+    }
+
+    #else
     mutating func setOffImage(_ image:UIImage) {
         offImage = image
     }
@@ -37,6 +56,7 @@ struct EntityFlag: Identifiable, Codable {
     mutating func setOnImage(_ image:UIImage?) {
         onImage = image
     }
+    #endif
 
 }
 

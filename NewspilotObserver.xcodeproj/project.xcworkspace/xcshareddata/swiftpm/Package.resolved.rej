@@ -1,0 +1,21 @@
+diff a/NewspilotObserver.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved b/NewspilotObserver.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved	(rejected hunks)
+@@ -6,7 +6,7 @@
+         "repositoryURL": "git@bitbucket.org:infomaker/newspilotswiftclient.git",
+         "state": {
+           "branch": "develop",
+-          "revision": "b25e1cf9857cea2e2f9cc38c6bd0ed313830cbbb",
++          "revision": "2da9082293193a3c706ef542d91ed2b968b3a9fa",
+           "version": null
+         }
+       },
+@@ -15,8 +15,8 @@
+         "repositoryURL": "https://github.com/SDWebImage/SDWebImage.git",
+         "state": {
+           "branch": null,
+-          "revision": "7a21432a370a34925046244462281bd36ebab73d",
+-          "version": "5.9.1"
++          "revision": "88b3ba211c0d604e60eab204c1baf8229c513399",
++          "version": "5.9.4"
+         }
+       },
+       {

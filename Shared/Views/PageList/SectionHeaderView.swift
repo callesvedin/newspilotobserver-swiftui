@@ -24,6 +24,7 @@ struct SectionHeaderView:View {
                     .rotationEffect(.degrees(self.expanded ? 90 : 0))
             }
             .font(Font.sectionHeaderFont)
+            .foregroundColor(Color.secondary)
             .padding(.horizontal,10)
             
             Spacer()

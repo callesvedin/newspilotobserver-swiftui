@@ -111,7 +111,6 @@
 		EB14A3BB250FF0EC00A9F8B9 /* LoginHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6AE6FE233A8A2E0020A501 /* LoginHandler.swift */; };
 		EB14A3BC250FF0EC00A9F8B9 /* SubProductList.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB953D89232C058800E65A73 /* SubProductList.swift */; };
 		EB14A3BD250FF0EC00A9F8B9 /* NPTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5B06E3248A4D1900F5F86B /* NPTextField.swift */; };
-		EB14A3BE250FF0EC00A9F8B9 /* PageDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6C22892368BC7F00101147 /* PageDetailsView.swift */; };
 		EB14A3BF250FF0EC00A9F8B9 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB31B4A924F63A1B00DCDD34 /* SearchBar.swift */; };
 		EB14A3C0250FF0EC00A9F8B9 /* FlagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB296F65238DC3A700EE6135 /* FlagsView.swift */; };
 		EB14A3C1250FF0EC00A9F8B9 /* PageFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6C2278235E3D1500101147 /* PageFilter.swift */; };
@@ -122,12 +121,9 @@
 		EB14A3C6250FF0EC00A9F8B9 /* ProductRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEED2382327D46E00746C69 /* ProductRow.swift */; };
 		EB14A3C7250FF0EC00A9F8B9 /* BannerModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDCC32E23BE092E0092A6FE /* BannerModifier.swift */; };
 		EB14A3C8250FF0EC00A9F8B9 /* OrganizationList.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5435172322F567004EE63F /* OrganizationList.swift */; };
-		EB14A3C9250FF0EC00A9F8B9 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6C228B2368BCB400101147 /* PageViewController.swift */; };
-		EB14A3CA250FF0EC00A9F8B9 /* PageDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6C228D2368BFD300101147 /* PageDetailView.swift */; };
 		EB14A3CB250FF0EC00A9F8B9 /* Shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB59C44C24125B6E003FB040 /* Shake.swift */; };
 		EB14A3CC250FF0EC00A9F8B9 /* PageCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6A0CD023CCF2B300DD6CAE /* PageCollectionCell.swift */; };
 		EB14A3CD250FF0EC00A9F8B9 /* View+Banner.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDCC33023BE09F00092A6FE /* View+Banner.swift */; };
-		EB14A3CE250FF0EC00A9F8B9 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB10054223434AF500E0973F /* ActivityIndicator.swift */; };
 		EB14A3CF250FF0EC00A9F8B9 /* PieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB601D1224C3089800FB90B1 /* PieChartView.swift */; };
 		EB14A3D0250FF0EC00A9F8B9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB601D1024C3089800FB90B1 /* ContentView.swift */; };
 		EB14A3D1250FF0EC00A9F8B9 /* SectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6E551824A93D20008359DF /* SectionHeaderView.swift */; };
@@ -137,7 +133,6 @@
 		EB14A3D5250FF0EC00A9F8B9 /* ApplicationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA13CBC23A980B500FFB830 /* ApplicationView.swift */; };
 		EB14A3D6250FF0EC00A9F8B9 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB215B9024DEEBEF0075C7DF /* ListView.swift */; };
 		EB14A3D7250FF0EC00A9F8B9 /* PageList.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB41EA4F2347992A00550428 /* PageList.swift */; };
-		EB14A3D8250FF0EC00A9F8B9 /* PageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6C22872368BBBF00101147 /* PageControl.swift */; };
 		EB14A3D9250FF0EC00A9F8B9 /* GridStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6A0CD223CD0ED200DD6CAE /* GridStack.swift */; };
 		EB14A3DA250FF0EC00A9F8B9 /* PageListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6C22662358C7D400101147 /* PageListCell.swift */; };
 		EB14A3DB250FF10A00A9F8B9 /* ProductImageFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7B9E4022C80088009EB2BE /* ProductImageFactory.swift */; };
@@ -482,6 +477,7 @@
 		EB14A300250FEECE00A9F8B9 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
+				EB377D4A255093200007A317 /* Views */,
 				EB14A301250FEECE00A9F8B9 /* Info.plist */,
 			);
 			path = iOS;
@@ -515,6 +511,34 @@
 				EB14A31F250FEECE00A9F8B9 /* Info.plist */,
 			);
 			path = "Tests macOS";
+			sourceTree = "<group>";
+		};
+		EB377D4A255093200007A317 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				EB377D6C2550A2FA0007A317 /* Login */,
+				EB377D4B255093300007A317 /* PageDetail */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		EB377D4B255093300007A317 /* PageDetail */ = {
+			isa = PBXGroup;
+			children = (
+				EB6C228D2368BFD300101147 /* PageDetailView.swift */,
+				EB6C22872368BBBF00101147 /* PageControl.swift */,
+				EB6C22892368BC7F00101147 /* PageDetailsView.swift */,
+				EB6C228B2368BCB400101147 /* PageViewController.swift */,
+			);
+			path = PageDetail;
+			sourceTree = "<group>";
+		};
+		EB377D6C2550A2FA0007A317 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				EB10054223434AF500E0973F /* ActivityIndicator.swift */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 		EB41EA4E2347991100550428 /* PageList */ = {
@@ -565,10 +589,6 @@
 		EB6C22862368BB9500101147 /* PageDetail */ = {
 			isa = PBXGroup;
 			children = (
-				EB6C22872368BBBF00101147 /* PageControl.swift */,
-				EB6C22892368BC7F00101147 /* PageDetailsView.swift */,
-				EB6C228B2368BCB400101147 /* PageViewController.swift */,
-				EB6C228D2368BFD300101147 /* PageDetailView.swift */,
 				EB296F65238DC3A700EE6135 /* FlagsView.swift */,
 				EB296F67238DC59500EE6135 /* FlagIcon.swift */,
 			);
@@ -696,7 +716,6 @@
 			children = (
 				EB8CE4BD233170C8000A03A2 /* LoginView.swift */,
 				EB6AE6FE233A8A2E0020A501 /* LoginHandler.swift */,
-				EB10054223434AF500E0973F /* ActivityIndicator.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -871,7 +890,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1200;
-				LastUpgradeCheck = 1200;
+				LastUpgradeCheck = 1210;
 				ORGANIZATIONNAME = "Infomaker Scandinavia AB";
 				TargetAttributes = {
 					EB14A2FE250FEECE00A9F8B9 = {
@@ -1071,7 +1090,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EB14A3CA250FF0EC00A9F8B9 /* PageDetailView.swift in Sources */,
 				EB14A3D4250FF0EC00A9F8B9 /* BottomSheetView.swift in Sources */,
 				EB14A341250FEF9E00A9F8B9 /* PageFlagQuery.swift in Sources */,
 				EB14A3DD250FF10A00A9F8B9 /* UIImage+Rezise.swift in Sources */,
@@ -1087,7 +1105,6 @@
 				EB14A400250FF11C00A9F8B9 /* Page.swift in Sources */,
 				EB14A3C7250FF0EC00A9F8B9 /* BannerModifier.swift in Sources */,
 				EB14A3C4250FF0EC00A9F8B9 /* PieChartModel.swift in Sources */,
-				EB14A3BE250FF0EC00A9F8B9 /* PageDetailsView.swift in Sources */,
 				EB14A3D0250FF0EC00A9F8B9 /* ContentView.swift in Sources */,
 				EB14A3C5250FF0EC00A9F8B9 /* PageModelAdapter.swift in Sources */,
 				EB14A3D7250FF0EC00A9F8B9 /* PageList.swift in Sources */,
@@ -1096,7 +1113,6 @@
 				EB3F6C112534DB1D00E7D0CA /* NewspilotManager.swift in Sources */,
 				EB14A3D5250FF0EC00A9F8B9 /* ApplicationView.swift in Sources */,
 				EB14A3D9250FF0EC00A9F8B9 /* GridStack.swift in Sources */,
-				EB14A3CE250FF0EC00A9F8B9 /* ActivityIndicator.swift in Sources */,
 				EB14A3BC250FF0EC00A9F8B9 /* SubProductList.swift in Sources */,
 				EB14A3B6250FF0EC00A9F8B9 /* PageViewModel.swift in Sources */,
 				EB14A3D1250FF0EC00A9F8B9 /* SectionHeaderView.swift in Sources */,
@@ -1114,7 +1130,6 @@
 				EB14A3DF250FF10A00A9F8B9 /* LoginSettings.swift in Sources */,
 				EBD83E7D253F5174009319A6 /* PageAction.swift in Sources */,
 				EB14A3BB250FF0EC00A9F8B9 /* LoginHandler.swift in Sources */,
-				EB14A3D8250FF0EC00A9F8B9 /* PageControl.swift in Sources */,
 				EB14A3DC250FF10A00A9F8B9 /* UserDefault.swift in Sources */,
 				EB14A3DA250FF0EC00A9F8B9 /* PageListCell.swift in Sources */,
 				EB14A3F8250FF11C00A9F8B9 /* SubProductSettings.swift in Sources */,
@@ -1122,7 +1137,6 @@
 				EB14A3B9250FF0EC00A9F8B9 /* ValueProvider.swift in Sources */,
 				EB3F6C182534E7B500E7D0CA /* SetStatusView.swift in Sources */,
 				EB14A401250FF11C00A9F8B9 /* BackKey.swift in Sources */,
-				EB14A3C9250FF0EC00A9F8B9 /* PageViewController.swift in Sources */,
 				EB14A3FF250FF11C00A9F8B9 /* SubProduct.swift in Sources */,
 				EB14A3BF250FF0EC00A9F8B9 /* SearchBar.swift in Sources */,
 				EB14A3E2250FF10A00A9F8B9 /* ShapeExtensions.swift in Sources */,
@@ -1273,6 +1287,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = JJK5286KRP;
@@ -1283,7 +1298,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = "macOS 11";
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				PRODUCT_BUNDLE_IDENTIFIER = se.infomaker.NewspilotObserver;
 				PRODUCT_NAME = NewspilotObserver;
 				SDKROOT = macosx;
@@ -1297,6 +1312,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = JJK5286KRP;
@@ -1307,7 +1323,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = "macOS 11";
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				PRODUCT_BUNDLE_IDENTIFIER = se.infomaker.NewspilotObserver;
 				PRODUCT_NAME = NewspilotObserver;
 				SDKROOT = macosx;
@@ -1372,7 +1388,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				PRODUCT_BUNDLE_IDENTIFIER = "se.infomaker.Tests-macOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -1394,7 +1410,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				PRODUCT_BUNDLE_IDENTIFIER = "se.infomaker.Tests-macOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
