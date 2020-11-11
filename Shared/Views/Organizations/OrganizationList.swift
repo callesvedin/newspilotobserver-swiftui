@@ -15,7 +15,25 @@ struct OrganizationList: View {
     @ObservedObject var loginHandler = LoginHandler.shared
     
     @State var connectionLost:Bool = false
-    
+
+    #if os(macOS)
+    var body: some View {
+        Group {
+            List {
+                #if os(macOS)
+                       Text("Organizations")
+                        .font(.titleFont)
+                #endif
+                organizationsList
+            }
+            .font(Font.bodyFont)
+            .connectionBanner()
+        
+        }
+    }
+
+    #else
+
     var body: some View {
         List {
             organizationsList
@@ -28,10 +46,12 @@ struct OrganizationList: View {
                 Image(systemName: "lock")
                 Text("Logout").font(Font.buttonFont)
             }
-        })).font(Font.bodyFont)
+        }))
+        .font(Font.bodyFont)
 
         .connectionBanner()
     }
+    #endif
 }
 
 private extension OrganizationList {    
@@ -39,9 +59,9 @@ private extension OrganizationList {
         ForEach(organizationQuery.organizations) {organization in
             Section(header: Text(organization.name).bold()) {
                 ForEach(self.organizationQuery.getProducts(for: organization)){product in
-                    NavigationLink(destination: SubProductList(product:product)) {
-                                                                ProductRow(product:product)
-                    }.isDetailLink(false)
+                    Link(product:product) {
+                        ProductRow(product:product)
+                    }
                 }
             }
         }
@@ -61,4 +81,27 @@ struct OrganizationList_Previews: PreviewProvider {
             
         }
     }
+}
+
+struct Link<Content: View>: View {
+    let product:Product
+    let content: Content
+    
+    init(product:Product, @ViewBuilder content: () -> Content) {
+        self.product = product
+        self.content = content()
+    }
+
+    var body: some View {
+        #if os(macOS)
+        NavigationLink(destination: SubProductList(product:product)) {
+            content
+        }
+        #else
+        NavigationLink(destination: SubProductList(product:product)) {
+            content
+        }.isDetailLink(false)
+        #endif
+    }
+    
 }

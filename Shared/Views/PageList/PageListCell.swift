@@ -12,6 +12,11 @@ import Newspilot
 
 struct PageListCell: View {
     let page:PageViewModel
+    #if os(macOS)
+    let placeholderImage = Image(nsImage: UIImage(named: "EmptyPageThumb.png")!)
+    #else
+    let placeholderImage = Image(uiImage: UIImage(named: "EmptyPageThumb.png")!)
+    #endif
     
     init(page:PageViewModel) {
         self.page = page
@@ -33,7 +38,7 @@ struct PageListCell: View {
 //                                              print("loaded preview")
                                           }
                                           .resizable() // Resizable like SwiftUI.Image
-                                          .placeholder(Image(uiImage: UIImage(named: "EmptyPageThumb.png")!))
+                                          .placeholder(placeholderImage)
                                           .indicator(.activity) // Activity Indicator
                                           .animation(.easeInOut(duration: 0.2)) // Animation Duration
                                           .transition(.fade) // Fade Transition
@@ -61,17 +66,17 @@ struct PageListCell: View {
     }
 }
 
-struct PageListCell_Previews: PreviewProvider {
-    static var previews: some View {
-        let model = PageViewModel(id: 1, pageNumber: 2, name: "Great page", section: "Section A", part: "Part A", edition: "Edition 1", version: "Version 3",template: "A-Section",editionType: .original, statusName: "Ready", statusColor: UIColor.green,flags:[UIImage(systemName: "star"), UIImage(systemName: "star.fill")],
-                                  thumbUrl: nil, previewUrl: nil)
-
-        let model2 = PageViewModel(id: 2, pageNumber: 3, name: "Great page", section: "Section A", part: "Part A", edition: "Edition 1", version: "Version 3",template: "A-Section",editionType: .original, statusName: "Ready", statusColor: UIColor.green,flags:[UIImage(systemName: "star"), UIImage(systemName: "star.fill")],
-                                  thumbUrl: nil, previewUrl: nil)
-
-        return List{
-            PageListCell(page: model)
-            PageListCell(page: model2)
-        }
-    }
-}
+//struct PageListCell_Previews: PreviewProvider {
+//    static var previews: some View {
+//        let model = PageViewModel(id: 1, pageNumber: 2, name: "Great page", section: "Section A", part: "Part A", edition: "Edition 1", version: "Version 3",template: "A-Section",editionType: .original, statusName: "Ready", statusColor: UIColor.green,flags:[UIImage(systemName: "star"), UIImage(systemName: "star.fill")],
+//                                  thumbUrl: nil, previewUrl: nil)
+//
+//        let model2 = PageViewModel(id: 2, pageNumber: 3, name: "Great page", section: "Section A", part: "Part A", edition: "Edition 1", version: "Version 3",template: "A-Section",editionType: .original, statusName: "Ready", statusColor: UIColor.green,flags:[UIImage(systemName: "star"), UIImage(systemName: "star.fill")],
+//                                  thumbUrl: nil, previewUrl: nil)
+//
+//        return List{
+//            PageListCell(page: model)
+//            PageListCell(page: model2)
+//        }
+//    }
+//}

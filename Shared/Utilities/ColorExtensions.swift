@@ -12,8 +12,7 @@ extension Color {
     // Går inte att använda med .navigaBackground (knappen försvinner)
     public static let navigaPressedButtonBackground = Color("NavigaPressedButtonBackground")
     public static let navigaBackground = Color("NavigaBackground")
-    public static let navigaTextFieldBackground = Color.secondary
-}
+    public static let navigaTextFieldBackground = Color(UIColor.secondarySystemBackground)}
 
 
 extension Color {

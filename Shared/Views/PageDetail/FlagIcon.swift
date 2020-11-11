@@ -26,7 +26,11 @@ struct FlagIcon : View {
     var body:some View {
         Group {
             if flag != nil {
+                #if os(macOS)
+                Image.init(nsImage: self.flag!).frame(width: 16, height: 16, alignment: Alignment.center)
+                #else
                 Image.init(uiImage: self.flag!).frame(width: 16, height: 16, alignment: Alignment.center)
+                #endif
             }else{
                 Image.init(systemName: "star")                
             }

@@ -39,13 +39,17 @@ func getBiometricType() -> String {
   }
 }
 
-let lightGreyColor = Color(red: 239.0/255.0, green: 243.0/255.0, blue: 244.0/255.0, opacity: 1.0)
-//let backgroundColor = Color(red: 24/255, green: 0, blue: 54/255, opacity: 1.0)
-//let buttonColor = Color(red: 85.0/255.0, green: 48.0/255.0, blue: 243.0/255.0, opacity: 1.0)
 
 struct LoginView: View {
     @State var password:String = ""
+    #if !os(macOS)
     @ObservedObject private var keyboard = KeyboardResponder()
+    var keyboardHeight:CGFloat {
+        get {return keyboard.currentHeight}
+    }
+    #else
+    let keyboardHeight:CGFloat = 0
+    #endif
     @ObservedObject var loginSettings:LoginSettings = LoginSettings()
     @ObservedObject var loginHandler = LoginHandler.shared
     
@@ -107,15 +111,7 @@ struct LoginView: View {
                         .foregroundColor(Color.white)
                         .padding(.bottom, 50)
                     
-                    TextField("Username", text: $loginSettings.login,onCommit: dismissKeyboard)
-                        .font(Font.bodyFont)                        
-                        .textContentType(.none)
-                        .disableAutocorrection(true)
-                        .autocapitalization(.none)
-                        .padding()
-                        .background(Color.navigaTextFieldBackground)
-                        .cornerRadius(5.0)
-                        .padding()
+                    LoginTextField(label:"Username", text: $loginSettings.login, onCommitCallback: dismissKeyboard)
 
                     
                     ZStack(alignment:Alignment.trailing) {
@@ -131,18 +127,11 @@ struct LoginView: View {
                         }, label: {
                             Image(systemName: getBiometricType())
                         })
-                        .font(Font.title).accentColor(.secondary)
+                        .font(Font.title).accentColor(Color(UIColor.tertiaryLabel))
                         .padding(.horizontal,30)
                     }
-                    TextField("Server", text: $loginSettings.server,onCommit: dismissKeyboard)
-                        .font(Font.bodyFont)
-                        .textContentType(.none)
-                        .disableAutocorrection(true)
-                        .autocapitalization(.none)
-                        .padding()
-                        .background(Color.navigaTextFieldBackground)
-                        .cornerRadius(5.0)
-                        .padding()
+                    
+                    LoginTextField(label:"Server", text: $loginSettings.server, onCommitCallback: dismissKeyboard)
                     
                     if loginHandler.connectionStatus == .connectionFailed {
                         Text("Connection failed. Please try again").foregroundColor(Color.red)
@@ -159,12 +148,8 @@ struct LoginView: View {
                     }){
                         HStack {
                             if loginHandler.connectionStatus == .connecting {
-                                if #available(iOS 13, *) {
-                                    ActivityIndicator(isAnimating: .constant(true), style: .medium)
-                                }else{
                                     ProgressView()
                                         .progressViewStyle(CircularProgressViewStyle())
-                                }
                             }else{                                
                                 Image(systemName: "lock.fill").font(Font.headline.weight(.regular))
                                     .foregroundColor(.white).padding(4)
@@ -184,7 +169,7 @@ struct LoginView: View {
                 }
                     
             .frame(minWidth: 200, idealWidth: 300, maxWidth: 400, minHeight: 400, idealHeight: 500, maxHeight: nil, alignment: .top)
-            .padding(.bottom, keyboard.currentHeight)
+                .padding(.bottom, self.keyboardHeight)
             .animation(.easeOut(duration: 0.16))
                 
                 
@@ -213,4 +198,40 @@ struct LoginView_Previews: PreviewProvider {
             }
         }        
     }
+    
+  
 }
+
+struct LoginTextField: View {
+    let label:String
+    var text:Binding<String>
+    var onCommitCallback: () -> Void
+    
+    #if os(macOS)
+    var body: some View {
+        TextField(label, text: text, onCommit: onCommitCallback)
+            .font(Font.bodyFont)
+            .textContentType(.none)
+            .disableAutocorrection(true)
+            .padding()
+            .background(Color.navigaTextFieldBackground)
+            .cornerRadius(5.0)
+            .padding()
+    }
+    #else
+    var body: some View {
+        TextField(label, text: text, onCommit: onCommitCallback)
+            .font(Font.bodyFont)
+            .textContentType(.none)
+            .disableAutocorrection(true)
+            .autocapitalization(.none)
+            .padding()
+            .background(Color.navigaTextFieldBackground)
+            .cornerRadius(5.0)
+            .padding()
+    }
+
+    #endif
+    
+}
+

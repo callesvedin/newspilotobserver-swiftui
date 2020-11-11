@@ -12,7 +12,8 @@ struct SectionHeaderView:View {
 //    @Binding var expandedBacks:Set<BackKey>
 //    let expandedBacks:Set<BackKey> //Använd en bool istället....
     let expanded:Bool
-    
+    let sectionBackgroundColor = UIColor.systemBackground
+
     var body : some View {
         VStack {
             Spacer()
@@ -34,7 +35,7 @@ struct SectionHeaderView:View {
             leading: 0,
             bottom: 0,
             trailing: 0))
-        .background(Color(.systemBackground))        
+        .background(Color(sectionBackgroundColor))
     }
     
 }

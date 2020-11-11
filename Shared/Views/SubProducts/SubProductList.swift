@@ -37,7 +37,7 @@ struct SubProductList: View {
             }
         }
         .connectionBanner()
-        .navigationBarTitle(product.name)        
+//        .navigationBarTitle(product.name)        
     }
 }
 

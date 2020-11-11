@@ -14,7 +14,11 @@ struct SearchBar: View {
        //@State private var showCancelButton: Bool = false
        var onCommit: () ->Void = {
         print("onCommit")
-        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+        #if os(macOS)
+            NSApplication.shared.sendAction(#selector(NSResponder.resignFirstResponder), to: nil, from: nil)
+        #else
+            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+        #endif
        }
        
        var body: some View {
@@ -52,7 +56,7 @@ struct SearchBar: View {
 struct SearchBar_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {
-            Color(.white)
+            Color.white
             SearchBar(searchText: .constant("News"))
         }
     }

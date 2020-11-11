@@ -59,9 +59,10 @@ struct InfoView: View {
     let page:PageViewModel
     
     var body: some View {
+        #if !os(macOS)
         UITableView.appearance().backgroundColor = .clear // tableview background
         UITableViewCell.appearance().backgroundColor = .clear // cell background
-
+        #endif
         return List {
             KeyValueView(key:"Name", value:page.name)
             KeyValueView(key:"Part", value:page.part)
@@ -78,20 +79,20 @@ struct InfoView: View {
     }    
 }
 
-struct PageDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        
-        let view = PageDetailView(page:PageViewModel(id: 1, pageNumber: 4, name: "Great page", section: "Section A",
-                                                     part: "Part A", edition: "Edition 1", version: "Version 3", template: "A-Section",
-                                                     editionType: .identical, statusName: "Ready",
-                                                     statusColor: UIColor.green, flags:[UIImage(systemName: "star"), UIImage(systemName: "star.fill")], thumbUrl: nil, previewUrl: nil)
-        )
-        return Group {
-            view.previewDevice(PreviewDevice(rawValue: "iPhone SE")).previewDisplayName("iPhone SE")
-            view.previewDevice(PreviewDevice(rawValue: "iPhone XS Max")).previewDisplayName("iPhone XS Max")
-        }
-    }
-}
+//struct PageDetailView_Previews: PreviewProvider {
+//    static var previews: some View {
+//
+//        let view = PageDetailView(page:PageViewModel(id: 1, pageNumber: 4, name: "Great page", section: "Section A",
+//                                                     part: "Part A", edition: "Edition 1", version: "Version 3", template: "A-Section",
+//                                                     editionType: .identical, statusName: "Ready",
+//                                                     statusColor: UIColor.green, flags:[UIImage(systemName: "star"), UIImage(systemName: "star.fill")], thumbUrl: nil, previewUrl: nil)
+//        )
+//        return Group {
+//            view.previewDevice(PreviewDevice(rawValue: "iPhone SE")).previewDisplayName("iPhone SE")
+//            view.previewDevice(PreviewDevice(rawValue: "iPhone XS Max")).previewDisplayName("iPhone XS Max")
+//        }
+//    }
+//}
 
 struct KeyValueView: View {
     let key:String
@@ -119,7 +120,7 @@ struct KeyColorValueView: View {
             Spacer()
             Text(self.name).foregroundColor(.gray)
             if color == .white {
-                Image.init(systemName: "circle").foregroundColor(Color(.black))
+                Image.init(systemName: "circle").foregroundColor(Color.black)
             }else {
                 Image.init(systemName: "circle.fill").foregroundColor(Color(color))
             }

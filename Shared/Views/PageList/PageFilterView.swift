@@ -96,7 +96,7 @@ struct PageFilterView: View {
                     }
                 }
                 .font(Font.bodyFont)
-                .navigationBarTitle("Filter")
+//TODO:               .navigationBarTitle("Filter")
             }
 
         //

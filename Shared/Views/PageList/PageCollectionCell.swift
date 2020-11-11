@@ -63,22 +63,22 @@ struct PageCollectionCell: View {
     }
     
 }
-
-struct PageCollectionCell_Previews: PreviewProvider {
-    static var previews: some View {
-        let model = PageViewModel(id: 1, pageNumber: 1, name: "Great page", section: "Section A", part: "Part A", edition: "Edition 1", version: "Version 3",template: "A-Section",editionType: .original, statusName: "Ready", statusColor: UIColor.green,flags:[UIImage(systemName: "star"), UIImage(systemName: "star.fill")],
-                                  thumbUrl: nil, previewUrl: nil)
-        return
-            Group {
-                PageCollectionCell(page: model).previewLayout(.fixed(width: 200, height: 300))
-                PageCollectionCell(page: model).previewLayout(.fixed(width: 300, height: 400))
-                PageCollectionCell(page: model).previewLayout(.fixed(width: 200, height: 300))
-                    .previewDisplayName("Dark")
-                    .environment(\.colorScheme, .dark)
-                PageCollectionCell(page: model).previewLayout(.fixed(width: 300, height: 400))
-                    .previewDisplayName("Dark")
-                    .environment(\.colorScheme, .dark)
-
-        } //.border(Color.gray)
-    }
-}
+//
+//struct PageCollectionCell_Previews: PreviewProvider {
+//    static var previews: some View {
+//        let model = PageViewModel(id: 1, pageNumber: 1, name: "Great page", section: "Section A", part: "Part A", edition: "Edition 1", version: "Version 3",template: "A-Section",editionType: .original, statusName: "Ready", statusColor: UIColor.green,flags:[UIImage(systemName: "star"), UIImage(systemName: "star.fill")],
+//                                  thumbUrl: nil, previewUrl: nil)
+//        return
+//            Group {
+//                PageCollectionCell(page: model).previewLayout(.fixed(width: 200, height: 300))
+//                PageCollectionCell(page: model).previewLayout(.fixed(width: 300, height: 400))
+//                PageCollectionCell(page: model).previewLayout(.fixed(width: 200, height: 300))
+//                    .previewDisplayName("Dark")
+//                    .environment(\.colorScheme, .dark)
+//                PageCollectionCell(page: model).previewLayout(.fixed(width: 300, height: 400))
+//                    .previewDisplayName("Dark")
+//                    .environment(\.colorScheme, .dark)
+//
+//        } //.border(Color.gray)
+//    }
+//}

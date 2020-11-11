@@ -21,12 +21,7 @@ struct EntityFlag: Identifiable, Codable {
     let type: String
     let userEditable: Bool
 
-    #if os(macOS)
-    var offImage, onImage: NSImage?
-    #else
     var offImage, onImage: UIImage?
-    #endif
-    
     
     enum CodingKeys: String, CodingKey {
         case entityType
@@ -39,16 +34,16 @@ struct EntityFlag: Identifiable, Codable {
         case userEditable = "user_editable"
     }
    
-    #if os(macOS)
-    mutating func setOffImage(_ image:NSImage) {
-        offImage = image
-    }
-        
-    mutating func setOnImage(_ image:NSImage?) {
-        onImage = image
-    }
-
-    #else
+//    #if os(macOS)
+//    mutating func setOffImage(_ image:NSImage) {
+//        offImage = image
+//    }
+//
+//    mutating func setOnImage(_ image:NSImage?) {
+//        onImage = image
+//    }
+//
+//    #else
     mutating func setOffImage(_ image:UIImage) {
         offImage = image
     }
@@ -56,7 +51,7 @@ struct EntityFlag: Identifiable, Codable {
     mutating func setOnImage(_ image:UIImage?) {
         onImage = image
     }
-    #endif
+//    #endif
 
 }
 
