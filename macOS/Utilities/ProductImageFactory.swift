@@ -1,10 +1,6 @@
 
 import Foundation
-#if os(macOS)
 import Cocoa
-#else
-import UIKit
-#endif
 
 class ProductImageFactory {
     static let shared = ProductImageFactory()
@@ -39,21 +35,25 @@ class ProductImageFactory {
     }
     
     private func createImage(withText text:String) -> UIImage {
-        
-        let renderer = UIGraphicsImageRenderer(size: CGSize(width: 50 , height: 50))
-        
-        let img = renderer.image { ctx in
-            let paragraphStyle = NSMutableParagraphStyle()
-            paragraphStyle.alignment = .center
-            
-            let attrs = [
-                NSAttributedString.Key.foregroundColor:UIColor.white, NSAttributedString.Key.font: UIFont(name: "Verdana-Bold", size: 15)!, NSAttributedString.Key.paragraphStyle: paragraphStyle
-            ]
-            
-            text.draw(with: CGRect(x: 0, y: 15, width: 50, height: 50), options: .usesLineFragmentOrigin, attributes: attrs, context: nil)
-        }
-        
-        return img
+        let size = NSSize(width: 50, height: 50)
+        let targetImage = NSImage(size: size)
+        targetImage.draw(in:NSRect(x:0,y:0,width: size.width,height: size.height))
+        let textColor = NSColor.white
+        let textFont = NSFont(name: "Verdana-Bold", size: 15)!
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = NSTextAlignment.center
+
+        let attrs = [
+            NSAttributedString.Key.foregroundColor:textColor,
+            NSAttributedString.Key.font: textFont,
+            NSAttributedString.Key.paragraphStyle: paragraphStyle
+        ]
+
+        let textOrigin = CGPoint(x: size.height/3, y: -size.width/4)
+        let rect = CGRect(origin: textOrigin, size: size)
+        text.draw(in: rect, withAttributes: attrs)
+
+        return targetImage
     }
     
     
@@ -75,22 +75,46 @@ class ProductImageFactory {
     }
     
     private func createGradientImage(in frame: CGRect, with gradient:CAGradientLayer) -> UIImage? {
-        var gradientImage: UIImage?
-        UIGraphicsBeginImageContext(frame.size)
-        if let context = UIGraphicsGetCurrentContext() {
-            gradient.render(in: context)
-            gradientImage = UIGraphicsGetImageFromCurrentImageContext()?.resizableImage(withCapInsets: UIEdgeInsets.zero, resizingMode: .stretch)
-        }
-        UIGraphicsEndImageContext()
+        
+        var gradientImage = UIImage(size: frame.size)
+        let path = NSBezierPath(rect: frame)
+        gradientImage.lockFocus()
+        gradient. .draw(in: path, angle: 0.0)
+        gradientImage.unlockFocus()
+//        UIGraphicsBeginImageContext(frame.size)
+//        if let context = UIGraphicsGetCurrentContext() {
+//            gradient.render(in: context)
+//            gradientImage = UIGraphicsGetImageFromCurrentImageContext()?.resizableImage(withCapInsets: UIEdgeInsets.zero, resizingMode: .stretch)
+//        }
+//        UIGraphicsEndImageContext()
         return gradientImage
     }
     
+    
+    /*
+     extension NSImage {
+         convenience init?(gradientColors: [NSColor], imageSize: NSSize) {
+             guard let gradient = NSGradient(colors: gradientColors) else { return nil }
+             let rect = NSRect(origin: CGPoint.zero, size: imageSize)
+             self.init(size: rect.size)
+             let path = NSBezierPath(rect: rect)
+             self.lockFocus()
+             gradient.draw(in: path, angle: 0.0)
+             self.unlockFocus()
+         }
+     }
+     */
+    
+    
     func resize(image:UIImage,to newSize:CGSize) -> UIImage? {
-        UIGraphicsBeginImageContextWithOptions(newSize, false, UIScreen.main.scale)
-        image.draw(in: CGRect(x:0, y:0, width:newSize.width, height:newSize.height))
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
+        var newImage = NSImage(size: newSize)
+        newImage.lockFocus()
+        image.draw(in: NSMakeRect(0, 0, newSize.width, newSize.height),
+                   from: NSMakeRect(0, 0, image.size.width, image.size.height),
+                         operation: NSCompositingOperation.sourceOver, fraction: CGFloat(1))
+        newImage.unlockFocus()
+        newImage.size = newSize
         return newImage
     }
+    
 }
