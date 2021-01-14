@@ -16,24 +16,6 @@ struct OrganizationList: View {
     
     @State var connectionLost:Bool = false
 
-    #if os(macOS)
-    var body: some View {
-        Group {
-            List {
-                #if os(macOS)
-                       Text("Organizations")
-                        .font(.titleFont)
-                #endif
-                organizationsList
-            }
-            .font(Font.bodyFont)
-            .connectionBanner()
-        
-        }
-    }
-
-    #else
-
     var body: some View {
         List {
             organizationsList
@@ -51,7 +33,6 @@ struct OrganizationList: View {
 
         .connectionBanner()
     }
-    #endif
 }
 
 private extension OrganizationList {    
@@ -93,15 +74,9 @@ struct Link<Content: View>: View {
     }
 
     var body: some View {
-        #if os(macOS)
-        NavigationLink(destination: SubProductList(product:product)) {
-            content
-        }
-        #else
         NavigationLink(destination: SubProductList(product:product)) {
             content
         }.isDetailLink(false)
-        #endif
     }
     
 }

@@ -29,10 +29,7 @@ struct ApplicationView: View {
                     .font(.headline)
                 }
             }else{
-                NavigationView {
-                    LoginView()
-                }
-                .navigationViewStyle(StackNavigationViewStyle())
+                LoginView()
             }
         }
     }

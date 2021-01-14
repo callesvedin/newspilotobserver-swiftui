@@ -9,11 +9,7 @@
 import SwiftUI
 import Newspilot
 import LocalAuthentication
-#if os(macOS)
-import Cocoa
-#else
 import UIKit
-#endif
 
 
 func getBiometricType() -> String {
@@ -42,24 +38,16 @@ func getBiometricType() -> String {
 
 struct LoginView: View {
     @State var password:String = ""
-    #if !os(macOS)
+
     @ObservedObject private var keyboard = KeyboardResponder()
     var keyboardHeight:CGFloat {
         get {return keyboard.currentHeight}
     }
-    #else
-    let keyboardHeight:CGFloat = 0
-    #endif
     @ObservedObject var loginSettings:LoginSettings = LoginSettings()
     @ObservedObject var loginHandler = LoginHandler.shared
     
     let dismissKeyboard: () -> Void = {
-        #if os(macOS)
-            NSApplication.shared.sendAction(#selector(NSResponder.resignFirstResponder), to: nil, from: nil)
-        #else
-            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-        #endif
-     
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
     
     func tryBiometricAuthentication() {
@@ -169,7 +157,7 @@ struct LoginView: View {
                 }
                     
             .frame(minWidth: 200, idealWidth: 300, maxWidth: 400, minHeight: 400, idealHeight: 500, maxHeight: nil, alignment: .top)
-                .padding(.bottom, self.keyboardHeight)
+            .padding(.bottom, self.keyboardHeight)
             .animation(.easeOut(duration: 0.16))
                 
                 

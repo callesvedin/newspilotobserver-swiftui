@@ -28,8 +28,6 @@ struct ProductRow: View {
                 if (self.image != nil) {
                     Image(uiImage: self.image!).resizable()
                         .frame(width: geometry.size.height, height: geometry.size.height, alignment: .leading)
-                }else{
-                    
                 }
                 
                 Text(self.product.name)
