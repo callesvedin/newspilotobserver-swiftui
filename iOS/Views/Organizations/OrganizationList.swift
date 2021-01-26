@@ -14,6 +14,8 @@ struct OrganizationList: View {
     @EnvironmentObject var organizationQuery:OrganizationsQuery
     @ObservedObject var loginHandler = LoginHandler.shared
     
+    var selectionModel = Binding<SelectionModel>
+    
     @State var connectionLost:Bool = false
 
     var body: some View {

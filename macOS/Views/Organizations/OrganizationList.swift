@@ -15,63 +15,47 @@ struct OrganizationList: View {
     @ObservedObject var loginHandler = LoginHandler.shared
     
     @State var connectionLost:Bool = false
-
+    
+    @StateObject var selectionModel:SelectionModel
+    
     var body: some View {
-        Group {
-            List {
-               Text("Organizations")
-                .font(.title)
-                organizationsList
-            }
-            .connectionBanner()
-        }
-    }
-}
-
-private extension OrganizationList {    
-    var organizationsList: some View {
-        ForEach(organizationQuery.organizations) {organization in
-            Section(header: Text(organization.name).font(Font.title)) {
-                ForEach(self.organizationQuery.getProducts(for: organization)){product in
-                    Link(product:product) {
-                        ProductRow(product:product)
+            List (selection: $selectionModel.product) {
+                ForEach(organizationQuery.organizations) {organization in
+                    Section(header: Text(organization.name).font(Font.title)) {
+                        ForEach(self.organizationQuery.getProducts(for: organization)){product in
+                            ProductRow(product:product)
+                                .tag(product)
+                                .font(.title3)
+                                .padding(.bottom, 4)
+                        }
                     }
-                    .font(.title3)
-                    .padding(.bottom, 4)
                 }
             }
-        }
+            .listStyle(SidebarListStyle())            
+            .connectionBanner()
     }
 }
 
-
-struct Link<Content: View>: View {
-    let product:Product
-    let content: Content
-    
-    init(product:Product, @ViewBuilder content: () -> Content) {
-        self.product = product
-        self.content = content()
-    }
-
-    var body: some View {
-        NavigationLink(destination: SubProductList(product:product)) {
-            content
-        }
-    }
-    
-}
 
 struct OrganizationList_Previews: PreviewProvider {
+    
+    
     static var previews: some View {
-        Group {
+        let selectionModel:SelectionModel = SelectionModel()
+        selectionModel.organization = organizationData.first
+        selectionModel.product = productsData.first
+        selectionModel.subproduct = subProductsData.first
+        
+        return Group {
             NavigationView {
-                OrganizationList().environmentObject(OrganizationsQuery(withStaticOrganizations: organizationData, products: productsData, subProducts: subProductsData, andSections: sectionsData))
-            }.environment(\.colorScheme, .dark)
+                OrganizationList(selectionModel: selectionModel)
+                    .environmentObject(OrganizationsQuery(withStaticOrganizations: organizationData, products: productsData, subProducts: subProductsData, andSections: sectionsData))
+            }.environment(\.colorScheme, .light)
             
             NavigationView {
-                OrganizationList().environmentObject(OrganizationsQuery(withStaticOrganizations: organizationData, products: productsData, subProducts: subProductsData, andSections: sectionsData))
-            }
+                OrganizationList(selectionModel: selectionModel)
+                    .environmentObject(OrganizationsQuery(withStaticOrganizations: organizationData, products: productsData, subProducts: subProductsData, andSections: sectionsData))
+            }.environment(\.colorScheme, .dark)
             
         }
     }

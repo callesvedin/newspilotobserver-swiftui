@@ -6,7 +6,17 @@
 import Foundation
 
 // MARK: - Product
-class Product: Codable, Identifiable {
+class Product: Codable, Identifiable, Hashable {
+    static func == (lhs: Product, rhs: Product) -> Bool {
+        lhs.id == rhs.id
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(entityType)
+        hasher.combine(id)
+    }
+    
+    
     let mediaID: Int
     let locale: String
     let organizationID: Int

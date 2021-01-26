@@ -10,24 +10,37 @@ import SwiftUI
 
 struct ApplicationView: View {
     @ObservedObject var loginHandler = LoginHandler.shared
+    @StateObject var selectionModel = SelectionModel()
+    
     var body: some View {
         Group {
             if loginHandler.loggedIn {
                 NavigationView {
-                    OrganizationList()
-                    HStack(alignment: .center) {
-                        if #available(OSX 11.0, *) {
-                            Image(systemName: "arrow.left")
-                        } else {
-                            Image("arrow.left") // Imported as a supporting format like PDF (not SVG)
-                        }
-                        
-                        Text("Select organization")
-                        Spacer()
+                    OrganizationList(selectionModel: self.selectionModel)
+                    if (selectionModel.product != nil) {
+                        SubProductList(selectionModel: self.selectionModel)
                     }
-                    .padding()
-                    .font(.headline)
+                    if (selectionModel.subproduct != nil) {
+                        PageList(newspilot: loginHandler.newspilot, subProduct: selectionModel.subproduct!,
+                                 pageQuery: PageQueryManager.shared.getPageQuery(withProductId: selectionModel.subproduct!.productID, subProductId: selectionModel.subproduct!.id)
+                        )
+                    }
+
+//
+//                    HStack(alignment: .center) {
+//                        if #available(OSX 11.0, *) {
+//                            Image(systemName: "arrow.left")
+//                        } else {
+//                            Image("arrow.left") // Imported as a supporting format like PDF (not SVG)
+//                        }
+//
+//                        Text("Select organization")
+//                        Spacer()
+//                    }
+//                    .padding()
+//                    .font(.headline)
                 }
+//                .navigationViewStyle(DoubleColumnNavigationViewStyle())
             }else{
                 LoginView()
             }

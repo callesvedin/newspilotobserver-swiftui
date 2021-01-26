@@ -33,7 +33,7 @@ struct SubProductList: View {
                 )
                 {
                     Text(subProduct.name).font(Font.bodyFont) 
-                }                
+                }
             }
         }
         .connectionBanner()

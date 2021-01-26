@@ -6,7 +6,17 @@
 import Foundation
 
 // MARK: - SubProduct
-class SubProduct: Codable, Identifiable {
+class SubProduct: Codable, Identifiable, Hashable {
+    
+    static func == (lhs: SubProduct, rhs: SubProduct) -> Bool {
+        lhs.id == rhs.id
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(entityType)
+        hasher.combine(id)
+    }
+    
     var useCaptionProposed:Int?
     let productID: Int
     let name: String

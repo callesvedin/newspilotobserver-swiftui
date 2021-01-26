@@ -13,12 +13,8 @@ struct SearchBar: View {
     @Binding var searchText: String
        //@State private var showCancelButton: Bool = false
        var onCommit: () ->Void = {
-        print("onCommit")
-        #if os(macOS)
+            print("onCommit")
             NSApplication.shared.sendAction(#selector(NSResponder.resignFirstResponder), to: nil, from: nil)
-        #else
-            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-        #endif
        }
        
        var body: some View {
@@ -29,7 +25,7 @@ struct SearchBar: View {
                    // Search text field
                    ZStack (alignment: .leading) {
                        if searchText.isEmpty { // Separate text for placeholder to give it the proper color
-                           Text("Search")
+                        Text("Search").padding(.leading,4)
                        }
                        TextField("", text: $searchText, onEditingChanged: { isEditing in
 
@@ -40,12 +36,12 @@ struct SearchBar: View {
                        self.searchText = ""
                    }) {
                        Image(systemName: "xmark.circle.fill").opacity(searchText == "" ? 0 : 1)
-                   }
+                   }.buttonStyle(PlainButtonStyle())
                }
                .font(Font.bodyFont)
                .padding(EdgeInsets(top: 8, leading: 6, bottom: 8, trailing: 6))
                .foregroundColor(.secondary) // For magnifying glass and placeholder text
-               .background(Color(.tertiarySystemFill))
+//               .background(Color(.tertiarySystemFill))
                .cornerRadius(10.0)
      
            }
