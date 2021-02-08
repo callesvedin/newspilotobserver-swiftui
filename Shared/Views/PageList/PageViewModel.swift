@@ -24,8 +24,13 @@ struct PageViewModel : Identifiable {
     let template:String?
     let editionType:EditionType
     let statusName:String
+    #if os(macOS)
+    let statusColor:NSColor
+    let flags:[NSImage?]
+    #else
     let statusColor:UIColor
     let flags:[UIImage?]
+    #endif
     let thumbUrl:URL?
     let previewUrl:URL?     
 }

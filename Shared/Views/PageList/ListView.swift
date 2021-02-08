@@ -73,7 +73,8 @@ struct ListView:View
                             }
                         }
                     }
-                }.textCase(nil)
+                }
+                .textCase(nil)
             }
         }
     }
@@ -107,12 +108,12 @@ struct ListView_Previews: PreviewProvider {
                 ListView(pageModelAdapter: pageModelAdapter, backs: pageBacks, expandedBacks: .constant(expandedBacks), filterText: "", pageAction: PageAction(), showAction:Binding.constant(false))
                     //                    .previewLayout(PreviewLayout.sizeThatFits)
                     .padding()
-                    .previewDisplayName("Default preview 1")
+                    .environment(\.colorScheme, .light)
+                    .previewDisplayName("Light mode")
                 
                 ListView(pageModelAdapter: pageModelAdapter, backs: pageBacks, expandedBacks: .constant(expandedBacks),filterText: "", pageAction: PageAction(), showAction:Binding.constant(false))
-                    //                                    .previewLayout(PreviewLayout.sizeThatFits)
+                    //                    .previewLayout(PreviewLayout.sizeThatFits)
                     .padding()
-                    //                                    .background(Color(.systemBackground))
                     .environment(\.colorScheme, .dark)
                     .previewDisplayName("Dark Mode")
             }

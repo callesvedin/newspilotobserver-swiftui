@@ -44,7 +44,7 @@ class StatusItem:PieChartData, Identifiable, Comparable {
 struct PageList: View {
     private var subProduct:SubProduct
     
-    @State var filter=PageFilter()
+    @StateObject var filter=PageFilter()
     @State var showFilterView = false
     
     @ObservedObject var loginHandler = LoginHandler.shared
@@ -93,59 +93,51 @@ struct PageList: View {
         //        let pieChartModel = PieChartModel(data: statusItems)
 //        let publicationDateString = self.filter.publicationDate?.name ?? "PubDate"
         return
-            GeometryReader {geometry in
-                
-                VStack {
-                                        
-                    HStack{
-                        Text(subProduct.name).font(.title)
-                        Spacer()
-                        SearchBar(searchText: $searchText).frame(width: 400).padding(.trailing, 20)
-                                            
-                        
-                        Picker("", selection: self.$useThumbView) {
-                            Image(systemName: "list.bullet").resizable().tag(false)
-                            Image(systemName: "list.bullet.below.rectangle").resizable().tag(true)
-                        }
-                        .pickerStyle(SegmentedPickerStyle())
-                        .frame(width: 50)
-                        .padding(.trailing, 20)
-                        
-                        
-                        Button(action:{self.showFilterView = true}, label: {Image(systemName:"line.horizontal.3.decrease.circle")})
-                            .popover( // Why is this so large?
-                                isPresented: self.$showFilterView,
-                                arrowEdge: .top
-                            ) {
-                                PageFilterView(subProduct:self.subProduct, pages: self.pageQuery.pages,publicationDateQuery:self.publicationDateQuery, filter: self.$filter)
-                                    .frame(minWidth: 400, maxWidth: .infinity, minHeight: 400,maxHeight: .infinity, alignment: .center)
-                            }.buttonStyle(PlainButtonStyle())
-                    }
-                                        
-                    
-                    //                        if self.useThumbView {
+
+            VStack {
+                if self.useThumbView {
                     ThumbView(pageModelAdapter:pageModelAdapter, backs:backs, expandedBacks: self.$expandedBacks, filterText:self.searchText, pageAction: self.pageAction, showAction:self.$showStatusChange)
-                    //                        }else{
-                    //                            ListView(pageModelAdapter: pageModelAdapter, backs:backs, expandedBacks: self.$expandedBacks, filterText:self.searchText, pageAction: self.pageAction, showAction:self.$showStatusChange)
-                    //                        }
-                }.padding()
-                
-                //                    .navigationBarTitle(Text(self.subProduct.name), displayMode: NavigationBarItem.TitleDisplayMode.inline )
-                //                    .navigationBarItems(
-                //                        trailing:
-                //                    )
-                
-                
+                }else{
+                    ListView(pageModelAdapter: pageModelAdapter, backs:backs, expandedBacks: self.$expandedBacks, filterText:self.searchText, pageAction: self.pageAction, showAction:self.$showStatusChange)
+                }
+            }            
+            .padding()
+            .toolbar {
+                ToolbarItem (placement: .automatic) {
+                    SearchBar(searchText: $searchText).frame(width: 400).padding(.trailing, 20)
+                }
+                                    
+                ToolbarItem (placement: .automatic) {
+                    Picker("", selection: self.$useThumbView) {
+                        Image(systemName: "list.bullet").resizable().tag(false)
+                        Image(systemName: "list.bullet.below.rectangle").resizable().tag(true)
+                    }
+                    .pickerStyle(SegmentedPickerStyle())
+                    .padding(.trailing, 20)
+                }
+                ToolbarItem (placement: .automatic) {
+                    Button(action:{self.showFilterView = true}, label: {Image(systemName:"line.horizontal.3.decrease.circle")})
+                        .popover( // Why is this so large?
+                            isPresented: self.$showFilterView,
+                            arrowEdge: .top
+                        ) {
+                            PageFilterView(subProduct:self.subProduct, pages: self.pageQuery.pages,publicationDateQuery:self.publicationDateQuery, filter: self.filter)
+                                .frame(minWidth: 400, maxWidth: .infinity, minHeight: 400,maxHeight: .infinity, alignment: .center)
+                        }.buttonStyle(PlainButtonStyle())
+                }
+
             }
+        
+    
             .connectionBanner()
             .onAppear(){
                 self.pageQuery.load()
-            }.sheet(isPresented: self.$showStatusChange, content: {
+            }
+            .sheet(isPresented: self.$showStatusChange, content: {
                 if (pageAction.type == .ChangeStatus) {
                     SetStatusView(page:pageAction.page!, statuses:statusQuery.statusesBySortkey(),isShown: self.$showStatusChange)                    
                 }
             })
-        
     }
     
     func getColumns(width:CGFloat) -> Int {
@@ -176,16 +168,14 @@ struct PageList: View {
 }
 
 
-//struct PageList_Previews: PreviewProvider {
-//    static var previews: some View {
-//        let loginHandler=LoginHandler()
-//        return NavigationView {
-//            PageList(newspilot:loginHandler.newspilot, subProduct: SubProduct(id: 1, productId: 11, name: "My Sub Product2", settingsString: ""),
-//                     publicationDates: [
-//                        PublicationDate(entityType: "PublicationDate", id: 1, issuenumber: "1", name: "Pub 1", productID: 1, pubDate: "2019-10-10"),
-//                        PublicationDate(entityType: "PublicationDate", id: 1, issuenumber: "2", name: "Pub 2", productID: 1, pubDate: "2019-10-11"),
-//                        PublicationDate(entityType: "PublicationDate", id: 1, issuenumber: "1", name: "Pub 1", productID: 1, pubDate: "2019-10-12")
-//            ]).environmentObject(LoginHandler())
-//        }
-//    }
-//}
+struct PageList_Previews: PreviewProvider {
+    static var previews: some View {
+        let loginHandler=LoginHandler.shared
+        return NavigationView {
+            PageList(newspilot:loginHandler.newspilot,
+                     subProduct: SubProduct(id: 1, productId: 11, name: "My Sub Product2", settingsString: ""),
+                     pageQuery: PageQuery(withNewspilot: loginHandler.newspilot, productId: 1, subProductId: 1, publicationDateId: 1)
+            )
+        }
+    }
+}

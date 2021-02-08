@@ -44,7 +44,7 @@ class StatusItem:PieChartData, Identifiable, Comparable {
 struct PageList: View {
     private var subProduct:SubProduct
     
-    @State var filter=PageFilter()
+    @StateObject var filter=PageFilter()
     @State var showFilterView = false
     
     @ObservedObject var loginHandler = LoginHandler.shared
@@ -142,7 +142,7 @@ struct PageList: View {
                                         isPresented: self.$showFilterView,
                                         arrowEdge: .top
                                     ) {
-                                        PageFilterView(subProduct:self.subProduct, pages: self.pageQuery.pages,publicationDateQuery:self.publicationDateQuery, filter: self.$filter)
+                                        PageFilterView(subProduct:self.subProduct, pages: self.pageQuery.pages,publicationDateQuery:self.publicationDateQuery, filter: self.filter)
                                             .frame(minWidth: 400, maxWidth: .infinity, minHeight: 400,maxHeight: .infinity, alignment: .center)
                                     }
                             }

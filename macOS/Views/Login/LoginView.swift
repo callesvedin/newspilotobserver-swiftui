@@ -36,9 +36,14 @@ func getBiometricType() -> String {
 }
 
 
+class Login:ObservableObject{    
+    @Published var login = ""
+    @Published var server = ""
+}
+
 struct LoginView: View {
     @State var password:String = ""
-    @ObservedObject var loginSettings:LoginSettings = LoginSettings()
+    @StateObject var loginSettings = Login()
     @ObservedObject var loginHandler = LoginHandler.shared
         
     func tryBiometricAuthentication() {
@@ -80,7 +85,7 @@ struct LoginView: View {
                     Spacer()
                     HStack {
                         Spacer()
-                        Image("Naviga_Logo_Light_Horizontal").resizable().scaledToFit().frame(width: nil, height: 30, alignment: .bottomTrailing)
+                        Image("Naviga_Logo_Light_Horizontal").resizable().scaledToFit().frame(height: 30, alignment: .bottomTrailing)
                     }.padding()
                 }
                 VStack() {
@@ -90,15 +95,15 @@ struct LoginView: View {
                         .foregroundColor(Color.white)
                         .padding(.bottom, 50)
                     
-                    LoginTextField(label:"Username", text: $loginSettings.login)
+                    LoginTextField(label:"Username", text: $loginSettings.login).padding(10)
 
                     
                     ZStack(alignment:Alignment.trailing) {
                         SecureField("Password", text: $password)
-                        .background(Color.navigaTextFieldBackground)
-                        .cornerRadius(5.0)
-                        .padding()
-                        
+                            .font(Font.bodyFont)
+                            .background(Color.navigaTextFieldBackground).cornerRadius(5.0)
+                            .padding(10)
+                                                
                         Button(action: {
                             tryBiometricAuthentication()
                         }, label: {
@@ -106,11 +111,11 @@ struct LoginView: View {
                         })
                         .buttonStyle(PlainButtonStyle())
                         .accentColor(Color(UIColor.tertiaryLabel))
-                        .padding(.horizontal,30)
+                        .padding(.horizontal,20)
                     }
-                    .font(Font.textFieldFont)
+                    .font(Font.bodyFont)
                     
-                    LoginTextField(label:"Server", text: $loginSettings.server)
+                    LoginTextField(label:"Server", text: self.$loginSettings.server).padding(10)
                     
                     if loginHandler.connectionStatus == .connectionFailed {
                         Text("Connection failed. Please try again").foregroundColor(Color.red)
@@ -141,31 +146,32 @@ struct LoginView: View {
                         .padding(.vertical, 10)
                         .background(Color.navigaButtonBackground)
                         .cornerRadius(16)
-                        .frame(width: 140, height:30)
                     }
-                    .buttonStyle(PlainButtonStyle())
+                    .buttonStyle(BorderlessButtonStyle())
+                    .keyboardShortcut(KeyEquivalent.return, modifiers: [.command])
+                    .frame(width: 140, height:30)
                     .padding(.top, 10)                                       
                     
                     Spacer()
                 }
-                    
-            .frame(minWidth: 200, idealWidth: 300, maxWidth: 400, minHeight: 400, idealHeight: 800, maxHeight: nil, alignment: .top)
-            .animation(.easeOut(duration: 0.16))
-        }
+                .padding()
+                .frame(minWidth: 200, idealWidth: 300, maxWidth: 400, minHeight: 400, idealHeight: 800, maxHeight: nil, alignment: .top)
+                .animation(.easeOut(duration: 0.16))
+            }
+            .frame(width: 600, height: 500, alignment: .center)
     }
 }
 
 struct LoginTextField: View {
     let label:String
     var text:Binding<String>
+//    @State var text:String
     
     var body: some View {
         TextField(label, text: text)
-            .font(Font.textFieldFont)
+            .font(Font.bodyFont)
+            .background(Color.navigaTextFieldBackground).cornerRadius(5.0)
             .disableAutocorrection(true)
-            .background(Color.navigaTextFieldBackground)
-            .cornerRadius(5.0)
-            .padding()
     }
 }
 

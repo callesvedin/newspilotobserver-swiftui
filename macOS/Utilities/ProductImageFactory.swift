@@ -77,7 +77,7 @@ class ProductImageFactory {
     
     private func createGradientImage(in frame: CGRect, with gradient:CAGradientLayer) -> NSImage? {
         
-        var gradientImage = UIImage(size: frame.size)
+        let gradientImage = UIImage(size: frame.size)
 //        let path = NSBezierPath(rect: frame)
             
 
@@ -131,7 +131,7 @@ class ProductImageFactory {
     
     
     func resize(image:NSImage,to newSize:CGSize) -> NSImage? {
-        var newImage = NSImage(size: newSize)
+        let newImage = NSImage(size: newSize)
         newImage.lockFocus()
         image.draw(in: NSMakeRect(0, 0, newSize.width, newSize.height),
                    from: NSMakeRect(0, 0, image.size.width, image.size.height),

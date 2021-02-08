@@ -27,9 +27,10 @@ struct PageFilterView: View {
     
     @Environment(\.presentationMode) var presentationMode
     
-    var filter:Binding<PageFilter>    
+    @ObservedObject var filter:PageFilter
+    private var hasPublications = true
     
-    init(subProduct:SubProduct,pages:[Page], publicationDateQuery:PublicationDateQuery, filter:Binding<PageFilter>) {
+    init(subProduct:SubProduct,pages:[Page], publicationDateQuery:PublicationDateQuery, filter:PageFilter) {
         self.subProduct = subProduct
         self.subProductSettings = subProduct.settings
         self.pagesInPublications = Dictionary(grouping: pages, by: \.publicationDateID)
@@ -41,14 +42,19 @@ struct PageFilterView: View {
         self.versions = subProduct.settings?.versions ?? []
         self.versions.insert("-", at: 0)
         self.filter = filter
-        self._selectedPublicationDateIndex = State(initialValue:publicationDates.firstIndex(where: {$0.id == filter.publicationDate.wrappedValue?.id}) ?? 0)
-        self._selectedPartIndex = State(initialValue:parts.firstIndex(where: {$0 == filter.part.wrappedValue}) ?? 0)
-        self._selectedVersionIndex = State(initialValue:versions.firstIndex(where: {$0 == filter.version.wrappedValue}) ?? 0)
-        self._selectedEditionIndex = State(initialValue:editions.firstIndex(where: {$0 == filter.edition.wrappedValue}) ?? 0)
+        hasPublications = !pages.isEmpty
+        self._selectedPublicationDateIndex = State(initialValue:publicationDates.firstIndex(where: {$0.id == filter.publicationDate?.id}) ?? 0)
+        self._selectedPartIndex = State(initialValue:parts.firstIndex(where: {$0 == filter.part}) ?? 0)
+        self._selectedVersionIndex = State(initialValue:versions.firstIndex(where: {$0 == filter.version}) ?? 0)
+        self._selectedEditionIndex = State(initialValue:editions.firstIndex(where: {$0 == filter.edition}) ?? 0)
+        
     }
     
     var body: some View {
-        NavigationView {
+        
+        if !hasPublications {
+            Text("No publications")
+        }else{
                 Form {
                     Section {
                         Picker(selection: $selectedPublicationDateIndex, label: Text("Publication")){
@@ -85,27 +91,19 @@ struct PageFilterView: View {
                         Spacer()
                         Button(action:{
                             self.presentationMode.wrappedValue.dismiss()
-                        }, label:{Text("Cancel").font(Font.buttonFont)})
+                        }, label:{Text("Cancel")})
                         Button(action:{
-                            self.filter.wrappedValue.publicationDate = self.publicationDates[self.selectedPublicationDateIndex]
-                            self.filter.wrappedValue.part = self.parts[self.selectedPartIndex] == "-" ? nil : self.parts[self.selectedPartIndex]
-                            self.filter.wrappedValue.edition = self.editions[self.selectedEditionIndex] == "-" ? nil : self.editions[self.selectedEditionIndex]
-                            self.filter.wrappedValue.version = self.versions[self.selectedVersionIndex] == "-" ? nil : self.versions[self.selectedVersionIndex]
+                            self.filter.publicationDate = self.publicationDates[self.selectedPublicationDateIndex]
+                            self.filter.part = self.parts[self.selectedPartIndex] == "-" ? nil : self.parts[self.selectedPartIndex]
+                            self.filter.edition = self.editions[self.selectedEditionIndex] == "-" ? nil : self.editions[self.selectedEditionIndex]
+                            self.filter.version = self.versions[self.selectedVersionIndex] == "-" ? nil : self.versions[self.selectedVersionIndex]
                             self.presentationMode.wrappedValue.dismiss()
-                        }, label:{Text("Ok").font(Font.buttonFont)})
+                        }, label:{Text("Ok")})
                     }
                 }
-                .font(Font.bodyFont)
-//TODO:               .navigationBarTitle("Filter")
-            }
-
-        //
-        //            Picker(selection: $filter.edition, label: Text("Edition 2")){
-        //                ForEach(subProduct.settings!.editions, id: \.self) { edition in
-        //                    Text("\(edition)")
-        //                }
-        //            }
-        
+                .frame(maxWidth:300)
+                .padding()
+        }
     }
 }
 
@@ -118,6 +116,6 @@ struct PageFilterView_Previews: PreviewProvider {
         return PageFilterView(subProduct: SubProduct(id: 1, productId: 1, name: "Test Sub Product", settingsString: ""),
                               pages: pages,
                               publicationDateQuery: PublicationDateQuery(withProductId: 1, publicationDates: publicationDates),
-                              filter: .constant(PageFilter())).border(Color.gray)
+                              filter: PageFilter()).border(Color.gray)
     }
 }

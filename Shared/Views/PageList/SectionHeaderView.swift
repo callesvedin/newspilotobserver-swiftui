@@ -8,11 +8,18 @@
 
 import SwiftUI
 struct SectionHeaderView:View {
+    
+    @Environment(\.colorScheme) var colorScheme: ColorScheme
     let backKey:BackKey
 //    @Binding var expandedBacks:Set<BackKey>
 //    let expandedBacks:Set<BackKey> //Använd en bool istället....
     let expanded:Bool
+        
+    #if os(macOS)
+    let sectionBackgroundColor = NSColor.systemBackground
+    #else
     let sectionBackgroundColor = UIColor.systemBackground
+    #endif
 
     var body : some View {
         VStack {
@@ -35,7 +42,9 @@ struct SectionHeaderView:View {
             leading: 0,
             bottom: 0,
             trailing: 0))
-        .background(Color(sectionBackgroundColor))
+//        .background(colorScheme == .light ? Color.white : Color(sectionBackgroundColor))
+        .background(Color.clear)
+        
     }
     
 }
@@ -47,7 +56,11 @@ struct SectionHeaderView_Previews: PreviewProvider {
                                         BackKey(publicationDateId: 1, part: "B", version: "V1", edition: "E1"))
     
     static var previews: some View {
-        let devices = ["iPhone 11","iPad Pro (12.9-inch) (4th generation)"]
+        #if os(macOS)
+            let devices = ["macOs"]
+        #else
+            let devices  = ["iPhone 11","iPad Pro (12.9-inch) (4th generation)"]
+        #endif
         return ForEach (devices, id: \.self) {device in
             SectionHeaderView(backKey: backs.randomElement()!, expanded: true)
                 .previewDisplayName(device)

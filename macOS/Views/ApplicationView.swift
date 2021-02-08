@@ -39,7 +39,7 @@ struct ApplicationView: View {
 //                    }
 //                    .padding()
 //                    .font(.headline)
-                }
+                }.frame(minWidth:1000)
 //                .navigationViewStyle(DoubleColumnNavigationViewStyle())
             }else{
                 LoginView()

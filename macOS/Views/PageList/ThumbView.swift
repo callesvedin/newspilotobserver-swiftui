@@ -19,7 +19,9 @@ struct ThumbView: View {
     @Binding var expandedBacks:Set<BackKey>
     
     var backKeys:[BackKey] {
-        get {backs.map({$0.key}).sorted()}
+        get {
+            backs.map({$0.key}).sorted()            
+        }
     }
     
     
@@ -39,45 +41,43 @@ struct ThumbView: View {
     
     
     var body: some View {
-        GeometryReader {geometry in
-            ScrollView {
-                LazyVGrid(columns: columns) {
-                    ForEach (self.backKeys, id: \.hashValue) {backKey in
-                        Section(header:
-                                    SectionHeaderView(backKey: backKey, expanded: self.expandedBacks.contains(backKey))
-                                    .onTapGesture {
-                                        if (self.expandedBacks.contains(backKey)){
-                                            _ = withAnimation {
-                                                self.expandedBacks.remove(backKey)
-                                            }
-                                        }else{
-                                            _ = withAnimation {
-                                                self.expandedBacks.insert(backKey)
-                                            }
+        ScrollView {
+            LazyVGrid(columns: columns) {
+                ForEach (self.backKeys, id: \.hashValue) {backKey in
+                    Section(header:
+                                SectionHeaderView(backKey: backKey, expanded: self.expandedBacks.contains(backKey))
+                                .onTapGesture {
+                                    if (self.expandedBacks.contains(backKey)){
+                                        _ = withAnimation {
+                                            self.expandedBacks.remove(backKey)
                                         }
-                                    }){
-                            if expandedBacks.contains(backKey), let back = backs[backKey] {
-                                ForEach(back.filter({self.filterText.isEmpty || $0.name.contains(self.filterText)}), id:\.id){page in
-                                    NavigationLink(destination:
-                                                    PageDetailsView(self.getViewsFrom(pageModelAdapter: self.pageModelAdapter, backs: self.backs, backKey: backKey), currentPage: back.firstIndex(of: page))) {
-
-                                        PageCollectionCell(
-                                            page:self.pageModelAdapter.getPageViewModel(from: page))
-                                            .id(page.id)
-                                            .padding()
-                                            .contextMenu(ContextMenu(menuItems: {
-                                                Button("Change status"){
-                                                    self.pageAction.page = page
-                                                    self.pageAction.type = .ChangeStatus
-                                                    self.statusSelectionViewIsPresented = true
-                                                    
-                                                }
-                                            }))
+                                    }else{
+                                        _ = withAnimation {
+                                            self.expandedBacks.insert(backKey)
+                                        }
                                     }
+                                }){
+                        if expandedBacks.contains(backKey), let back = backs[backKey] {
+                            ForEach(back.filter({self.filterText.isEmpty || $0.name.contains(self.filterText)}), id:\.id){page in
+//                                NavigationLink(destination:
+//                                                PageDetailsView(self.getViewsFrom(pageModelAdapter: self.pageModelAdapter, backs: self.backs, backKey: backKey), currentPage: back.firstIndex(of: page))) {
+
+                                    PageCollectionCell(
+                                        page:self.pageModelAdapter.getPageViewModel(from: page))
+                                        .id(page.id)                                        
+                                        .padding()
+                                        .contextMenu(ContextMenu(menuItems: {
+                                            Button("Change status"){
+                                                self.pageAction.page = page
+                                                self.pageAction.type = .ChangeStatus
+                                                self.statusSelectionViewIsPresented = true
+                                                
+                                            }
+                                        }))
                                 }
-                            }
-                        }.textCase(nil)
-                    }
+//                            }
+                        }
+                    }.textCase(nil)
                 }
             }
         }
@@ -93,7 +93,7 @@ struct ThumbView: View {
     }
 }
 
-struct ThumbView2_Previews: PreviewProvider {
+struct ThumbView_Previews: PreviewProvider {
     static var previews: some View {
         
         var pages:[Page] = []
@@ -105,11 +105,16 @@ struct ThumbView2_Previews: PreviewProvider {
         var expandedBacks = Set<BackKey>()
         expandedBacks.insert(pageBacks.first!.key)
         let pageModelAdapter = PageModelAdapter(newspilotServer: "server", statuses: statusData, sections:sectionsData, flags: [])
-        
+        #if os(macOS)
+        let devices = ["macOs"]
+        #else
         let devices = ["iPad Pro (12.9-inch) (4th generation)", "iPhone 11"]
+        #endif
+        
         return
             ForEach (devices, id: \.self) {device in
                 ThumbView(pageModelAdapter: pageModelAdapter , backs: pageBacks, expandedBacks: .constant(expandedBacks), filterText: "",  pageAction: PageAction(), showAction:Binding.constant(false))
+                    .environment(\.colorScheme, .light)
                     .previewDisplayName(device)
                     .previewDevice(PreviewDevice(rawValue:device))
                 
