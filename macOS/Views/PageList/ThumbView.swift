@@ -59,9 +59,6 @@ struct ThumbView: View {
                                 }){
                         if expandedBacks.contains(backKey), let back = backs[backKey] {
                             ForEach(back.filter({self.filterText.isEmpty || $0.name.contains(self.filterText)}), id:\.id){page in
-//                                NavigationLink(destination:
-//                                                PageDetailsView(self.getViewsFrom(pageModelAdapter: self.pageModelAdapter, backs: self.backs, backKey: backKey), currentPage: back.firstIndex(of: page))) {
-
                                     PageCollectionCell(
                                         page:self.pageModelAdapter.getPageViewModel(from: page))
                                         .id(page.id)                                        
@@ -74,22 +71,18 @@ struct ThumbView: View {
                                                 
                                             }
                                         }))
+                                        .onTapGesture {
+                                            let detailView = PageDetailView(pageModel: self.pageModelAdapter.getPageViewModel(from: page))
+                                            let controller = DetailWindowController(rootView: detailView)
+                                            controller.window?.title = page.name
+                                            controller.showWindow(nil)
+                                        }
                                 }
-//                            }
                         }
                     }.textCase(nil)
                 }
             }
         }
-    }
-    
-    func getViewsFrom(pageModelAdapter:PageModelAdapter, backs:[BackKey:[Page]], backKey:BackKey) -> [PageDetailView] {
-        let pageList = backs[backKey] ?? []
-        let views = pageList.map {page -> PageDetailView in
-            let pageViewModel = pageModelAdapter.getPageViewModel(from: page)
-            return PageDetailView(page:pageViewModel)
-        }
-        return views
     }
 }
 
@@ -105,11 +98,8 @@ struct ThumbView_Previews: PreviewProvider {
         var expandedBacks = Set<BackKey>()
         expandedBacks.insert(pageBacks.first!.key)
         let pageModelAdapter = PageModelAdapter(newspilotServer: "server", statuses: statusData, sections:sectionsData, flags: [])
-        #if os(macOS)
+
         let devices = ["macOs"]
-        #else
-        let devices = ["iPad Pro (12.9-inch) (4th generation)", "iPhone 11"]
-        #endif
         
         return
             ForEach (devices, id: \.self) {device in

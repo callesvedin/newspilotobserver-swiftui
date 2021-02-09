@@ -37,11 +37,12 @@ func getBiometricType() -> String {
 
 
 class Login:ObservableObject{    
-    @Published var login = ""
-    @Published var server = ""
+    @AppStorage("login") var login = ""
+    @AppStorage("server") var server = ""
 }
 
 struct LoginView: View {
+    @Environment(\.colorScheme) var colorScheme
     @State var password:String = ""
     @StateObject var loginSettings = Login()
     @ObservedObject var loginHandler = LoginHandler.shared
@@ -95,14 +96,18 @@ struct LoginView: View {
                         .foregroundColor(Color.white)
                         .padding(.bottom, 50)
                     
-                    LoginTextField(label:"Username", text: $loginSettings.login).padding(10)
+                    LoginTextField(label:"Username", text: $loginSettings.login)
 
                     
                     ZStack(alignment:Alignment.trailing) {
                         SecureField("Password", text: $password)
+                            .textFieldStyle(PlainTextFieldStyle())
                             .font(Font.bodyFont)
-                            .background(Color.navigaTextFieldBackground).cornerRadius(5.0)
-                            .padding(10)
+                            .padding(6)
+                            .background(colorScheme == .dark ? Color.navigaTextFieldBackground:Color.white)
+                            .cornerRadius(5.0)
+                            .padding(.vertical, 6)
+                            
                                                 
                         Button(action: {
                             tryBiometricAuthentication()
@@ -111,11 +116,11 @@ struct LoginView: View {
                         })
                         .buttonStyle(PlainButtonStyle())
                         .accentColor(Color(UIColor.tertiaryLabel))
-                        .padding(.horizontal,20)
+                        .padding(.horizontal,10)
                     }
                     .font(Font.bodyFont)
                     
-                    LoginTextField(label:"Server", text: self.$loginSettings.server).padding(10)
+                    LoginTextField(label:"Server", text: self.$loginSettings.server)
                     
                     if loginHandler.connectionStatus == .connectionFailed {
                         Text("Connection failed. Please try again").foregroundColor(Color.red)
@@ -163,14 +168,17 @@ struct LoginView: View {
 }
 
 struct LoginTextField: View {
+    @Environment(\.colorScheme) var colorScheme
     let label:String
     var text:Binding<String>
-//    @State var text:String
     
     var body: some View {
         TextField(label, text: text)
+            .textFieldStyle(PlainTextFieldStyle())
             .font(Font.bodyFont)
-            .background(Color.navigaTextFieldBackground).cornerRadius(5.0)
+            .padding(6)
+            .background(colorScheme == .dark ? Color.navigaTextFieldBackground:Color.white)
+            .cornerRadius(5.0)
             .disableAutocorrection(true)
     }
 }
@@ -178,7 +186,7 @@ struct LoginTextField: View {
 
 
 struct LoginView_Previews: PreviewProvider {
-    static let devices = [PreviewDevice(rawValue: "Mac")]
+    static let devices = [PreviewDevice(rawValue: "macOS")]
     
     static var previews: some View {
         
