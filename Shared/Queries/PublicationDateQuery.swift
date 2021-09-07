@@ -108,8 +108,8 @@ class PublicationDateQuery :  ObservableObject {
         }
         
         #if DEBUG
-            let fromString = "2019-12-29 00:00:00"
-            let toString = "2020-06-01 00:00:00"
+            let fromString = "2020-09-01 00:00:00"
+            let toString = "2023-06-01 00:00:00"
         #else
             let fromString = newspilotDateFormatter.string(from: fromDate)
             let toString = newspilotDateFormatter.string(from: toDate)
