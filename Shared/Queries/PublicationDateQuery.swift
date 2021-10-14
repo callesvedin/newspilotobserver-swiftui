@@ -14,7 +14,8 @@ import os.log
 class PublicationDateQuery :  ObservableObject {
     
     var objectWillChange = PassthroughSubject<Void, Never>()
-
+    let fromDate:Date
+    let toDate:Date
     var publicationDates:[PublicationDate] = []
     var sortedPublicationDates:[PublicationDate] {
         get {
@@ -52,6 +53,11 @@ class PublicationDateQuery :  ObservableObject {
         self.newspilotDateFormatter = DateFormatter()
         self.newspilotDateFormatter.timeZone = TimeZone(identifier: "UTC")
         self.newspilotDateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let calendar = Calendar(identifier: .gregorian)
+        let today = calendar.beginningOf(date: Date()) ?? Date()
+        self.fromDate = calendar.date(byAdding: .year, value: -1, to: today, wrappingComponents: false)!
+        self.toDate = calendar.date(byAdding: .year, value: 2, to: today, wrappingComponents: false)!
+
         load()
     }
     
@@ -61,6 +67,8 @@ class PublicationDateQuery :  ObservableObject {
         self.newspilotDateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         self.productId = productId
         self.publicationDates = publicationDates
+        self.fromDate = Date()
+        self.toDate = Date()
     }
     
     func load() {
@@ -96,24 +104,8 @@ class PublicationDateQuery :  ObservableObject {
     }
     
     private func getQueryString() -> String? {
-        
-        let calendar = Calendar(identifier: .gregorian)
-        let today = calendar.beginningOf(date: Date()) ?? Date()
-        let aMonthAgo = calendar.date(byAdding: .month, value: -1, to: today, wrappingComponents: false)
-        let nextYear = calendar.date(byAdding: .year, value: 1, to: today, wrappingComponents: false)
-        
-        guard let fromDate = aMonthAgo, let toDate = nextYear else {
-            os_log("Could not create beginning and end of date for publication dates", log: .newspilot, type: .error)
-            return nil
-        }
-        
-        #if DEBUG
-            let fromString = "2020-09-01 00:00:00"
-            let toString = "2023-06-01 00:00:00"
-        #else
-            let fromString = newspilotDateFormatter.string(from: fromDate)
-            let toString = newspilotDateFormatter.string(from: toDate)
-        #endif
+        let fromString = newspilotDateFormatter.string(from: fromDate)
+        let toString = newspilotDateFormatter.string(from: toDate)
 
                 
         return """

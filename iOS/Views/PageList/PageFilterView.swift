@@ -20,6 +20,11 @@ struct PageFilterView: View {
     var versions:[String]
     var parts:[String]
     let pagesInPublications:[Int:[Page]]
+    private var fromDate:Date
+    private var toDate:Date
+    @State private var selectedFromDate:Date = Date()
+    @State private var selectedToDate:Date = Date()
+
     @State private var selectedPublicationDateIndex:Int=0
     @State private var selectedEditionIndex:Int=0
     @State private var selectedVersionIndex:Int=0
@@ -47,6 +52,8 @@ struct PageFilterView: View {
         self._selectedPartIndex = State(initialValue:parts.firstIndex(where: {$0 == filter.part}) ?? 0)
         self._selectedVersionIndex = State(initialValue:versions.firstIndex(where: {$0 == filter.version}) ?? 0)
         self._selectedEditionIndex = State(initialValue:editions.firstIndex(where: {$0 == filter.edition}) ?? 0)
+        self.fromDate = publicationDateQuery.fromDate
+        self.toDate = publicationDateQuery.toDate
     }
     
     var body: some View {
@@ -62,9 +69,23 @@ struct PageFilterView: View {
             }else{
                 Form {
                     Section {
+                        VStack {
+                            DatePicker(selection: $selectedFromDate, in: self.fromDate ... self.toDate, displayedComponents: .date) {
+                                        Text("Start date")
+                            }                                    
+                        }
+                        VStack {
+                            DatePicker(selection: $selectedToDate, in: self.fromDate ... self.toDate, displayedComponents: .date) {
+                                        Text("End date")
+                            }
+                        }
+
+                    }
+
+                    Section {                        
                         Picker(selection: $selectedPublicationDateIndex, label: Text("Publication")){
                             ForEach(0 ..< publicationDates.count){n in
-                                if ((self.pagesInPublications[self.publicationDates[n].id])?.count ?? 0 > 0) {
+                                if (self.publicationDates[n].inDateInterval(from:selectedFromDate, to:selectedToDate) && (self.pagesInPublications[self.publicationDates[n].id])?.count ?? 0 > 0) {
                                     HStack {
                                         Text("\(self.publicationDates[n].name)")
                                         Text("(\((self.pagesInPublications[self.publicationDates[n].id])?.count ?? 0) pages)")
@@ -109,6 +130,10 @@ struct PageFilterView: View {
                 .font(Font.bodyFont)
                 //TODO:               .navigationBarTitle("Filter")
             }
+        }.onChange(of: self.toDate){date in
+            updatePublications()
+        }.onChange(of: toDate) {date in
+            updatePublications()
         }
         
         //
@@ -118,6 +143,10 @@ struct PageFilterView: View {
         //                }
         //            }
         
+    }
+    
+    func updatePublications(){
+        print("We should filter the publications here....\n")
     }
 }
 

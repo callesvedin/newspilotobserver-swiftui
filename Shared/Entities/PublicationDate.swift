@@ -38,3 +38,19 @@ class PublicationDate: Codable, Hashable, Identifiable {
         self.pubDate = pubDate
     }
 }
+
+extension PublicationDate {
+    func inDateInterval(from fromDate:Date, to toDate:Date) -> Bool {
+        let date:Date = createDateFromString(self.pubDate)
+        return date >= fromDate && date <= toDate
+    }
+
+    private func createDateFromString(_ string:String) -> Date {
+        //    "2020-10-14T00:00+02:00"
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = TimeZone(identifier: "UTC")
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mmZ"
+        return dateFormatter.date(from:string)!
+    }
+}
+
