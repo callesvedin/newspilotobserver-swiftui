@@ -31,6 +31,7 @@ struct OrganizationList: View {
                     }
                 }
             }
+            .frame(width:300)
             .listStyle(SidebarListStyle())            
             .connectionBanner()
     }

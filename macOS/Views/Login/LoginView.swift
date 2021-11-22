@@ -175,7 +175,7 @@ struct LoginView: View {
             .frame(minWidth: 200, idealWidth: 300, maxWidth: 400, minHeight: 400, idealHeight: 800, maxHeight: nil, alignment: .top)
             .animation(.easeOut(duration: 0.16))
         }
-        .frame(width: 600, height: 500, alignment: .center)
+        .ignoresSafeArea()
         .onAppear() {
             loginSettings.login = savedLogin
             loginSettings.server = savedServer

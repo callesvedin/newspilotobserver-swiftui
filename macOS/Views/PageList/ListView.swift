@@ -39,43 +39,45 @@ struct ListView:View
     }
     
     var body :some View {
-        List {
-            ForEach (backKeys, id: \.hashValue) {backKey in
-                Section(
-                    header:
-                        SectionHeaderView(backKey: backKey, expanded: self.expandedBacks.contains(backKey))
-                        .onTapGesture {
-                            
-                            if (self.expandedBacks.contains(backKey)){
-                                _ = withAnimation {
-                                    self.expandedBacks.remove(backKey)
-                                }
-                            }else{
-                                _ = withAnimation {
-                                    self.expandedBacks.insert(backKey)
+            List {
+                ForEach (backKeys, id: \.hashValue) {backKey in
+                    Section(
+                        header:
+                            SectionHeaderView(backKey: backKey, expanded: self.expandedBacks.contains(backKey))
+                            .onTapGesture {
+
+                                if (self.expandedBacks.contains(backKey)){
+                                    _ = withAnimation {
+                                        self.expandedBacks.remove(backKey)
+                                    }
+                                }else{
+                                    _ = withAnimation {
+                                        self.expandedBacks.insert(backKey)
+                                    }
                                 }
                             }
-                        }
-                )
-                {
-                    if (self.expandedBacks.contains(backKey)) {
-                        ForEach (0 ..< self.backs[backKey]!.count, id:\.self) {index in
-                            PageListCell(page:self.pageModelAdapter.getPageViewModel(from: self.backs[backKey]![index]))
-                                .contextMenu(ContextMenu(menuItems: {
-                                    Button("Change status"){
-                                        self.pageAction.page = self.backs[backKey]![index]
-                                        self.pageAction.type = .ChangeStatus
-                                        self.statusSelectionViewIsPresented = true
-                                        
-                                    }
-                                }))
+                    )
+                    {
+                        if (self.expandedBacks.contains(backKey)) {
+                            ForEach (0 ..< self.backs[backKey]!.count, id:\.self) {index in
+                                PageListCell(page:self.pageModelAdapter.getPageViewModel(from: self.backs[backKey]![index]))
+                                    .contextMenu(ContextMenu(menuItems: {
+                                        Button("Change status"){
+                                            self.pageAction.page = self.backs[backKey]![index]
+                                            self.pageAction.type = .ChangeStatus
+                                            self.statusSelectionViewIsPresented = true
+
+                                        }
+                                    }))
+                            }
                         }
                     }
+                    .textCase(nil)
                 }
-                .textCase(nil)
-            }
+            }            
+
         }
-    }        
+    
 }
 
 

@@ -11,9 +11,12 @@ import SwiftUI
 struct ApplicationView: View {
     @ObservedObject var loginHandler = LoginHandler.shared
     @StateObject var selectionModel = SelectionModel()
-    
+    @State var useThumbView:Bool = false
+    @State var showFilterView:Bool = false
+
+    let screenFrame = NSScreen.main?.visibleFrame
+
     var body: some View {
-        Group {
             if loginHandler.loggedIn {
                 NavigationView {
                     OrganizationList(selectionModel: self.selectionModel)
@@ -39,12 +42,15 @@ struct ApplicationView: View {
 //                    }
 //                    .padding()
 //                    .font(.headline)
-                }.frame(minWidth:1000)
+                }
+
+
+                .frame(minWidth: 1400, idealWidth: 1600, maxWidth: nil, minHeight: 1000, idealHeight: 1200, maxHeight: nil,alignment: .center)
+                
 //                .navigationViewStyle(DoubleColumnNavigationViewStyle())
             }else{
                 LoginView()
             }
-        }
     }
 }
 

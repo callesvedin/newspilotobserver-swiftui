@@ -32,5 +32,7 @@ struct MultiNewspilotObserverApp: App {
                 .environmentObject(organizationQuery)
                 .environmentObject(pageFlagQuery)
         }
+        //.windowStyle(HiddenTitleBarWindowStyle())
+//        .windowToolbarStyle(UnifiedWindowToolbarStyle())
     }
 }

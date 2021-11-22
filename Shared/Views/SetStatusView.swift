@@ -28,8 +28,8 @@ struct SetStatusView: View {
                 Picker("Select Status", selection: self.$selectedStatusIndex){
                     ForEach(0 ..< statuses.count) {statusIndex in
                         HStack {
-                            if statuses[statusIndex].statusColor == .white {
-                                Image.init(systemName: "circle").foregroundColor(Color(.black))
+                            if statuses[statusIndex].statusColor == UIColor.white {
+                                Image.init(systemName: "circle").foregroundColor(Color(UIColor.black))
                             }else {
                                 Image.init(systemName: "circle.fill").foregroundColor(Color(statuses[statusIndex].statusColor))
                             }

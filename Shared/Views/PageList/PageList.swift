@@ -68,11 +68,11 @@ struct PageList: View {
         }
     }
     
-//    var statusItems:[StatusItem] {
-//        get {
-//            getStatusItems(fromBacks:backs)
-//        }
-//    }
+    //    var statusItems:[StatusItem] {
+    //        get {
+    //            getStatusItems(fromBacks:backs)
+    //        }
+    //    }
 
     
     let newspilot:Newspilot
@@ -90,74 +90,74 @@ struct PageList: View {
                                                 statuses: self.statusQuery.statuses,
                                                 sections: self.organizationQuery.sections,
                                                 flags: self.flagQuery.flags)
-//        let pieChartModel = PieChartModel(data: statusItems)
-//        let publicationDateString = self.filter.publicationDate?.name ?? "PubDate"
+        //        let pieChartModel = PieChartModel(data: statusItems)
+        //        let publicationDateString = self.filter.publicationDate?.name ?? "PubDate"
         return
-            GeometryReader {geometry in
-                ZStack {                    
-                    VStack {
-//                        Button(action:{
-//                            withAnimation {
-//                                expandChart.toggle()
-//                            }
-//
-//                        }) {
-//                            PieChartView(chartData:pieChartModel).frame(width: 50, height: 50)
-//                        }
-//
-//                        if expandChart {
-//                            ForEach(pieChartModel.arcData) {arc in
-//                                HStack {
-//                                    Arc(startAngle: arc.startAngle, endAngle: arc.endAngle, clockwise: true)
-//                                        .foregroundColor(Color(arc.pieData.color))
-//                                        .frame(width: 30, height: 30, alignment: .center).padding(0)
-//
-//                                    Text("\(Int(arc.pieData.value)) is \(arc.pieData.title)")
-//                                    Spacer()
-//                                }.padding(.leading, 5)
-//                            }
-//                        }
+        GeometryReader {geometry in
+            ZStack {
+                VStack {
+                    //                        Button(action:{
+                    //                            withAnimation {
+                    //                                expandChart.toggle()
+                    //                            }
+                    //
+                    //                        }) {
+                    //                            PieChartView(chartData:pieChartModel).frame(width: 50, height: 50)
+                    //                        }
+                    //
+                    //                        if expandChart {
+                    //                            ForEach(pieChartModel.arcData) {arc in
+                    //                                HStack {
+                    //                                    Arc(startAngle: arc.startAngle, endAngle: arc.endAngle, clockwise: true)
+                    //                                        .foregroundColor(Color(arc.pieData.color))
+                    //                                        .frame(width: 30, height: 30, alignment: .center).padding(0)
+                    //
+                    //                                    Text("\(Int(arc.pieData.value)) is \(arc.pieData.title)")
+                    //                                    Spacer()
+                    //                                }.padding(.leading, 5)
+                    //                            }
+                    //                        }
 
-                        SearchBar(searchText: $searchText).padding()
-                        
-                        if self.useThumbView {
-                            ThumbView(pageModelAdapter:pageModelAdapter, backs:backs, expandedBacks: self.$expandedBacks, filterText:self.searchText, pageAction: self.pageAction, showAction:self.$showStatusChange)
-                        }else{
-                            ListView(pageModelAdapter: pageModelAdapter, backs:backs, expandedBacks: self.$expandedBacks, filterText:self.searchText, pageAction: self.pageAction, showAction:self.$showStatusChange)
-                        }
+                    SearchBar(searchText: $searchText).padding()
+
+                    if self.useThumbView {
+                        ThumbView(pageModelAdapter:pageModelAdapter, backs:backs, expandedBacks: self.$expandedBacks, filterText:self.searchText, pageAction: self.pageAction, showAction:self.$showStatusChange)
+                    }else{
+                        ListView(pageModelAdapter: pageModelAdapter, backs:backs, expandedBacks: self.$expandedBacks, filterText:self.searchText, pageAction: self.pageAction, showAction:self.$showStatusChange)
                     }
-                    
-                    .navigationBarTitle(Text(self.subProduct.name), displayMode: NavigationBarItem.TitleDisplayMode.inline )
-                    .navigationBarItems(
-                        trailing:
-                            HStack {
-                                Picker("", selection: self.$useThumbView) {
-                                    Image(systemName: "list.bullet").tag(false)
-                                    Image(systemName: "list.bullet.below.rectangle").tag(true)
-                                }
-                                .pickerStyle(SegmentedPickerStyle())
-                                .padding()
-                                Button(action:{self.showFilterView = true}, label: {Image(systemName:"line.horizontal.3.decrease.circle")})
-                                    .popover( // Why is this so large?
-                                        isPresented: self.$showFilterView,
-                                        arrowEdge: .top
-                                    ) {
-                                        PageFilterView(subProduct:self.subProduct, pages: self.pageQuery.pages,publicationDateQuery:self.publicationDateQuery, filter: self.filter)
-                                            .frame(minWidth: 400, maxWidth: .infinity, minHeight: 400,maxHeight: .infinity, alignment: .center)
-                                    }
-                            }
-                    )
-                    
-                }.edgesIgnoringSafeArea(.bottom) //.edgesIgnoringSafeArea(.leading).edgesIgnoringSafeArea(.trailing)
-            }
-            .connectionBanner()
-            .onAppear(){
-                self.pageQuery.load()
-            }.sheet(isPresented: self.$showStatusChange, content: {
-                if (pageAction.type == .ChangeStatus) {
-                    SetStatusView(page:pageAction.page!, statuses:statusQuery.statusesBySortkey(),isShown: self.$showStatusChange)                    
                 }
-            })
+
+                .navigationBarTitle(Text(self.subProduct.name), displayMode: NavigationBarItem.TitleDisplayMode.inline )
+                .navigationBarItems(
+                    trailing:
+                        HStack {
+                            Picker("", selection: self.$useThumbView) {
+                                Image(systemName: "list.bullet").tag(false)
+                                Image(systemName: "list.bullet.below.rectangle").tag(true)
+                            }
+                            .pickerStyle(SegmentedPickerStyle())
+                            .padding()
+                            Button(action:{self.showFilterView = true}, label: {Image(systemName:"line.horizontal.3.decrease.circle")})
+                                .popover( // Why is this so large?
+                                    isPresented: self.$showFilterView,
+                                    arrowEdge: .top
+                                ) {
+                                    PageFilterView(subProduct:self.subProduct, pages: self.pageQuery.pages,publicationDateQuery:self.publicationDateQuery, filter: self.filter)
+                                        .frame(minWidth: 400, maxWidth: .infinity, minHeight: 400,maxHeight: .infinity, alignment: .center)
+                                }
+                        }
+                )
+
+            }.edgesIgnoringSafeArea(.bottom) //.edgesIgnoringSafeArea(.leading).edgesIgnoringSafeArea(.trailing)
+        }
+        .connectionBanner()
+        .onAppear(){
+            self.pageQuery.load()
+        }.sheet(isPresented: self.$showStatusChange, content: {
+            if (pageAction.type == .ChangeStatus) {
+                SetStatusView(page:pageAction.page!, statuses:statusQuery.statusesBySortkey(),isShown: self.$showStatusChange)
+            }
+        })
         
     }
     
@@ -165,40 +165,37 @@ struct PageList: View {
         return Int(width/200)
     }
     
-//    func getStatusItems(fromBacks backs:[BackKey:[Page]]) -> [StatusItem]{
-//        var statusItems:[StatusItem] = []
-//        var statusCountDictionary:[Int:Int] = [:]
-//        
-//        for pages in backs.values {
-//            for page in pages {
-//                if let statusCount = statusCountDictionary[page.status] {
-//                    statusCountDictionary[page.status] = statusCount + 1
-//                }else{
-//                    statusCountDictionary[page.status] = 1
-//                }
-//            }
-//        }
-//        
-//        for (key,value) in statusCountDictionary {
-//            if let status = statusQuery.status(forId: key) {
-//                statusItems.append(StatusItem(status: status, value:value))
-//            }
-//        }
-//        return statusItems.sorted()
-//    }
+    //    func getStatusItems(fromBacks backs:[BackKey:[Page]]) -> [StatusItem]{
+    //        var statusItems:[StatusItem] = []
+    //        var statusCountDictionary:[Int:Int] = [:]
+    //
+    //        for pages in backs.values {
+    //            for page in pages {
+    //                if let statusCount = statusCountDictionary[page.status] {
+    //                    statusCountDictionary[page.status] = statusCount + 1
+    //                }else{
+    //                    statusCountDictionary[page.status] = 1
+    //                }
+    //            }
+    //        }
+    //
+    //        for (key,value) in statusCountDictionary {
+    //            if let status = statusQuery.status(forId: key) {
+    //                statusItems.append(StatusItem(status: status, value:value))
+    //            }
+    //        }
+    //        return statusItems.sorted()
+    //    }
 }
 
 
-//struct PageList_Previews: PreviewProvider {
-//    static var previews: some View {
-//        let loginHandler=LoginHandler()
-//        return NavigationView {
-//            PageList(newspilot:loginHandler.newspilot, subProduct: SubProduct(id: 1, productId: 11, name: "My Sub Product2", settingsString: ""),
-//                     publicationDates: [
-//                        PublicationDate(entityType: "PublicationDate", id: 1, issuenumber: "1", name: "Pub 1", productID: 1, pubDate: "2019-10-10"),
-//                        PublicationDate(entityType: "PublicationDate", id: 1, issuenumber: "2", name: "Pub 2", productID: 1, pubDate: "2019-10-11"),
-//                        PublicationDate(entityType: "PublicationDate", id: 1, issuenumber: "1", name: "Pub 1", productID: 1, pubDate: "2019-10-12")
-//            ]).environmentObject(LoginHandler())
-//        }
-//    }
-//}
+struct PageList_Previews: PreviewProvider {
+    static var previews: some View {
+        let loginHandler=LoginHandler.shared
+        return NavigationView {
+            PageList(newspilot:loginHandler.newspilot, subProduct: SubProduct(id: 1, productId: 11, name: "My Sub Product2", settingsString: ""),
+                     pageQuery: PageQuery(withNewspilot: loginHandler.newspilot, productId: 1, subProductId: 1, publicationDateId: 1)
+            )
+        }
+    }
+}

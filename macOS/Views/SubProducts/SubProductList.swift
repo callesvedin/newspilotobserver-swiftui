@@ -21,6 +21,7 @@ struct SubProductList: View {
                 Text(subProduct.name).font(Font.bodyFont).tag(subProduct)
             }
         }
+        .frame(width:350)
         .connectionBanner()
 //        .navigationBarTitle(product.name)        
     }

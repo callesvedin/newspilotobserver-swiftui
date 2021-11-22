@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		EB14A313250FEECE00A9F8B9 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB14A312250FEECE00A9F8B9 /* Tests_iOS.swift */; };
 		EB14A31E250FEECE00A9F8B9 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB14A31D250FEECE00A9F8B9 /* Tests_macOS.swift */; };
-		EB14A320250FEECE00A9F8B9 /* MultiNewspilotObserverApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB14A2F8250FEECD00A9F8B9 /* MultiNewspilotObserverApp.swift */; };
-		EB14A321250FEECE00A9F8B9 /* MultiNewspilotObserverApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB14A2F8250FEECD00A9F8B9 /* MultiNewspilotObserverApp.swift */; };
 		EB14A334250FEF9D00A9F8B9 /* PublicationDateQueryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB117D242463067500AF52EF /* PublicationDateQueryManager.swift */; };
 		EB14A335250FEF9D00A9F8B9 /* PublicationDateQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB41EA5123479D2200550428 /* PublicationDateQuery.swift */; };
 		EB14A336250FEF9D00A9F8B9 /* OrganizationsQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB54350F2322EC61004EE63F /* OrganizationsQuery.swift */; };
@@ -191,6 +189,8 @@
 		EBA1C89825D295A6007B660F /* PageInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA1C89725D295A6007B660F /* PageInfoView.swift */; };
 		EBA1C8A325D297BF007B660F /* PageInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA1C8A225D297BF007B660F /* PageInfoView.swift */; };
 		EBB50C3325D0529F00EF9784 /* PageListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB50C3225D0529F00EF9784 /* PageListCell.swift */; };
+		EBB617E02721744200DDC659 /* MultiNewspilotObserverApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB14A2F8250FEECD00A9F8B9 /* MultiNewspilotObserverApp.swift */; };
+		EBB617E12721748100DDC659 /* MultiNewspilotObserverApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB14A2F8250FEECD00A9F8B9 /* MultiNewspilotObserverApp.swift */; };
 		EBBB2A3625C7DF290005264C /* PageFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBB2A3525C7DF290005264C /* PageFilterView.swift */; };
 		EBBB2A4025C7DF530005264C /* PageFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBB2A3B25C7DF370005264C /* PageFilterView.swift */; };
 		EBCD895A2539D37100DC3D0B /* PAV1E2.json in Resources */ = {isa = PBXBuildFile; fileRef = EBA7210A23D36729003B1BC5 /* PAV1E2.json */; };
@@ -1188,7 +1188,6 @@
 				EB14A3B2250FF0EB00A9F8B9 /* PageList.swift in Sources */,
 				EB14A407250FF11C00A9F8B9 /* Section.swift in Sources */,
 				EB3FA9DF25535922000A3F13 /* UIImage+Rezise.swift in Sources */,
-				EB14A320250FEECE00A9F8B9 /* MultiNewspilotObserverApp.swift in Sources */,
 				EB3F6C102534DB1D00E7D0CA /* NewspilotManager.swift in Sources */,
 				EB14A3B4250FF0EB00A9F8B9 /* GridStack.swift in Sources */,
 				EB14A3A9250FF0EB00A9F8B9 /* ActivityIndicator.swift in Sources */,
@@ -1218,6 +1217,7 @@
 				EB3F6C172534E7B500E7D0CA /* SetStatusView.swift in Sources */,
 				EB14A40E250FF11C00A9F8B9 /* BackKey.swift in Sources */,
 				EB14A3A4250FF0EB00A9F8B9 /* PageViewController.swift in Sources */,
+				EBB617E12721748100DDC659 /* MultiNewspilotObserverApp.swift in Sources */,
 				EB14A40C250FF11C00A9F8B9 /* SubProduct.swift in Sources */,
 				EB14A3EC250FF10A00A9F8B9 /* ShapeExtensions.swift in Sources */,
 				EB14A3EB250FF10A00A9F8B9 /* FontExtensions.swift in Sources */,
@@ -1263,7 +1263,6 @@
 				EB14A3C5250FF0EC00A9F8B9 /* PageModelAdapter.swift in Sources */,
 				EBA1C88E25D29022007B660F /* ListView.swift in Sources */,
 				EB14A3FA250FF11C00A9F8B9 /* Section.swift in Sources */,
-				EB14A321250FEECE00A9F8B9 /* MultiNewspilotObserverApp.swift in Sources */,
 				EB3F6C112534DB1D00E7D0CA /* NewspilotManager.swift in Sources */,
 				EB14A3D9250FF0EC00A9F8B9 /* GridStack.swift in Sources */,
 				EB14A3B6250FF0EC00A9F8B9 /* PageViewModel.swift in Sources */,
@@ -1287,6 +1286,7 @@
 				EB14A3DC250FF10A00A9F8B9 /* UserDefault.swift in Sources */,
 				EB14A3DA250FF0EC00A9F8B9 /* PageListCell.swift in Sources */,
 				EBA1C88025D28EF3007B660F /* PageDetailView.swift in Sources */,
+				EBB617E02721744200DDC659 /* MultiNewspilotObserverApp.swift in Sources */,
 				EBF0DDE42552016600ED0D5F /* UIImage.swift in Sources */,
 				EB14A3F8250FF11C00A9F8B9 /* SubProductSettings.swift in Sources */,
 				EB14A3E0250FF10A00A9F8B9 /* OrderedArray.swift in Sources */,

@@ -100,13 +100,12 @@ struct PageList: View {
                 }else{
                     ListView(pageModelAdapter: pageModelAdapter, backs:backs, expandedBacks: self.$expandedBacks, filterText:self.searchText, pageAction: self.pageAction, showAction:self.$showStatusChange)
                 }
-            }            
-            .padding()
+            }                        
             .toolbar {
                 ToolbarItem (placement: .automatic) {
                     SearchBar(searchText: $searchText).frame(width: 400).padding(.trailing, 20)
                 }
-                                    
+
                 ToolbarItem (placement: .automatic) {
                     Picker("", selection: self.$useThumbView) {
                         Image(systemName: "list.bullet").resizable().tag(false)
@@ -115,6 +114,7 @@ struct PageList: View {
                     .pickerStyle(SegmentedPickerStyle())
                     .padding(.trailing, 20)
                 }
+
                 ToolbarItem (placement: .automatic) {
                     Button(action:{self.showFilterView = true}, label: {Image(systemName:"line.horizontal.3.decrease.circle")})
                         .popover( // Why is this so large?
@@ -126,9 +126,7 @@ struct PageList: View {
                         }.buttonStyle(PlainButtonStyle())
                 }
 
-            }
-        
-    
+            }            
             .connectionBanner()
             .onAppear(){
                 self.pageQuery.load()
